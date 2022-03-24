@@ -475,26 +475,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babi-front@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "babi-front@workspace:."
-  dependencies:
-    "@types/node": 17.0.23
-    "@types/react": 17.0.42
-    "@typescript-eslint/eslint-plugin": ^5.16.0
-    "@typescript-eslint/parser": ^5.16.0
-    eslint: 8.11.0
-    eslint-config-next: 12.1.0
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-prettier: ^4.0.0
-    next: 12.1.0
-    prettier: ^2.6.0
-    react: 17.0.2
-    react-dom: 17.0.2
-    typescript: 4.6.2
-  languageName: unknown
-  linkType: soft
-
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -1133,6 +1113,26 @@ __metadata:
   checksum: 3c436e9695ccca29620b4be5671dd72e5dd0a7500e0856611b7ca9bd8169f177f408c3b9abfa78dfe1493ee2d873e2c119080a8a9bee4e1a186a9e60ca6c89f1
   languageName: node
   linkType: hard
+
+"frontend@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "frontend@workspace:."
+  dependencies:
+    "@types/node": 17.0.23
+    "@types/react": 17.0.42
+    "@typescript-eslint/eslint-plugin": ^5.16.0
+    "@typescript-eslint/parser": ^5.16.0
+    eslint: 8.11.0
+    eslint-config-next: 12.1.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-prettier: ^4.0.0
+    next: 12.1.0
+    prettier: ^2.6.0
+    react: 17.0.2
+    react-dom: 17.0.2
+    typescript: 4.6.2
+  languageName: unknown
+  linkType: soft
 
 "fs.realpath@npm:^1.0.0":
   version: 1.0.0
