@@ -11,6 +11,17 @@
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "postinstall": "husky install"
   },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "prettier --write"
+    ],
+    "*.{html,css,less,ejs,json}": [
+      "prettier --write"
+    ],
+    "*.{md,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "next": "12.1.0",
     "react": "17.0.2",
