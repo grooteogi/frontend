@@ -8,7 +8,19 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
-    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\""
+    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
+    "postinstall": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "prettier --write"
+    ],
+    "*.{html,css,less,ejs,json}": [
+      "prettier --write"
+    ],
+    "*.{md,yaml,yml}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "next": "12.1.0",
@@ -24,6 +36,8 @@
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": ">=7",
+    "lint-staged": ">=10",
     "prettier": "^2.6.0",
     "typescript": "4.6.2"
   },
