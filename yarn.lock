@@ -8211,6 +8211,7 @@ __metadata:
     husky: ">=7"
     lint-staged: ">=10"
     next: 12.1.0
+    polished: ^4.1.4
     prettier: ^2.6.0
     react: 17.0.2
     react-dom: 17.0.2
@@ -11962,7 +11963,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"polished@npm:^4.0.5":
+"polished@npm:^4.0.5, polished@npm:^4.1.4":
   version: 4.1.4
   resolution: "polished@npm:4.1.4"
   dependencies:

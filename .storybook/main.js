@@ -1,3 +1,7 @@
+const path = require('path');
+
+const resolvePath = _path => path.join(process.cwd(), _path);
+
 module.exports = {
   stories: [
     '../stories/**/*.stories.mdx',
@@ -10,4 +14,14 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
+  webpackFinal: async config => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        '@emotion/styled': resolvePath('node_modules/@emotion/styled'),
+      },
+    },
+  }),
 };
