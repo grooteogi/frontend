@@ -1,21 +1,13 @@
 import React from 'react';
+import { SButtonProps, StyledButton } from './style';
 
-interface ButtonProps {
-  primary?: boolean;
-  backgroundColor?: string;
-  size?: 'small' | 'medium' | 'large';
-  label: string;
-  onClick?: () => void;
+interface ButtonProps extends SButtonProps {
+  onClick?: (e: React.MouseEvent) => void;
+  name?: string;
 }
 
-export const Button = ({ primary = false, size = 'medium', backgroundColor, label, ...props }: ButtonProps) => {
-  return (
-    <button
-      type="button"
-      style={{ backgroundColor }}
-      {...props}
-    >
-      {label}
-    </button>
-  );
+const Button = ({ name, ...props }: ButtonProps) => {
+  return <StyledButton {...props}>{name}</StyledButton>;
 };
+
+export default Button;
