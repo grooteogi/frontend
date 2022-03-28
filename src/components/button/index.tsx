@@ -10,11 +10,7 @@ interface ButtonProps {
 
 export const Button = ({ primary = false, size = 'medium', backgroundColor, label, ...props }: ButtonProps) => {
   return (
-    <button
-      type="button"
-      style={{ backgroundColor }}
-      {...props}
-    >
+    <button type="button" style={{ backgroundColor }} {...props}>
       {label}
     </button>
   );
