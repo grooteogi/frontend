@@ -1,0 +1,39 @@
+name: PR Test
+
+on:
+  pull_request:
+    branchs: [develop]
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Lint
+        run: yarn lint
+      - name: Format
+        run: yarn format
+      - name: If fail
+        uses: actions/github-script@0.8.0
+        with:
+          github-token: ${{github.token}}
+          script: |
+            const ref = "${{ github.ref }}"
+            const pull_number = Number(ref.split("/")[2])
+            await github.pulls.createReview({
+              ...context.repo,
+              pull_number,
+              body:"다시 확인 부탁드려요.",
+              event: "REQUEST_CHANGES"
+            })
+        if: failure()
