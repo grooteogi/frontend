@@ -24,4 +24,5 @@ Primary.args = {
   width: 375,
   height: 40,
   value: 'input Value',
+  type: 'text',
 };
