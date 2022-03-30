@@ -4,7 +4,7 @@ import { darken, lighten } from 'polished';
 import theme from '../../../styles/theme';
 
 export interface SInputProps {
-  color: keyof typeof theme.color.input.color;
+  backgroundColor: keyof typeof theme.color.input.color;
   fontColor: keyof typeof theme.color.input.fontColor;
   borderColor?: keyof typeof theme.color.input.borderColor;
   borderRadius: number;
@@ -14,7 +14,7 @@ export interface SInputProps {
   active?: boolean;
 }
 
-const getColors = ({ color, fontColor, borderColor = 'none' }: SInputProps) => {
+const getColors = ({ backgroundColor: color, fontColor, borderColor = 'none' }: SInputProps) => {
   const inputTheme = theme.color.input;
   const getBorder = () => {
     if (borderColor !== 'none')
@@ -22,7 +22,6 @@ const getColors = ({ color, fontColor, borderColor = 'none' }: SInputProps) => {
         border: 1px solid;
         border-color: ${inputTheme.borderColor[borderColor]}`;
   };
-  // add unactive code here
   return css`
     ${getBorder()}
     background-color: ${inputTheme.color[color]};

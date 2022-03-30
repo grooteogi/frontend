@@ -16,13 +16,13 @@ const Template: ComponentStory<typeof Input> = args => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  color: 'white',
+  backgroundColor: 'white',
   fontColor: 'gray',
   borderColor: 'gray',
-  borderRadius: 8,
-  fontSize: 16,
   width: 375,
   height: 40,
+  fontSize: 16,
+  borderRadius: 8,
   value: 'input Value',
   type: 'text',
 };
