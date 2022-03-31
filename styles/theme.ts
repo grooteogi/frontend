@@ -6,12 +6,33 @@ const color = {
       yellow: '#FFB84D',
       red: '#FF5D39',
       lightgray: '#DDDDDD',
+
+      lightergray: '#EEEEEE',
     },
     fontColor: {
       white: '#FFFFFF',
+
+      black: '#000000',
     },
     borderColor: {
       lightgray: '#DDDDDD',
+      none: null,
+
+      primary: '#1CDBA1',
+    },
+  },
+  hashtag: {
+    color: {
+      lightgray: '#EEEEEE',
+      white: '#FFFFFF',
+    },
+    fontColor: {
+      white: '#FFFFFF',
+      black: '#000000',
+    },
+    borderColor: {
+      lightgray: '#EEEEEE',
+      primary: '#1CDBA1',
       none: null,
     },
   },
@@ -24,6 +45,7 @@ const color = {
   black: '#000000',
   lightblack: '#545454',
   lightyelloew: '#FFDCA8',
+  themeGreen: '#1CDBA1',
 };
 
 const theme = {

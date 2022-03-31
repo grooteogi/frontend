@@ -1,0 +1,6 @@
+.box {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  display: inline-block;
+}

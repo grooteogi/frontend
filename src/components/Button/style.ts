@@ -18,8 +18,9 @@ const getColors = ({ color, fontColor, borderColor = 'none' }: SButtonProps) => 
   const getBorder = () => {
     if (borderColor !== 'none')
       return `
-	border: 1px solid;
-	border-color: ${buttonTheme.borderColor[borderColor]}`;
+      border: 1px solid;
+	    border-color: ${buttonTheme.borderColor[borderColor]}
+      `;
   };
   // add unactive code here
   return css`
