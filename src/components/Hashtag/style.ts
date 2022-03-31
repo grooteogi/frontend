@@ -8,8 +8,6 @@ export interface SButtonProps {
   fontColor: keyof typeof theme.color.hashtag.fontColor;
   borderColor: keyof typeof theme.color.hashtag.borderColor;
   fontSize: number;
-  // width: number;
-  // height: number;
   active?: boolean;
 }
 
