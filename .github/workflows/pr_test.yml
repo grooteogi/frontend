@@ -23,17 +23,3 @@ jobs:
         run: yarn lint
       - name: Format
         run: yarn format
-      - name: If fail
-        uses: actions/github-script@0.8.0
-        with:
-          github-token: ${{github.token}}
-          script: |
-            const ref = "${{ github.ref }}"
-            const pull_number = Number(ref.split("/")[2])
-            await github.pulls.createReview({
-              ...context.repo,
-              pull_number,
-              body:"다시 확인 부탁드려요.",
-              event: "REQUEST_CHANGES"
-            })
-        if: failure()
