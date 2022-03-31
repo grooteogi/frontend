@@ -7,48 +7,52 @@ export interface SButtonProps {
   color: keyof typeof theme.color.button.color;
   fontColor: keyof typeof theme.color.button.fontColor;
   borderColor?: keyof typeof theme.color.button.borderColor;
-  fontSize: number;
-  width: number;
-  height: number;
+  size: 'sm' | 'md' | 'lg';
   active?: boolean;
 }
 
 const getColors = ({ color, fontColor, borderColor = 'none' }: SButtonProps) => {
   const buttonTheme = theme.color.button;
   const getBorder = () => {
-    if (borderColor !== 'none')
-      return `
-	border: 1px solid;
-	border-color: ${buttonTheme.borderColor[borderColor]}`;
+    if (borderColor !== 'none') return `border: 1px solid ${buttonTheme.borderColor[borderColor]}`;
   };
-  // add unactive code here
   return css`
-    ${getBorder()}
+    ${getBorder()};
     background-color: ${buttonTheme.color[color]};
     color: ${buttonTheme.fontColor[fontColor]};
     &:hover {
-      background: ${lighten(0.1, `${buttonTheme.color[color]}`)};
+      background-color: ${lighten(0.05, `${buttonTheme.color[color]}`)};
       color: ${lighten(0.1, `${buttonTheme.fontColor[fontColor]}`)};
       cursor: pointer;
     }
     &:active {
-      background: ${darken(0.01, `${buttonTheme.color[color]}`)};
+      background-color: ${darken(0.01, `${buttonTheme.color[color]}`)};
       color: ${darken(0.01, `${buttonTheme.fontColor[fontColor]}`)};
       cursor: pointer;
     }
   `;
 };
 
-const getSize = ({ fontSize, width, height }: SButtonProps) => {
+const getSize = ({ size }: SButtonProps) => {
+  const getSizeType = () => {
+    if (size === 'sm') return `width: 64px; height: 25px;font-size: 11px; border-radius: 4px;`;
+    else if (size === 'md') return `width: 150px; height: 40px;`;
+    else if (size === 'lg') return `width: 100%; height: 50px;`;
+  };
   return css`
-    width: ${width}px;
-    height: ${height}px;
-    font-size: ${fontSize}px;
+    ${getSizeType()};
   `;
 };
 
 export const StyledButton = styled.button<SButtonProps>`
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${getColors};
   ${getSize};
-  border-radius: 8px;
+  img & {
+    flex: 1 1 20px;
+  }
 `;
