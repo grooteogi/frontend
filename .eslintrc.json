@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "es2021": true
   },
   "parser": "@typescript-eslint/parser",
@@ -13,10 +14,10 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended", // typescript eslint
     "next",
     "next/core-web-vitals",
-    "plugin:storybook/recommended",
-    "plugin:prettier/recommended" // prettier extension for autoformatting
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:storybook/recommended"
   ]
 }
