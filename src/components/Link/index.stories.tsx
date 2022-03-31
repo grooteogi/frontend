@@ -4,7 +4,7 @@ import theme from '../../../styles/theme';
 import Link from './index';
 
 export default {
-  title: 'Containers/Link',
+  title: 'Components/Link',
   component: Link,
 } as ComponentMeta<typeof Link>;
 
@@ -15,4 +15,8 @@ const Template: ComponentStory<typeof Link> = args => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  content: '회원가입하기',
+  href: '',
+  fontSize: 16,
+};

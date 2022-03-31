@@ -45,6 +45,7 @@ const color = {
   black: '#000000',
   lightblack: '#545454',
   lightyelloew: '#FFDCA8',
+  themeGreen: '#1CDBA1',
 };
 
 const theme = {

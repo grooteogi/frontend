@@ -18,14 +18,14 @@ export const Container = styled.div<BoxProps>`
   ${getSize};
   border: 1px solid ${theme.color.lightgrey};
   border-radius: 8px;
-
   margin-left: auto;
   margin-right: auto;
   padding: 40px;
   background: ${theme.color.white};
-  font-size: 24px;
+  display: flex;
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 20px;
+  font-family: Noto Sans KR;
+  font-size: 24px;
 `;
