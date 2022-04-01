@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { darken, lighten } from 'polished';
 
-export interface SLiProps {
+export interface SHeaderListProps {
   fontSize?: number;
   fontWeight?: string;
   fontColor?: string;
@@ -10,7 +10,7 @@ export interface SLiProps {
   float?: string;
 }
 
-const getColors = ({ backgroundColor = '#ffffff' }: SLiProps) => {
+const getColors = ({ backgroundColor = '#ffffff' }: SHeaderListProps) => {
   return css`
     background-color: ${backgroundColor};
     &:hover {
@@ -23,7 +23,7 @@ const getColors = ({ backgroundColor = '#ffffff' }: SLiProps) => {
     }
   `;
 };
-const getLayout = ({ float = 'left' }: SLiProps) => {
+const getLayout = ({ float = 'left' }: SHeaderListProps) => {
   return css`
     display: inline;
     list-style: none;
@@ -33,7 +33,7 @@ const getLayout = ({ float = 'left' }: SLiProps) => {
     height: 60px;
   `;
 };
-export const StyledLi = styled.li<SLiProps>`
+export const StyledHeaderList = styled.li<SHeaderListProps>`
   ${getColors};
   ${getLayout};
 `;
@@ -48,7 +48,7 @@ const getFont = ({ fontSize = 12, fontWeight = 'regular', fontColor = '#737373' 
     text-align: center;
   `;
 };
-export const StyledA = styled.a`
+export const StyledHeaderAnchor = styled.a`
   display: block;
   ${getFont};
   &:visited,

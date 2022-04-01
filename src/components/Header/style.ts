@@ -20,7 +20,6 @@ const getLayout = ({ backgroundColor = '#ffffff', margin = '0', padding = '0', w
     padding: ${padding};
     width: ${width}vw;
     height: ${height}px;
-
     background-color: ${backgroundColor};
   `;
 };

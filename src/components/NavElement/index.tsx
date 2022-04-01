@@ -1,15 +1,15 @@
-import { SLiProps, StyledLi, StyledA } from './style';
+import { SHeaderListProps as SHeaderListProps, StyledHeaderList, StyledHeaderAnchor } from './style';
 
-interface LiProps extends SLiProps {
+interface HeaderListProps extends SHeaderListProps {
   name: string;
 }
 
-const NavElement = ({ name, ...props }: LiProps) => {
+const HeaderNavElement = ({ name, ...props }: HeaderListProps) => {
   return (
-    <StyledLi {...props}>
-      <StyledA {...props}>{name}</StyledA>
-    </StyledLi>
+    <StyledHeaderList {...props}>
+      <StyledHeaderAnchor {...props}>{name}</StyledHeaderAnchor>
+    </StyledHeaderList>
   );
 };
 
-export default NavElement;
+export default HeaderNavElement;

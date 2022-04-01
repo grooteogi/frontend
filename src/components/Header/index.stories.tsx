@@ -14,18 +14,19 @@ const Template: ComponentStory<typeof Header> = args => (
   </GlobalThemeProvider>
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+const Common = Template.bind({});
+Common.args = {
   width: 70,
   height: 60,
 };
+
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
   user: {
     name: 'test User',
   },
-  ...Primary.args,
+  ...Common.args,
 };
 
 export const LoggedOut = Template.bind({});
-LoggedOut.args = { ...Primary.args };
+LoggedOut.args = { ...Common.args };

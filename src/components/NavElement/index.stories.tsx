@@ -1,20 +1,20 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import NavElement from './index';
+import HeaderNavElement from './index';
 
 export default {
-  title: 'Components/NavElement',
-  component: NavElement,
-} as ComponentMeta<typeof NavElement>;
+  title: 'Components/HeaderNavElement',
+  component: HeaderNavElement,
+} as ComponentMeta<typeof HeaderNavElement>;
 
-const Template: ComponentStory<typeof NavElement> = args => (
+const Template: ComponentStory<typeof HeaderNavElement> = args => (
   <GlobalThemeProvider theme={theme}>
-    <NavElement {...args} />
+    <HeaderNavElement {...args} />
   </GlobalThemeProvider>
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const DefaultView = Template.bind({});
+DefaultView.args = {
   name: 'navValue',
 };
