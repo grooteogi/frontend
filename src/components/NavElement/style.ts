@@ -13,13 +13,12 @@ export interface SHeaderListProps {
 const getColors = ({ backgroundColor = '#ffffff' }: SHeaderListProps) => {
   return css`
     background-color: ${backgroundColor};
+    cursor: pointer;
     &:hover {
       background: ${lighten(0.1, `${backgroundColor}`)};
-      cursor: pointer;
     }
     &:active {
       background: ${darken(0.01, `${backgroundColor}`)};
-      cursor: pointer;
     }
   `;
 };
