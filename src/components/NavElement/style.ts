@@ -42,7 +42,6 @@ const getFont = ({ fontSize = 12, fontWeight = 'regular', fontColor = '#737373' 
   return css`
     font-weight: ${fontWeight};
     font-size: ${fontSize}px;
-    font-family: sans-serif;
     color: ${fontColor};
     text-decoration: none;
     text-align: center;
