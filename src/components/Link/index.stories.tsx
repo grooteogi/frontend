@@ -14,9 +14,17 @@ const Template: ComponentStory<typeof Link> = args => (
   </GlobalThemeProvider>
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const PrimaryLink = Template.bind({});
+PrimaryLink.args = {
   content: '회원가입하기',
+  fontColor: 'primary',
+  href: '',
+  fontSize: 16,
+};
+export const GrayLink = Template.bind({});
+GrayLink.args = {
+  content: '회원가입하기',
+  fontColor: 'lightgrey',
   href: '',
   fontSize: 16,
 };

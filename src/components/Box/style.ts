@@ -24,8 +24,3 @@ export const Container = styled.div<BoxProps>`
   background: ${theme.color.white};
   display: flex;
 `;
-
-export const Wrapper = styled.div`
-  font-family: Noto Sans KR;
-  font-size: 24px;
-`;

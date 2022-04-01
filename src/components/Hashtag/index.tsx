@@ -1,7 +1,7 @@
 import React from 'react';
-import { SButtonProps, StyledButton } from './style';
+import { SHashtagProps, StyledButton } from './style';
 
-interface HashtagProps extends SButtonProps {
+interface HashtagProps extends SHashtagProps {
   onClick?: (e: React.MouseEvent) => void;
   keyword: string;
 }

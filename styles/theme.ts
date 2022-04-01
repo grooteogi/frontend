@@ -36,6 +36,12 @@ const color = {
       none: null,
     },
   },
+  link: {
+    fontColor: {
+      primary: '#1CDBA1',
+      lightgrey: '#EAEAEA',
+    },
+  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',

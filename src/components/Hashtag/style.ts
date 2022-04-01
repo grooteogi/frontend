@@ -3,40 +3,43 @@ import { css } from '@emotion/react';
 import { darken, lighten } from 'polished';
 import theme from '../../../styles/theme';
 
-export interface SButtonProps {
+export interface SHashtagProps {
   color: keyof typeof theme.color.hashtag.color;
   fontColor: keyof typeof theme.color.hashtag.fontColor;
   borderColor: keyof typeof theme.color.hashtag.borderColor;
   fontSize: number;
-  active?: boolean;
+  isActive?: boolean;
 }
 
-const getColors = ({ color, fontColor, borderColor }: SButtonProps) => {
+const getColors = ({ color, fontColor, borderColor, isActive }: SHashtagProps) => {
   const hashtagTheme = theme.color.hashtag;
   return css`
     background-color: ${hashtagTheme.color[color]};
     border: 1px solid ${hashtagTheme.borderColor[borderColor]};
     color: ${hashtagTheme.fontColor[fontColor]};
     &:hover {
-      background: ${lighten(0.01, `${hashtagTheme.color[color]}`)};
-      color: ${lighten(0.1, `${hashtagTheme.fontColor[fontColor]}`)};
+      background: ${isActive
+        ? darken(0.01, `${hashtagTheme.color[color]}`)
+        : lighten(0.01, `${hashtagTheme.color[color]}`)};
       cursor: pointer;
     }
     &:active {
       border: 1px solid ${hashtagTheme.borderColor.primary};
-      color: ${darken(0.01, `${hashtagTheme.fontColor[fontColor]}`)};
+      background: ${isActive
+        ? darken(0.05, `${hashtagTheme.color[color]}`)
+        : lighten(0.05, `${hashtagTheme.color[color]}`)};
       cursor: pointer;
     }
   `;
 };
 
-const getSize = ({ fontSize }: SButtonProps) => {
+const getSize = ({ fontSize }: SHashtagProps) => {
   return css`
     font-size: ${fontSize}px;
   `;
 };
 
-export const StyledButton = styled.button<SButtonProps>`
+export const StyledButton = styled.div<SHashtagProps>`
   ${getColors};
   ${getSize};
   border-radius: 4px;

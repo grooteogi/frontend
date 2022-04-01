@@ -21,7 +21,7 @@ NotClicked.args = {
   fontColor: 'black',
   fontSize: 16,
   keyword: '#대학생활',
-  active: true,
+  isActive: false,
 };
 export const Clicked = Template.bind({});
 Clicked.args = {
@@ -30,5 +30,5 @@ Clicked.args = {
   fontColor: 'black',
   fontSize: 16,
   keyword: '#대학생활',
-  active: true,
+  isActive: true,
 };

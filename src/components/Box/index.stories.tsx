@@ -14,8 +14,8 @@ const Template: ComponentStory<typeof Box> = args => (
   </GlobalThemeProvider>
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const LoginPageBox = Template.bind({});
+LoginPageBox.args = {
   width: 450,
   height: 500,
 };
