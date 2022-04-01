@@ -1,6 +1,6 @@
 import HeaderNavElement from '../NavElement';
 import { SHeaderListProps } from '../NavElement/style';
-import { SHeaderProps, StyledHeader } from './style';
+import { SHeaderProps, StyledDiv, StyledHeader } from './style';
 
 type User = {
   name: string;
@@ -13,12 +13,12 @@ interface HeaderProps extends SHeaderProps, SHeaderListProps {
 const Header = ({ user, ...props }: HeaderProps) => {
   return (
     <StyledHeader {...props}>
-      <div>
+      <StyledDiv>
         <HeaderNavElement name="🌳그루터기" fontSize={16} fontWeight={'bold'} fontColor={'#000000'} />
         <HeaderNavElement name="약속 잡기" fontWeight={'normal'} />
         <HeaderNavElement name="약속 찾기" fontWeight={'normal'} />
-      </div>
-      <div>
+      </StyledDiv>
+      <StyledDiv>
         {user ? (
           <>
             <HeaderNavElement name="로그아웃" float={'right'} />
@@ -31,7 +31,7 @@ const Header = ({ user, ...props }: HeaderProps) => {
             <HeaderNavElement name="로그인" float={'right'} />
           </>
         )}
-      </div>
+      </StyledDiv>
     </StyledHeader>
   );
 };

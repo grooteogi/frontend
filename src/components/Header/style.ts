@@ -26,3 +26,5 @@ const getLayout = ({ backgroundColor = '#ffffff', margin = '0', padding = '0', w
 export const StyledHeader = styled.ul<SHeaderProps>`
   ${getLayout};
 `;
+
+export const StyledDiv = styled.div``;
