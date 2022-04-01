@@ -14,7 +14,6 @@ const getLayout = ({ backgroundColor = '#ffffff', margin = '0', padding = '0', w
     display: flex;
     justify-content: space-between;
     list-style-type: 'none';
-
     border: none;
     margin: ${margin};
     padding: ${padding};
