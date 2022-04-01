@@ -1,0 +1,50 @@
+import { JSX } from '@emotion/react/jsx-runtime';
+import {
+  EmptyDiv,
+  SCheckboxComponentBox,
+  SCheckboxComponentDetail,
+  SCheckboxComponentInput,
+  SCheckboxComponentText,
+  StyledCheckbox,
+  StyledCheckboxDetail,
+  StyledCheckboxInput,
+  StyledCheckboxText,
+} from './style';
+
+interface CheckBoxProps extends SCheckboxComponentBox, SCheckboxComponentInput, SCheckboxComponentText {
+  label: string;
+  link?: boolean;
+  box: SCheckboxComponentBox;
+  input: SCheckboxComponentInput;
+  text: SCheckboxComponentText;
+  detail: SCheckboxComponentText;
+}
+
+const CheckboxComponents = {
+  Box(box: SCheckboxComponentBox) {
+    return <StyledCheckbox {...box}></StyledCheckbox>;
+  },
+  Input(input: SCheckboxComponentInput) {
+    return <StyledCheckboxInput type="checkbox" {...input} />;
+  },
+  Text(text: SCheckboxComponentText) {
+    return <StyledCheckboxText {...text}></StyledCheckboxText>;
+  },
+  Detail(text: SCheckboxComponentDetail) {
+    return <StyledCheckboxDetail {...text}></StyledCheckboxDetail>;
+  },
+};
+
+const Checkbox = ({ label, link, box, input, text }: CheckBoxProps) => {
+  return (
+    <CheckboxComponents.Box {...box}>
+      <EmptyDiv>
+        <CheckboxComponents.Input {...input} />
+        <CheckboxComponents.Text {...text}>{label}</CheckboxComponents.Text>
+      </EmptyDiv>
+      {link && <CheckboxComponents.Detail {...text}>보기</CheckboxComponents.Detail>}
+    </CheckboxComponents.Box>
+  );
+};
+
+export default Checkbox;
