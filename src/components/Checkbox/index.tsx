@@ -1,8 +1,6 @@
-import { JSX } from '@emotion/react/jsx-runtime';
 import {
   EmptyDiv,
   SCheckboxComponentBox,
-  SCheckboxComponentDetail,
   SCheckboxComponentInput,
   SCheckboxComponentText,
   StyledCheckbox,
@@ -30,7 +28,7 @@ const CheckboxComponents = {
   Text(text: SCheckboxComponentText) {
     return <StyledCheckboxText {...text}></StyledCheckboxText>;
   },
-  Detail(text: SCheckboxComponentDetail) {
+  Detail(text: SCheckboxComponentText) {
     return <StyledCheckboxDetail {...text}></StyledCheckboxDetail>;
   },
 };

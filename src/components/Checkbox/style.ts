@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 
 export interface SCheckboxComponentBox {
   width: number;
@@ -14,7 +13,6 @@ export interface SCheckboxComponentText {
   fontSize: number;
   fontColor: string;
 }
-export interface SCheckboxComponentDetail extends SCheckboxComponentText {}
 
 const getCheckboxBox = ({ ...box }) => {
   return `
