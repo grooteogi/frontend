@@ -4,9 +4,9 @@ import { darken, lighten } from 'polished';
 import theme from '../../../styles/theme';
 
 export interface SButtonProps {
-  color: keyof typeof theme.color.button.color;
-  fontColor: keyof typeof theme.color.button.fontColor;
-  borderColor?: keyof typeof theme.color.button.borderColor;
+  color: keyof typeof theme.style.button.color;
+  fontColor: keyof typeof theme.style.button.fontColor;
+  borderColor?: keyof typeof theme.style.button.borderColor;
   fontSize: number;
   width: number;
   height: number;
@@ -14,7 +14,7 @@ export interface SButtonProps {
 }
 
 const getColors = ({ color, fontColor, borderColor = 'none' }: SButtonProps) => {
-  const buttonTheme = theme.color.button;
+  const buttonTheme = theme.style.button;
   const getBorder = () => {
     if (borderColor !== 'none')
       return `
