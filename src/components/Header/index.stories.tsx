@@ -16,8 +16,16 @@ const Template: ComponentStory<typeof Header> = args => (
 
 const Common = Template.bind({});
 Common.args = {
-  width: 70,
-  height: 60,
+  navLists: [
+    { value: '🌳그루터기', isLogo: true, leftPosition: true },
+    { value: '약속 잡기', leftPosition: true },
+    { value: '약속 찾기', leftPosition: true },
+    { value: '채팅', isAuth: true },
+    { value: '내정보', isAuth: true },
+    { value: '로그아웃', isAuth: true },
+    { value: '로그인', isAuth: false },
+    { value: '회원가입', isAuth: false },
+  ],
 };
 
 export const LoggedIn = Template.bind({});

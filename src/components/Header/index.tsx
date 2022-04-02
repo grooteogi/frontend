@@ -1,51 +1,47 @@
-import HeaderNavElement from '../NavElement';
-import { SHeaderListProps } from '../NavElement/style';
-import { SHeaderProps, StyledDiv, StyledHeader } from './style';
-
-const leftElement = [{ name: '🌳그루터기', isLogo: true }, { name: '약속 잡기' }, { name: '약속 찾기' }];
-const rightElement = [
-  { name: '로그아웃', isAuthAvailable: true },
-  { name: '내정보', isAuthAvailable: true },
-  { name: '채팅', isAuthAvailable: true },
-  { name: '회원가입', isAuthAvailable: false },
-  { name: '로그인', isAuthAvailable: false },
-];
+import { StyledHeader, StyledHeaderList, StyledHeaderAnchor, StyledDiv } from './style';
 
 type User = {
   name: string;
 };
 
-interface HeaderProps extends SHeaderProps, SHeaderListProps {
+type NavList = {
+  value: string;
+  isLogo?: boolean;
+  isAuth?: boolean;
+  leftPosition?: boolean;
+};
+
+interface HeaderProps {
   user?: User;
+  navLists: NavList[];
 }
 
-const Header = ({ user, ...props }: HeaderProps) => {
+const HeaderList = ({ ...navList }) => {
   return (
-    <StyledHeader {...props}>
+    <>
+      <StyledHeaderList leftPosition={navList.leftPosition}>
+        <StyledHeaderAnchor isLogo={navList.isLogo}>{navList.value}</StyledHeaderAnchor>
+      </StyledHeaderList>
+    </>
+  );
+};
+
+const Header = ({ user, navLists }: HeaderProps) => {
+  return (
+    <StyledHeader>
       <StyledDiv>
-        <HeaderNavElement name="" />
-        {leftElement.map(e =>
-          e.isLogo ? (
-            <HeaderNavElement name={e.name} fontSize={16} fontWeight={'bold'} fontColor={'#000000'} />
-          ) : (
-            <HeaderNavElement name={e.name} />
-          ),
-        )}
+        {navLists
+          .filter(navList => navList.isAuth === undefined)
+          .map(navList => (
+            <HeaderList key={navList.value} {...navList}></HeaderList>
+          ))}
       </StyledDiv>
-      <StyledDiv>
-        {rightElement.map(e =>
-          user
-            ? e.isAuthAvailable && (
-                <>
-                  <HeaderNavElement name={e.name} float={'right'} />
-                </>
-              )
-            : !e.isAuthAvailable && (
-                <>
-                  <HeaderNavElement name={e.name} float={'right'} />
-                </>
-              ),
-        )}
+      <StyledDiv leftPosition={false}>
+        {navLists
+          .filter(navList => (user && navList.isAuth) || (navList.isAuth !== undefined && !user && !navList.isAuth))
+          .map(navList => (
+            <HeaderList key={navList.value} {...navList}></HeaderList>
+          ))}
       </StyledDiv>
     </StyledHeader>
   );
