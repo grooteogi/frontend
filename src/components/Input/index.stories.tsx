@@ -14,8 +14,8 @@ const Template: ComponentStory<typeof Input> = args => (
   </GlobalThemeProvider>
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const DefaultView = Template.bind({});
+DefaultView.args = {
   backgroundColor: 'white',
   fontColor: 'gray',
   borderColor: 'gray',
