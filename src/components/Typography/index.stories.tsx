@@ -8,7 +8,7 @@ export default {
   component: Typography,
 } as ComponentMeta<typeof Typography>;
 
-const Template = ({ children, ...args }: TypoProps) => (
+const Template: ComponentStory<typeof Typography> = ({ children, ...args }: TypoProps) => (
   <GlobalThemeProvider theme={theme}>
     <div style={{ width: '50%', height: '40%', marginTop: '0.5rem' }}>
       <Typography {...args}>{children}</Typography>
@@ -19,6 +19,7 @@ const Template = ({ children, ...args }: TypoProps) => (
 export const Sizes = (args: ComponentStory<typeof Typography>) => {
   const defaultArgs = {
     color: 'black' as const,
+    align: 'left' as const,
   };
   return (
     <>

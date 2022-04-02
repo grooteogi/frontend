@@ -18,6 +18,7 @@ const style = {
   typo: {
     color: {
       black: '#000000',
+      darkgray: '#333333',
     },
     weight: {
       bold: 700,
