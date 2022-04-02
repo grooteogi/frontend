@@ -4,9 +4,9 @@ import { darken, lighten } from 'polished';
 import theme from '../../../styles/theme';
 
 export interface SInputProps {
-  backgroundColor: keyof typeof theme.color.input.color;
-  fontColor: keyof typeof theme.color.input.fontColor;
-  borderColor?: keyof typeof theme.color.input.borderColor;
+  backgroundColor: keyof typeof theme.style.input.color;
+  fontColor: keyof typeof theme.style.input.fontColor;
+  borderColor?: keyof typeof theme.style.input.borderColor;
   borderRadius: number;
   fontSize: number;
   width: number;
@@ -15,7 +15,7 @@ export interface SInputProps {
 }
 
 const getColors = ({ backgroundColor: color, fontColor, borderColor = 'none' }: SInputProps) => {
-  const inputTheme = theme.color.input;
+  const inputTheme = theme.style.input;
   const getBorder = () => {
     if (borderColor !== 'none')
       return `
