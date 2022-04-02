@@ -1,5 +1,5 @@
 import React from 'react';
-import { SLinkProps, StyledAnchor } from './style';
+import { SLinkProps, StyledLink } from './style';
 
 interface LinkProps extends SLinkProps {
   href: string;
@@ -8,9 +8,9 @@ interface LinkProps extends SLinkProps {
 
 const Link = ({ content, href, ...props }: LinkProps) => {
   return (
-    <StyledAnchor href={href} {...props}>
+    <StyledLink href={href} {...props}>
       {content}
-    </StyledAnchor>
+    </StyledLink>
   );
 };
 

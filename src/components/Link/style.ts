@@ -2,29 +2,30 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import theme from '../../../styles/theme';
 
+const typoTheme = theme.style.typo;
 export interface SLinkProps {
-  fontSize: number;
-  fontColor: keyof typeof theme.style.link.fontColor;
+  size: 'xs' | 'sm' | 'md' | 'lg';
+  color: keyof typeof theme.style.typo.color;
+  weight?: keyof typeof theme.style.typo.weight;
 }
 
-const getColor = ({ fontColor }: SLinkProps) => {
-  const linkTheme = theme.style.link;
-
+const getColor = ({ color: fontColor }: SLinkProps) => {
   return css`
     &:link,
     &:visited {
-      color: ${linkTheme.fontColor[fontColor]};
+      color: ${typoTheme.color[fontColor]};
     }
   `;
 };
 
-const getSize = ({ fontSize }: SLinkProps) => {
+const getSize = ({ size }: SLinkProps) => {
   return css`
-    font-size: ${fontSize}px;
+    font-size: ${typoTheme.sizes[size].fontSize};
+    font-weight: ${typoTheme.sizes[size].weight};
   `;
 };
 
-export const StyledAnchor = styled.a<SLinkProps>`
+export const StyledLink = styled.a<SLinkProps>`
   ${getSize};
   ${getColor};
 `;
