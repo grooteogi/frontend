@@ -1,47 +1,51 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { darken, lighten } from 'polished';
+import { darken } from 'polished';
 import theme from '../../../styles/theme';
 
-export interface SHashtagProps {
-  color: keyof typeof theme.style.hashtag.color;
-  fontColor: keyof typeof theme.style.hashtag.fontColor;
-  borderColor: keyof typeof theme.style.hashtag.borderColor;
-  fontSize: number;
-  isActive?: boolean;
+export interface RemovableProps {
+  removable?: boolean;
 }
 
-const getColors = ({ color, fontColor, borderColor, isActive }: SHashtagProps) => {
+export interface ClickableProps {
+  clickable?: boolean;
+}
+
+const hashtagTheme = theme.style.hashtag;
+
+const getClickEffect = ({ clickable }: ClickableProps) => {
   const hashtagTheme = theme.style.hashtag;
-  return css`
-    background-color: ${hashtagTheme.color[color]};
-    border: 1px solid ${hashtagTheme.borderColor[borderColor]};
-    color: ${hashtagTheme.fontColor[fontColor]};
-    &:hover {
-      background: ${isActive
-        ? darken(0.01, `${hashtagTheme.color[color]}`)
-        : lighten(0.01, `${hashtagTheme.color[color]}`)};
-      cursor: pointer;
-    }
-    &:active {
-      border: 1px solid ${hashtagTheme.borderColor.primary};
-      background: ${isActive
-        ? darken(0.05, `${hashtagTheme.color[color]}`)
-        : lighten(0.05, `${hashtagTheme.color[color]}`)};
-      cursor: pointer;
-    }
-  `;
+  if (clickable)
+    return css`
+      &:hover {
+        background: ${darken(0.01, `${hashtagTheme.color.white}`)};
+        cursor: pointer;
+      }
+      &:active {
+        background: ${darken(0.05, `${hashtagTheme.color.white}`)};
+        cursor: pointer;
+      }
+    `;
 };
 
-const getSize = ({ fontSize }: SHashtagProps) => {
-  return css`
-    font-size: ${fontSize}px;
-  `;
-};
-
-export const StyledButton = styled.div<SHashtagProps>`
-  ${getColors};
-  ${getSize};
+export const StyledButton = styled.div<ClickableProps>`
+  ${getClickEffect};
+  background-color: ${hashtagTheme.color.white};
+  border: 1px solid ${hashtagTheme.borderColor.primary};
+  color: ${hashtagTheme.fontColor.black};
+  font-size: 1rem;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 8px 12px;
+`;
+
+const getRemoveButton = ({ removable }: RemovableProps) => {
+  return css`
+    display: ${removable ? 'inline' : 'none'};
+  `;
+};
+
+export const StyledRemoveBtn = styled.span<RemovableProps>`
+  ${getRemoveButton};
+  font-size: 0.75rem;
+  cursor: pointer;
 `;

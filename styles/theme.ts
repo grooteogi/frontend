@@ -6,18 +6,15 @@ const style = {
       yellow: '#FFB84D',
       red: '#FF5D39',
       lightgray: '#DDDDDD',
-
       lightergray: '#EEEEEE',
     },
     fontColor: {
       white: '#FFFFFF',
-
       black: '#000000',
     },
     borderColor: {
       lightgray: '#DDDDDD',
       none: null,
-
       primary: '#1CDBA1',
     },
   },
@@ -34,6 +31,10 @@ const style = {
       lightgray: '#EEEEEE',
       primary: '#1CDBA1',
       none: null,
+    },
+    display: {
+      display_none: 'none',
+      display_inline: 'inline',
     },
   },
   typo: {

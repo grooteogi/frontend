@@ -14,21 +14,14 @@ const Template: ComponentStory<typeof Hashtag> = args => (
   </GlobalThemeProvider>
 );
 
-export const NotClicked = Template.bind({});
-NotClicked.args = {
-  color: 'lightgray',
-  borderColor: 'lightgray',
-  fontColor: 'black',
-  fontSize: 16,
-  keyword: '#대학생활',
-  isActive: false,
-};
-export const Clicked = Template.bind({});
-Clicked.args = {
-  color: 'white',
-  borderColor: 'primary',
-  fontColor: 'black',
-  fontSize: 16,
-  keyword: '#대학생활',
-  isActive: true,
+export const Types = (args: ComponentStory<typeof Hashtag>) => {
+  return (
+    <GlobalThemeProvider theme={theme}>
+      <Template content="#기본 대학생활" {...args} />
+      <Template content="#클릭 대학생활" clickable {...args} />
+      <Template content="#삭제 대학생활" removable {...args} />
+      {/* <Template content="#삭제 대학생활" clickable removable {...args} /> */}
+      {/* cannot clickable and removable at the same time. */}
+    </GlobalThemeProvider>
+  );
 };
