@@ -24,5 +24,6 @@ Primary.args = {
   fontSize: 16,
   borderRadius: 8,
   value: 'input Value',
+  placeholder: 'input placeholder',
   type: 'text',
 };
