@@ -16,9 +16,9 @@ const Template: ComponentStory<typeof Input> = args => (
 
 export const DefaultView = Template.bind({});
 DefaultView.args = {
-  backgroundColor: 'white',
-  fontColor: 'gray',
-  borderColor: 'gray',
+  backgroundColor: '#000000',
+  fontColor: '#6B6B6B',
+  borderColor: '#BFBFBF',
   width: 375,
   height: 40,
   fontSize: 16,

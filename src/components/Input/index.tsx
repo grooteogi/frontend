@@ -6,7 +6,7 @@ interface InputProps extends SInputProps {
   placeholder?: string;
 }
 
-const Input = ({ value, type, placeholder, ...props }: InputProps) => {
+const Input = ({ value, type = 'text', placeholder, ...props }: InputProps) => {
   return <StyledInput type={type} value={value} placeholder={placeholder} {...props}></StyledInput>;
 };
 
