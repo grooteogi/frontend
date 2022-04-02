@@ -4,11 +4,11 @@ import theme from '../../../styles/theme';
 
 export interface SLinkProps {
   fontSize: number;
-  fontColor: keyof typeof theme.color.link.fontColor;
+  fontColor: keyof typeof theme.style.link.fontColor;
 }
 
 const getColor = ({ fontColor }: SLinkProps) => {
-  const linkTheme = theme.color.link;
+  const linkTheme = theme.style.link;
 
   return css`
     &:link,

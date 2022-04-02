@@ -1,4 +1,4 @@
-const color = {
+const style = {
   button: {
     color: {
       primary: '#1CDBA1',
@@ -55,7 +55,7 @@ const color = {
 };
 
 const theme = {
-  color,
+  style,
 };
 
 export default theme;

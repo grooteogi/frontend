@@ -4,15 +4,15 @@ import { darken, lighten } from 'polished';
 import theme from '../../../styles/theme';
 
 export interface SHashtagProps {
-  color: keyof typeof theme.color.hashtag.color;
-  fontColor: keyof typeof theme.color.hashtag.fontColor;
-  borderColor: keyof typeof theme.color.hashtag.borderColor;
+  color: keyof typeof theme.style.hashtag.color;
+  fontColor: keyof typeof theme.style.hashtag.fontColor;
+  borderColor: keyof typeof theme.style.hashtag.borderColor;
   fontSize: number;
   isActive?: boolean;
 }
 
 const getColors = ({ color, fontColor, borderColor, isActive }: SHashtagProps) => {
-  const hashtagTheme = theme.color.hashtag;
+  const hashtagTheme = theme.style.hashtag;
   return css`
     background-color: ${hashtagTheme.color[color]};
     border: 1px solid ${hashtagTheme.borderColor[borderColor]};

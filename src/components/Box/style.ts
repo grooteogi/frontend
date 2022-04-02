@@ -16,11 +16,11 @@ const getSize = ({ width, height }: BoxProps) => {
 
 export const Container = styled.div<BoxProps>`
   ${getSize};
-  border: 1px solid ${theme.color.lightgrey};
+  border: 1px solid ${theme.style.lightgrey};
   border-radius: 8px;
   margin-left: auto;
   margin-right: auto;
   padding: 40px;
-  background: ${theme.color.white};
+  background: ${theme.style.white};
   display: flex;
 `;
