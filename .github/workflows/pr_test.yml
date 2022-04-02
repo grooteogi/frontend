@@ -2,11 +2,12 @@ name: PR Test
 
 on:
   pull_request:
-    branchs: [develop]
+    branches:
+      - develop
 
 jobs:
-  build:
-    runs-on: [ubuntu-latest]
+  test:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [14.x, 16.x]
