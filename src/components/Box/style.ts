@@ -18,9 +18,9 @@ export const Container = styled.div<BoxProps>`
   ${getSize};
   border: 1px solid ${theme.style.lightgrey};
   border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 40px;
+  margin: auto;
+  margin-top: 64px;
+  padding: 80px 48px;
   background: ${theme.style.white};
   display: flex;
 `;
