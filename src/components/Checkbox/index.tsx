@@ -9,13 +9,12 @@ import {
   StyledCheckboxText,
 } from './style';
 
-interface CheckBoxProps extends SCheckboxComponentBox, SCheckboxComponentInput, SCheckboxComponentText {
+interface CheckBoxProps {
   label: string;
   link?: boolean;
   box: SCheckboxComponentBox;
   input: SCheckboxComponentInput;
   text: SCheckboxComponentText;
-  detail: SCheckboxComponentText;
 }
 
 const CheckboxComponents = {
