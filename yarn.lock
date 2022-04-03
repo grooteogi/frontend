@@ -5960,6 +5960,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chromatic@npm:^6.5.3":
+  version: 6.5.3
+  resolution: "chromatic@npm:6.5.3"
+  bin:
+    chroma: bin/main.cjs
+    chromatic: bin/main.cjs
+    chromatic-cli: bin/main.cjs
+  checksum: 42b824ec1e767d48fee6e2849e338264dbf20413d46074548340958e9d6407c37bb3d06429bf6101ff1c48bb5afbb2b95b48b24481112ca797e98c2c903521fa
+  languageName: node
+  linkType: hard
+
 "chrome-trace-event@npm:^1.0.2":
   version: 1.0.3
   resolution: "chrome-trace-event@npm:1.0.3"
@@ -8203,6 +8214,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.16.0
     "@typescript-eslint/parser": ^5.16.0
     babel-loader: ^8.2.4
+    chromatic: ^6.5.3
     eslint: 8.11.0
     eslint-config-next: 12.1.0
     eslint-config-prettier: ^8.5.0
