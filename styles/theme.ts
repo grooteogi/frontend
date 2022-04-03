@@ -27,7 +27,7 @@ const style = {
 };
 
 const theme = {
-  color: style,
+  style,
 };
 
 export default theme;
