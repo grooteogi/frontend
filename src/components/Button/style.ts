@@ -12,7 +12,7 @@ export interface SButtonProps {
 }
 
 const getColors = ({ color, fontColor, borderColor = 'none' }: SButtonProps) => {
-  const buttonTheme = theme.color.button;
+  const buttonTheme = theme.style.button;
   const getBorder = () => {
     if (borderColor !== 'none') return `border: 1px solid ${buttonTheme.borderColor[borderColor]}`;
   };
