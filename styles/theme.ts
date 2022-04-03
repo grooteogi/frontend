@@ -3,17 +3,17 @@ const style = {
     color: {
       primary: '#1CDBA1',
       black: '#000000',
-      yellow: '#FFB84D',
-      red: '#FF5D39',
-      lightgray: '#DDDDDD',
-      lightergray: '#EEEEEE',
+      white: '#FFFFFF',
+      kakao: '#FEE500',
+      lightgray: '#E9E9E9',
     },
     fontColor: {
       white: '#FFFFFF',
       black: '#000000',
+      darkgray: '#5A5A5A',
     },
     borderColor: {
-      lightgray: '#DDDDDD',
+      lightgray: '#BBBBBB',
       none: null,
       primary: '#1CDBA1',
     },
