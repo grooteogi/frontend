@@ -50,7 +50,7 @@ export const StyledCheckboxInput = styled.input<SCheckboxComponentInput>`
   width: 16px;
   height: 16px;
   border-radius: 4px;
-  ${getCheckboxInput}
+  ${getCheckboxInput};
 `;
 export const StyledCheckboxText = styled.div<SCheckboxComponentText>`
   padding-left: 1rem;
