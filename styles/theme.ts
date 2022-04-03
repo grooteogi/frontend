@@ -15,19 +15,6 @@ const style = {
       none: null,
     },
   },
-  input: {
-    color: {
-      white: '#ffffff',
-    },
-    fontColor: {
-      gray: '#6B6B6B',
-      black: '#000000',
-    },
-    borderColor: {
-      gray: '#BFBFBF',
-      none: null,
-    },
-  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',
