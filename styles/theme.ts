@@ -77,6 +77,30 @@ const style = {
       lg: { fontSize: '1.5rem', weight: 'medium' },
     },
   },
+  input: {
+    backgroundColor: {
+      white: '#FFFFFF',
+    },
+    fontColor: {
+      gray: '#878787',
+      black: '#000000',
+    },
+    borderColor: {
+      lightgray: '#BFBFBF',
+      none: null,
+    },
+    weight: {
+      bold: 700,
+      medium: 500,
+      regular: 400,
+      light: 300,
+      thin: 100,
+    },
+    sizes: {
+      sm: { fontSize: '0.875rem' },
+      md: { fontSize: '1rem' },
+    },
+  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',
