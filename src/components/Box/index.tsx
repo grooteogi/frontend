@@ -2,7 +2,7 @@ import React from 'react';
 import { ContainerProps, Container } from './style';
 
 interface BoxProps extends ContainerProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 const Box = ({ children, ...props }: BoxProps) => {

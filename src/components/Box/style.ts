@@ -22,5 +22,5 @@ export const Container = styled.div<ContainerProps>`
   margin-top: 64px;
   padding: 80px 48px;
   background: ${theme.style.white};
-  display: flex;
+  display: block;
 `;
