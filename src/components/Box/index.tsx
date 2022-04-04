@@ -1,8 +1,12 @@
 import React from 'react';
-import { BoxProps, Container } from './style';
+import { ContainerProps, Container } from './style';
 
-const Box = (props: BoxProps) => {
-  return <Container {...props}></Container>;
+interface BoxProps extends ContainerProps {
+  children: JSX.Element;
+}
+
+const Box = ({ children, ...props }: BoxProps) => {
+  return <Container {...props}>{children}</Container>;
 };
 
 export default Box;
