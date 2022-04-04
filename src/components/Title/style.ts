@@ -31,10 +31,11 @@ const getOption = ({ align }: STitleProps) => {
   `;
 };
 
-export const StyledTitle = ({ size }: STitleProps) => {
-  return styled[size]`
-    ${getSize};
-    ${getColor};
-    ${getOption};
-  `;
-};
+export const StyledTitle = styled.h1`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  ${getSize};
+  ${getColor};
+  ${getOption};
+`;
