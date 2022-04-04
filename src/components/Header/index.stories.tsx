@@ -24,7 +24,6 @@ Common.args = {
     { value: '내정보', isAuth: true },
     { value: '로그아웃', isAuth: true },
     { value: '로그인', isAuth: false },
-    { value: '회원가입', isAuth: false },
   ],
 };
 
