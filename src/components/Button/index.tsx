@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import React from 'react';
 import { SButtonProps, StyledButton } from './style';
@@ -13,7 +12,7 @@ interface ButtonProps extends SButtonProps {
 const Button = ({ name, icon, alt, ...props }: ButtonProps) => {
   return icon ? (
     <StyledButton {...props}>
-      <Image src={icon} alt={alt} width="30px" height="20px" quality="100" />
+      <Image src={icon} alt={alt} width="20px" height="20px" quality="100" />
       {name}
     </StyledButton>
   ) : (
