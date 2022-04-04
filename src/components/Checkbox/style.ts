@@ -16,7 +16,6 @@ const getCheckboxBox = ({ ...box }) => {
     width: ${box.width};
     height: ${box.height};
     padding: 0.4rem;
-    background-color: #FFFFFF;
   `;
 };
 const getCheckboxText = ({ ...text }) => {
