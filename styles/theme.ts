@@ -21,6 +21,11 @@ const style = {
     },
   },
   hashtag: {
+    sizes: {
+      sm: { fontSize: '0.75rem', padding: '4px 8px' },
+      md: { fontSize: '1rem', padding: '8px 12px' },
+      lg: { fontSize: '1.25rem', padding: '8px 12px' },
+    },
     color: {
       lightgray: '#EEEEEE',
       white: '#FFFFFF',
