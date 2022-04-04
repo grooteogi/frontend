@@ -14,16 +14,10 @@ const Template: ComponentStory<typeof Input> = args => (
   </GlobalThemeProvider>
 );
 
-export const DefaultView = Template.bind({});
-DefaultView.args = {
-  backgroundColor: '#ffffff',
-  fontColor: '#6B6B6B',
-  borderColor: '#BFBFBF',
+export const DefaultInput = Template.bind({});
+DefaultInput.args = {
   width: 375,
   height: 40,
-  fontSize: 16,
-  borderRadius: 8,
   value: 'input Value',
   placeholder: 'input placeholder',
-  type: 'text',
 };
