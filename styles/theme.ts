@@ -1,3 +1,5 @@
+import { FontWeight } from '../types/style';
+
 const style = {
   button: {
     color: {
@@ -39,8 +41,6 @@ const style = {
   },
   typo: {
     color: {
-      primary: '#1CDBA1',
-      lightgrey: '#EAEAEA',
       black: '#000000',
       darkgray: '#333333',
     },
@@ -52,29 +52,10 @@ const style = {
       thin: 100,
     },
     sizes: {
-      xs: { fontSize: '0.75rem', weight: 'regular' },
-      sm: { fontSize: '0.875rem', weight: 'regular' },
-      md: { fontSize: '1rem', weight: 'regular' },
-      lg: { fontSize: '1.5rem', weight: 'medium' },
-    },
-  },
-  typo: {
-    color: {
-      black: '#000000',
-      darkgray: '#333333',
-    },
-    weight: {
-      bold: 700,
-      medium: 500,
-      regular: 400,
-      light: 300,
-      thin: 100,
-    },
-    sizes: {
-      xs: { fontSize: '0.75rem', weight: 'regular' },
-      sm: { fontSize: '0.875rem', weight: 'regular' },
-      md: { fontSize: '1rem', weight: 'regular' },
-      lg: { fontSize: '1.5rem', weight: 'medium' },
+      xs: { fontSize: '0.75rem', weight: FontWeight.REGULAR },
+      sm: { fontSize: '0.875rem', weight: FontWeight.REGULAR },
+      md: { fontSize: '1rem', weight: FontWeight.REGULAR },
+      lg: { fontSize: '1.5rem', weight: FontWeight.MEDIUM },
     },
   },
   input: {
@@ -88,13 +69,6 @@ const style = {
     borderColor: {
       lightgray: '#BFBFBF',
       none: null,
-    },
-    weight: {
-      bold: 700,
-      medium: 500,
-      regular: 400,
-      light: 300,
-      thin: 100,
     },
     sizes: {
       sm: { fontSize: '0.875rem' },
@@ -114,10 +88,10 @@ const style = {
       thin: 100,
     },
     sizes: {
-      h4: { fontSize: '0.75rem', weight: 'regular' },
-      h3: { fontSize: '0.875rem', weight: 'regular' },
-      h2: { fontSize: '1rem', weight: 'regular' },
-      h1: { fontSize: '1.5rem', weight: 'medium' },
+      h4: { fontSize: '0.875rem', weight: FontWeight.MEDIUM },
+      h3: { fontSize: '1rem', weight: FontWeight.MEDIUM },
+      h2: { fontSize: '1.25rem', weight: FontWeight.MEDIUM },
+      h1: { fontSize: '1.5rem', weight: FontWeight.MEDIUM },
     },
   },
   primary: '#1896BD',
