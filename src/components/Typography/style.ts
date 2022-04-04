@@ -1,13 +1,14 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import theme from '../../../styles/theme';
+import { FontWeight } from '../../../types/style';
 
 const typoTheme = theme.style.typo;
 export interface STypoProps {
   size: 'xs' | 'sm' | 'md' | 'lg';
   color: keyof typeof theme.style.typo.color;
   align?: 'left' | 'right' | 'center';
-  weight?: keyof typeof theme.style.typo.weight;
+  weight?: keyof typeof FontWeight;
 }
 
 const getSize = ({ size }: STypoProps) => {
@@ -29,7 +30,7 @@ const getOption = ({ align, weight }: STypoProps) => {
     if (align) return `text-align: ${align}`;
   };
   const getWeight = () => {
-    if (weight) return `font-weight: ${weight}`;
+    if (weight) return `font-weight: ${FontWeight[weight]}`;
   };
   return css`
     ${getAlign()};

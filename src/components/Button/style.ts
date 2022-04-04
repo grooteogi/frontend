@@ -4,9 +4,9 @@ import { darken, lighten } from 'polished';
 import theme from '../../../styles/theme';
 
 export interface SButtonProps {
-  color: keyof typeof theme.color.button.color;
-  fontColor: keyof typeof theme.color.button.fontColor;
-  borderColor?: keyof typeof theme.color.button.borderColor;
+  color: keyof typeof theme.style.button.color;
+  fontColor: keyof typeof theme.style.button.fontColor;
+  borderColor?: keyof typeof theme.style.button.borderColor;
   size: 'sm' | 'md' | 'lg';
   active?: boolean;
 }
@@ -50,9 +50,7 @@ export const StyledButton = styled.button<SButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 0.5rem;
   ${getColors};
   ${getSize};
-  img & {
-    flex: 1 1 20px;
-  }
 `;
