@@ -101,6 +101,25 @@ const style = {
       md: { fontSize: '1rem' },
     },
   },
+  title: {
+    color: {
+      black: '#000000',
+      darkgray: '#DDDDDD',
+    },
+    weight: {
+      bold: 700,
+      medium: 500,
+      regular: 400,
+      light: 300,
+      thin: 100,
+    },
+    sizes: {
+      h4: { fontSize: '0.75rem', weight: 'regular' },
+      h3: { fontSize: '0.875rem', weight: 'regular' },
+      h2: { fontSize: '1rem', weight: 'regular' },
+      h1: { fontSize: '1.5rem', weight: 'medium' },
+    },
+  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',
