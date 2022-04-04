@@ -18,6 +18,6 @@ export const DefaultView = Template.bind({});
 DefaultView.args = {
   label: '광고성 정보 수신 동의(선택)',
   link: false,
-  width: '100px',
+  width: '300px',
   height: '30px',
 };
