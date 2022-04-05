@@ -8,25 +8,21 @@ export interface TitleProps extends STitleProps {
   children: string;
 }
 
-const cal_px = (rem_size: string) => {
-  const f_num = parseFloat(rem_size.replace('rem', ''));
-  return f_num * 16 + 'px';
+const remToPixel = (rem_size: string) => {
+  const num = parseFloat(rem_size.replace('rem', ''));
+  return num * 16 + 'px';
 };
 
 const Title = ({ children, icon, alt, size, ...props }: TitleProps) => {
   const StyledHeader = StyledTitle.withComponent(size);
-  const img_size = cal_px(theme.style.title.sizes[size].fontSize);
-  return icon ? (
+  const imgPixel = remToPixel(theme.style.title.sizes[size].fontSize);
+  return (
     <>
       <StyledHeader size={size} {...props}>
-        <Image src={icon} alt={alt} width={img_size} height={img_size} quality="100" />
+        {icon ? <Image src={icon} alt={alt} width={imgPixel} height={imgPixel} quality="100" /> : <></>}
         {children}
       </StyledHeader>
     </>
-  ) : (
-    <StyledHeader size={size} {...props}>
-      {children}
-    </StyledHeader>
   );
 };
 
