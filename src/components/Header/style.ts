@@ -9,10 +9,6 @@ export type SHeaderDevice = {
   device: 'sm' | 'md' | 'lg';
 };
 
-export interface SHeaderList extends SHeaderDevice {
-  leftPosition?: boolean;
-}
-
 export interface SHeaderAnchor extends SHeaderDevice {
   isLogo?: boolean;
 }
@@ -24,14 +20,7 @@ const getHeaderBoxStyle = ({ leftPosition = true }) => {
   `;
 };
 
-const getHeaderListStyle = ({ device, ...leftPosition }: SHeaderList) => {
-  return css`
-    ${getHeaderBoxStyle(leftPosition)};
-    padding: ${headerTheme.headerListPadding[device]};
-  `;
-};
-
-const getLogo = ({ device, isLogo }: SHeaderAnchor) => {
+const getFont = ({ device, isLogo }: SHeaderAnchor) => {
   if (isLogo)
     return `
       font-size: ${headerTheme.fontSizeLogo[device]}; 
@@ -42,14 +31,6 @@ const getLogo = ({ device, isLogo }: SHeaderAnchor) => {
     font-size: ${headerTheme.fontSizeBasic[device]}; 
     font-weight: normal;
     color: #737373;
-  `;
-};
-
-const getHeaderAnchorStyle = ({ device, isLogo }: SHeaderAnchor) => {
-  return css`
-    ${getLogo({ device, isLogo })};
-    text-decoration: none;
-    text-align: center;
   `;
 };
 
@@ -66,7 +47,7 @@ export const StyledHeaderBox = styled.div`
   ${getHeaderBoxStyle};
 `;
 
-export const StyledHeaderList = styled.div<SHeaderList>`
+export const StyledHeaderList = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -76,12 +57,13 @@ export const StyledHeaderList = styled.div<SHeaderList>`
   cursor: pointer;
   &:hover,
   &:active {
-    background: ${darken(0.01, `#ffffff`)};
+    background: ${darken(0.01, `#FFFFFF`)};
   }
-  /* ${getHeaderListStyle}; */
 `;
 
 export const StyledHeaderAnchor = styled.a<SHeaderAnchor>`
   display: block;
-  ${getHeaderAnchorStyle};
+  text-decoration: none;
+  text-align: center;
+  ${getFont};
 `;

@@ -102,11 +102,6 @@ const style = {
     },
   },
   header: {
-    headerListPadding: {
-      sm: '1rem',
-      md: '1rem',
-      lg: '2rem',
-    },
     fontSizeBasic: {
       sm: 'x-small',
       md: 'smaller',
@@ -117,8 +112,6 @@ const style = {
       md: 'small',
       lg: 'medium',
     },
-    fontWeightBasic: 700,
-    fontWeightLogo: 500,
   },
   primary: '#1896BD',
   yellow: '#FFB84D',
