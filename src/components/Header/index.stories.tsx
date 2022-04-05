@@ -26,14 +26,32 @@ Common.args = {
     { value: '로그인', isAuth: false },
   ],
 };
-
-export const LoggedIn = Template.bind({});
-LoggedIn.args = {
+export const Signin = Template.bind({});
+Signin.args = {
+  navLists: [
+    { value: '🌳그루터기', isLogo: true, leftPosition: true },
+    { value: '약속 잡기', leftPosition: true },
+    { value: '약속 찾기', leftPosition: true },
+    { value: '채팅', isAuth: true },
+    { value: '내정보', isAuth: true },
+    { value: '로그아웃', isAuth: true },
+    { value: '로그인', isAuth: false },
+  ],
+  device: 'md' as const,
   user: {
     name: 'test User',
   },
-  ...Common.args,
 };
-
-export const LoggedOut = Template.bind({});
-LoggedOut.args = { ...Common.args };
+export const Signout = Template.bind({});
+Signout.args = {
+  navLists: [
+    { value: '🌳그루터기', isLogo: true, leftPosition: true },
+    { value: '약속 잡기', leftPosition: true },
+    { value: '약속 찾기', leftPosition: true },
+    { value: '채팅', isAuth: true },
+    { value: '내정보', isAuth: true },
+    { value: '로그아웃', isAuth: true },
+    { value: '로그인', isAuth: false },
+  ],
+  device: 'md' as const,
+};
