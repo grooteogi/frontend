@@ -94,6 +94,18 @@ const style = {
       h1: { fontSize: '1.5rem', weight: FontWeight.MEDIUM },
     },
   },
+  header: {
+    fontSizeBasic: {
+      sm: 'x-small',
+      md: 'smaller',
+      lg: 'medium',
+    },
+    fontSizeLogo: {
+      sm: 'smaller',
+      md: 'small',
+      lg: 'medium',
+    },
+  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',

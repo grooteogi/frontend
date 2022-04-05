@@ -19,8 +19,10 @@ export const Container = styled.div<ContainerProps>`
   border: 1px solid ${theme.style.lightgrey};
   border-radius: 8px;
   margin: auto;
-  margin-top: 64px;
-  padding: 80px 48px;
+  margin-top: 4rem;
+  padding: 4rem 4rem;
   background: ${theme.style.white};
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
