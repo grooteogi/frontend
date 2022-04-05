@@ -1,48 +1,52 @@
-import { StyledHeader, StyledHeaderList, StyledHeaderAnchor, StyledDiv } from './style';
+import { StyledHeader, StyledHeaderList, StyledHeaderAnchor, StyledHeaderBox, SHeaderDevice } from './style';
 
 type User = {
   name: string;
 };
 
-type NavList = {
+export type NavList = {
   value: string;
   isLogo?: boolean;
   isAuth?: boolean;
   leftPosition?: boolean;
 };
 
-interface HeaderProps {
+interface HeaderProps extends SHeaderDevice {
   user?: User;
   navLists: NavList[];
 }
 
-const HeaderList = ({ ...navList }) => {
+const HeaderList = ({ device, navList }: { device: 'sm' | 'md' | 'lg'; navList: NavList }) => {
+  if (!navList.isLogo) navList.isLogo = false;
+  if (!navList.leftPosition) navList.leftPosition = false;
+  const headerListProps = { device: device, leftPosition: navList.leftPosition };
+  const headerAnchorProps = { device: device, isLogo: navList.isLogo };
   return (
     <>
-      <StyledHeaderList leftPosition={navList.leftPosition}>
-        <StyledHeaderAnchor isLogo={navList.isLogo}>{navList.value}</StyledHeaderAnchor>
+      <StyledHeaderList {...headerListProps}>
+        <StyledHeaderAnchor {...headerAnchorProps}>{navList.value}</StyledHeaderAnchor>
       </StyledHeaderList>
     </>
   );
 };
 
-const Header = ({ user, navLists }: HeaderProps) => {
+const Header = ({ user, device, navLists }: HeaderProps) => {
   return (
     <StyledHeader>
-      <StyledDiv>
+      <StyledHeaderBox>
         {navLists
           .filter(navList => navList.isAuth === undefined)
           .map(navList => (
-            <HeaderList key={navList.value} {...navList}></HeaderList>
+            <HeaderList device={device} key={navList.value} navList={navList}></HeaderList>
           ))}
-      </StyledDiv>
-      <StyledDiv leftPosition={false}>
+      </StyledHeaderBox>
+      <StyledHeaderBox leftPosition={false}>
         {navLists
           .filter(navList => (user && navList.isAuth) || (navList.isAuth !== undefined && !user && !navList.isAuth))
           .map(navList => (
-            <HeaderList key={navList.value} {...navList}></HeaderList>
+            <HeaderList device={device} key={navList.value} navList={navList}></HeaderList>
           ))}
-      </StyledDiv>
+      </StyledHeaderBox>
     </StyledHeader>
   );
 };
