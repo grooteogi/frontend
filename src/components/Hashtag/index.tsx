@@ -3,7 +3,6 @@ import { StyledButton, StyledRemoveBtn } from './style';
 import Image from 'next/image';
 
 interface SharedProps {
-  size: 'sm' | 'md' | 'lg';
   content: string;
 }
 interface ClickableProps extends SharedProps {
@@ -21,7 +20,7 @@ type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T
 
 type HashtagProp = XOR<SharedProps, XOR<ClickableProps, RemovableProps>>;
 
-const Hashtag = ({ content, clickable, removable, size, onClick, onRemove }: HashtagProp) => {
+const Hashtag = ({ content, clickable, removable, onClick, onRemove }: HashtagProp) => {
   const [clicked, setClicked] = useState<boolean>(false);
   return (
     <StyledButton
@@ -30,7 +29,6 @@ const Hashtag = ({ content, clickable, removable, size, onClick, onRemove }: Has
         setClicked(clicked => !clicked);
         onClick;
       }}
-      size={size}
       clicked={clicked}
     >
       {content}
@@ -38,8 +36,8 @@ const Hashtag = ({ content, clickable, removable, size, onClick, onRemove }: Has
         <Image
           src={'/logos/x_button.png'}
           alt={'not found'}
-          width="12px"
-          height="12px"
+          width="8px"
+          height="8px"
           quality="100"
           onClick={onRemove}
         />

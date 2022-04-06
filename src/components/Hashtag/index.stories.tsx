@@ -17,10 +17,10 @@ const Template: ComponentStory<typeof Hashtag> = args => (
 export const Types = (args: ComponentStory<typeof Hashtag>) => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template content="#기본 대학생활" size="sm" {...args} />
-      <Template content="#클릭 대학생활" size="md" clickable={true} {...args} />
-      <Template content="#삭제 대학생활" size="lg" removable={true} {...args} />
-      {/* <Template content="#삭제 대학생활" size="lg" clickable={true} removable={true} {...args} /> */}
+      <Template content="#대학생활" clickable={true} {...args} />
+      <Template content="#대학생활" removable={true} {...args} />
+      <Template content="#편입" clickable={true} {...args} />
+      <Template content="#편입" removable={true} {...args} />
     </GlobalThemeProvider>
   );
 };
