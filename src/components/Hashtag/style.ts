@@ -4,7 +4,6 @@ import { darken } from 'polished';
 import theme from '../../../styles/theme';
 
 interface DefaultProps {
-  size: 'sm' | 'md' | 'lg';
   clickable?: boolean;
   clicked: boolean;
   removable?: boolean;
@@ -29,14 +28,6 @@ const getClickEffect = ({ clickable }: SClickableProps) => {
     `;
 };
 
-const getSize = ({ size }: SClickableProps) => {
-  const sizes = hashtagTheme.sizes;
-  return css`
-    font-size: ${sizes[size].fontSize};
-    padding: ${sizes[size].padding};
-  `;
-};
-
 const getColor = ({ clickable, clicked }: SClickableProps) => {
   if (clickable) {
     return css`
@@ -52,13 +43,14 @@ const getColor = ({ clickable, clicked }: SClickableProps) => {
 };
 
 export const StyledButton = styled.div<SClickableProps>`
-  ${getSize};
   ${getColor};
   ${getClickEffect};
   color: ${hashtagTheme.fontColor.black};
+  line-height: 25px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-size: 1rem;
   border-radius: 4px;
-  padding: 8px 12px;
   display: inline-block;
 `;
 
@@ -72,7 +64,6 @@ const getRemoveButton = ({ removable }: SRemovableProps) => {
 export const StyledRemoveBtn = styled.span<SRemovableProps>`
   ${getRemoveButton};
   &:hover {
-    background: ${darken(0.5, `${hashtagTheme.color.lightgray}`)};
     cursor: pointer;
   }
   border-radius: 4px;
