@@ -21,11 +21,6 @@ const style = {
     },
   },
   hashtag: {
-    sizes: {
-      sm: { fontSize: '0.75rem', padding: '4px 8px' },
-      md: { fontSize: '1rem', padding: '8px 12px' },
-      lg: { fontSize: '1.25rem', padding: '8px 12px' },
-    },
     color: {
       lightgray: '#EEEEEE',
       white: '#FFFFFF',
@@ -37,7 +32,6 @@ const style = {
     borderColor: {
       lightgray: '#EEEEEE',
       primary: '#1CDBA1',
-      none: null,
     },
     display: {
       display_none: 'none',
@@ -46,6 +40,26 @@ const style = {
   },
   typo: {
     color: {
+      black: '#000000',
+      darkgray: '#333333',
+    },
+    weight: {
+      bold: 700,
+      medium: 500,
+      regular: 400,
+      light: 300,
+      thin: 100,
+    },
+    sizes: {
+      xs: { fontSize: '0.75rem', weight: FontWeight.REGULAR },
+      sm: { fontSize: '0.875rem', weight: FontWeight.REGULAR },
+      md: { fontSize: '1rem', weight: FontWeight.REGULAR },
+      lg: { fontSize: '1.5rem', weight: FontWeight.MEDIUM },
+    },
+  },
+  link: {
+    color: {
+      primary: '#1CDBA1',
       black: '#000000',
       darkgray: '#333333',
     },
@@ -120,7 +134,6 @@ const style = {
   black: '#000000',
   lightblack: '#545454',
   lightyelloew: '#FFDCA8',
-  themeGreen: '#1CDBA1',
 };
 
 const theme = {

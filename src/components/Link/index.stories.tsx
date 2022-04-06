@@ -16,20 +16,20 @@ const Template: ComponentStory<typeof Link> = args => (
 
 export const Colors = (args: ComponentStory<typeof Link>) => {
   const defaultArgs = {
-    content: '회원가입하러가기',
+    children: '회원가입하러가기',
     size: 'lg' as const,
   };
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template href={''} color="primary" {...defaultArgs} {...args} />
-      <Template href={''} color="lightgrey" {...defaultArgs} {...args} />
+      <Template href={''} color={'primary'} {...defaultArgs} {...args} />
+      <Template href={''} color={'primary'} {...defaultArgs} {...args} />
     </GlobalThemeProvider>
   );
 };
 
 export const Sizes = (args: ComponentStory<typeof Link>) => {
   const defaultArgs = {
-    content: '로그인하러가기',
+    children: '로그인하러가기',
     color: 'primary' as const,
   };
   return (
