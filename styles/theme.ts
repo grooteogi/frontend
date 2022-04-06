@@ -1,3 +1,5 @@
+import { FontWeight } from '../types/style';
+
 const style = {
   button: {
     color: {
@@ -50,10 +52,10 @@ const style = {
       thin: 100,
     },
     sizes: {
-      xs: { fontSize: '0.75rem', weight: 'regular' },
-      sm: { fontSize: '0.875rem', weight: 'regular' },
-      md: { fontSize: '1rem', weight: 'regular' },
-      lg: { fontSize: '1.5rem', weight: 'medium' },
+      xs: { fontSize: '0.75rem', weight: FontWeight.REGULAR },
+      sm: { fontSize: '0.875rem', weight: FontWeight.REGULAR },
+      md: { fontSize: '1rem', weight: FontWeight.REGULAR },
+      lg: { fontSize: '1.5rem', weight: FontWeight.MEDIUM },
     },
   },
   input: {
@@ -68,6 +70,16 @@ const style = {
       lightgray: '#BFBFBF',
       none: null,
     },
+    sizes: {
+      sm: { fontSize: '0.875rem' },
+      md: { fontSize: '1rem' },
+    },
+  },
+  title: {
+    color: {
+      black: '#000000',
+      darkgray: '#DDDDDD',
+    },
     weight: {
       bold: 700,
       medium: 500,
@@ -76,8 +88,10 @@ const style = {
       thin: 100,
     },
     sizes: {
-      sm: { fontSize: '0.875rem' },
-      md: { fontSize: '1rem' },
+      h4: { fontSize: '0.875rem', weight: FontWeight.MEDIUM },
+      h3: { fontSize: '1rem', weight: FontWeight.MEDIUM },
+      h2: { fontSize: '1.25rem', weight: FontWeight.MEDIUM },
+      h1: { fontSize: '1.5rem', weight: FontWeight.MEDIUM },
     },
   },
   header: {
