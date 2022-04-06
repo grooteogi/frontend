@@ -49,7 +49,7 @@ export const StyledButton = styled.div<SClickableProps>`
   line-height: 25px;
   padding-left: 8px;
   padding-right: 8px;
-  font-size: 1rem;
+  font-size: 12px;
   border-radius: 4px;
   display: inline-block;
 `;
