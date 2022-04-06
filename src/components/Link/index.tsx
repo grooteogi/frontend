@@ -3,13 +3,13 @@ import { SLinkProps, StyledLink } from './style';
 
 interface LinkProps extends SLinkProps {
   href: string;
-  content: string;
+  children: string;
 }
 
-const Link = ({ content, href, ...props }: LinkProps) => {
+const Link = ({ children, href, ...props }: LinkProps) => {
   return (
     <StyledLink href={href} {...props}>
-      {content}
+      {children}
     </StyledLink>
   );
 };

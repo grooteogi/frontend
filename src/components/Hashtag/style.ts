@@ -3,18 +3,18 @@ import { css } from '@emotion/react';
 import { darken } from 'polished';
 import theme from '../../../styles/theme';
 
-export interface RemovableProps {
+interface DefaultProps {
+  clickable?: boolean;
+  clicked: boolean;
   removable?: boolean;
 }
 
-export interface ClickableProps {
-  clickable?: boolean;
-}
+type SClickableProps = Omit<DefaultProps, 'removable'>;
+type SRemovableProps = Pick<DefaultProps, 'removable'>;
 
 const hashtagTheme = theme.style.hashtag;
 
-const getClickEffect = ({ clickable }: ClickableProps) => {
-  const hashtagTheme = theme.style.hashtag;
+const getClickEffect = ({ clickable }: SClickableProps) => {
   if (clickable)
     return css`
       &:hover {
@@ -28,24 +28,44 @@ const getClickEffect = ({ clickable }: ClickableProps) => {
     `;
 };
 
-export const StyledButton = styled.div<ClickableProps>`
+const getColor = ({ clickable, clicked }: SClickableProps) => {
+  if (clickable) {
+    return css`
+      background-color: ${clicked ? hashtagTheme.color.lightgray : hashtagTheme.color.white};
+      border: 1px solid ${clicked ? hashtagTheme.borderColor.lightgray : hashtagTheme.borderColor.primary};
+    `;
+  } else {
+    return css`
+      background-color: ${hashtagTheme.color.lightgray};
+      border: 1px solid ${hashtagTheme.borderColor.lightgray};
+    `;
+  }
+};
+
+export const StyledButton = styled.div<SClickableProps>`
+  ${getColor};
   ${getClickEffect};
-  background-color: ${hashtagTheme.color.white};
-  border: 1px solid ${hashtagTheme.borderColor.primary};
   color: ${hashtagTheme.fontColor.black};
+  line-height: 25px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-size: 1rem;
   border-radius: 4px;
-  padding: 8px 12px;
+  display: inline-block;
 `;
 
-const getRemoveButton = ({ removable }: RemovableProps) => {
+const getRemoveButton = ({ removable }: SRemovableProps) => {
   return css`
     display: ${removable ? 'inline' : 'none'};
+    margin-left: 4px;
   `;
 };
 
-export const StyledRemoveBtn = styled.span<RemovableProps>`
+export const StyledRemoveBtn = styled.span<SRemovableProps>`
   ${getRemoveButton};
-  font-size: 0.75rem;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+  border-radius: 4px;
+  padding: 2px;
 `;

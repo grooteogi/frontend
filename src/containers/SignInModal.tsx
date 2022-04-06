@@ -1,6 +1,8 @@
 import React from 'react';
 import Box from '../components/Box';
 import Button from '../components/Button';
+import Hashtag from '../components/Hashtag';
+import Link from '../components/Link';
 import Typography from '../components/Typography';
 import Wrapper from '../components/Wrapper';
 
