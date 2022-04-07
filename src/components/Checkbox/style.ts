@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export interface SCheckboxComponentBox {
   width?: string;
   height?: string;
+  paddingLeft?: string;
 }
 export interface SCheckboxComponentText {
   link?: boolean;
@@ -16,6 +17,7 @@ const getCheckboxBox = ({ ...box }) => {
     width: ${box.width};
     height: ${box.height};
     padding: 0.4rem;
+    padding-left : ${box.paddingLeft};
   `;
 };
 const getCheckboxText = ({ ...text }) => {
