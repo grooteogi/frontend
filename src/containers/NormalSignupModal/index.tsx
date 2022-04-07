@@ -1,9 +1,9 @@
-import Box from '../components/Box';
-import Button from '../components/Button';
-import Checkbox from '../components/Checkbox';
-import Input from '../components/Input';
-import Typography from '../components/Typography';
-import Wrapper from '../components/Wrapper';
+import Box from '../../components/Box';
+import Button from '../../components/Button';
+import Checkbox from '../../components/Checkbox';
+import Input from '../../components/Input';
+import Typography from '../../components/Typography';
+import Wrapper from '../../components/Wrapper';
 
 export const NormalSignupModal = () => (
   <Box width={500} height={800}>
@@ -38,7 +38,7 @@ export const NormalSignupModal = () => (
           </Wrapper>
         </Wrapper>
       </Wrapper>
-      <Button color={'white'} name={'회원가입하기'} fontColor={'black'} size={'lg'}></Button>
+      <Button color={'primary'} name={'회원가입하기'} fontColor={'black'} size={'lg'}></Button>
     </Wrapper>
   </Box>
 );
