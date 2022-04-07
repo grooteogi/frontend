@@ -25,9 +25,9 @@ const Hashtag = ({ content, clickable, removable, onClick, onRemove }: HashtagPr
   return (
     <StyledButton
       clickable={clickable}
-      onClick={() => {
-        setClicked(clicked => !clicked);
-        onClick;
+      onClick={(e: React.MouseEvent) => {
+        onClick && onClick(e);
+        setClicked(!clicked);
       }}
       clicked={clicked}
     >

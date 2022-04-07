@@ -1,4 +1,4 @@
-import SignInModal from '../src/containers/SignInModal/index';
+import SelectHashtagModal from '../src/containers/SelectHashtagModal/index';
 
 const Home = () => {
   return <SignInModal />;
