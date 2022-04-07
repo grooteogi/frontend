@@ -3,9 +3,9 @@ import { css } from '@emotion/react';
 
 export interface ContainerProps {
   flexDirection: 'row' | 'column';
-  interval?: number;
-  rowInterval?: number;
-  columnInterval?: number;
+  gap?: { gap?: number; rowGap?: number; columnGap?: number };
+  padding?: { padding?: string; paddingTop?: string; paddingBottom?: string };
+  margin?: { margin?: string; marginTop?: string; marginBottom?: string };
   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   alignItems?: 'stretch' | 'flex-start' | 'flex-end' | 'center' | 'baseline';
 }
@@ -22,35 +22,54 @@ const getFlexDirection = ({ flexDirection }: ContainerProps) => {
     `;
   }
 };
+const getGap = ({ gap }: ContainerProps) => {
+  if (gap) {
+    return css`
+      ${gap.gap ? `gap: ${gap.gap}px` : ``};
+      ${gap.rowGap ? `row-gap: ${gap.rowGap}px` : ``};
+      ${gap.columnGap ? `column-gap: ${gap.columnGap}px` : ``};
+    `;
+  }
+};
 
-const getOption = ({ interval, rowInterval, columnInterval, justifyContent, alignItems }: ContainerProps) => {
-  const getInterval = () => {
-    if (interval) return `gap: ${interval}px`;
-  };
-  const getRowInterval = () => {
-    if (rowInterval) return `row-gap: ${rowInterval}px`;
-  };
-  const getColumnInterval = () => {
-    if (columnInterval) return `column-gap: ${columnInterval}px`;
-  };
+const getOption = ({ justifyContent, alignItems }: ContainerProps) => {
   const getjustifyContent = () => {
-    if (columnInterval) return `justify-content: ${justifyContent}`;
+    if (justifyContent) return `justify-content: ${justifyContent}`;
   };
   const getalignItems = () => {
-    if (columnInterval) return `align-items: ${alignItems}`;
+    if (alignItems) return `align-items: ${alignItems}`;
   };
   return css`
-    ${getInterval()};
-    ${getRowInterval()};
-    ${getColumnInterval()};
     ${getjustifyContent()};
     ${getalignItems()};
   `;
 };
 
+const getSpace = ({ padding, margin }: ContainerProps) => {
+  const getPadding = () => {
+    if (padding) {
+      return ` ${padding.padding ? `padding: ${padding.padding}` : ``};
+      ${padding.paddingTop ? `padding-top: ${padding.paddingTop}` : ``};
+      ${padding.paddingBottom ? `padding-bottom: ${padding.paddingBottom}` : ``};`;
+    }
+  };
+  const getMargin = () => {
+    if (margin) {
+      return ` ${margin.margin ? `margin: ${margin.margin}` : ``};
+      ${margin.marginTop ? `margin-top: ${margin.marginTop}` : ``};
+      ${margin.marginBottom ? `margin-bottom: ${margin.marginBottom}` : ``};`;
+    }
+  };
+  return css`
+    ${getPadding()}
+    ${getMargin()}
+  `;
+};
+
 export const Container = styled.div<ContainerProps>`
   ${getFlexDirection}
+  ${getGap}
+  ${getSpace}
   ${getOption}
-  padding-bottom: 2rem;
   display: flex;
 `;
