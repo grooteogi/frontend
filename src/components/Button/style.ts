@@ -1,3 +1,4 @@
+import { FontWeight } from './../../../types/style';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { darken, lighten } from 'polished';
@@ -47,6 +48,7 @@ const getSize = ({ size }: SButtonProps) => {
 export const StyledButton = styled.button<SButtonProps>`
   border-radius: 8px;
   font-size: 16px;
+  font-weight: ${FontWeight.BOLD};
   display: flex;
   justify-content: center;
   align-items: center;
