@@ -1,7 +1,7 @@
-import { SignInModal } from '../src/containers/SignInModal';
+import { SignInModal } from '../src/containers/SignInModal/index';
 
 const Home = () => {
-  return <SignInModal />;
+  return <SignInModal></SignInModal>;
 };
 
 export default Home;
