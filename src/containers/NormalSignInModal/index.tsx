@@ -1,10 +1,10 @@
-import Link from '../components/Link';
-import Box from '../components/Box';
-import Button from '../components/Button';
-import Checkbox from '../components/Checkbox';
-import Input from '../components/Input';
-import Typography from '../components/Typography';
-import Wrapper from '../components/Wrapper';
+import Link from '../../components/Link';
+import Box from '../../components/Box';
+import Button from '../../components/Button';
+import Checkbox from '../../components/Checkbox';
+import Input from '../../components/Input';
+import Typography from '../../components/Typography';
+import Wrapper from '../../components/Wrapper';
 
 export const NormalSignInModal = () => {
   return (
