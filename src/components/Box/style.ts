@@ -17,7 +17,7 @@ const getSize = ({ width, height }: ContainerProps) => {
 export const Container = styled.div<ContainerProps>`
   ${getSize};
   border: 1px solid ${theme.style.lightgrey};
-  border-radius: 8px;
+  border-radius: 12px;
   margin: auto;
   margin-top: 4rem;
   padding: 4rem 4rem;

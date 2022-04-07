@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import { darken } from 'polished';
 import theme from '../../../styles/theme';
 
