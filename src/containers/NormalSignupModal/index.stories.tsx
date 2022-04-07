@@ -14,4 +14,4 @@ const Template: ComponentStory<typeof NormalSignupModal> = () => (
   </GlobalThemeProvider>
 );
 
-export const BoxWrapper = Template.bind({});
+export const DefaultNormalSignup = Template.bind({});
