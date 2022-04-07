@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import { SignInModal } from '.';
+import SignInModal from './index';
 
 export default {
   title: 'Containers/SignInModal',
