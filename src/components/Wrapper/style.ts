@@ -22,6 +22,7 @@ const getFlexDirection = ({ flexDirection }: ContainerProps) => {
     `;
   }
 };
+
 const getGap = ({ gap }: ContainerProps) => {
   if (gap) {
     return css`
@@ -32,44 +33,35 @@ const getGap = ({ gap }: ContainerProps) => {
   }
 };
 
-const getOption = ({ justifyContent, alignItems }: ContainerProps) => {
-  const getjustifyContent = () => {
-    if (justifyContent) return `justify-content: ${justifyContent}`;
-  };
-  const getalignItems = () => {
-    if (alignItems) return `align-items: ${alignItems}`;
-  };
-  return css`
-    ${getjustifyContent()};
-    ${getalignItems()};
-  `;
+const getjustifyContent = ({ justifyContent }: ContainerProps) => {
+  if (justifyContent) return `justify-content: ${justifyContent}`;
 };
 
-const getSpace = ({ padding, margin }: ContainerProps) => {
-  const getPadding = () => {
-    if (padding) {
-      return ` ${padding.padding ? `padding: ${padding.padding}` : ``};
-      ${padding.paddingTop ? `padding-top: ${padding.paddingTop}` : ``};
-      ${padding.paddingBottom ? `padding-bottom: ${padding.paddingBottom}` : ``};`;
-    }
-  };
-  const getMargin = () => {
-    if (margin) {
-      return ` ${margin.margin ? `margin: ${margin.margin}` : ``};
-      ${margin.marginTop ? `margin-top: ${margin.marginTop}` : ``};
-      ${margin.marginBottom ? `margin-bottom: ${margin.marginBottom}` : ``};`;
-    }
-  };
-  return css`
-    ${getPadding()}
-    ${getMargin()}
-  `;
+const getalignItems = ({ alignItems }: ContainerProps) => {
+  if (alignItems) return `align-items: ${alignItems}`;
+};
+
+const getPadding = ({ padding }: ContainerProps) => {
+  if (padding) {
+    return ` ${padding.padding ? `padding: ${padding.padding}` : ``};
+    ${padding.paddingTop ? `padding-top: ${padding.paddingTop}` : ``};
+    ${padding.paddingBottom ? `padding-bottom: ${padding.paddingBottom}` : ``};`;
+  }
+};
+const getMargin = ({ margin }: ContainerProps) => {
+  if (margin) {
+    return ` ${margin.margin ? `margin: ${margin.margin}` : ``};
+    ${margin.marginTop ? `margin-top: ${margin.marginTop}` : ``};
+    ${margin.marginBottom ? `margin-bottom: ${margin.marginBottom}` : ``};`;
+  }
 };
 
 export const Container = styled.div<ContainerProps>`
+  display: flex;
   ${getFlexDirection}
   ${getGap}
-  ${getSpace}
-  ${getOption}
-  display: flex;
+  ${getjustifyContent}
+  ${getalignItems}
+  ${getPadding}
+  ${getMargin}
 `;

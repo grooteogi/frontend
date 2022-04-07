@@ -5,7 +5,7 @@ import Title from '../../components/Title';
 import Typography from '../../components/Typography';
 import Wrapper from '../../components/Wrapper';
 
-export const SignInModal = () => {
+const SignInModal = () => {
   return (
     <Box width={450} height={500}>
       <Wrapper flexDirection={'column'} alignItems="flex-start">
@@ -42,3 +42,4 @@ export const SignInModal = () => {
     </Box>
   );
 };
+export default SignInModal;
