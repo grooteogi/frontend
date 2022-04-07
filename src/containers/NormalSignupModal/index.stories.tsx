@@ -15,6 +15,3 @@ const Template: ComponentStory<typeof NormalSignupModal> = () => (
 );
 
 export const BoxWrapper = Template.bind({});
-BoxWrapper.args = {
-  flexDirection: 'row',
-};
