@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import { NormalSignInModal } from './index';
+import NormalSignInModal from './index';
 
 export default {
   title: 'Containers/NormalSignupModal',

@@ -6,7 +6,7 @@ import Input from '../../components/Input';
 import Typography from '../../components/Typography';
 import Wrapper from '../../components/Wrapper';
 
-export const NormalSignInModal = () => {
+const NormalSignInModal = () => {
   return (
     <Box width={500} height={550}>
       <Wrapper flexDirection={'row'} rowInterval={20}>
@@ -39,3 +39,5 @@ export const NormalSignInModal = () => {
     </Box>
   );
 };
+
+export default NormalSignInModal;
