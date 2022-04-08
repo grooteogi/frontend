@@ -42,7 +42,7 @@ const SelectHashtagModal = () => {
         <Title size="h1" color={'black'} align="left">
           내 정보 추가하기
         </Title>
-        <Wrapper flexDirection={'row'}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }}>
           <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
             내&nbsp;
           </Typography>
@@ -54,7 +54,6 @@ const SelectHashtagModal = () => {
           </Typography>
         </Wrapper>
       </Wrapper>
-
       <Wrapper flexDirection={'row'}>
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           나는 이것에&nbsp;
@@ -65,7 +64,7 @@ const SelectHashtagModal = () => {
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           있어요.
         </Typography>
-        <Wrapper flexDirection={'row'} gap={{ rowGap: 5, columnGap: 10 }}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
           {initialConcern.map(concern => {
             return (
               <Hashtag
@@ -88,7 +87,7 @@ const SelectHashtagModal = () => {
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           이에요.
         </Typography>
-        <Wrapper flexDirection={'row'} gap={{ rowGap: 5, columnGap: 10 }}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
           {initialCharacter.map(character => {
             return (
               <Hashtag
