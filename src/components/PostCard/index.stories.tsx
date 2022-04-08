@@ -1,0 +1,21 @@
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
+import theme from '../../../styles/theme';
+import PostCard from './index';
+
+export default {
+  title: 'Components/Box',
+  component: PostCard,
+} as ComponentMeta<typeof PostCard>;
+
+const Template: ComponentStory<typeof PostCard> = args => (
+  <GlobalThemeProvider theme={theme}>
+    <PostCard {...args} />
+  </GlobalThemeProvider>
+);
+
+export const LoginPageBox = Template.bind({});
+LoginPageBox.args = {
+  width: 450,
+  height: 500,
+};

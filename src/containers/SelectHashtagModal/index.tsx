@@ -42,7 +42,7 @@ const SelectHashtagModal = () => {
         <Title size="h1" color={'black'} align="left">
           내 정보 추가하기
         </Title>
-        <Wrapper flexDirection={'row'}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }}>
           <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
             내&nbsp;
           </Typography>
@@ -65,7 +65,7 @@ const SelectHashtagModal = () => {
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           있어요.
         </Typography>
-        <Wrapper flexDirection={'row'} gap={{ rowGap: 5, columnGap: 10 }}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
           {initialConcern.map(concern => {
             return (
               <Hashtag
@@ -88,7 +88,7 @@ const SelectHashtagModal = () => {
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           이에요.
         </Typography>
-        <Wrapper flexDirection={'row'} gap={{ rowGap: 5, columnGap: 10 }}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
           {initialCharacter.map(character => {
             return (
               <Hashtag
@@ -101,7 +101,7 @@ const SelectHashtagModal = () => {
           })}
         </Wrapper>
       </Wrapper>
-      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} gap={{ gap: 10 }}>
+      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} margin={{ marginTop: '10px' }} gap={{ columnGap: 10 }}>
         <Link href={''} size={'sm'} color={'primary'} align={'right'}>
           건너뛰기
         </Link>
