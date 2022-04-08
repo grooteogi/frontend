@@ -125,6 +125,12 @@ const style = {
       lg: 'medium',
     },
   },
+  sortingTab: {
+    font: {
+      basic: { color: '#737373', weight: FontWeight.REGULAR },
+      selected: { color: '#000000', weight: FontWeight.MEDIUM },
+    },
+  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',
