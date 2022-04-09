@@ -10,14 +10,15 @@ import {
 
 interface CheckBoxProps extends SCheckboxComponentBox, SCheckboxComponentText {
   label: string;
+  onClick?: () => void;
 }
 
-const Checkbox = ({ label, link, width = '100%', height = '30px' }: CheckBoxProps) => {
-  const box = { width, height };
+const Checkbox = ({ label, link, width = '100%', height = '30px', paddingLeft, onClick }: CheckBoxProps) => {
+  const box = { width, height, paddingLeft };
   return (
     <StyledCheckbox {...box}>
       <EmptyDiv>
-        <StyledCheckboxInput type={'checkbox'} />
+        <StyledCheckboxInput type={'checkbox'} onClick={onClick} />
         <StyledCheckboxText>{label}</StyledCheckboxText>
       </EmptyDiv>
       {link && <StyledCheckboxDetail>보기</StyledCheckboxDetail>}

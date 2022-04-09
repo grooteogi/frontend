@@ -1,7 +1,7 @@
-import SelectHashtagModal from '../src/containers/SelectHashtagModal/index';
+import SelectHashtagModal from '../src/containers/SelectHashtagModal/index'
 
 const Home = () => {
-  return <SelectHashtagModal></SelectHashtagModal>;
+  return <SelectHashtagModal />;
 };
 
 export default Home;
