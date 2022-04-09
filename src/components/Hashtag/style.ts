@@ -31,13 +31,13 @@ const getClickEffect = ({ clickable }: SClickableProps) => {
 const getColor = ({ clickable, clicked }: SClickableProps) => {
   if (clickable) {
     return css`
-      background-color: ${clicked ? hashtagTheme.color.white : hashtagTheme.color.lightgray};
-      border: 1px solid ${clicked ? hashtagTheme.borderColor.primary : hashtagTheme.borderColor.lightgray};
+      background-color: ${clicked ? hashtagTheme.color.white : hashtagTheme.color.bluegray};
+      border: 1px solid ${clicked ? hashtagTheme.borderColor.primary : hashtagTheme.borderColor.bluegray};
     `;
   } else {
     return css`
-      background-color: ${hashtagTheme.color.lightgray};
-      border: 1px solid ${hashtagTheme.borderColor.lightgray};
+      background-color: ${hashtagTheme.color.bluegray};
+      border: 1px solid ${hashtagTheme.borderColor.bluegray};
     `;
   }
 };
