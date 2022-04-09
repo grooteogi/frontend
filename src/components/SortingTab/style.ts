@@ -1,13 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import theme from '../../../styles/theme';
-import { TabList } from './index';
 
 const typoTheme = theme.style.sortingTab;
 
-const getFont = ({ selected = false }) => {
+const getFont = ({ active = false }) => {
   const font = typoTheme.font;
-  if (selected)
+  if (active)
     return css`
       font-weight: ${font.selected.weight};
       color: ${font.selected.color};
