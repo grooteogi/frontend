@@ -9,11 +9,11 @@ import Wrapper from '../../components/Wrapper';
 const NormalSignInModal = () => {
   return (
     <Box width={500} height={550}>
-      <Wrapper flexDirection={'row'} rowInterval={20}>
+      <Wrapper flexDirection={'row'} gap={{ rowGap: 20 }}>
         <Typography size={'lg'} color={'black'} weight={'BOLD'}>
           🌳 간편 가입하기
         </Typography>
-        <Wrapper flexDirection={'column'} rowInterval={15}>
+        <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
           <Typography size={'lg'} color={'darkgray'}>
             인생선배를 찾는 지름길,
           </Typography>
@@ -22,13 +22,13 @@ const NormalSignInModal = () => {
           </Typography>
         </Wrapper>
       </Wrapper>
-      <Wrapper flexDirection={'column'} rowInterval={20}>
+      <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
         <Input width={375} height={40} placeholder={'이메일'}></Input>
         <Input width={375} height={40} placeholder={'비밀번호'}></Input>
         <Checkbox label={'로그인 유지'}></Checkbox>
         <Button color={'primary'} fontColor={'black'} borderColor={'none'} name={'로그인'} size={'lg'} />
       </Wrapper>
-      <Wrapper flexDirection={'row'} columnInterval={1} justifyContent={'center'}>
+      <Wrapper flexDirection={'row'} gap={{ columnGap: 1 }} justifyContent={'center'}>
         <Typography size={'xs'} color={'black'} align={'center'}>
           아직 회원이 아니신가요?
         </Typography>
