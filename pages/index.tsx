@@ -1,4 +1,4 @@
-import { SignInModal } from '../src/containers/SignInModal';
+import SignInModal from '../src/containers/SigninModal';
 
 const Home = () => {
   return <SignInModal />;
