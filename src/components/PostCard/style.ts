@@ -6,6 +6,9 @@ export interface ContainerProps {
   width: number;
   height: number;
 }
+export interface ImageContainerProps {
+  children: JSX.Element;
+}
 
 const getSize = ({ width, height }: ContainerProps) => {
   return css`
@@ -17,12 +20,15 @@ const getSize = ({ width, height }: ContainerProps) => {
 export const Container = styled.div<ContainerProps>`
   ${getSize};
   border: 1px solid ${theme.style.lightgrey};
-  border-radius: 12px;
-  margin: auto;
-  margin-top: 4rem;
-  padding: 4rem 4rem;
   background: ${theme.style.white};
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+`;
+
+export const ImageContainer = styled.div<ImageContainerProps>`
+  border: 1px solid black;
+  border-radius: 12px;
+  height: '200px';
+  width: '230px';
+  position: 'relative';
 `;

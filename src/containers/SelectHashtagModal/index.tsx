@@ -54,7 +54,6 @@ const SelectHashtagModal = () => {
           </Typography>
         </Wrapper>
       </Wrapper>
-
       <Wrapper flexDirection={'row'}>
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           나는 이것에&nbsp;

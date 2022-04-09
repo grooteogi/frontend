@@ -4,7 +4,7 @@ import theme from '../../../styles/theme';
 import PostCard from './index';
 
 export default {
-  title: 'Components/Box',
+  title: 'Components/PostCard',
   component: PostCard,
 } as ComponentMeta<typeof PostCard>;
 
@@ -14,8 +14,9 @@ const Template: ComponentStory<typeof PostCard> = args => (
   </GlobalThemeProvider>
 );
 
-export const LoginPageBox = Template.bind({});
-LoginPageBox.args = {
-  width: 450,
-  height: 500,
+export const Default = Template.bind({});
+Default.args = {
+  width: 235,
+  height: 300,
+  //image 235, 200
 };
