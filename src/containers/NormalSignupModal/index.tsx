@@ -26,8 +26,8 @@ export const NormalSignupModal = () => (
         </Wrapper>
       </Wrapper>
       <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
-        <Input width={375} height={40} placeholder={'비밀번호'}></Input>
-        <Input width={375} height={40} placeholder={'비밀번호 확인'}></Input>
+        <Input type={'password'} width={375} height={40} placeholder={'비밀번호'}></Input>
+        <Input type={'password'} width={375} height={40} placeholder={'비밀번호 확인'}></Input>
         <Wrapper flexDirection={'row'} gap={{ rowGap: 5 }}>
           <Checkbox label={'전체 동의'}></Checkbox>
           <Wrapper flexDirection={'row'} gap={{ rowGap: 10 }}>

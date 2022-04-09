@@ -4,7 +4,7 @@ import theme from '../../../styles/theme';
 import NormalSignInModal from './index';
 
 export default {
-  title: 'Containers/NormalSignupModal',
+  title: 'Containers/NormalSigninModal',
   component: NormalSignInModal,
 } as ComponentMeta<typeof NormalSignInModal>;
 
