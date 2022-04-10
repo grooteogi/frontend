@@ -118,14 +118,16 @@ const style = {
   },
   header: {
     fontSizeBasic: {
-      sm: 'x-small',
-      md: 'smaller',
-      lg: 'medium',
+      sm: '0.65rem',
+      md: '0.8rem',
     },
     fontSizeLogo: {
-      sm: 'smaller',
-      md: 'small',
-      lg: 'medium',
+      sm: '0.8rem',
+      md: '1rem',
+    },
+    padding: {
+      sm: '0.6rem',
+      md: '1rem',
     },
   },
   sortingTab: {
