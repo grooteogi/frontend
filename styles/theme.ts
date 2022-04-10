@@ -136,6 +136,9 @@ const style = {
       primary: '#1CDBA1',
     },
   },
+  dropbox: {
+    weight: FontWeight.MEDIUM,
+  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',
