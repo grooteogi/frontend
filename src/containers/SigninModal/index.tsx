@@ -5,6 +5,10 @@ import Title from '../../components/Title';
 import Typography from '../../components/Typography';
 import Wrapper from '../../components/Wrapper';
 
+const REST_API_KEY = '6aecd19783801d36d392d8b19b858225';
+const REDIRECT_URI = 'http://localhost:3000/kakao';
+const KAKAO_AUTH_URL = `http://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
 const SignInModal = () => {
   return (
     <Box width={500} height={550}>
@@ -27,6 +31,9 @@ const SignInModal = () => {
             fontColor={'black'}
             name={'카카오로 1초만에 시작하기'}
             size={'lg'}
+            onClick={() => {
+              location.href = KAKAO_AUTH_URL;
+            }}
           />
           <Button
             icon={'/logos/google_logo.png'}
