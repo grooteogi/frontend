@@ -23,6 +23,7 @@ const style = {
   hashtag: {
     color: {
       lightgray: '#EEEEEE',
+      bluegray: '#F2F4F7',
       white: '#FFFFFF',
     },
     fontColor: {
@@ -31,6 +32,7 @@ const style = {
     },
     borderColor: {
       lightgray: '#EEEEEE',
+      bluegray: '#F2F4F7',
       primary: '#1CDBA1',
     },
     display: {
@@ -42,6 +44,7 @@ const style = {
     color: {
       black: '#000000',
       darkgray: '#333333',
+      primary: '#1CDBA1',
     },
     weight: {
       bold: 700,
@@ -129,6 +132,14 @@ const style = {
     font: {
       basic: { color: '#737373', weight: FontWeight.REGULAR },
       selected: { color: '#000000', weight: FontWeight.MEDIUM },
+    },
+  },
+  typoWrapper: {
+    color: {
+      black: '#000000',
+      darkgray: '#DDDDDD',
+      lightgrey: '#EAEAEA',
+      primary: '#1CDBA1',
     },
   },
   primary: '#1896BD',
