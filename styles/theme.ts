@@ -128,6 +128,12 @@ const style = {
       lg: 'medium',
     },
   },
+  sortingTab: {
+    font: {
+      basic: { color: '#737373', weight: FontWeight.REGULAR },
+      selected: { color: '#000000', weight: FontWeight.MEDIUM },
+    },
+  },
   typoWrapper: {
     color: {
       black: '#000000',
