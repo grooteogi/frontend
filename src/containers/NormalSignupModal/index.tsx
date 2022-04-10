@@ -5,7 +5,7 @@ import Input from '../../components/Input';
 import Typography from '../../components/Typography';
 import Wrapper from '../../components/Wrapper';
 
-export const NormalSignupModal = () => (
+const NormalSignupModal = () => (
   <Box width={500} height={800}>
     <Wrapper flexDirection={'row'} gap={{ rowGap: 20 }}>
       <Typography size={'lg'} color={'black'} weight={'BOLD'}>
@@ -42,3 +42,5 @@ export const NormalSignupModal = () => (
     </Wrapper>
   </Box>
 );
+
+export default NormalSignupModal;
