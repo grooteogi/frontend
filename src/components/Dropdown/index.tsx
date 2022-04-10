@@ -1,20 +1,34 @@
-import React from 'react';
-import { SDropboxProps, StyledDropbox, StyledOption } from './style';
+import { useState } from 'react';
+import { StyledSelectbox, StyledSelectedLabel, StyledOptionList, StyledOptionItem } from './style';
 
-interface DropdownProps extends SDropboxProps {
-  name: string;
+interface DropdownProps {
   list: string[];
 }
 
-const Dropdown = ({ name, list }: DropdownProps) => {
+const Dropdown = ({ list }: DropdownProps) => {
+  const [acitve, setActive] = useState(true);
+  const [selected, setSelected] = useState(list[0]);
   return (
-    <StyledDropbox name={name}>
-      {list.map(element => (
-        <StyledOption key={element} value={element}>
-          {element}
-        </StyledOption>
-      ))}
-    </StyledDropbox>
+    <StyledSelectbox>
+      <StyledSelectedLabel value={selected} onClick={() => setActive(!acitve)}>
+        {selected}
+      </StyledSelectedLabel>
+      <StyledOptionList active={acitve}>
+        {list
+          .filter(element => element !== selected)
+          .map(element => (
+            <StyledOptionItem
+              key={element}
+              onClick={() => {
+                setActive(false);
+                setSelected(element);
+              }}
+            >
+              {element}
+            </StyledOptionItem>
+          ))}
+      </StyledOptionList>
+    </StyledSelectbox>
   );
 };
 
