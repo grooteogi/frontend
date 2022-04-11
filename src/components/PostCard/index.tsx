@@ -26,7 +26,7 @@ const PostCard = ({ imageSrc, hashtags, title, content, ...props }: PostCardProp
           return <Hashtag key={hash} content={hash} />;
         })}
       </Wrapper>
-      <Wrapper flexDirection="column" padding={{ padding: '8px' }} alignItems="flex-start" gap={{ rowGap: 8 }}>
+      <Wrapper flexDirection="column" alignItems="flex-start" gap={{ rowGap: 6 }}>
         <TitleDiv>
           <Title size={'h4'} color={'black'} align={'right'}>
             {title}

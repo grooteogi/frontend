@@ -15,7 +15,9 @@ export const ImageDiv = styled.div`
 `;
 
 export const TitleDiv = styled.div`
-  max-width: 100%;
+  max-width: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -23,6 +25,8 @@ export const TitleDiv = styled.div`
 `;
 
 export const ContentDiv = styled.div`
+  padding-left: 4px;
+  padding-right: 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
