@@ -30,7 +30,7 @@ export const DefaultLocale = (args: ComponentStory<typeof Dropdown>) => {
       '강남구',
       '송파구',
       '강동구',
-      ' 은평구',
+      '은평구',
       '종로구',
       '중구',
       '용산구',
@@ -43,6 +43,12 @@ export const DefaultLocale = (args: ComponentStory<typeof Dropdown>) => {
       '강북구',
       '도봉구',
     ],
+  };
+  return <Template {...defaultArgs} {...args}></Template>;
+};
+export const NoLocale = (args: ComponentStory<typeof Dropdown>) => {
+  const defaultArgs = {
+    list: [],
   };
   return <Template {...defaultArgs} {...args}></Template>;
 };

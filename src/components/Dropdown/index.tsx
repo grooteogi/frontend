@@ -6,27 +6,31 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ list }: DropdownProps) => {
-  const [acitve, setActive] = useState(true);
-  const [selected, setSelected] = useState(list[0]);
+  const [acitve, setActive] = useState(false);
+  const [selected, setSelected] = useState('지역구');
   return (
     <StyledSelectbox>
       <StyledSelectedLabel value={selected} onClick={() => setActive(!acitve)}>
         {selected}
       </StyledSelectedLabel>
       <StyledOptionList active={acitve}>
-        {list
-          .filter(element => element !== selected)
-          .map(element => (
-            <StyledOptionItem
-              key={element}
-              onClick={() => {
-                setActive(false);
-                setSelected(element);
-              }}
-            >
-              {element}
-            </StyledOptionItem>
-          ))}
+        {list.length === 0 ? (
+          <StyledOptionItem onClick={() => setActive(false)}>-</StyledOptionItem>
+        ) : (
+          list
+            .filter(element => element !== selected)
+            .map(element => (
+              <StyledOptionItem
+                key={element}
+                onClick={() => {
+                  setActive(false);
+                  setSelected(element);
+                }}
+              >
+                {element}
+              </StyledOptionItem>
+            ))
+        )}
       </StyledOptionList>
     </StyledSelectbox>
   );
