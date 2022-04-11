@@ -21,9 +21,9 @@ const PostCard = ({ imageSrc, hashtags, title, content, ...props }: PostCardProp
       <ImageDiv>
         <Image src={imageSrc} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
       </ImageDiv>
-      <Wrapper flexDirection={'row'} padding={{ padding: '8px' }} gap={{ columnGap: 8 }}>
+      <Wrapper flexDirection={'row'} padding={{ padding: '4px' }} gap={{ columnGap: 6 }}>
         {hashtags.map(hash => {
-          return <Hashtag key={hash} content={hash} />;
+          return <Hashtag key={hash} content={'#' + hash} />;
         })}
       </Wrapper>
       <Wrapper flexDirection="column" alignItems="flex-start" gap={{ rowGap: 6 }}>
