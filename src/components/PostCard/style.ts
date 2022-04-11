@@ -1,34 +1,30 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import theme from '../../../styles/theme';
 
-export interface ContainerProps {
-  width: number;
-  height: number;
-}
-export interface ImageContainerProps {
-  children: JSX.Element;
-}
-
-const getSize = ({ width, height }: ContainerProps) => {
-  return css`
-    width: ${width}px;
-    height: ${height}px;
-  `;
-};
-
-export const Container = styled.div<ContainerProps>`
-  ${getSize};
+export const Container = styled.div`
+  width: 235px;
+  height: 300px;
   border: 1px solid ${theme.style.lightgrey};
   background: ${theme.style.white};
   display: flex;
   flex-direction: column;
 `;
+export const ImageDiv = styled.div`
+  border-radius: 8px;
+  overflow: hidden;
+`;
 
-export const ImageContainer = styled.div<ImageContainerProps>`
-  border: 1px solid black;
-  border-radius: 12px;
-  height: '200px';
-  width: '230px';
-  position: 'relative';
+export const TitleDiv = styled.div`
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+`;
+
+export const ContentDiv = styled.div`
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
