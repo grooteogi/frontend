@@ -134,12 +134,16 @@ const style = {
       selected: { color: '#000000', weight: FontWeight.MEDIUM },
     },
   },
-  typoWrapper: {
-    color: {
+  searchBar: {
+    backgroundColor: {
+      white: '#FFFFFF',
+    },
+    fontColor: {
+      gray: '#878787',
       black: '#000000',
-      darkgray: '#DDDDDD',
-      lightgrey: '#EAEAEA',
-      primary: '#1CDBA1',
+    },
+    borderColor: {
+      lightgray: '#BFBFBF',
     },
   },
   primary: '#1896BD',
