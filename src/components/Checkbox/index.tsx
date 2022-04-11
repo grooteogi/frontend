@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   EmptyDiv,
   SCheckboxComponentBox,
@@ -10,7 +11,7 @@ import {
 
 interface CheckBoxProps extends SCheckboxComponentBox, SCheckboxComponentText {
   label: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 const Checkbox = ({ label, link, width = '100%', height = '30px', paddingLeft, onClick }: CheckBoxProps) => {
@@ -21,7 +22,7 @@ const Checkbox = ({ label, link, width = '100%', height = '30px', paddingLeft, o
         <StyledCheckboxInput type={'checkbox'} onClick={onClick} />
         <StyledCheckboxText>{label}</StyledCheckboxText>
       </EmptyDiv>
-      {link && <StyledCheckboxDetail>보기</StyledCheckboxDetail>}
+      {link && <StyledCheckboxDetail link={link}>보기</StyledCheckboxDetail>}
     </StyledCheckbox>
   );
 };
