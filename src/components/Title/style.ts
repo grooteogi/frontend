@@ -33,9 +33,7 @@ const getOption = ({ align }: STitleProps) => {
 
 export const StyledTitle = styled.h1`
   display: flex;
-  // justify-content: center;
   gap: 0.5rem;
-  // ellipsis properties
   text-overflow: inherit;
   display: inline-block;
   overflow: inherit;

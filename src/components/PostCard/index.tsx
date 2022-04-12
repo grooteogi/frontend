@@ -1,12 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 import Hashtag from '../Hashtag';
 import Wrapper from '../Wrapper';
-import { Container, ContentDiv, ImageDiv, TitleDiv } from './style';
+import { Container, ContentWrapper, StyledImage, TitleWrapper } from './style';
 import Title from '../Title';
 import Typography from '../Typography';
-
-// type MeetingPost = {};
 
 interface PostCardProps {
   imageSrc: string;
@@ -18,25 +15,23 @@ interface PostCardProps {
 const PostCard = ({ imageSrc, hashtags, title, content, ...props }: PostCardProps) => {
   return (
     <Container {...props}>
-      <ImageDiv>
-        <Image src={imageSrc} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
-      </ImageDiv>
-      <Wrapper flexDirection={'row'} padding={{ padding: '4px' }} gap={{ columnGap: 6 }}>
+      <StyledImage src={imageSrc} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
+      <Wrapper flexDirection={'row'} padding={{ paddingTop: '4px', paddingBottom: '4px' }} gap={{ columnGap: 6 }}>
         {hashtags.map(hash => {
           return <Hashtag key={hash} content={'#' + hash} />;
         })}
       </Wrapper>
       <Wrapper flexDirection="column" alignItems="flex-start" gap={{ rowGap: 6 }}>
-        <TitleDiv>
+        <TitleWrapper>
           <Title size={'h4'} color={'black'} align={'right'}>
             {title}
           </Title>
-        </TitleDiv>
-        <ContentDiv>
+        </TitleWrapper>
+        <ContentWrapper>
           <Typography size={'xs'} color={'lightgray'}>
             {content}
           </Typography>
-        </ContentDiv>
+        </ContentWrapper>
       </Wrapper>
     </Container>
   );
