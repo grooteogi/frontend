@@ -44,6 +44,8 @@ const style = {
     color: {
       black: '#000000',
       darkgray: '#333333',
+      dimgray: '#4F4F4F',
+      lightgray: '#BFBFBF',
       primary: '#1CDBA1',
     },
     weight: {
