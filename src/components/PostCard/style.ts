@@ -1,12 +1,9 @@
 import styled from '@emotion/styled';
-import theme from '../../../styles/theme';
 import Image from 'next/image';
 
 export const Container = styled.div`
   width: 235px;
   height: 300px;
-  border: 1px solid ${theme.style.lightgrey};
-  background: ${theme.style.white};
   display: flex;
   flex-direction: column;
 `;
@@ -21,7 +18,6 @@ export const TitleWrapper = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  display: inline-block;
 `;
 
 export const ContentWrapper = styled.div`
