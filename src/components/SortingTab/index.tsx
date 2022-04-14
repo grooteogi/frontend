@@ -1,3 +1,4 @@
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import React from 'react';
 import { StyledSortingTab, StyledSortingTabBox } from './style';
 
@@ -16,7 +17,7 @@ export const SortingTabItem = ({ active, onTabClick, children }: SortingTabItemP
 };
 
 export interface SortingTabProps {
-  children?: typeof SortingTabItem;
+  children?: ReactJSXElement | ReactJSXElement[];
 }
 
 const SortingTab = ({ children }: SortingTabProps) => {
