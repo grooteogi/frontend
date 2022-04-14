@@ -23,6 +23,9 @@ const getDevice = ({ device = 'md' }: SCarouselDevice) => {
 };
 
 export const StyledCarousel = styled(Slider)<SCarouselDevice>`
+  .slick-slide {
+    margin: 0 auto;
+  }
   .slick-list {
     ${getDevice};
     margin: 0 auto;

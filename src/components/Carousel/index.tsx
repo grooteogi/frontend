@@ -34,15 +34,13 @@ const settings = {
 const Carousel = ({ device, imgLists }: CarouselProps) => {
   let idx = 0;
   return (
-    <>
-      <StyledCarousel device={device} {...settings}>
-        {imgLists.map(({ src, alt, ondbClick }: ImgItem) => (
-          <div key={idx++}>
-            <StyledCarouselItem src={src} onDoubleClick={ondbClick} alt={alt} />
-          </div>
-        ))}
-      </StyledCarousel>
-    </>
+    <StyledCarousel device={device} {...settings}>
+      {imgLists.map(({ src, alt, ondbClick }: ImgItem) => (
+        <div key={idx++}>
+          <StyledCarouselItem src={src} onDoubleClick={ondbClick} alt={alt} />
+        </div>
+      ))}
+    </StyledCarousel>
   );
 };
 
