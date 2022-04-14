@@ -33,6 +33,5 @@ export const StyledCarousel = styled(Slider)<SCarouselDevice>`
   }
   .slick-dots {
     bottom: 10px;
-    margin-top: -100px;
   }
 `;

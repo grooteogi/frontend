@@ -144,7 +144,7 @@ const style = {
   },
   carousel: {
     width: {
-      sm: '100vw',
+      sm: '90vw',
       md: '80vw',
       lg: '60vw',
     },
