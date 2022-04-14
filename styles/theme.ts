@@ -142,6 +142,13 @@ const style = {
       primary: '#1CDBA1',
     },
   },
+  carousel: {
+    width: {
+      sm: '100vw',
+      md: '80vw',
+      lg: '60vw',
+    },
+  },
   primary: '#1896BD',
   yellow: '#FFB84D',
   white: '#FFFFFF',
