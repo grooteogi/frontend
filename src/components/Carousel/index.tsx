@@ -36,17 +36,15 @@ const settings = {
 const Carousel = ({ ondbClick, imgLists }: CarouselProps) => {
   let idx = 0;
   return (
-    <>
-      <StyledCarousel {...settings}>
-        {imgLists.map(({ src, alt, link }: ImgItem) => (
-          <div key={idx++}>
-            <a href={link}>
-              <StyledCarouselItem src={src} onDoubleClick={ondbClick} alt={alt} />
-            </a>
-          </div>
-        ))}
-      </StyledCarousel>
-    </>
+    <StyledCarousel {...settings}>
+      {imgLists.map(({ src, alt, link }: ImgItem) => (
+        <div key={idx++}>
+          <a href={link}>
+            <StyledCarouselItem src={src} onDoubleClick={ondbClick} alt={alt} />
+          </a>
+        </div>
+      ))}
+    </StyledCarousel>
   );
 };
 
