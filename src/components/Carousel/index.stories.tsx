@@ -30,6 +30,11 @@ export const DefaultCarousel = (args: ComponentStory<typeof Carousel>) => {
       alt: 'haha caroul',
       link: '',
     },
+    {
+      src: '/imgs/Carousel5.png',
+      alt: 'haha caroul',
+      link: '',
+    },
   ];
   return (
     <GlobalThemeProvider theme={theme}>
