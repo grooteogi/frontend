@@ -17,7 +17,7 @@ export const SortingTabItem = ({ active, onTabClick, children }: SortingTabItemP
 };
 
 export interface SortingTabProps {
-  children?: ReactJSXElement | ReactJSXElement[];
+  children?: JSX.Element | JSX.Element[];
 }
 
 const SortingTab = ({ children }: SortingTabProps) => {
