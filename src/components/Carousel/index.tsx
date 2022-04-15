@@ -4,11 +4,12 @@ import { SCarouselDevice, StyledCarousel, StyledCarouselItem } from './style';
 export type ImgItem = {
   src: string;
   alt?: string;
-  ondbClick?: (e: React.MouseEvent) => void;
+  link?: string;
 };
 
 export interface CarouselProps extends SCarouselDevice {
   imgLists: ImgItem[];
+  ondbClick?: (e: React.MouseEvent) => void;
 }
 
 const settings = {
@@ -31,14 +32,16 @@ const settings = {
   ],
 };
 
-const Carousel = ({ device, imgLists }: CarouselProps) => {
+const Carousel = ({ device, ondbClick, imgLists }: CarouselProps) => {
   let idx = 0;
   return (
     <>
       <StyledCarousel device={device} {...settings}>
-        {imgLists.map(({ src, alt, ondbClick }: ImgItem) => (
+        {imgLists.map(({ src, alt, link }: ImgItem) => (
           <div key={idx++}>
-            <StyledCarouselItem src={src} onDoubleClick={ondbClick} alt={alt} />
+            <a href={link}>
+              <StyledCarouselItem src={src} onDoubleClick={ondbClick} alt={alt} />
+            </a>
           </div>
         ))}
       </StyledCarousel>

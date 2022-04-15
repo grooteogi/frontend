@@ -12,31 +12,23 @@ export const DefaultCarousel = (args: ComponentStory<typeof Carousel>) => {
   const imgLists = [
     {
       src: '/imgs/Carousel1.png',
-      alt: 'happy carousel',
-      ondbClick: () => {
-        alert('Carousel');
-      },
+      alt: 'img for test link',
+      link: 'https://www.google.com/?gws_rd=ssl',
     },
     {
       src: '/imgs/Carousel2.png',
       alt: 'sad carousel',
-      ondbClick: () => {
-        alert('Carousel2');
-      },
+      link: '',
     },
     {
       src: '/imgs/Carousel3.png',
       alt: 'haha carousel',
-      ondbClick: () => {
-        alert('Carousel3');
-      },
+      link: '',
     },
     {
       src: '/imgs/Carousel4.png',
       alt: 'haha caroul',
-      ondbClick: () => {
-        alert('Carousel4');
-      },
+      link: '',
     },
   ];
   return (
