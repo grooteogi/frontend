@@ -33,7 +33,7 @@ export const DefaultCarousel = (args: ComponentStory<typeof Carousel>) => {
   ];
   return (
     <GlobalThemeProvider theme={theme}>
-      <Carousel imgLists={imgLists} device={'lg'} {...args} />
+      <Carousel imgLists={imgLists} {...args} />
     </GlobalThemeProvider>
   );
 };

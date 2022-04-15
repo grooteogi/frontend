@@ -1,40 +1,62 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import theme from '../../../styles/theme';
 
-const carouselTheme = theme.style.carousel;
 export const StyledCarouselItem = styled.img`
   cursor: pointer;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 30vh;
+  object-fit: none;
+  @media screen and (min-width: 600px) {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 `;
-
-export type SCarouselDevice = {
-  device?: keyof typeof carouselTheme.width;
-};
-
-const getDevice = ({ device = 'md' }: SCarouselDevice) => {
-  return css`
-    width: ${carouselTheme.width[device]};
-  `;
-};
-
-export const StyledCarousel = styled(Slider)<SCarouselDevice>`
+export const StyledCarousel = styled(Slider)`
+  .slick-list {
+    width: 100vw;
+    height: 30vh;
+    height: fit-content;
+    border-radius: 8px;
+  }
+  @media screen and (min-width: 600px) {
+    .slick-list {
+      width: 85vw;
+      border-radius: 8px;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .slick-list {
+      width: 60vw;
+    }
+  }
   .slick-slide {
     margin: 0 auto;
-  }
-  .slick-list {
-    ${getDevice};
-    margin: 0 auto;
-    border-radius: 8px;
   }
   .slick-track {
     overflow-x: hidden;
   }
   .slick-dots {
     bottom: 10px;
+    padding: 0;
+  }
+  .slick-dots li button,
+  .slick-dots li button:before,
+  .slick-dots li button:focus:before,
+  .slick-dots li button:hover:before {
+    color: ${theme.style.deepgray};
+    opacity: 0.5;
+  }
+  .slick-dots li button:hover,
+  .slick-dots li.slick-active button:hover {
+    opacity: 1;
+  }
+  .slick-dots li.slick-active button,
+  .slick-dots li.slick-active button:focus,
+  .slick-dots li.slick-active button:before {
+    opacity: 0.75;
   }
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SCarouselDevice, StyledCarousel, StyledCarouselItem } from './style';
+import { StyledCarousel, StyledCarouselItem } from './style';
 
 export type ImgItem = {
   src: string;
@@ -7,7 +7,7 @@ export type ImgItem = {
   link?: string;
 };
 
-export interface CarouselProps extends SCarouselDevice {
+export interface CarouselProps {
   imgLists: ImgItem[];
   ondbClick?: (e: React.MouseEvent) => void;
 }
@@ -22,6 +22,7 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 2500,
   dots: true,
+  arrows: false,
   responsive: [
     {
       breakpoint: 600,
@@ -32,11 +33,11 @@ const settings = {
   ],
 };
 
-const Carousel = ({ device, ondbClick, imgLists }: CarouselProps) => {
+const Carousel = ({ ondbClick, imgLists }: CarouselProps) => {
   let idx = 0;
   return (
     <>
-      <StyledCarousel device={device} {...settings}>
+      <StyledCarousel {...settings}>
         {imgLists.map(({ src, alt, link }: ImgItem) => (
           <div key={idx++}>
             <a href={link}>
