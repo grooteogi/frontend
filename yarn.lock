@@ -8227,7 +8227,6 @@ __metadata:
     prettier: ^2.6.0
     react: 17.0.2
     react-dom: 17.0.2
-    react-horizontal-scrolling-menu: ^2.7.1
     typescript: 4.6.2
     webpack: 5.68.0
   languageName: unknown
@@ -12609,18 +12608,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-horizontal-scrolling-menu@npm:^2.7.1":
-  version: 2.7.1
-  resolution: "react-horizontal-scrolling-menu@npm:2.7.1"
-  dependencies:
-    smooth-scroll-into-view-if-needed: ^1.1.32
-  peerDependencies:
-    react: ">=16.8"
-    react-dom: ">=16.8"
-  checksum: a8ea555adde912374d019e6d15ba093e1b5bfb7c2e1116b4dd57ce575d44f2640950be430294b0a0df43af193d1d5296ad9392dfc99bb66e950e70ff7bac5fb8
-  languageName: node
-  linkType: hard
-
 "react-inspector@npm:^5.1.0":
   version: 5.1.1
   resolution: "react-inspector@npm:5.1.1"
@@ -13356,15 +13343,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scroll-into-view-if-needed@npm:^2.2.28":
-  version: 2.2.29
-  resolution: "scroll-into-view-if-needed@npm:2.2.29"
-  dependencies:
-    compute-scroll-into-view: ^1.0.17
-  checksum: 6b888404ccf68fe2f2f1da8977e1a8a0a64a7139352e02e98621a0e8be3b3db393519ee3dcfb7c32aff3c4790a36829f1be1cccc0cfb2b90a60a61caa669eee2
-  languageName: node
-  linkType: hard
-
 "semver@npm:2 || 3 || 4 || 5, semver@npm:^5.4.1, semver@npm:^5.5.0, semver@npm:^5.6.0":
   version: 5.7.1
   resolution: "semver@npm:5.7.1"
@@ -13644,15 +13622,6 @@ __metadata:
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
   checksum: b5167a7142c1da704c0e3af85c402002b597081dd9575031a90b4f229ca5678e9a36e8a374f1814c8156a725d17008ae3bde63b92f9cfd132526379e580bec8b
-  languageName: node
-  linkType: hard
-
-"smooth-scroll-into-view-if-needed@npm:^1.1.32":
-  version: 1.1.33
-  resolution: "smooth-scroll-into-view-if-needed@npm:1.1.33"
-  dependencies:
-    scroll-into-view-if-needed: ^2.2.28
-  checksum: feb4c58fd18a5372121beb9d6b6711092fe8766fce5622f454036066e9f14735cc45dddc1d0f09a9437fdc186083c095c569066671db0f1365adbff02da0cd43
   languageName: node
   linkType: hard
 
