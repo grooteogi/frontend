@@ -8,6 +8,7 @@ const style = {
       white: '#FFFFFF',
       kakao: '#FEE500',
       lightgray: '#E9E9E9',
+      disabled: '#E9E9E9',
     },
     fontColor: {
       white: '#FFFFFF',
@@ -90,6 +91,8 @@ const style = {
     },
     borderColor: {
       lightgray: '#BFBFBF',
+      primary: '#1CDBA1',
+      danger: '#FF5C00',
       none: null,
     },
     sizes: {
