@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
-const nextConfig = {
+module.exports = {
   async rewrites() {
     return [
       {
@@ -18,18 +18,16 @@ const nextConfig = {
     ];
   },
   reactStrictMode: true,
-  webpack(nextConfig) {
-    nextConfig.resolve = {
+  webpack(config) {
+    config.resolve = {
       alias: {
         '@lib': path.resolve(__dirname, './lib'),
         '@hooks': path.resolve(__dirname, './hooks'),
         '@components': path.resolve(__dirname, 'src/components'),
         '@containers': path.resolve(__dirname, 'src/utils'),
       },
-      ...nextConfig.resolve,
+      ...config.resolve,
     };
-    return nextConfig;
+    return config;
   },
 };
-
-export default nextConfig;
