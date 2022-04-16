@@ -1,1 +1,1 @@
-export * from './SearchMenu';
+export { default } from './SearchMenu';

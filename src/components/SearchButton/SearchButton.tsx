@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { SButtonProps, StyledButton } from './style';
+import { ButtonProps, Styled } from './style';
 import Typography from '../Typography';
 
-interface SearchButtonProp extends SButtonProps {
+interface SearchButtonProp extends ButtonProps {
   content: string;
 }
 
 const SearchButton = ({ content }: SearchButtonProp) => {
   const [clicked, setClicked] = useState<boolean>(false);
   return (
-    <StyledButton
+    <Styled.button
       onClick={() => {
         setClicked(!clicked);
       }}
@@ -18,7 +18,7 @@ const SearchButton = ({ content }: SearchButtonProp) => {
       <Typography size={'sm'} color={'black'}>
         {content}
       </Typography>
-    </StyledButton>
+    </Styled.button>
   );
 };
 
