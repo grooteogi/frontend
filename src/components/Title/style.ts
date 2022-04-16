@@ -33,8 +33,11 @@ const getOption = ({ align }: STitleProps) => {
 
 export const StyledTitle = styled.h1`
   display: flex;
-  justify-content: center;
   gap: 0.5rem;
+  text-overflow: inherit;
+  display: inline-block;
+  overflow: inherit;
+  width: 100%;
   ${getSize};
   ${getColor};
   ${getOption};

@@ -20,8 +20,8 @@ const getCheckboxBox = ({ ...box }) => {
     padding-left : ${box.paddingLeft};
   `;
 };
-const getCheckboxText = ({ ...text }) => {
-  const isFloatRight = () => (text.link ? 'margin-left: auto;' : '');
+const getCheckboxText = ({ link }: SCheckboxComponentText) => {
+  const isFloatRight = () => (link ? 'margin-left: auto;' : '');
   return `
       ${isFloatRight}
       font-size: 0.875rem;
@@ -45,7 +45,8 @@ export const StyledCheckboxInput = styled.input`
 `;
 export const StyledCheckboxText = styled.div<SCheckboxComponentText>`
   padding-left: 1rem;
-  ${getCheckboxText};
+  font-size: 0.875rem;
+  color: #4e4e4e;
 `;
 export const StyledCheckboxDetail = styled.div<SCheckboxComponentText>`
   margin-left: auto;

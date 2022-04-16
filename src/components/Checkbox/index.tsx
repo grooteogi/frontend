@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   EmptyDiv,
   SCheckboxComponentBox,
@@ -30,7 +31,7 @@ const Checkbox = ({
         <StyledCheckboxInput type={'checkbox'} onClick={onClick} checked={checked} />
         <StyledCheckboxText>{label}</StyledCheckboxText>
       </EmptyDiv>
-      {link && <StyledCheckboxDetail>보기</StyledCheckboxDetail>}
+      {link && <StyledCheckboxDetail link={link}>보기</StyledCheckboxDetail>}
     </StyledCheckbox>
   );
 };
