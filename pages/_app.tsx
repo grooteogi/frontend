@@ -1,12 +1,16 @@
 import type { AppProps } from 'next/app';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import GlobalThemeProvider from '../styles/GlobalThemeProvider';
 import theme from '../styles/theme';
 
+const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <GlobalThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </GlobalThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <GlobalThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </GlobalThemeProvider>
+    </QueryClientProvider>
   );
 }
 
