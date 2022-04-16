@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+import { resolve } from 'path';
+
 const nextConfig = {
   async rewrites() {
     return [
@@ -15,6 +17,18 @@ const nextConfig = {
     ];
   },
   reactStrictMode: true,
+  webpack(nextConfig) {
+    nextConfig.resolve = {
+      alias: {
+        '@lib': resolve(__dirname, './lib'),
+        '@hooks': resolve(__dirname, './hooks'),
+        '@components': resolve(__dirname, 'src/components'),
+        '@containers': resolve(__dirname, 'src/containers'),
+      },
+      ...nextConfig.resolve,
+    };
+    return nextConfig;
+  },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
