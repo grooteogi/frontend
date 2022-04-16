@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "local": "NODE_ENV='development' node server.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -58,6 +59,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-storybook": "^0.5.7",
+    "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.4",
     "husky": ">=7",
     "lint-staged": ">=10",
     "prettier": "^2.6.0",
