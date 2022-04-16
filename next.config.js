@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-import { resolve } from 'path';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
 
 const nextConfig = {
   async rewrites() {
@@ -20,10 +21,10 @@ const nextConfig = {
   webpack(nextConfig) {
     nextConfig.resolve = {
       alias: {
-        '@lib': resolve(__dirname, './lib'),
-        '@hooks': resolve(__dirname, './hooks'),
-        '@components': resolve(__dirname, 'src/components'),
-        '@containers': resolve(__dirname, 'src/containers'),
+        '@lib': path.resolve(__dirname, './lib'),
+        '@hooks': path.resolve(__dirname, './hooks'),
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@containers': path.resolve(__dirname, 'src/utils'),
       },
       ...nextConfig.resolve,
     };
