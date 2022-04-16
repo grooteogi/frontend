@@ -22,7 +22,9 @@ export const StyledButton = styled.div<SButtonProps>`
   justify-content: center;
   align-items: center;
   width: 160px;
+  min-width: 160px;
   height: 50px;
+
   border-radius: 16px;
   &:hover {
     background: ${darken(0.01, `${hashtagTheme.color.white}`)};

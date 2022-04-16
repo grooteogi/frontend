@@ -1,0 +1,36 @@
+[
+  { "id": 1, "hashtagType": "CONCERN", "tag": "학교생활", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  {
+    "id": 2,
+    "hashtagType": "CONCERN",
+    "tag": "포트폴리오",
+    "registered": "2022-04-06T03:36:59.002+00:00",
+    "count": 15
+  },
+  { "id": 3, "hashtagType": "CONCERN", "tag": "개발공부", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  {
+    "id": 4,
+    "hashtagType": "CONCERN",
+    "tag": "소프트웨어",
+    "registered": "2022-04-06T03:36:59.002+00:00",
+    "count": 15
+  },
+  { "id": 5, "hashtagType": "CONCERN", "tag": "동아리", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  { "id": 6, "hashtagType": "CONCERN", "tag": "코딩", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  {
+    "id": 7,
+    "hashtagType": "CONCERN",
+    "tag": "개발자취업",
+    "registered": "2022-04-06T03:36:59.002+00:00",
+    "count": 15
+  },
+  { "id": 7, "hashtagType": "CONCERN", "tag": "유학", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  { "id": 8, "hashtagType": "CONCERN", "tag": "편입", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  {
+    "id": 10,
+    "hashtagType": "CONCERN",
+    "tag": "자기소개서",
+    "registered": "2022-04-06T03:36:59.002+00:00",
+    "count": 15
+  }
+]
