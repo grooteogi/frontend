@@ -2,15 +2,20 @@ import axios from 'axios';
 
 interface ResponseData {
   status: number;
-  message: string;
-  data: JSON;
+  message?: string;
+  data?: JSON;
 }
 
+export const GAxios = axios.create({
+  baseURL: '/api',
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
+});
+
 export const getData = async (url: string) => {
-  const res = await axios({
+  const res = await GAxios({
     method: 'get',
     url: url,
-    withCredentials: true,
   })
     .then(res => res.data)
     .catch(err => {
@@ -24,13 +29,12 @@ export const getData = async (url: string) => {
 };
 
 export const postData = async (url: string, data: any) => {
-  const res = await axios({
+  const res = await GAxios({
     method: 'post',
     data: data,
     url: url,
-    withCredentials: true,
   })
-    .then(res => res.data)
+    .then(res => res.status)
     .catch(err => {
       if (!err.status) console.log('Unknown Network Error in axios');
       else {
@@ -42,13 +46,12 @@ export const postData = async (url: string, data: any) => {
 };
 
 export const putData = async (url: string, data: ResponseData) => {
-  const res = await axios({
+  const res = await GAxios({
     method: 'put',
     data: data,
     url: url,
-    withCredentials: true,
   })
-    .then(res => res.data)
+    .then(res => res.status)
     .catch(err => {
       if (!err.status) console.log('Unknown Network Error in axios');
       else {
@@ -60,13 +63,12 @@ export const putData = async (url: string, data: ResponseData) => {
 };
 
 export const deleteData = async (url: string, data: ResponseData) => {
-  const res = await axios({
+  const res = await GAxios({
     method: 'delete',
     data: data,
     url: url,
-    withCredentials: true,
   })
-    .then(res => res.data)
+    .then(res => res.status)
     .catch(err => {
       if (!err.status) console.log('Unknown Network Error in axios');
       else {
