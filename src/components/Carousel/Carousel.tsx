@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledCarousel, StyledCarouselItem } from './style';
+import Styled from './Carousel.style';
 
 export type ImgItem = {
   src: string;
@@ -33,18 +33,18 @@ const settings = {
   ],
 };
 
-const Carousel = ({ ondbClick, imgLists }: CarouselProps) => {
+const Carousel: React.FC<CarouselProps> = ({ ondbClick, imgLists }) => {
   let idx = 0;
   return (
-    <StyledCarousel {...settings}>
+    <Styled.container {...settings}>
       {imgLists.map(({ src, alt, link }: ImgItem) => (
         <div key={idx++}>
           <a href={link}>
-            <StyledCarouselItem src={src} onDoubleClick={ondbClick} alt={alt} />
+            <Styled.section src={src} onDoubleClick={ondbClick} alt={alt} />
           </a>
         </div>
       ))}
-    </StyledCarousel>
+    </Styled.container>
   );
 };
 
