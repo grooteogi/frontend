@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { StyledButton, StyledRemoveBtn } from './style';
+import { Styled } from './style';
 import Image from 'next/image';
+import { fetchedHashtag } from '../../../types/fetchedHashtag';
 
 interface SharedProps {
-  content: string;
+  fetchedTag: fetchedHashtag;
 }
 interface ClickableProps extends SharedProps {
-  onClick?: (e: React.MouseEvent) => void;
+  onClick: (hashtag: fetchedHashtag, clicked: boolean) => void;
   clickable: boolean;
 }
 
 interface RemovableProps extends SharedProps {
-  onRemove?: (e: React.MouseEvent) => void;
+  onRemove: (hashtag: fetchedHashtag) => void;
   removable: boolean;
 }
 
@@ -20,29 +21,31 @@ type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T
 
 type HashtagProp = XOR<SharedProps, XOR<ClickableProps, RemovableProps>>;
 
-const Hashtag = ({ content, clickable, removable, onClick, onRemove }: HashtagProp) => {
+const Hashtag: React.FC<HashtagProp> = ({ fetchedTag, clickable, removable, onClick, onRemove }) => {
   const [clicked, setClicked] = useState<boolean>(false);
   return (
-    <StyledButton
+    <Styled.container
       clickable={clickable}
-      onClick={(e: React.MouseEvent) => {
-        onClick && onClick(e);
+      onClick={() => {
+        onClick && onClick(fetchedTag, clicked);
         setClicked(!clicked);
       }}
       clicked={clicked}
     >
-      {content}
-      <StyledRemoveBtn removable={removable}>
+      #{fetchedTag.tag}
+      <Styled.removeButton removable={removable}>
         <Image
           src={'/logos/x_button.png'}
           alt={'not found'}
           width="8px"
           height="8px"
           quality="100"
-          onClick={onRemove}
+          onClick={() => {
+            onRemove;
+          }}
         />
-      </StyledRemoveBtn>
-    </StyledButton>
+      </Styled.removeButton>
+    </Styled.container>
   );
 };
 

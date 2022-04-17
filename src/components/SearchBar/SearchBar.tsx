@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import Hashtag from '../Hashtag';
 import Image from 'next/image';
-import { AutoSearchContainer, AutoSearchData, AutoSearchWrap, InputContainer, StyledInput } from './style';
+import { Styled } from './style';
 import fetchedData from './data.json';
 import Typography from '../Typography';
+import { fetchedHashtag } from '../../../types/fetchedHashtag';
 
 type fetchedDataType = {
   keyword: string;
-};
-
-export type Hashtag = {
-  id: number;
-  hashtagType: 'PERSONALITY' | 'CONCERN';
-  tag: string;
-  registered: string;
 };
 
 interface InputProps {
@@ -21,10 +15,10 @@ interface InputProps {
   value?: string;
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  hashtags: Hashtag[];
+  hashtags: fetchedHashtag[];
 }
 
-const SearchBar = ({ hashtags, placeholder }: InputProps) => {
+const SearchBar: React.FC<InputProps> = ({ hashtags, placeholder }) => {
   const [filteredData, setFilteredData] = useState<fetchedDataType[]>([]);
   const [wordEntered, setWordEntered] = useState<string>('');
 
@@ -42,19 +36,19 @@ const SearchBar = ({ hashtags, placeholder }: InputProps) => {
   };
 
   return (
-    <AutoSearchContainer>
-      <InputContainer>
+    <Styled.container>
+      <Styled.section>
         {hashtags.map(hashtag => {
-          return <Hashtag key={hashtag.id} content={hashtag.tag} />;
+          return <Hashtag key={hashtag.id} fetchedTag={hashtag} />;
         })}
-        <StyledInput type={'text'} value={wordEntered} onChange={handleFilter} placeholder={placeholder} />
+        <Styled.input type={'text'} value={wordEntered} onChange={handleFilter} placeholder={placeholder} />
         <Image src={'/logos/search.png'} alt={'search icon not found'} width={'16px'} height={'16px'} />
-      </InputContainer>
+      </Styled.section>
       {filteredData.length !== 0 && (
-        <AutoSearchWrap>
+        <Styled.ul>
           {filteredData.map(item => {
             return (
-              <AutoSearchData key={item.keyword}>
+              <Styled.li key={item.keyword}>
                 <Typography size={'sm'} color={'black'}>
                   {item.keyword}
                 </Typography>
@@ -68,12 +62,12 @@ const SearchBar = ({ hashtags, placeholder }: InputProps) => {
                     setFilteredData([]);
                   }}
                 />
-              </AutoSearchData>
+              </Styled.li>
             );
           })}
-        </AutoSearchWrap>
+        </Styled.ul>
       )}
-    </AutoSearchContainer>
+    </Styled.container>
   );
 };
 
