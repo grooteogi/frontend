@@ -3,15 +3,30 @@ import { css } from '@emotion/react';
 import theme from '../../../styles/theme';
 
 export interface ContainerProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 const getSize = ({ width, height }: ContainerProps) => {
-  return css`
-    width: ${width}px;
-    height: ${height}px;
-  `;
+  if (width && height) {
+    return css`
+      width: ${width}px;
+      height: ${height}px;
+    `;
+  } else {
+    return css`
+      @media (min-width: 1060px) {
+        width: 1060px;
+      }
+      @media (min-width: 768px) and (max-width: 1059px) {
+        width: 767px;
+      }
+      @media (max-width: 767px) {
+        width: 390px;
+      }
+      height: auto;
+    `;
+  }
 };
 
 export const Container = styled.div<ContainerProps>`

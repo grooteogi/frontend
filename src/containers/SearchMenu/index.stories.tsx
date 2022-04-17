@@ -12,7 +12,7 @@ export default {
 
 const Template: ComponentStory<typeof SearchMenu> = args => (
   <GlobalThemeProvider theme={theme}>
-    <Box width={1060} height={500}>
+    <Box>
       <SearchMenu {...args} />
     </Box>
   </GlobalThemeProvider>

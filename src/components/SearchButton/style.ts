@@ -20,10 +20,7 @@ export const Styled = {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 160px;
-    min-width: 160px;
-    height: 50px;
-
+    flex-shrink: 0;
     border-radius: 16px;
     &:hover {
       background: ${darken(0.01, `${hashtagTheme.color.white}`)};
@@ -32,6 +29,18 @@ export const Styled = {
     &:active {
       background: ${darken(0.05, `${hashtagTheme.color.white}`)};
       cursor: pointer;
+    }
+    @media (min-width: 1060px) {
+      width: 160px;
+      height: 45px;
+    }
+    @media (min-width: 768px) and (max-width: 1059px) {
+      width: 120px;
+      height: 40px;
+    }
+    @media (max-width: 767px) {
+      width: 90px;
+      height: 40px;
     }
   `,
 };

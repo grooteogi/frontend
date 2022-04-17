@@ -15,7 +15,4 @@ const Template: ComponentStory<typeof Box> = args => (
 );
 
 export const LoginPageBox = Template.bind({});
-LoginPageBox.args = {
-  width: 450,
-  height: 500,
-};
+LoginPageBox.args = {};

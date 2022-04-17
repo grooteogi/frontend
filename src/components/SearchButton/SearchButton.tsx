@@ -6,7 +6,7 @@ interface SearchButtonProp extends ButtonProps {
   content: string;
 }
 
-const SearchButton = ({ content }: SearchButtonProp) => {
+const SearchButton: React.FC<SearchButtonProp> = ({ content }) => {
   const [clicked, setClicked] = useState<boolean>(false);
   return (
     <Styled.button

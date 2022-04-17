@@ -22,7 +22,7 @@ export const Styled = {
   `,
   horizontalScroll: styled.div`
     z-index: 0;
-    position: relative;
+    width: 100%;
     display: flex;
     column-gap: 20px;
     overflow-x: auto;
