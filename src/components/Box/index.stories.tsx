@@ -14,8 +14,11 @@ const Template: ComponentStory<typeof Box> = args => (
   </GlobalThemeProvider>
 );
 
-export const LoginPageBox = Template.bind({});
-LoginPageBox.args = {
+export const FixedDimentionBox = Template.bind({});
+FixedDimentionBox.args = {
   width: 450,
   height: 500,
 };
+
+export const ResponsiveBox = Template.bind({});
+ResponsiveBox.args = {};
