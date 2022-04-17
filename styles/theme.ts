@@ -8,6 +8,7 @@ const style = {
       white: '#FFFFFF',
       kakao: '#FEE500',
       lightgray: '#E9E9E9',
+      disabled: '#E9E9E9',
     },
     fontColor: {
       white: '#FFFFFF',
@@ -44,6 +45,8 @@ const style = {
     color: {
       black: '#000000',
       darkgray: '#333333',
+      dimgray: '#4F4F4F',
+      lightgray: '#BFBFBF',
       primary: '#1CDBA1',
     },
     weight: {
@@ -90,6 +93,8 @@ const style = {
     },
     borderColor: {
       lightgray: '#BFBFBF',
+      primary: '#1CDBA1',
+      danger: '#FF5C00',
       none: null,
     },
     sizes: {
@@ -118,20 +123,34 @@ const style = {
   },
   header: {
     fontSizeBasic: {
-      sm: 'x-small',
-      md: 'smaller',
-      lg: 'medium',
+      sm: '0.65rem',
+      md: '0.8rem',
     },
     fontSizeLogo: {
-      sm: 'smaller',
-      md: 'small',
-      lg: 'medium',
+      sm: '0.8rem',
+      md: '1rem',
+    },
+    padding: {
+      sm: '0.6rem',
+      md: '1rem',
     },
   },
   sortingTab: {
     font: {
       basic: { color: '#737373', weight: FontWeight.REGULAR },
       selected: { color: '#000000', weight: FontWeight.MEDIUM },
+    },
+  },
+  searchBar: {
+    backgroundColor: {
+      white: '#FFFFFF',
+    },
+    fontColor: {
+      gray: '#878787',
+      black: '#000000',
+    },
+    borderColor: {
+      lightgray: '#BFBFBF',
     },
   },
   typoWrapper: {
