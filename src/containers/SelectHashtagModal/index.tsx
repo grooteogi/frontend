@@ -100,7 +100,7 @@ const SelectHashtagModal = () => {
           })}
         </Wrapper>
       </Wrapper>
-      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} margin={{ marginTop: '10px' }} gap={{ columnGap: 10 }}>
+      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} gap={{ gap: 10 }}>
         <Link href={''} size={'sm'} color={'primary'} align={'right'}>
           건너뛰기
         </Link>

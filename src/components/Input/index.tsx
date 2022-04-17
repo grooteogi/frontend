@@ -5,7 +5,7 @@ interface InputProps extends SInputProps {
   type?: string;
   value?: string;
   placeholder?: string;
-  onChange?: (e: React.ChangeEvent) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({ type = 'text', value, placeholder, onChange, ...props }: InputProps) => {
