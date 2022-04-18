@@ -13,8 +13,8 @@ module.exports = {
   },
   async redirects() {
     return [
-      { source: '/oauth/kakao', destination: '/auth/test', permanent: true },
-      { source: '/oauth/google', destination: '/auth/test', permanent: true },
+      { source: '/oauth/kakao', destination: '/auth/oauth', permanent: true },
+      { source: '/oauth/google', destination: '/auth/oauth', permanent: true },
     ];
   },
   reactStrictMode: true,
