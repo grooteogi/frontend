@@ -23,8 +23,8 @@ const NormalSignInModal = () => {
         </Wrapper>
       </Wrapper>
       <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
-        <Input width={375} height={40} placeholder={'이메일'}></Input>
-        <Input type={'password'} width={375} height={40} placeholder={'비밀번호'}></Input>
+        <Input placeholder={'이메일'}></Input>
+        <Input type={'password'} placeholder={'비밀번호'}></Input>
         <Checkbox label={'로그인 유지'}></Checkbox>
         <Button color={'primary'} fontColor={'black'} borderColor={'none'} name={'로그인'} size={'lg'} />
       </Wrapper>

@@ -6,16 +6,16 @@ interface TextareaProps {
 }
 
 interface InputProps extends TextareaProps {
-  type: 'short' | 'long';
+  type?: 'text' | 'textarea' | 'password';
   value?: string;
   placeholder?: string;
   onChange?: (e: React.ChangeEvent) => void;
 }
 
-const Input: React.FC<InputProps> = ({ type, value, placeholder, onChange, rows = 5 }) => {
-  if (type == 'long')
+const Input: React.FC<InputProps> = ({ type = 'text', value, placeholder, onChange, rows = 5 }) => {
+  if (type == 'textarea')
     return <Styled.textarea defaultValue={value} placeholder={placeholder} onChange={onChange} rows={rows} />;
-  return <Styled.input defaultValue={value} placeholder={placeholder} onChange={onChange} />;
+  return <Styled.input type={type} defaultValue={value} placeholder={placeholder} onChange={onChange} />;
 };
 
 export default Input;

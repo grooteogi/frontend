@@ -16,15 +16,22 @@ const Template: ComponentStory<typeof Input> = ({ ...args }) => (
 
 export const DefaultTextarea = Template.bind({});
 DefaultTextarea.args = {
-  type: 'long',
-  value: 'input value',
-  placeholder: 'placeholder',
+  type: 'textarea',
+  value: 'textarea입니다.',
+  placeholder: '값을 입력하세요.',
   rows: 10,
 };
 
 export const DefaultInput = Template.bind({});
 DefaultInput.args = {
-  type: 'short',
-  value: 'input value',
-  placeholder: 'placeholder',
+  type: 'text',
+  value: 'text입니다.',
+  placeholder: '값을 입력하세요.',
+};
+
+export const DefaultPassword = Template.bind({});
+DefaultPassword.args = {
+  type: 'password',
+  value: 'password입니다.',
+  placeholder: '비밀번호를 입력하세요',
 };

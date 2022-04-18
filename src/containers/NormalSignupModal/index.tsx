@@ -20,17 +20,17 @@ export const NormalSignupModal = () => (
         </Typography>
       </Wrapper>
       <Wrapper flexDirection={'column'} gap={{ gap: 20 }}>
-        <Input width={375} height={40} placeholder={'이메일'} />
+        <Input placeholder={'이메일'} />
         <Wrapper flexDirection={'row'} gap={{ columnGap: 1 }} justifyContent={'flex-end'}>
           <Button color={'black'} fontColor={'white'} borderColor={'none'} name={'이메일 인증'} size={'md'} />
         </Wrapper>
       </Wrapper>
       <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
-        <Input type={'password'} width={375} height={40} placeholder={'비밀번호'}></Input>
-        <Input type={'password'} width={375} height={40} placeholder={'비밀번호 확인'}></Input>
+        <Input type={'password'} placeholder={'비밀번호'}></Input>
+        <Input type={'password'} placeholder={'비밀번호 확인'}></Input>
         <Wrapper flexDirection={'row'} gap={{ rowGap: 5 }}>
           <Checkbox label={'전체 동의'}></Checkbox>
-          <Wrapper flexDirection={'row'} gap={{ rowGap: 10 }}>
+          <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
             <Checkbox label={'서비스 이용 약관 동의 (필수)'} link={true} paddingLeft={'1rem'}></Checkbox>
             <Checkbox label={'개인정보 수집 및 이용 동의 (필수)'} link={true} paddingLeft={'1rem'}></Checkbox>
             <Checkbox label={'만 14세 이상입니다 (필수)'} paddingLeft={'1rem'}></Checkbox>
