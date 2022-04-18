@@ -1,6 +1,6 @@
 import NormalSignupModal from '../../src/containers/NormalSignupModal';
 
-const Signup = () => {
+const SigNormalSignupPage = () => {
   return (
     <div>
       <NormalSignupModal />
@@ -8,4 +8,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SigNormalSignupPage;
