@@ -50,7 +50,7 @@ export const Styled = {
       opacity: 0.75;
     }
   `,
-  section: styled.img`
+  item: styled.img`
     cursor: pointer;
     width: 100vw;
     height: 30vh;

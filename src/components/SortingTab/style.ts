@@ -18,17 +18,18 @@ const getFont = ({ active = false }) => {
     `;
 };
 
-export const StyledSortingTabBox = styled.div`
-  display: flex;
-  width: fit-content;
-  & :last-child {
-    border-right: 0px;
-  }
-`;
-
-export const StyledSortingTab = styled.span`
-  ${getFont};
-  font-size: 1rem;
-  padding: 0 1rem;
-  border-right: 1px solid #d1d1d1;
-`;
+export const Styled = {
+  container: styled.div`
+    display: flex;
+    width: fit-content;
+    & :last-child {
+      border-right: 0px;
+    }
+  `,
+  item: styled.span`
+    ${getFont};
+    font-size: 1rem;
+    padding: 0 1rem;
+    border-right: 1px solid #d1d1d1;
+  `,
+};
