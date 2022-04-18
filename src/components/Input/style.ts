@@ -1,51 +1,34 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import theme from '../../../styles/theme';
 
-const inputTheme = theme.style.input;
-
-export interface SInputProps {
-  backgroundColor?: keyof typeof inputTheme.backgroundColor;
-  fontColor?: keyof typeof inputTheme.fontColor;
-  borderColor?: keyof typeof inputTheme.borderColor;
-  fontSize?: 'sm' | 'md';
-  width: number;
-  height: number;
-}
-
-const getColors = ({ backgroundColor = 'white', fontColor = 'gray', borderColor = 'lightgray' }: SInputProps) => {
-  const getBorder = () => {
-    if (borderColor !== 'none')
-      return `
-        border: 1px solid;
-        border-color: ${inputTheme.borderColor[borderColor]};
-        `;
-  };
+const getCommonStyle = () => {
   return css`
-    ${getBorder()};
-    background-color: ${inputTheme.backgroundColor[backgroundColor]};
-    color: ${inputTheme.fontColor[fontColor]};
-  `;
-};
-
-const getFont = ({ fontSize = 'md' }: SInputProps) => {
-  const sizes = inputTheme.sizes;
-  return css`
-    font-size: ${sizes[fontSize].fontSize};
-  `;
-};
-
-const getLayouts = ({ width, height }: SInputProps) => {
-  return css`
-    width: ${width}px;
-    height: ${height}px;
+    border: 1px solid #bfbfbf;
+    color: #878787;
+    font-size: 1rem;
+    width: 100%;
     border-radius: 8px;
-    padding-left: 1rem;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    font-family: inherit;
   `;
 };
 
-export const StyledInput = styled.input<SInputProps>`
-  ${getColors};
-  ${getFont};
-  ${getLayouts};
-`;
+const Styled = {
+  input: styled.input`
+    ${getCommonStyle};
+    height: 40px;
+  `,
+  textarea: styled.textarea`
+    ${getCommonStyle};
+    box-sizing: border-box;
+    overflow-y: scroll;
+    resize: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `,
+};
+
+export default Styled;
