@@ -15,6 +15,15 @@ export const Styled = {
     background-color: ${searchTheme.backgroundColor.white};
     border-radius: 8px;
     border: 1px solid ${searchTheme.borderColor.lightgray};
+    @media (min-width: 1060px) {
+      width: 600px;
+    }
+    @media (min-width: 768px) and (max-width: 1059px) {
+      width: 450px;
+    }
+    @media (max-width: 767px) {
+      width: 390px;
+    }
   `,
   section: styled.section`
     display: flex;
@@ -22,7 +31,7 @@ export const Styled = {
     align-items: center;
     gap: 4px;
     border-radius: inherit;
-    max-width: 600px;
+    max-width: 100%;
     min-width: 300px;
     width: 100%;
     height: 40px;
