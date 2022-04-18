@@ -24,7 +24,7 @@ module.exports = {
         '@lib': path.resolve(__dirname, './lib'),
         '@hooks': path.resolve(__dirname, './hooks'),
         '@components': path.resolve(__dirname, 'src/components'),
-        '@containers': path.resolve(__dirname, 'src/utils'),
+        '@containers': path.resolve(__dirname, 'src/containers'),
       },
       ...config.resolve,
     };
