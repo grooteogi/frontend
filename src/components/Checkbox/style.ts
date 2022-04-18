@@ -43,7 +43,7 @@ export const StyledCheckboxInput = styled.input`
   border-color: #bfbfbf;
   accent-color: #4e4e4e;
 `;
-export const StyledCheckboxText = styled.div<SCheckboxComponentText>`
+export const StyledCheckboxText = styled.div`
   padding-left: 1rem;
   font-size: 0.875rem;
   color: #4e4e4e;

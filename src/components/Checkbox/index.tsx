@@ -12,6 +12,7 @@ import {
 interface CheckBoxProps extends SCheckboxComponentBox, SCheckboxComponentText {
   label: string;
   checked?: boolean;
+  defaultChecked?: boolean;
   onClick?: () => void;
 }
 
@@ -22,13 +23,14 @@ const Checkbox = ({
   height = '30px',
   paddingLeft,
   onClick,
-  checked = false,
+  checked,
+  defaultChecked = false,
 }: CheckBoxProps) => {
   const box = { width, height, paddingLeft };
   return (
     <StyledCheckbox {...box}>
       <EmptyDiv>
-        <StyledCheckboxInput type={'checkbox'} onClick={onClick} checked={checked} />
+        <StyledCheckboxInput type={'checkbox'} onClick={onClick} checked={checked} defaultChecked={defaultChecked} />
         <StyledCheckboxText>{label}</StyledCheckboxText>
       </EmptyDiv>
       {link && <StyledCheckboxDetail link={link}>보기</StyledCheckboxDetail>}
