@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Styled } from './style';
+import { Styled } from './SearchMenu.style';
 import Image from 'next/image';
 import SearchButton from '../../components/SearchButton';
 
