@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Styled } from './style';
+import { Styled } from './SortingTab.style';
 
 // export const SortingTabItem: React.FC<ItemProps> = ({ active, onTabClick, value }) => {
 //   return (

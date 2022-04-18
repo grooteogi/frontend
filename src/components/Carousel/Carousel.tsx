@@ -1,5 +1,5 @@
 import React from 'react';
-import Styled from './style';
+import Styled from './Carousel.style';
 
 export type ImgItem = {
   src: string;
