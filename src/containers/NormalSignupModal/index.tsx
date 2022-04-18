@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import useInput from '../../../hooks/useInput';
-import { confirmEmail, signupUser, verifyEmail } from '../../../lib/api/auth';
+import auth from '@lib/api/auth';
 import { validEmail, validPassword } from '../../../lib/validator';
 import Box from '../../components/Box';
 import Button from '../../components/Button';
@@ -43,17 +43,17 @@ const NormalSignupModal = () => {
 
   const handleEmailVerifiedClick = async () => {
     setEmailClicked(true);
-    const status = await verifyEmail(email);
+    const status = await auth.sendEmail(email);
     if (status === 200) console.log('email verified');
     else console.log('email not verified');
   };
   const handleEmailVerified = async () => {
-    const status = await confirmEmail({ email, code });
+    const status = await auth.confirmEmail({ email, code });
     if (status === 200) setEmailConfirm(true);
     else console.log('email sending fail');
   };
   const handleSubmit = async () => {
-    const status = await signupUser({ type: 0, email, password: pwd });
+    const status = await auth.signupUser({ type: 0, email, password: pwd });
     if (status === 200) router.push('/auth/signin');
   };
   return (
