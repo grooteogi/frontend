@@ -34,11 +34,11 @@ const getGap = ({ gap }: ContainerProps) => {
 };
 
 const getjustifyContent = ({ justifyContent }: ContainerProps) => {
-  if (justifyContent) return `justify-content: ${justifyContent}`;
+  if (justifyContent) return `justify-content: ${justifyContent};`;
 };
 
 const getalignItems = ({ alignItems }: ContainerProps) => {
-  if (alignItems) return `align-items: ${alignItems}`;
+  if (alignItems) return `align-items: ${alignItems};`;
 };
 
 const getPadding = ({ padding }: ContainerProps) => {
