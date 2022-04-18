@@ -5,11 +5,11 @@ const getCommonStyle = () => {
   return css`
     border: 1px solid #bfbfbf;
     color: #878787;
-    font-size: 1rem;
     width: 100%;
     border-radius: 8px;
     padding: 0.3rem 1rem 0.3rem 1rem;
     font-family: inherit;
+    font-size: 16px;
   `;
 };
 
