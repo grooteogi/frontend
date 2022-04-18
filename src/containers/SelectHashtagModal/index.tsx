@@ -67,13 +67,12 @@ const SelectHashtagModal = () => {
           })}
         </Wrapper>
       </Wrapper>
-      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} gap={{ gap: 10 }}>
-        <Link href={''} size={'sm'} color={'primary'} align={'right'}>
+      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} alignItems={'center'} gap={{ gap: 10 }}>
+        <Link href={'/'} size={'md'} color={'primary'} align={'right'}>
           건너뛰기
         </Link>
-        <Link href={''} size={'sm'} color={'darkgray'} align={'right'}>
-          확인
-        </Link>
+
+        <Button name={'확인'} size={'md'} color={'white'} fontColor={'black'} />
       </Wrapper>
     </Box>
   );
