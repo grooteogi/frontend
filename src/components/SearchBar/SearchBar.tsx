@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Hashtag from '../Hashtag';
 import Image from 'next/image';
-import { Styled } from './style';
+import { Styled } from './SearchBar.style';
 import fetchedData from './data.json';
 import Typography from '../Typography';
 import { fetchedHashtag } from '../../../types/fetchedHashtag';

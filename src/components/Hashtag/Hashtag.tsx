@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Styled } from './style';
+import { Styled } from './Hashtag.style';
 import Image from 'next/image';
 import { fetchedHashtag } from '../../../types/fetchedHashtag';
 

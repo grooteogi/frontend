@@ -1,7 +1,7 @@
 import React from 'react';
 import Hashtag from '../Hashtag';
 import Wrapper from '../Wrapper';
-import { Styled } from './style';
+import { Styled } from './PostCard.style';
 import Title from '../Title';
 import Typography from '../Typography';
 import { fetchedHashtag } from '../../../types/fetchedHashtag';
