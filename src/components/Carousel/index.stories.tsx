@@ -22,18 +22,14 @@ export const DefaultCarousel = (args: ComponentStory<typeof Carousel>) => {
     },
     {
       src: '/imgs/Carousel3.png',
-      alt: 'haha carousel',
-      link: '',
+      alt: 'alt test carousel',
     },
     {
       src: '/imgs/Carousel4.png',
-      alt: 'haha caroul',
-      link: '',
+      link: 'https://www.naver.com',
     },
     {
       src: '/imgs/Carousel5.png',
-      alt: 'haha caroul',
-      link: '',
     },
   ];
   return (

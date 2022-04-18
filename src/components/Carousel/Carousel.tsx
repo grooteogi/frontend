@@ -37,10 +37,10 @@ const Carousel: React.FC<CarouselProps> = ({ ondbClick, imgLists }) => {
   let idx = 0;
   return (
     <Styled.container {...settings}>
-      {imgLists.map(({ src, alt, link }: ImgItem) => (
+      {imgLists.map(({ src, alt = '', link }: ImgItem) => (
         <div key={idx++}>
-          <a href={link}>
-            <Styled.item src={src} onDoubleClick={ondbClick} alt={alt} />
+          <a href={link && link}>
+            <Styled.item src={src} onDoubleClick={ondbClick} alt={alt && alt} />
           </a>
         </div>
       ))}

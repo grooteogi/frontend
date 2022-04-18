@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { Styled } from './SortingTab.style';
 
-// export const SortingTabItem: React.FC<ItemProps> = ({ active, onTabClick, value }) => {
-//   return (
-//     <Styled.item active={active} onClick={onTabClick}>
-//       {value}
-//     </Styled.item>
-//   );
-// };
-
 export interface ItemProps {
   value: string;
   onclick?: (e: React.MouseEvent) => void;
