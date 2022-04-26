@@ -1,41 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchedHashtag } from '../../../types/fetchedHashtag';
 import Box from '../../components/Box';
-import Button from '../../components/Button';
 import Hashtag from '../../components/Hashtag';
 import Link from '../../components/Link';
 import Title from '../../components/Title';
 import Typography from '../../components/Typography';
 import Wrapper from '../../components/Wrapper';
+import { initialCharacter, initialConcern } from './data';
 
-const initialConcern = [
-  { title: '#대학생활', value: '대학생활' },
-  { title: '#대외활동', value: '대외활동' },
-  { title: '#유학', value: '유학' },
-  { title: '#취미생활', value: '취미생활' },
-  { title: '#편입', value: '편입' },
-  { title: '#LEET', value: 'LEET' },
-  { title: '#PEET', value: 'PEET' },
-  { title: '#고시준비', value: '고시준비' },
-  { title: '#취업준비', value: '취업준비' },
-  { title: '#창업', value: '창업' },
-  { title: '#포트폴리오', value: '포트폴리오' },
-  { title: '#기타', value: '기타' },
-];
-const initialCharacter = [
-  { title: '#긍정적인', value: '긍정적인' },
-  { title: '#열정적인', value: '열정적인' },
-  { title: '#조용한', value: '조용한' },
-  { title: '#욕심많은', value: '욕심많은' },
-  { title: '#외향적인', value: '외향적인' },
-  { title: '#내향적인', value: '내향적인' },
-  { title: '#현실적인', value: '현실적인' },
-  { title: '#이상적인', value: '이상적인' },
-  { title: '#감성적인', value: '감성적인' },
-  { title: '#이성적인', value: '이성적인' },
-  { title: '#계획적인', value: '계획적인' },
-];
-const handleClick = (tagValue: string) => {};
 const SelectHashtagModal = () => {
+  const [selectedTags, setSelectedTags] = useState<fetchedHashtag[]>([]);
+
+  const onHashtagClick = (hashtag: fetchedHashtag, clicked: boolean) => {
+    clicked
+      ? setSelectedTags(selectedTags.filter(tag => tag.id !== hashtag.id))
+      : setSelectedTags([...selectedTags, hashtag]);
+  };
+
   return (
     <Box width={450} height={600}>
       <Wrapper flexDirection={'column'} alignItems="flex-start">
@@ -66,14 +47,7 @@ const SelectHashtagModal = () => {
         </Typography>
         <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
           {initialConcern.map(concern => {
-            return (
-              <Hashtag
-                key={concern.title}
-                onClick={() => handleClick(concern.value)}
-                content={concern.title}
-                clickable={true}
-              />
-            );
+            return <Hashtag key={concern.id} onClick={onHashtagClick} fetchedTag={concern} clickable={true} />;
           })}
         </Wrapper>
       </Wrapper>
@@ -89,18 +63,11 @@ const SelectHashtagModal = () => {
         </Typography>
         <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
           {initialCharacter.map(character => {
-            return (
-              <Hashtag
-                key={character.title}
-                content={character.title}
-                clickable={true}
-                onClick={() => handleClick(character.value)}
-              />
-            );
+            return <Hashtag key={character.id} fetchedTag={character} clickable={true} onClick={onHashtagClick} />;
           })}
         </Wrapper>
       </Wrapper>
-      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} margin={{ marginTop: '10px' }} gap={{ columnGap: 10 }}>
+      <Wrapper flexDirection={'row'} justifyContent={'flex-end'} gap={{ gap: 10 }}>
         <Link href={''} size={'sm'} color={'primary'} align={'right'}>
           건너뛰기
         </Link>

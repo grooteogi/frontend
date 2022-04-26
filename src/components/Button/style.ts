@@ -9,19 +9,18 @@ export interface SButtonProps {
   fontColor: keyof typeof theme.style.button.fontColor;
   borderColor?: keyof typeof theme.style.button.borderColor;
   size: 'sm' | 'md' | 'lg';
-  active?: boolean;
+  disabled?: boolean;
 }
 
-const getColors = ({ color, fontColor, borderColor = 'none' }: SButtonProps) => {
+const getColors = ({ color, fontColor, borderColor = 'none', disabled = false }: SButtonProps) => {
   const buttonTheme = theme.style.button;
   const getBorder = () => {
     if (borderColor !== 'none') return `border: 1px solid ${buttonTheme.borderColor[borderColor]}`;
   };
-  return css`
-    ${getBorder()};
-    background-color: ${buttonTheme.color[color]};
-    color: ${buttonTheme.fontColor[fontColor]};
-    &:hover {
+  const getDisabled = () => {
+    if (disabled) return `background-color: ${buttonTheme.color.disabled}; color: ${buttonTheme.fontColor.white};`;
+    else
+      return `&:hover {
       background-color: ${lighten(0.05, `${buttonTheme.color[color]}`)};
       color: ${lighten(0.1, `${buttonTheme.fontColor[fontColor]}`)};
       cursor: pointer;
@@ -30,7 +29,13 @@ const getColors = ({ color, fontColor, borderColor = 'none' }: SButtonProps) => 
       background-color: ${darken(0.01, `${buttonTheme.color[color]}`)};
       color: ${darken(0.01, `${buttonTheme.fontColor[fontColor]}`)};
       cursor: pointer;
-    }
+    }`;
+  };
+  return css`
+    ${getBorder()};
+    background-color: ${buttonTheme.color[color]};
+    color: ${buttonTheme.fontColor[fontColor]};
+    ${getDisabled()};
   `;
 };
 
