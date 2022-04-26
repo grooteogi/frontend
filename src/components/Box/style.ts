@@ -29,15 +29,17 @@ const getSize = ({ width, height }: ContainerProps) => {
   }
 };
 
-export const Container = styled.div<ContainerProps>`
-  ${getSize};
-  border: 1px solid ${theme.style.lightgrey};
-  border-radius: 12px;
-  margin: auto;
-  margin-top: 4rem;
-  padding: 4rem 4rem;
-  background: ${theme.style.white};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
+export const Styled = {
+  container: styled.div<ContainerProps>`
+    ${getSize};
+    border: 1px solid ${theme.style.lightgrey};
+    border-radius: 12px;
+    margin: auto;
+    margin-top: 4rem;
+    padding: 4rem 4rem;
+    background: ${theme.style.white};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  `,
+};
