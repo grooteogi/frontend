@@ -4,8 +4,8 @@ import React from 'react';
 import Styled from './ReviewList.style';
 
 export type Item = {
-  src: string;
-  name: string;
+  userProfilePicSrc: string;
+  username: string;
   time: string;
   text: string;
 };
@@ -19,13 +19,13 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
   if (reviewList.length > 0)
     return (
       <>
-        {reviewList.map(({ src, name, time, text }: Item) => (
+        {reviewList.map(({ userProfilePicSrc, username, time, text }: Item) => (
           <Wrapper key={idx++} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
-              <Styled.profileImg src={src} />
+              <Styled.profileImg src={userProfilePicSrc} />
               <Wrapper flexDirection={'column'} justifyContent={'space-around'}>
                 <Typography size={'sm'} color={'black'} weight={'BOLD'}>
-                  {name}
+                  {username}
                 </Typography>
                 <Typography size={'xs'} color={'black'}>
                   {time}
@@ -44,7 +44,7 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
   else
     return (
       <Wrapper flexDirection={'column'} alignItems={'center'} padding={{ paddingTop: '26px' }}>
-        <Typography size={'lg'} color={'black'}>
+        <Typography weight="BOLD" size={'md'} color={'black'}>
           아직 작성된 리뷰가 없어요 😢
         </Typography>
       </Wrapper>
