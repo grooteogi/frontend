@@ -62,81 +62,23 @@ const NormalSignupModal = () => {
         <Typography size={'lg'} color={'black'} weight={'BOLD'}>
           🌳 간편 가입하기
         </Typography>
-        <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
-          <Typography size={'lg'} color={'darkgray'}>
-            인생선배를 찾는 지름길,
-          </Typography>
-          <Typography size={'lg'} color={'darkgray'}>
-            그루터기
-          </Typography>
+      </Wrapper>
+      <Wrapper flexDirection={'column'} gap={{ gap: 20 }}>
+        <Input placeholder={'이메일'} />
+        <Wrapper flexDirection={'row'} gap={{ columnGap: 1 }} justifyContent={'flex-end'}>
+          <Button color={'black'} fontColor={'white'} borderColor={'none'} name={'이메일 인증'} size={'md'} />
         </Wrapper>
-        <Wrapper flexDirection={'row'} gap={{ gap: 20 }}>
-          <Input
-            width={375}
-            height={40}
-            placeholder={'이메일'}
-            value={email}
-            onChange={onEmailChange}
-            fontColor={emailValid ? 'black' : 'gray'}
-            borderColor={emailConfirm ? 'primary' : 'lightgray'}
-          />
-          {emailClicked ? (
-            <Input width={375} height={40} placeholder={'인증번호를 입력하세요'} value={code} onChange={onCodeChange} />
-          ) : (
-            <></>
-          )}
-          {emailConfirm ? (
-            <></>
-          ) : (
-            <Wrapper flexDirection={'row'} justifyContent={'flex-end'} alignItems={'center'} gap={{ gap: 10 }}>
-              {emailClicked ? (
-                <Typography size={'sm'} color={'black'}>
-                  {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                </Typography>
-              ) : (
-                <></>
-              )}
-              <Button
-                fontColor={'white'}
-                borderColor={'none'}
-                name={'이메일 인증'}
-                size={'md'}
-                color={emailValid ? 'black' : 'lightgray'}
-                disabled={emailValid ? false : true}
-                onClick={emailClicked ? handleEmailVerified : handleEmailVerifiedClick}
-              />
-            </Wrapper>
-          )}
-          <Input
-            width={375}
-            height={40}
-            placeholder={'비밀번호'}
-            value={pwd}
-            onChange={onPwdChange}
-            fontColor={pwdValid ? 'black' : 'gray'}
-            borderColor={pwd && pwd === pwdConfirm ? 'primary' : 'lightgray'}
-          />
-          <Input
-            width={375}
-            height={40}
-            placeholder={'비밀번호 확인'}
-            value={pwdConfirm}
-            onChange={onPwdConfirmChange}
-            fontColor={pwd === pwdConfirm ? 'black' : 'gray'}
-            borderColor={pwd && pwd === pwdConfirm ? 'primary' : 'lightgray'}
-          />
-          <Wrapper flexDirection={'row'} gap={{ rowGap: 5 }}>
-            <Checkbox label={'전체 동의'} checked={allChecked} onClick={() => setAllChecked(!allChecked)}></Checkbox>
-            <Wrapper flexDirection={'row'} gap={{ rowGap: 10 }}>
-              <Checkbox label={'서비스 이용 약관 동의 (필수)'} link={true} paddingLeft={'1rem'} checked={allChecked} />
-              <Checkbox
-                label={'개인정보 수집 및 이용 동의 (필수)'}
-                link={true}
-                paddingLeft={'1rem'}
-                checked={allChecked}
-              />
-              <Checkbox label={'만 14세 이상입니다 (필수)'} paddingLeft={'1rem'} checked={allChecked} />
-            </Wrapper>
+      </Wrapper>
+      <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
+        <Input type={'password'} placeholder={'비밀번호'}></Input>
+        <Input type={'password'} placeholder={'비밀번호 확인'}></Input>
+        <Wrapper flexDirection={'row'} gap={{ rowGap: 5 }}>
+          <Checkbox label={'전체 동의'}></Checkbox>
+          <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
+            <Checkbox label={'서비스 이용 약관 동의 (필수)'} link={true} paddingLeft={'1rem'}></Checkbox>
+            <Checkbox label={'개인정보 수집 및 이용 동의 (필수)'} link={true} paddingLeft={'1rem'}></Checkbox>
+            <Checkbox label={'만 14세 이상입니다 (필수)'} paddingLeft={'1rem'}></Checkbox>
+            <Checkbox label={'광고성 정보 수신 동의 (선택)'} link={true} paddingLeft={'1rem'}></Checkbox>
           </Wrapper>
         </Wrapper>
         <Button color={'primary'} name={'회원가입하기'} fontColor={'black'} size={'lg'} onClick={handleSubmit}></Button>

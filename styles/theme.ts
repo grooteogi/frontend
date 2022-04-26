@@ -83,25 +83,6 @@ const style = {
       lg: { fontSize: '1.5rem', weight: FontWeight.MEDIUM },
     },
   },
-  input: {
-    backgroundColor: {
-      white: '#FFFFFF',
-    },
-    fontColor: {
-      gray: '#878787',
-      black: '#000000',
-    },
-    borderColor: {
-      lightgray: '#BFBFBF',
-      primary: '#1CDBA1',
-      danger: '#FF5C00',
-      none: null,
-    },
-    sizes: {
-      sm: { fontSize: '0.875rem' },
-      md: { fontSize: '1rem' },
-    },
-  },
   title: {
     color: {
       black: '#000000',
