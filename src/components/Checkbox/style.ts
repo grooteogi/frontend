@@ -40,6 +40,7 @@ export const StyledCheckboxInput = styled.input`
   width: 16px;
   height: 16px;
   border-radius: 4px;
+  border-color: #bfbfbf;
   accent-color: #4e4e4e;
 `;
 export const StyledCheckboxText = styled.div<SCheckboxComponentText>`

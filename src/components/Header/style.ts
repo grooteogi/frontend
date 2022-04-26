@@ -5,7 +5,7 @@ import theme from '../../../styles/theme';
 const headerTheme = theme.style.header;
 
 export type SHeaderDevice = {
-  device: 'sm' | 'md' | 'lg';
+  device: 'sm' | 'md';
 };
 
 export interface SHeaderAnchor extends SHeaderDevice {
@@ -33,6 +33,10 @@ const getFont = ({ device, isLogo }: SHeaderAnchor) => {
   `;
 };
 
+const getPadding = ({ device }: SHeaderDevice) => {
+  return `padding: ${headerTheme.padding[device]}`;
+};
+
 export const StyledHeader = styled.div`
   background-color: white;
   display: flex;
@@ -46,13 +50,13 @@ export const StyledHeaderBox = styled.div`
   ${getHeaderBoxStyle};
 `;
 
-export const StyledHeaderList = styled.div`
+export const StyledHeaderList = styled.div<SHeaderDevice>`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding: 1rem;
+  ${getPadding};
   cursor: pointer;
   &:hover,
   &:active {
