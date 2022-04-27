@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import Button from '@components/Button';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import { fetchedHashtag } from '../../../types/fetchedHashtag';
 import Box from '../../components/Box';
 import Hashtag from '../../components/Hashtag';
@@ -9,6 +11,7 @@ import Wrapper from '../../components/Wrapper';
 import { initialCharacter, initialConcern } from './data';
 
 const SelectHashtagModal = () => {
+  const router = useRouter();
   const [selectedTags, setSelectedTags] = useState<fetchedHashtag[]>([]);
 
   const onHashtagClick = (hashtag: fetchedHashtag, clicked: boolean) => {
