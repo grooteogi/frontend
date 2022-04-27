@@ -1,4 +1,4 @@
-import NormalSignupModal from '../../src/containers/NormalSignupModal';
+import NormalSignupModal from '@containers/NormalSignupModal';
 
 const SigNormalSignupPage = () => {
   return (

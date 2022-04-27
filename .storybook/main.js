@@ -3,8 +3,17 @@ const path = require('path');
 const resolvePath = _path => path.join(process.cwd(), _path);
 
 module.exports = {
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)', '../src/**/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
+  stories: [
+    '../components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../containers/**/*.stories.@(js|jsx|ts|tsx)',
+    '../**/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    'storybook-addon-next-router',
+  ],
   framework: '@storybook/react',
   core: {
     builder: 'webpack5',

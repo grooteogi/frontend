@@ -8338,6 +8338,7 @@ __metadata:
     react-query: ^3.34.19
     react-slick: ^0.28.1
     slick-carousel: ^1.8.1
+    storybook-addon-next-router: ^3.1.1
     typescript: 4.6.2
     webpack: 5.68.0
   languageName: unknown
@@ -14116,6 +14117,22 @@ __metadata:
   version: 2.13.2
   resolution: "store2@npm:2.13.2"
   checksum: 9e760ea2a7f56eae47d5bafe507511b25ad983bba901e1e0c5f65713e631c15aafb8e031c658047af53c2008a5d21cb6c43f2383673b3493144e8e1ead5c8f91
+  languageName: node
+  linkType: hard
+
+"storybook-addon-next-router@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "storybook-addon-next-router@npm:3.1.1"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@storybook/addon-actions": ^6.0.0
+    "@storybook/addons": ^6.0.0
+    "@storybook/client-api": ^6.0.0
+    next: ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: be8f1cdede08b8d32d4f4e55aba3d847a3dc11aaf30c32a4f2968b6c80b5f1eec47f064cdaa6eefde63762250b2d542c38c45576fed209fe4d279a5c4df0f431
   languageName: node
   linkType: hard
 

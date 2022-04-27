@@ -23,8 +23,10 @@ module.exports = {
       alias: {
         '@lib': path.resolve(__dirname, './lib'),
         '@hooks': path.resolve(__dirname, './hooks'),
-        '@components': path.resolve(__dirname, 'src/components'),
-        '@containers': path.resolve(__dirname, 'src/containers'),
+        '@styles': path.resolve(__dirname, './styles'),
+        '@types': path.resolve(__dirname, './types'),
+        '@components': path.resolve(__dirname, './components'),
+        '@containers': path.resolve(__dirname, './containers'),
       },
       ...config.resolve,
     };
