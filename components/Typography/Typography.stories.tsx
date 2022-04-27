@@ -1,14 +1,14 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import Typography, { TypoProps } from './index';
+import Typography from './index';
 
 export default {
   title: 'Components/Typography',
   component: Typography,
 } as ComponentMeta<typeof Typography>;
 
-const Template: ComponentStory<typeof Typography> = ({ children, ...args }: TypoProps) => (
+const Template: ComponentStory<typeof Typography> = ({ children, ...args }) => (
   <GlobalThemeProvider theme={theme}>
     <div style={{ width: '50%', height: '40%', marginTop: '0.5rem' }}>
       <Typography {...args}>{children}</Typography>
