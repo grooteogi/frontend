@@ -19,7 +19,7 @@
       "@lib/*": ["./lib/*"],
       "@hooks/*": ["./hooks/*"],
       "@styles/*": ["./styles/*"],
-      "@types/*": ["./types/*"],
+      "types/*": ["./types/*"],
       "@components/*": ["./components/*"],
       "@containers/*": ["./containers/*"]
     }

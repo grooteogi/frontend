@@ -1,7 +1,7 @@
 import Button from '@components/Button';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { fetchedHashtag } from '@types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedHashtag';
 import Box from '@components/Box';
 import Hashtag from '@components/Hashtag';
 import Link from '@components/Link';

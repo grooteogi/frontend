@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import { fetchedHashtag } from '@types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedHashtag';
 import Hashtag from './index';
 
 const sampleHashtags: fetchedHashtag[] = [

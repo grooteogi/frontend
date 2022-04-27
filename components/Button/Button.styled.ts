@@ -1,4 +1,4 @@
-import { FontWeight } from '@types/style';
+import { FontWeight } from 'types/style';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { darken, lighten } from 'polished';

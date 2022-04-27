@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-import { FontWeight } from '@types/style';
+import { FontWeight } from 'types/style';
 
 const typoTheme = theme.style.typo;
 export interface STypoProps {

@@ -24,7 +24,7 @@ module.exports = {
         '@lib': path.resolve(__dirname, './lib'),
         '@hooks': path.resolve(__dirname, './hooks'),
         '@styles': path.resolve(__dirname, './styles'),
-        '@types': path.resolve(__dirname, './types'),
+        types: path.resolve(__dirname, './types'),
         '@components': path.resolve(__dirname, './components'),
         '@containers': path.resolve(__dirname, './containers'),
       },

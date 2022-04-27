@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Styled } from './SearchBar.styled';
 import fetchedData from './data.json';
 import Typography from '../Typography';
-import { fetchedHashtag } from '@types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedHashtag';
 
 type fetchedDataType = {
   keyword: string;

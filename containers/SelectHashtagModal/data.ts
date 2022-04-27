@@ -1,4 +1,4 @@
-import { fetchedHashtag } from '@types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedHashtag';
 
 export const initialConcern: fetchedHashtag[] = [
   { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },

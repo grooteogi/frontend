@@ -4,7 +4,7 @@ import Wrapper from '../Wrapper';
 import { Styled } from './PostCard.styled';
 import Title from '../Title';
 import Typography from '../Typography';
-import { fetchedHashtag } from '@types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedHashtag';
 
 interface PostCardProps {
   imageSrc: string;
