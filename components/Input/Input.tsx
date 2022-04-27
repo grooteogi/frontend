@@ -3,6 +3,11 @@ import Styled from './Input.styled';
 
 interface TextareaProps {
   rows?: number;
+
+  width?: number;
+  height?: number;
+  fontColor?: string;
+  borderColor?: string;
 }
 
 interface InputProps extends TextareaProps {
