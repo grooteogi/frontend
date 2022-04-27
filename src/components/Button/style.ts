@@ -39,14 +39,18 @@ const getColors = ({ color, fontColor, borderColor = 'none', disabled = false }:
   `;
 };
 
-const getSize = ({ size }: SButtonProps) => {
+const getSize = ({ size, color }: SButtonProps) => {
   const getSizeType = () => {
     if (size === 'sm') return `width: 64px; height: 25px;font-size: 11px; border-radius: 4px;`;
     else if (size === 'md') return `width: 150px; height: 40px;`;
     else if (size === 'lg') return `width: 100%; height: 50px;`;
   };
+  const getColor = () => {
+    if (color === 'null') return `width: auto; height: auto;`;
+  };
   return css`
     ${getSizeType()};
+    ${getColor()};
   `;
 };
 
