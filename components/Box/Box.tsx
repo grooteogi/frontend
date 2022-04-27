@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContainerProps, Styled } from './style';
+import { ContainerProps, Styled } from './Box.styled';
 
 interface BoxProps extends ContainerProps {
   children: JSX.Element | JSX.Element[];

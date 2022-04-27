@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Styled } from './SortingTab.style';
+import { Styled } from './SortingTab.styled';
 
 export interface ItemProps {
   value: string;
