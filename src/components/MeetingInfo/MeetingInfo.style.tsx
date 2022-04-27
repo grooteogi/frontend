@@ -9,7 +9,7 @@ const getSize = ({ isWidthBigger }: SizeProps) => {
     return `max-width: 100%;
     height: auto;`;
   return `max-height: 100%;
-      width: auto;);`;
+    width: auto;`;
 };
 
 export const Styled = {
@@ -44,8 +44,6 @@ export const Styled = {
     top: 0;
     left: 0;
     ${getSize};
-    /* max-width: 100%;
-    height: auto; */
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
