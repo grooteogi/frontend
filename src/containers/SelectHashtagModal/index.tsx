@@ -45,7 +45,7 @@ const SelectHashtagModal = () => {
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           있어요.
         </Typography>
-        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 8, columnGap: 8 }}>
           {initialConcern.map(concern => {
             return <Hashtag key={concern.id} onClick={onHashtagClick} fetchedTag={concern} clickable={true} />;
           })}
@@ -61,7 +61,7 @@ const SelectHashtagModal = () => {
         <Typography size={'md'} weight={'THIN'} color={'darkgray'}>
           이에요.
         </Typography>
-        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 5, columnGap: 10 }}>
+        <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 8, columnGap: 8 }}>
           {initialCharacter.map(character => {
             return <Hashtag key={character.id} fetchedTag={character} clickable={true} onClick={onHashtagClick} />;
           })}
@@ -71,8 +71,7 @@ const SelectHashtagModal = () => {
         <Link href={'/'} size={'md'} color={'primary'} align={'right'}>
           건너뛰기
         </Link>
-
-        <Button name={'확인'} size={'md'} color={'white'} fontColor={'black'} />
+        <Button name={'확인'} size={'md'} color={'null'} fontColor={'black'} onClick={() => router.push('/')} />
       </Wrapper>
     </Box>
   );
