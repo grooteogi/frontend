@@ -12,9 +12,13 @@ export const Default = (args: ComponentStory<typeof ReviewList>) => {
   const list = [
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       id: 1,
 =======
 >>>>>>> e090ca8 (refactor : Refactor style)
+=======
+      id: 1,
+>>>>>>> 3cf1d40 (refactor: Change the map key from the idx++ format to the received format)
       username: '졸리다',
       userProfilePicSrc: '/imgs/Carousel1.png',
       time: '2022-04-26 12:40',
@@ -22,9 +26,13 @@ export const Default = (args: ComponentStory<typeof ReviewList>) => {
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       id: 2,
 =======
 >>>>>>> e090ca8 (refactor : Refactor style)
+=======
+      id: 2,
+>>>>>>> 3cf1d40 (refactor: Change the map key from the idx++ format to the received format)
       username: '지금은 새벽 3시',
       userProfilePicSrc: '/imgs/Carousel2.png',
       time: '2022-04-26 12:40',
@@ -32,9 +40,13 @@ export const Default = (args: ComponentStory<typeof ReviewList>) => {
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       id: 3,
 =======
 >>>>>>> e090ca8 (refactor : Refactor style)
+=======
+      id: 3,
+>>>>>>> 3cf1d40 (refactor: Change the map key from the idx++ format to the received format)
       username: '왜 에러떠',
       userProfilePicSrc: '/imgs/Carousel3.png',
       time: '2022-04-26 12:40',
