@@ -25,7 +25,6 @@ const MeetingInfo: React.FC<MeetingInfoProps> = ({
   hashtags,
   description,
 }) => {
-  let idx = 0;
   const postImg = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
   useEffect(() => {
@@ -58,7 +57,7 @@ const MeetingInfo: React.FC<MeetingInfoProps> = ({
       </Wrapper>
       <Wrapper flexDirection={'row'} gap={{ gap: 5 }}>
         {hashtags.map(({ ...fetched }: fetchedHashtag) => (
-          <Hashtag key={idx++} fetchedTag={fetched} />
+          <Hashtag key={fetched.id} fetchedTag={fetched} />
         ))}
       </Wrapper>
       <Typography size={'md'} color={'darkgray'}>
