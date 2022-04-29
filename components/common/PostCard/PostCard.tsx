@@ -1,9 +1,9 @@
 import React from 'react';
-import Hashtag from '../Hashtag';
-import Wrapper from '../Wrapper';
+import Hashtag from '@components/common/Hashtag';
+import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
-import Title from '../Title';
-import Typography from '../Typography';
+import Title from '@components/common/Title';
+import Typography from '@components/common/Typography';
 import { fetchedHashtag } from 'types/fetchedHashtag';
 
 interface PostCardProps {

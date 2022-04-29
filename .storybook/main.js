@@ -4,8 +4,8 @@ const resolvePath = _path => path.join(process.cwd(), _path);
 
 module.exports = {
   stories: [
-    '../components/**/*.stories.@(js|jsx|ts|tsx)',
-    '../containers/**/*.stories.@(js|jsx|ts|tsx)',
+    '../components/**/**/*.stories.@(js|jsx|ts|tsx)',
+    '../components/**/stories/*.stories.@(js|jsx|ts|tsx)',
     '../**/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [

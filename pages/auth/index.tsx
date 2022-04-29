@@ -1,4 +1,4 @@
-import SignInModal from '@containers/SignInModal';
+import SignInModal from '@components/common/auth/AuthModal';
 
 const SignInPage = () => {
   return (

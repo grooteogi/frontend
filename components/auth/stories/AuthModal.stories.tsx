@@ -1,16 +1,16 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import SelectHashtagModal from './index';
+import SignInModal from '../AuthModal';
 
 export default {
-  title: 'Containers/SelectHashtagModal',
-  component: SelectHashtagModal,
-} as ComponentMeta<typeof SelectHashtagModal>;
+  title: 'Containers/SignInModal',
+  component: SignInModal,
+} as ComponentMeta<typeof SignInModal>;
 
-const Template: ComponentStory<typeof SelectHashtagModal> = () => (
+const Template: ComponentStory<typeof SignInModal> = () => (
   <GlobalThemeProvider theme={theme}>
-    <SelectHashtagModal />
+    <SignInModal />
   </GlobalThemeProvider>
 );
 

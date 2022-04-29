@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Styled } from './SearchMenu.style';
 import Image from 'next/image';
-import SearchButton from '@components/SearchButton';
+import SearchButton from '@components/common/SearchButton';
 
 interface SearchMenuProps {
   data: any[];

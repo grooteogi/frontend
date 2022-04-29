@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ButtonProps, Styled } from './SearchButton.styled';
-import Typography from '../Typography';
+import Typography from '@components/common/Typography';
 
 interface SearchButtonProp extends ButtonProps {
   content: string;

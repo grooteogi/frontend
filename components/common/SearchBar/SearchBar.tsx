@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import Hashtag from '../Hashtag';
 import Image from 'next/image';
 import { Styled } from './SearchBar.styled';
-import fetchedData from './data.json';
-import Typography from '../Typography';
+import Typography from '@components/common/Typography';
+import Hashtag from '@components/common/Hashtag';
 import { fetchedHashtag } from 'types/fetchedHashtag';
+
+const fetchedData = [
+  { keyword: '대외활동' },
+  { keyword: '대학생활' },
+  { keyword: '유학' },
+  { keyword: '동아리' },
+  { keyword: 'typescript' },
+  { keyword: 'awesome' },
+  { keyword: 'how to be a developer' },
+  { keyword: 'reactjs' },
+];
 
 type fetchedDataType = {
   keyword: string;

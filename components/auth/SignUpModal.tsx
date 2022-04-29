@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import useInput from '@hooks/useInput';
 import auth from '@lib/api/auth';
 import { validEmail, validPassword } from '@lib/validator';
-import Box from '@components/Box';
-import Button from '@components/Button';
-import Checkbox from '@components/Checkbox';
-import Input from '@components/Input';
-import Typography from '@components/Typography';
-import Wrapper from '@components/Wrapper';
+import Box from '@components/common/Box';
+import Button from '@components/common/Button';
+import Checkbox from '@components/common/Checkbox';
+import Input from '@components/common/Input';
+import Typography from '@components/common/Typography';
+import Wrapper from '@components/common/Wrapper';
 
 const NormalSignupModal = () => {
   const router = useRouter();

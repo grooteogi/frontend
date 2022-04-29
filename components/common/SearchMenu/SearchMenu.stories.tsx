@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import Box from '@components/Box';
+import Box from '@components/common/Box';
 import SearchMenu from './SearchMenu';
 import sampleData from './data.json';
 

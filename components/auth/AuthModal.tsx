@@ -1,9 +1,9 @@
 import React from 'react';
-import Box from '@components/Box';
-import Button from '@components/Button';
-import Title from '@components/Title';
-import Typography from '@components/Typography';
-import Wrapper from '@components/Wrapper';
+import Box from '@components/common/Box';
+import Button from '@components/common/Button';
+import Title from '@components/common/Title';
+import Typography from '@components/common/Typography';
+import Wrapper from '@components/common/Wrapper';
 import { useRouter } from 'next/router';
 
 const SignInModal = () => {

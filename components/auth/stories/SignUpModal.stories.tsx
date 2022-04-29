@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import NormalSignupModal from './index';
+import NormalSignupModal from '../SignUpModal';
 
 export default {
   title: 'Containers/NormalSignupModal',

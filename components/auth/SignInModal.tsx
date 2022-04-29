@@ -1,10 +1,10 @@
-import Link from '@components/Link';
-import Box from '@components/Box';
-import Button from '@components/Button';
-import Checkbox from '@components/Checkbox';
-import Input from '@components/Input';
-import Typography from '@components/Typography';
-import Wrapper from '@components/Wrapper';
+import Link from '@components/common/Link';
+import Box from '@components/common/Box';
+import Button from '@components/common/Button';
+import Checkbox from '@components/common/Checkbox';
+import Input from '@components/common/Input';
+import Typography from '@components/common/Typography';
+import Wrapper from '@components/common/Wrapper';
 import useInput from '@hooks/useInput';
 import { useState } from 'react';
 import useSigninMutation from '@hooks/useSigninMutation';

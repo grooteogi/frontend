@@ -1,4 +1,4 @@
-import SelectHashtagModal from '@containers/SelectHashtagModal';
+import SelectHashtagModal from '@components/common/auth/SelectHashtagModal';
 
 const SelectHashtagPage = () => {
   return <SelectHashtagModal />;
