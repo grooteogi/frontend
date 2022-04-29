@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { StyledSelectbox, StyledSelectedLabel, StyledOptionList, StyledOptionItem } from './style';
 
 interface DropdownProps {
+  defaultString?: string;
   list: string[];
 }
 
-const Dropdown = ({ list }: DropdownProps) => {
+const Dropdown = ({ defaultString = '지역구', list }: DropdownProps) => {
   const [acitve, setActive] = useState(false);
-  const [selected, setSelected] = useState('지역구');
+  const [selected, setSelected] = useState(defaultString);
   return (
     <StyledSelectbox>
       <StyledSelectedLabel value={selected} onClick={() => setActive(!acitve)}>

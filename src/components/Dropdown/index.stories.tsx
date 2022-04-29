@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof Dropdown> = args => (
 
 export const DefaultLocale = (args: ComponentStory<typeof Dropdown>) => {
   const defaultArgs = {
+    defaultString: '지역구',
     list: [
       '강서구',
       '구로구',
@@ -24,7 +25,7 @@ export const DefaultLocale = (args: ComponentStory<typeof Dropdown>) => {
       '동작구',
       '영등포구',
       '양천구',
-      ' 마포구',
+      '마포구',
       '서대문구',
       '서초구',
       '강남구',
