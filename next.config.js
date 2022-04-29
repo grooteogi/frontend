@@ -13,8 +13,8 @@ module.exports = {
   },
   async redirects() {
     return [
-      { source: '/oauth/kakao', destination: '/auth/test', permanent: true },
-      { source: '/oauth/google', destination: '/auth/test', permanent: true },
+      { source: '/oauth/kakao', destination: '/auth/oauth', permanent: true },
+      { source: '/oauth/google', destination: '/auth/oauth', permanent: true },
     ];
   },
   reactStrictMode: true,
@@ -23,8 +23,10 @@ module.exports = {
       alias: {
         '@lib': path.resolve(__dirname, './lib'),
         '@hooks': path.resolve(__dirname, './hooks'),
-        '@components': path.resolve(__dirname, 'src/components'),
-        '@containers': path.resolve(__dirname, 'src/utils'),
+        '@styles': path.resolve(__dirname, './styles'),
+        types: path.resolve(__dirname, './types'),
+        '@components': path.resolve(__dirname, './components'),
+        '@containers': path.resolve(__dirname, './containers'),
       },
       ...config.resolve,
     };

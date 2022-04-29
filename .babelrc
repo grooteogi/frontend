@@ -19,8 +19,10 @@
         "alias": {
           "@lib": "./lib",
           "@hooks": "./hooks",
-          "@components": "./src/components",
-          "@containers": "./src/containers"
+          "@styles": "./styles",
+          "types": "./types",
+          "@components": "./components",
+          "@containers": "./containers"
         }
       }
     ]

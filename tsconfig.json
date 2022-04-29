@@ -18,8 +18,10 @@
     "paths": {
       "@lib/*": ["./lib/*"],
       "@hooks/*": ["./hooks/*"],
-      "@components/*": ["./src/components/*"],
-      "@containers/*": ["./src/components/*"]
+      "@styles/*": ["./styles/*"],
+      "types/*": ["./types/*"],
+      "@components/*": ["./components/*"],
+      "@containers/*": ["./containers/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
