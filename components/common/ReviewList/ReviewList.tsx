@@ -4,6 +4,7 @@ import React from 'react';
 import Styled from './ReviewList.style';
 
 export type Item = {
+  id: string | number;
   userProfilePicSrc: string;
   username: string;
   time: string;
@@ -15,12 +16,11 @@ export interface ReviewListProps {
 }
 
 const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
-  let idx = 0;
   if (reviewList.length > 0)
     return (
       <>
-        {reviewList.map(({ userProfilePicSrc, username, time, text }: Item) => (
-          <Wrapper key={idx++} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
+        {reviewList.map(({ id, userProfilePicSrc, username, time, text }: Item) => (
+          <Wrapper key={id} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
               <Styled.profileImg src={userProfilePicSrc} />
               <Wrapper flexDirection={'column'} justifyContent={'space-around'}>
