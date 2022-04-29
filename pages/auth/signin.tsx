@@ -1,4 +1,4 @@
-import NormalSignInModal from '@components/common/auth/SignInModal';
+import NormalSignInModal from '@components/auth/SignInModal';
 
 const NormalSignInPage = () => {
   return (

@@ -1,4 +1,4 @@
-import NormalSignupModal from '@components/common/auth/SignUpModal';
+import NormalSignupModal from '@components/auth/SignUpModal';
 
 const SigNormalSignupPage = () => {
   return (
