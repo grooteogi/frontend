@@ -16,5 +16,6 @@ const Template: ComponentStory<typeof Wrapper> = args => (
 
 export const BoxWrapper = Template.bind({});
 BoxWrapper.args = {
+  semantic: 'article',
   flexDirection: 'row',
 };

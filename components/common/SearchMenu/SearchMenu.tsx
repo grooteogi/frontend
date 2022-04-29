@@ -53,7 +53,7 @@ interface arrowProps {
 const LeftArrow: React.FC<arrowProps> = ({ onClick, hideButton }) => {
   return (
     <Styled.button onClick={onClick} disabled={hideButton} leftOrRight={'left'}>
-      <Image src={'/logos/left.png'} width={'16px'} height={'16px'} quality={100} />
+      <Image src={'/logos/left.png'} alt={'arrow img not found'} width={'16px'} height={'16px'} quality={100} />
     </Styled.button>
   );
 };
@@ -61,7 +61,7 @@ const LeftArrow: React.FC<arrowProps> = ({ onClick, hideButton }) => {
 const RightArrow: React.FC<arrowProps> = ({ onClick, hideButton }) => {
   return (
     <Styled.button onClick={onClick} disabled={hideButton} leftOrRight={'right'}>
-      <Image src={'/logos/right.png'} width={'16px'} height={'16px'} quality={100} />
+      <Image src={'/logos/right.png'} alt={'arrow img not found'} width={'16px'} height={'16px'} quality={100} />
     </Styled.button>
   );
 };
