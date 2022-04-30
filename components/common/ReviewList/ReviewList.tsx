@@ -24,6 +24,7 @@ export interface ReviewListProps {
 
 const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (reviewList.length > 0) {
     return (
       <>
@@ -36,6 +37,9 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
 >>>>>>> e090ca8 (refactor : Refactor style)
 =======
   if (reviewList.length > 0)
+=======
+  if (reviewList.length > 0) {
+>>>>>>> 62bdd5d (refactor: Enclose the if statement using {})
     return (
       <>
         {reviewList.map(({ id, userProfilePicSrc, username, time, text }: Item) => (
