@@ -14,7 +14,7 @@ export type Item = {
 
 const payMethodList = ['만나서 선택', '더치페이', '사줄게요', '사주세요'];
 export interface ShowScheduleProps {
-  payMethod?: typeof payMethodList;
+  payMethod?: string;
   liked?: boolean;
   itemList?: Item[];
 }
