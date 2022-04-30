@@ -8,11 +8,10 @@ export interface SListProps {
 
 export const Styled = {
   container: styled.div`
-    z-index: 3;
     width: 100%;
     max-width: 600px;
     height: auto;
-    background-color: ${searchTheme.backgroundColor.white};
+    background: ${searchTheme.backgroundColor.white};
     border-radius: 8px;
     border: 1px solid ${searchTheme.borderColor.lightgray};
     @media (min-width: 1060px) {
@@ -36,7 +35,7 @@ export const Styled = {
     width: 100%;
     height: 40px;
     padding: 8px;
-    background: ${searchTheme.backgroundColor.white};
+    background: inherit;
   `,
   input: styled.input`
     width: auto;
@@ -46,7 +45,14 @@ export const Styled = {
     fontsize: 0.875rem;
   `,
   ul: styled.ul`
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    max-width: 600px;
     padding-bottom: 4px;
+    background-color: inherit;
+    border-radius: inherit;
+    border: inherit;
   `,
   li: styled.li`
     display: flex;
@@ -57,7 +63,6 @@ export const Styled = {
     width: 100%;
     font-size: 0.75rem;
     font-weight: bold;
-    z-index: 4;
     &:hover {
       background-color: #edf5f5;
       cursor: pointer;

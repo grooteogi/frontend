@@ -3,6 +3,9 @@ import Image from 'next/image';
 
 export const Styled = {
   container: styled.div`
+    @media (max-width: 767px) {
+      width: 180px;
+    }
     width: 235px;
     height: 300px;
     display: flex;
@@ -11,6 +14,12 @@ export const Styled = {
   image: styled(Image)`
     border-radius: 8px;
     overflow: hidden;
+  `,
+  hashRef: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    column-gap: 6px;
   `,
   title: styled.section`
     max-width: 90%;

@@ -9,7 +9,15 @@ const Styled = {
   content: styled.main`
     margin: 60px auto 0;
     padding: 0 5%;
-    max-width: 1060px;
+    @media (min-width: 1060px) {
+      width: 1060px;
+    }
+    @media (min-width: 768px) and (max-width: 1059px) {
+      width: 767px;
+    }
+    @media (max-width: 767px) {
+      width: 390px;
+    }
   `,
 };
 
