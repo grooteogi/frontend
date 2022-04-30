@@ -9,6 +9,7 @@ const style = {
       kakao: '#FEE500',
       lightgray: '#E9E9E9',
       disabled: '#E9E9E9',
+      null: '#FFFFFF',
     },
     fontColor: {
       white: '#FFFFFF',

@@ -1,6 +1,6 @@
-import SignInModal from '../../src/containers/SignInModal';
+import SignInModal from '@components/auth/AuthModal';
 
-const Signin = () => {
+const SignInPage = () => {
   return (
     <div>
       <SignInModal />
@@ -8,4 +8,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignInPage;
