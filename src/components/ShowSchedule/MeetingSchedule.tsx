@@ -12,8 +12,9 @@ export type Item = {
   place: string;
 };
 
+const payMethodList = ['만나서 선택', '더치페이', '사줄게요', '사주세요'];
 export interface ShowScheduleProps {
-  payMethod?: string | string[];
+  payMethod?: typeof payMethodList;
   liked?: boolean;
   itemList?: Item[];
 }
@@ -84,7 +85,7 @@ const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemL
 };
 
 const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
-  payMethod = '더치페이',
+  payMethod = '만나서 결제',
   liked: iLiked = false,
   ...itemList
 }) => {
@@ -129,7 +130,7 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
             {/* add 관련 어떻게 받을지 구상해서 추가할 것. */}
           </Wrapper>
           <Styled.bottom>
-            <Dropdown defaultString={'결제 방식'} list={['만나서 선택', '더치페이', '사줄게요', '사주세요']} />
+            <Dropdown defaultString={'결제 방식'} list={payMethodList} />
           </Styled.bottom>
         </>
       )}
