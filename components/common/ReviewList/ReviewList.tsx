@@ -16,7 +16,7 @@ export interface ReviewListProps {
 }
 
 const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
-  if (reviewList.length > 0)
+  if (reviewList.length > 0) {
     return (
       <>
         {reviewList.map(({ id, userProfilePicSrc, username, time, text }: Item) => (
@@ -41,7 +41,7 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
         ))}
       </>
     );
-  else
+  } else {
     return (
       <Wrapper flexDirection={'column'} alignItems={'center'} padding={{ paddingTop: '26px' }}>
         <Typography weight="BOLD" size={'md'} color={'black'}>
@@ -49,6 +49,7 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
         </Typography>
       </Wrapper>
     );
+  }
 };
 
 const ReviewList: React.FC<ReviewListProps> = ({ ...reviewList }) => {
