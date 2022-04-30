@@ -8,7 +8,7 @@ export default {
   component: SearchPage,
 } as ComponentMeta<typeof SearchPage>;
 
-const Template: ComponentStory<typeof SearchPage> = args => (
+const Template: ComponentStory<typeof SearchPage> = () => (
   <GlobalThemeProvider theme={theme}>
     <SearchPage />
   </GlobalThemeProvider>

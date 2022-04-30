@@ -60,8 +60,7 @@ export const StyledSelectedLabel = styled.button`
 export const StyledSelectbox = styled.div`
   position: relative;
   width: 8rem;
-  height: 2.6rem;
   border-radius: 8px;
-  background: #ffffff;
   cursor: pointer;
+  z-index: 1;
 `;
