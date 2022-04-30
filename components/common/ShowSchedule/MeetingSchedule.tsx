@@ -2,7 +2,7 @@ import Wrapper from '../Wrapper';
 import Typography from '../Typography';
 import React, { useState } from 'react';
 import Styled from './MeetingSchedule.style';
-import Dropdown from '@components/Dropdown';
+import Dropdown from '@components/common/Dropdown';
 
 export type Item = {
   id: string | number;

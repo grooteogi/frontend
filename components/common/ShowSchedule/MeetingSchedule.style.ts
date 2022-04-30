@@ -1,4 +1,4 @@
-import { StyledButton } from '@components/Button/style';
+import StyledButton from '@components/common/Button';
 import styled from '@emotion/styled';
 
 export const Styled = {
