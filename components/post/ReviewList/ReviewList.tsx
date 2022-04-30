@@ -1,17 +1,10 @@
-import Wrapper from '../Wrapper';
-import Typography from '../Typography';
+import Wrapper from '../../common/Wrapper';
+import Typography from '../../common/Typography';
 import React from 'react';
 import Styled from './ReviewList.style';
 
 export type Item = {
-<<<<<<< HEAD
-<<<<<<< HEAD
   id: string | number;
-=======
->>>>>>> e090ca8 (refactor : Refactor style)
-=======
-  id: string | number;
->>>>>>> 3cf1d40 (refactor: Change the map key from the idx++ format to the received format)
   userProfilePicSrc: string;
   username: string;
   time: string;
@@ -23,28 +16,11 @@ export interface ReviewListProps {
 }
 
 const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
   if (reviewList.length > 0) {
-    return (
-      <>
-<<<<<<< HEAD
-        {reviewList.map(({ id, userProfilePicSrc, username, time, text }: Item) => (
-          <Wrapper key={id} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
-=======
-        {reviewList.map(({ userProfilePicSrc, username, time, text }: Item) => (
-          <Wrapper key={idx++} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
->>>>>>> e090ca8 (refactor : Refactor style)
-=======
-  if (reviewList.length > 0)
-=======
-  if (reviewList.length > 0) {
->>>>>>> 62bdd5d (refactor: Enclose the if statement using {})
     return (
       <>
         {reviewList.map(({ id, userProfilePicSrc, username, time, text }: Item) => (
           <Wrapper key={id} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
->>>>>>> 3cf1d40 (refactor: Change the map key from the idx++ format to the received format)
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
               <Styled.profileImg src={userProfilePicSrc} />
               <Wrapper flexDirection={'column'} justifyContent={'space-around'}>
