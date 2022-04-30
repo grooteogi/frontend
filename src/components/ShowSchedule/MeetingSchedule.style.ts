@@ -4,13 +4,13 @@ import styled from '@emotion/styled';
 export const Styled = {
   container: styled.div`
     @media (min-width: 1060px) {
-      width: 1060px;
+      width: 325px;
     }
     @media (min-width: 768px) and (max-width: 1059px) {
-      width: 767px;
+      width: 100%;
     }
     @media (max-width: 767px) {
-      width: 390px;
+      width: 100%;
     }
     border: 1px solid lightgrey;
     border-radius: 12px;
