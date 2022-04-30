@@ -1,6 +1,6 @@
-import Hashtag from '@components/Hashtag';
-import Typography from '@components/Typography';
-import Wrapper from '@components/Wrapper';
+import Hashtag from '@components/common/Hashtag';
+import Typography from '@components/common/Typography';
+import Wrapper from '@components/common/Wrapper';
 import { StyledComponent } from '@emotion/styled';
 import React, { useEffect, useRef, useState } from 'react';
 import { fetchedHashtag } from '../../../types/fetchedHashtag';
