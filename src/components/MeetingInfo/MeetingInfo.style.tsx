@@ -5,9 +5,10 @@ interface SizeProps {
 }
 
 const getSize = ({ isWidthBigger }: SizeProps) => {
-  if (isWidthBigger)
+  if (isWidthBigger) {
     return `max-width: 100%;
     height: auto;`;
+  }
   return `max-height: 100%;
     width: auto;`;
 };
