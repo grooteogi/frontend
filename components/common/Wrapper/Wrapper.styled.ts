@@ -56,12 +56,14 @@ const getMargin = ({ margin }: ContainerProps) => {
   }
 };
 
-export const Container = styled.div<ContainerProps>`
-  display: flex;
-  ${getFlexDirection}
-  ${getGap}
-  ${getjustifyContent}
-  ${getalignItems}
-  ${getPadding}
-  ${getMargin}
-`;
+export const Styled = {
+  container: styled.div<ContainerProps>`
+    display: flex;
+    ${getFlexDirection}
+    ${getGap}
+    ${getjustifyContent}
+    ${getalignItems}
+    ${getPadding}
+    ${getMargin}
+  `,
+};
