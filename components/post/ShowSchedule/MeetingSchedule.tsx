@@ -63,10 +63,9 @@ export interface SelectScheduleProps {}
 
 const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemList }) => {
   const item = useRef<any>();
-  const [scrollHeight, setScrollHeight] = useState<number>(10);
+  const [scrollHeight, setScrollHeight] = useState<number>(64);
   useEffect(() => {
-    setScrollHeight(item.current.offsetHeight * 3.3);
-    console.log(item);
+    setScrollHeight(item.current.offsetHeight * 3);
   }, []);
   return (
     <Styled.scroll standardHeight={scrollHeight}>
