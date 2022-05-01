@@ -1,8 +1,21 @@
-import Wrapper from '../Wrapper';
-import Typography from '../Typography';
+import Wrapper from '@components/common/Wrapper';
+import Typography from '@components/common/Typography';
 import React, { useState } from 'react';
 import Styled from './MeetingSchedule.style';
 import Dropdown from '@components/common/Dropdown';
+import moment from 'moment';
+
+type DateType = Date | string | number;
+const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
+const dateFormater = (format: string, date: DateType = Date.now()): string => {
+  const mo = moment(date);
+  const day: string = WEEKDAY[mo.day()];
+  return mo.format(format.replace('w', day));
+};
+
+type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
+type MeetingScheduleProps = XOR<ShowScheduleProps, SelectScheduleProps>;
 
 export type Item = {
   id: string | number;
@@ -11,7 +24,33 @@ export type Item = {
   location: string;
   place: string;
 };
-
+const loactionList = [
+  '강서구',
+  '구로구',
+  '금천구',
+  '관악구',
+  '동작구',
+  '영등포구',
+  '양천구',
+  '마포구',
+  '서대문구',
+  '서초구',
+  '강남구',
+  '송파구',
+  '강동구',
+  '은평구',
+  '종로구',
+  '중구',
+  '용산구',
+  '성동구',
+  '동대문구',
+  '중랑구',
+  '광진구',
+  '노원구',
+  '성북구',
+  '강북구',
+  '도봉구',
+];
 const payMethodList = ['만나서 선택', '더치페이', '사줄게요', '사주세요'];
 export interface ShowScheduleProps {
   payMethod?: string;
@@ -22,43 +61,6 @@ export interface ShowScheduleProps {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SelectScheduleProps {}
 
-type DateType = Date | string | number;
-const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
-export const zero = (value: number | string) => (value.toString().length === 1 ? `0${value}` : value);
-const dateFormater = (format: string, date: DateType = Date.now()): string => {
-  const allowForm = date.toString().replace(/\.|-|\s+/g, '/');
-  const _date = new Date(allowForm);
-
-  return format.replace(/(yyyy|mm|dd|MM|DD|H|i|s|w)/g, (t: string): any => {
-    switch (t) {
-      case 'yyyy':
-        return _date.getFullYear();
-      case 'mm':
-        return _date.getMonth() + 1;
-      case 'dd':
-        return _date.getDate();
-      case 'MM':
-        return zero(_date.getMonth() + 1);
-      case 'DD':
-        return zero(_date.getDate());
-      case 'H':
-        return zero(_date.getHours());
-      case 'i':
-        return zero(_date.getMinutes());
-      case 's':
-        return zero(_date.getSeconds());
-      case 'w':
-        return WEEKDAY[_date.getDay()];
-      default:
-        return '';
-    }
-  });
-};
-
-type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
-type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
-type MeetingScheduleProps = XOR<ShowScheduleProps, SelectScheduleProps>;
-
 const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemList }) => {
   return (
     <>
@@ -66,7 +68,8 @@ const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemL
         <Wrapper key={id} flexDirection={'column'} gap={{ gap: 10 }}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
-              {dateFormater('MM월 DD일 (w)', startTime)} {dateFormater('H:i', startTime)}~{dateFormater('H:i', endTime)}
+              {dateFormater('MM월 DD일 (w)', startTime)} {dateFormater('HH:mm', startTime)}~
+              {dateFormater('HH:mm', endTime)}
             </Typography>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
               {location}
@@ -104,10 +107,7 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
           <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
             <ScheduleItems {...itemList} />
           </Wrapper>
-          <Styled.bottom>
-            <Typography size={'md'} color={'black'} weight={'BOLD'}>
-              {payMethod}
-            </Typography>
+          <Styled.row>
             <Styled.likedBtn
               onClick={() => {
                 setLiked(!liked);
@@ -121,17 +121,34 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
                 )}
               </svg>
             </Styled.likedBtn>
-          </Styled.bottom>
+            <Typography size={'md'} color={'black'} weight={'BOLD'}>
+              {payMethod}
+            </Typography>
+          </Styled.row>
         </>
       ) : (
         <>
-          <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-            <ScheduleItems {...itemList} />
-            {/* add 관련 어떻게 받을지 구상해서 추가할 것. */}
+          <Styled.row>
+            <Typography size={'md'} color={'black'}>
+              결제 방식
+            </Typography>
+            <Dropdown defaultString={payMethodList[0]} list={payMethodList} />
+          </Styled.row>
+          <Styled.row>
+            <Typography size={'md'} color={'black'}>
+              지역구
+            </Typography>
+            <Dropdown defaultString={loactionList[0]} list={loactionList} />
+          </Styled.row>
+          <Wrapper flexDirection={'column'}>
+            <Typography size={'md'} color={'black'}>
+              약속 추가
+            </Typography>
           </Wrapper>
-          <Styled.bottom>
-            <Dropdown defaultString={'결제 방식'} list={payMethodList} />
-          </Styled.bottom>
+          <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
+            <ScheduleItems itemList={list} />
+            {/* TODO: add 관련 어떻게 받을지 구상해서 추가할 것. */}
+          </Wrapper>
         </>
       )}
     </Styled.container>

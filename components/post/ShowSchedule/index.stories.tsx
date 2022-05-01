@@ -12,8 +12,8 @@ export const DefaultShow = (args: ComponentStory<typeof MeetingSchedule>) => {
   const list = [
     {
       id: 1,
-      startTime: '2022-04-26 12:40',
-      endTime: '2022-04-26 14:00',
+      startTime: '2022-04-26 9:00',
+      endTime: '2022-04-26 11:45',
       location: '신촌',
       place: '신촌근처 아무 식당 (협의)',
     },

@@ -1,4 +1,3 @@
-import StyledButton from '@components/common/Button';
 import styled from '@emotion/styled';
 
 export const Styled = {
@@ -33,9 +32,9 @@ export const Styled = {
     flex-direction: column;
     align-items: center;
   `,
-  bottom: styled.div`
+  row: styled.div`
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
   `,
