@@ -1,6 +1,6 @@
 import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Styled from './MeetingSchedule.style';
 import Dropdown from '@components/common/Dropdown';
 import moment from 'moment';
@@ -62,10 +62,16 @@ export interface ShowScheduleProps {
 export interface SelectScheduleProps {}
 
 const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemList }) => {
+  const item = useRef<any>();
+  const [scrollHeight, setScrollHeight] = useState<number>(10);
+  useEffect(() => {
+    setScrollHeight(item.current.offsetHeight * 3.3);
+    console.log(item);
+  }, []);
   return (
-    <>
+    <Styled.scroll standardHeight={scrollHeight}>
       {itemList?.map(({ id, startTime, endTime, location, place }: Item) => (
-        <Wrapper key={id} flexDirection={'column'} gap={{ gap: 10 }}>
+        <Styled.itemBox ref={item} key={id}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
               {dateFormater('MM월 DD일 (w)', startTime)} {dateFormater('HH:mm', startTime)}~
@@ -81,9 +87,9 @@ const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemL
             </Typography>
           </Wrapper>
           <Styled.hr />
-        </Wrapper>
+        </Styled.itemBox>
       ))}
-    </>
+    </Styled.scroll>
   );
 };
 
@@ -93,7 +99,6 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
   ...itemList
 }) => {
   const [liked, setLiked] = useState<boolean>(iLiked);
-  // add시 사용하려고 미리 훅만들어둠.
   const [list, setList] = useState(itemList.itemList);
   return (
     <Styled.container>
@@ -107,7 +112,7 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
           <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
             <ScheduleItems {...itemList} />
           </Wrapper>
-          <Styled.row>
+          <Styled.bottom>
             <Styled.likedBtn
               onClick={() => {
                 setLiked(!liked);
@@ -124,7 +129,7 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
             <Typography size={'md'} color={'black'} weight={'BOLD'}>
               {payMethod}
             </Typography>
-          </Styled.row>
+          </Styled.bottom>
         </>
       ) : (
         <>
@@ -147,7 +152,6 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
           </Wrapper>
           <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
             <ScheduleItems itemList={list} />
-            {/* TODO: add 관련 어떻게 받을지 구상해서 추가할 것. */}
           </Wrapper>
         </>
       )}

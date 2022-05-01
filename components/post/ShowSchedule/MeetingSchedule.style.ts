@@ -1,4 +1,16 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { darken } from 'polished';
+
+interface SScorllProps {
+  standardHeight: number;
+}
+
+const getStandardHeight = ({ standardHeight }: SScorllProps) => {
+  return css`
+    max-height: ${standardHeight}px;
+  `;
+};
 
 export const Styled = {
   container: styled.div`
@@ -32,11 +44,46 @@ export const Styled = {
     flex-direction: column;
     align-items: center;
   `,
+  scroll: styled.div`
+    ${getStandardHeight};
+    display: flex;
+    flex-direction: column;
+    padding-right: 6px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 1rem;
+      background: ${darken(0.1, '#ffffff')};
+    }
+    &::-webkit-scrollbar-button {
+      width: 0;
+      height: 0;
+    }
+  `,
+  itemBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  `,
   row: styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 10px;
+  `,
+  bottom: styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-right: 6px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
   `,
 };
 

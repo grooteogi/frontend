@@ -1,7 +1,6 @@
 import Hashtag from '@components/common/Hashtag';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
-import { StyledComponent } from '@emotion/styled';
 import React, { useEffect, useRef, useState } from 'react';
 import { fetchedHashtag } from '../../../types/fetchedHashtag';
 import Styled from './MeetingInfo.style';
