@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Hashtag from '@components/common/Hashtag';
 import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
@@ -14,14 +14,26 @@ interface PostCardProps {
 }
 
 const PostCard: React.FC<PostCardProps> = ({ imageSrc, hashtags, title, content }) => {
+  const hashtagRef = useRef<any>();
+  const [ellipsisTags, setEllipsisTags] = useState<boolean>(false);
+  useEffect(() => {
+    setEllipsisTags(hashtagRef.current.offsetHeight > 30);
+  }, []);
   return (
     <Styled.container>
       <Styled.image src={imageSrc} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
-      <Wrapper flexDirection={'row'} margin={{ marginTop: '12px' }} gap={{ columnGap: 6 }}>
-        {hashtags.map(hash => {
-          return <Hashtag key={hash.id} fetchedTag={hash} />;
-        })}
-      </Wrapper>
+      <Styled.hashRef ref={hashtagRef}>
+        {ellipsisTags ? (
+          <>
+            <Hashtag key={hashtags[0].id} fetchedTag={hashtags[0]} />
+            <Hashtag key={0} fetchedTag={{ id: 0, hashtagType: 'CONCERN', tag: '...', registered: '' }} />
+          </>
+        ) : (
+          hashtags.map(hash => {
+            return <Hashtag key={hash.id} fetchedTag={hash} />;
+          })
+        )}
+      </Styled.hashRef>
       <Wrapper flexDirection="column" margin={{ marginTop: '12px' }} alignItems="flex-start" gap={{ rowGap: 6 }}>
         <Styled.title>
           <Title size={'h4'} color={'black'} align={'right'}>

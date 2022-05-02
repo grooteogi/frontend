@@ -13,11 +13,10 @@ const Template: ComponentStory<typeof SearchButton> = args => (
     <SearchButton {...args} />
   </GlobalThemeProvider>
 );
-
 export const Default = (args: ComponentStory<typeof SearchButton>) => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template content="#샘플버튼" {...args} />
+      <Template fetchedTag={{ id: 1, hashtagType: 'CONCERN', tag: '#sample', registered: '' }} {...args} />
     </GlobalThemeProvider>
   );
 };

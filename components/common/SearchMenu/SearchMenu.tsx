@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Styled } from './SearchMenu.style';
 import Image from 'next/image';
 import SearchButton from '@components/common/SearchButton';
+import { fetchedHashtag } from 'types/fetchedHashtag';
 
 interface SearchMenuProps {
-  data: any[];
+  data: fetchedHashtag[];
+  onClick: (hashtag: fetchedHashtag, clicked: boolean) => void;
 }
 
-const SearchMenu: React.FC<SearchMenuProps> = ({ data }) => {
+const SearchMenu: React.FC<SearchMenuProps> = ({ data, onClick }) => {
   const hScroll = useRef<any>();
   const [slideLeft, setSlideLeft] = useState<number>(0);
   const [hideButtonLeft, setHideButtonLeft] = useState<boolean>(true);
@@ -35,8 +37,8 @@ const SearchMenu: React.FC<SearchMenuProps> = ({ data }) => {
   return (
     <Styled.container>
       <Styled.horizontalScroll ref={hScroll} onScroll={onHScroll}>
-        {data.map(({ id, tag }) => {
-          return <SearchButton key={id} content={tag} />;
+        {data.map(hash => {
+          return <SearchButton key={hash.id} fetchedTag={hash} onClick={onClick} />;
         })}
       </Styled.horizontalScroll>
       {slideLeft > 0 ? <LeftArrow onClick={moveLeft} hideButton={hideButtonLeft} /> : <></>}
