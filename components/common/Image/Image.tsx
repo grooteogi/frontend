@@ -1,7 +1,7 @@
 import React from 'react';
-import { imageProps, Styled } from './Image.styled';
+import { StyledImageProps, Styled } from './Image.styled';
 
-interface ImageProps extends imageProps {
+interface ImageProps extends StyledImageProps {
   src: string;
   alt?: string;
 }
