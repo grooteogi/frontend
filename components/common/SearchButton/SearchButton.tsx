@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ButtonProps, Styled } from './SearchButton.styled';
 import Typography from '@components/common/Typography';
 import { fetchedHashtag } from 'types/fetchedHashtag';
 
 interface SearchButtonProp extends ButtonProps {
   fetchedTag: fetchedHashtag;
-  onClick?: (hashtag: fetchedHashtag, clicked: boolean) => void;
+  clicked: boolean;
+  setClickedButtonId: (hashtagId: number) => void;
 }
 
-const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, onClick }) => {
-  const [clicked, setClicked] = useState<boolean>(false);
+const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, clicked, setClickedButtonId }) => {
   return (
     <Styled.button
       onClick={() => {
-        onClick && onClick(fetchedTag, clicked);
-        setClicked(!clicked);
+        setClickedButtonId(fetchedTag.id);
       }}
       clicked={clicked}
     >
