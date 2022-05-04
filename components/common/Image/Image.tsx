@@ -6,7 +6,7 @@ interface ImageProps extends StyledImageProps {
   alt?: string;
 }
 
-const Image: React.FC<ImageProps> = ({ src, alt, width, height, objectFit }) => {
-  return <Styled.image src={src} alt={alt} width={width} height={height} objectFit={objectFit} />;
+const Image: React.FC<ImageProps> = ({ src, alt, size }) => {
+  return <Styled.image src={src} alt={alt} size={size} />;
 };
 export default Image;
