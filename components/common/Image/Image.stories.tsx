@@ -43,8 +43,6 @@ CoverImage.args = {
 };
 export const FillImage = Template.bind({});
 FillImage.args = {
-  width: '500px',
-  height: '500px',
   objectFit: 'fill',
   src: '/imgs/RotatedImg.png',
   alt: 'not found',
