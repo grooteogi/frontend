@@ -7,7 +7,7 @@ export type Item = {
   id: string | number;
   userProfilePicSrc: string;
   username: string;
-  time: string;
+  createTime: string;
   text: string;
 };
 
@@ -19,7 +19,7 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
   if (reviewList.length > 0) {
     return (
       <>
-        {reviewList.map(({ id, userProfilePicSrc, username, time, text }: Item) => (
+        {reviewList.map(({ id, userProfilePicSrc, username, createTime: time, text }: Item) => (
           <Wrapper key={id} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
               <Styled.profileImg src={userProfilePicSrc} />
@@ -56,7 +56,7 @@ const ReviewList: React.FC<ReviewListProps> = ({ ...reviewList }) => {
   return (
     <Styled.container>
       <Typography weight="BOLD" size={'lg'} color={'black'}>
-        밥약 리뷰
+        약속 리뷰
       </Typography>
       <Styled.hr />
       <ReviewItems {...reviewList} />
