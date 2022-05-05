@@ -1,3 +1,4 @@
+import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
 
 export const Styled = {
@@ -13,10 +14,19 @@ export const Styled = {
     border-radius: 50%;
     object-fit: none;
   `,
+  userTimeBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+  `,
   hr: styled.hr`
     color: gray;
     width: 100%;
     margin-top: 25px;
+  `,
+  text: styled(Typography)`
+    line-height: 1.4;
   `,
 };
 

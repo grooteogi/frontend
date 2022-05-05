@@ -19,23 +19,23 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
   if (reviewList.length > 0) {
     return (
       <>
-        {reviewList.map(({ id, userProfilePicSrc, username, createTime: time, text }: Item) => (
+        {reviewList.map(({ id, userProfilePicSrc, username, createTime, text }: Item) => (
           <Wrapper key={id} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
               <Styled.profileImg src={userProfilePicSrc} />
-              <Wrapper flexDirection={'column'} justifyContent={'space-around'}>
+              <Styled.userTimeBox>
                 <Typography size={'sm'} color={'black'} weight={'BOLD'}>
                   {username}
                 </Typography>
                 <Typography size={'xs'} color={'black'}>
-                  {time}
+                  {createTime}
                 </Typography>
-              </Wrapper>
+              </Styled.userTimeBox>
             </Wrapper>
             <Wrapper flexDirection={'column'} margin={{ marginTop: '14px' }}>
-              <Typography size={'md'} color={'black'}>
+              <Styled.text size={'md'} color={'black'}>
                 {text}
-              </Typography>
+              </Styled.text>
             </Wrapper>
           </Wrapper>
         ))}
