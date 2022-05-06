@@ -1,6 +1,6 @@
 import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Styled from './MeetingSchedule.style';
 import Dropdown from '@components/common/Dropdown';
 import { dateFormater } from '@lib/common';
@@ -46,7 +46,6 @@ const loactionList = [
 const payMethodList = ['만나서 선택', '더치페이', '사줄게요', '사주세요'];
 export interface ShowScheduleProps {
   payMethod?: string;
-  liked?: boolean;
   itemList?: Item[];
 }
 
@@ -54,15 +53,18 @@ export interface ShowScheduleProps {
 export interface SelectScheduleProps {}
 
 const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemList }) => {
-  const item = useRef<any>();
   const [scrollHeight, setScrollHeight] = useState<number>(64);
-  useEffect(() => {
-    setScrollHeight(item.current.offsetHeight * 3);
+  const callbackRef = useCallback(node => {
+    if (node !== null) {
+      setScrollHeight(node.getBoundingClientRect().height);
+      console.log(scrollHeight);
+    }
   }, []);
+
   return (
-    <Styled.scroll standardHeight={scrollHeight}>
+    <Styled.scroll standardHeight={scrollHeight * 3}>
       {itemList?.map(({ id, startTime, endTime, location, place }: Item) => (
-        <Styled.itemBox ref={item} key={id}>
+        <Styled.itemBox ref={callbackRef} key={id}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
               {dateFormater('MM월 DD일 (w)', startTime)} {dateFormater('HH:mm', startTime)}~
@@ -84,19 +86,14 @@ const ScheduleItems: React.FC<Pick<MeetingScheduleProps, 'itemList'>> = ({ itemL
   );
 };
 
-const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
-  payMethod = '만나서 결제',
-  liked: iLiked = false,
-  ...itemList
-}) => {
-  const [liked, setLiked] = useState<boolean>(iLiked);
+const MeetingSchedule: React.FC<MeetingScheduleProps> = ({ payMethod = '만나서 결제', ...itemList }) => {
   const [list, setList] = useState(itemList.itemList);
   return (
     <Styled.container>
       <Wrapper flexDirection={'row'} margin={{ margin: '0 0 20px 0' }}>
-        <Typography weight="BOLD" size={'lg'} color={'black'}>
+        <Styled.title weight="BOLD" size={'md'} color={'black'}>
           약속 일정
-        </Typography>
+        </Styled.title>
       </Wrapper>
       {list !== undefined ? (
         <>
@@ -104,19 +101,6 @@ const MeetingSchedule: React.FC<MeetingScheduleProps> = ({
             <ScheduleItems {...itemList} />
           </Wrapper>
           <Styled.bottom>
-            <Styled.likedBtn
-              onClick={() => {
-                setLiked(!liked);
-              }}
-            >
-              <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#FF8585">
-                {liked ? (
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                ) : (
-                  <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
-                )}
-              </svg>
-            </Styled.likedBtn>
             <Typography size={'md'} color={'black'} weight={'BOLD'}>
               {payMethod}
             </Typography>
