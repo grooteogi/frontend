@@ -9,56 +9,33 @@ export default {
 } as ComponentMeta<typeof SortingTab>;
 
 export const DefaultMeetingPost = () => {
-  const itemList = [
-    {
-      value: '인기순',
-    },
-    {
-      value: '최신순',
-    },
-    {
-      value: '리뷰순',
-    },
-  ];
+  const itemList = ['인기순', '최신순', '리뷰순'];
 
   return (
     <GlobalThemeProvider theme={theme}>
-      <SortingTab itemList={itemList} />
+      <SortingTab
+        itemList={itemList}
+        onClick={() => {
+          return;
+        }}
+        state={undefined}
+      />
     </GlobalThemeProvider>
   );
 };
 
 export const DefaultMyMeeting = () => {
-  const itemList = [
-    {
-      value: '진행중',
-      onclick: () => {
-        alert('in progress');
-      },
-    },
-    {
-      value: '완료됨',
-      onclick: () => {
-        alert('completed list');
-      },
-    },
-    {
-      value: '찜한 약속',
-      onclick: () => {
-        alert('wish list');
-      },
-    },
-    {
-      value: '전체 목록',
-      onclick: () => {
-        alert('full list ');
-      },
-    },
-  ];
+  const itemList = ['진행중', '완료됨', '찜한 약속', '전체 목록'];
 
   return (
     <GlobalThemeProvider theme={theme}>
-      <SortingTab itemList={itemList} />
+      <SortingTab
+        itemList={itemList}
+        onClick={() => {
+          return;
+        }}
+        state={undefined}
+      />
     </GlobalThemeProvider>
   );
 };

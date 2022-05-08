@@ -4,7 +4,7 @@ import theme from '@styles/theme';
 import Box from '@components/common/Box';
 import SearchMenu from './SearchMenu';
 import sampleData from './data.json';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedData';
 
 export default {
   title: 'Containers/SearchMenu',

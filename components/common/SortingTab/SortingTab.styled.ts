@@ -31,5 +31,8 @@ export const Styled = {
     font-size: 1rem;
     padding: 0 1rem;
     border-right: 1px solid #d1d1d1;
+    &:hover {
+      cursor: pointer;
+    }
   `,
 };

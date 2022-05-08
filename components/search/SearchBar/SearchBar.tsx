@@ -19,10 +19,11 @@ type fetchedDataType = {
 };
 
 interface InputProps {
+  onSearchClick: (wordEntered: string) => void;
   placeholder?: string;
 }
 
-const SearchBar: React.FC<InputProps> = ({ placeholder }) => {
+const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
   const [filteredData, setFilteredData] = useState<fetchedDataType[]>([]);
   const [wordEntered, setWordEntered] = useState<string>('');
 
@@ -32,18 +33,22 @@ const SearchBar: React.FC<InputProps> = ({ placeholder }) => {
     const newFilter = fetchedData.filter(value => {
       return value.keyword.includes(searchWord);
     });
-    if (searchWord === '') {
-      setFilteredData([]);
-    } else {
-      setFilteredData(newFilter);
-    }
+    searchWord === '' ? setFilteredData([]) : setFilteredData(newFilter);
   };
 
   return (
     <Styled.container>
       <Styled.section>
         <Styled.input type={'text'} value={wordEntered} onChange={handleFilter} placeholder={placeholder} />
-        <Image src={'/logos/search.png'} alt={'search icon not found'} width={'16px'} height={'16px'} />
+        <Image
+          src={'/logos/search.png'}
+          alt={'search icon not found'}
+          width={'16px'}
+          height={'16px'}
+          onClick={() => {
+            onSearchClick(wordEntered);
+          }}
+        />
       </Styled.section>
       {filteredData.length !== 0 && (
         <Styled.ul>

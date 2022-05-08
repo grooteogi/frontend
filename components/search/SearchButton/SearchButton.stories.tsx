@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import { useState } from 'react';
 import SearchButton from './index';
 
 export default {
@@ -26,7 +25,7 @@ export const Clicked = (args: ComponentStory<typeof SearchButton>) => {
           count: 1,
         }}
         clicked={true}
-        setClickedButtonId={function doNothing() {
+        onClick={(tagValue: string) => {
           return;
         }}
       />
@@ -45,7 +44,7 @@ export const NotClicked = (args: ComponentStory<typeof SearchButton>) => {
           count: 1,
         }}
         clicked={false}
-        setClickedButtonId={function doNothing() {
+        onClick={(tagValue: string) => {
           return;
         }}
       />

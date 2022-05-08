@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CreditType, HashtagEntity } from 'types/entity';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import { fetchedHashtag } from '../../../types/fetchedHashtag';
+import { fetchedHashtag } from '../../../types/fetchedData';
 import MeetingInfo from './index';
 
 export default {

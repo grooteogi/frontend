@@ -1,17 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Content from '@components/layout/Content';
-import Carousel from '@components/common/Carousel';
 import Dropdown from '@components/common/Dropdown';
 import PostCard from '@components/common/PostCard';
 import SearchBar from '@components/search/SearchBar';
-import SearchMenu from '@components/search/SearchMenu';
 import SortingTab from '@components/common/SortingTab';
 import Wrapper from '@components/common/Wrapper';
-import { fetchedHashtag, fetchedPostCard } from 'types/fetchedData';
-import tempButtons from '@components/search/SearchMenu/data.json';
+import { fetchedPostCard } from 'types/fetchedData';
+import Button from '@components/common/Button';
 import { useQuery } from 'react-query';
-import { useQueryDispatch, useQueryState } from '@components/search/context';
-import useOnScreen from '@hooks/useOnScreen';
+import { useQueryDispatch, useQueryState } from './context';
 
 const howManyCards = Array.from(Array(20).keys());
 const samplePostCard: fetchedPostCard = {
@@ -29,61 +26,42 @@ const samplePostCard: fetchedPostCard = {
   ],
 };
 
-const SearchPage = () => {
-  const [clickedPostId, setClickedPostId] = useState<number>(-1);
-  const pageBottom = useRef<HTMLDivElement | null>(null);
-  useOnScreen(pageBottom);
+const fetchPosts = async () => {
+  // const response = await fetch('');
+  // return response.json();
+};
 
+const ResultPage = () => {
   const SearchQuery = useQueryState();
   const dispatch = useQueryDispatch();
 
-  const fetchPosts = async () => {
-    return;
-  };
+  const onSortChange = (sort: string) => dispatch({ type: 'SORT', sort });
+  const onRegionChange = (region: string) => dispatch({ type: 'REGION', region });
 
-  const { data, status } = useQuery(['posts'], () => fetchPosts());
+  const [clickedButtonId, setClickedButtonId] = useState<number>(-1);
+  const [clickedPostId, setClickedPostId] = useState<number>(-1);
+  const { data, status } = useQuery('posts', fetchPosts);
 
   const searchPost = (wordEntered: string) => {
     console.log(wordEntered);
   };
 
-  const onHashtagChange = (tagValue: string) => dispatch({ type: 'TAG', tagValue });
-  const onSortChange = (sort: string) => dispatch({ type: 'SORT', sort });
-  const onRegionChange = (region: string) => dispatch({ type: 'REGION', region });
-
-  const imgLists = [
-    {
-      src: '/imgs/Carousel1.png',
-      alt: 'img for test link',
-      link: 'https://www.google.com/?gws_rd=ssl',
-    },
-    {
-      src: '/imgs/Carousel2.png',
-      alt: 'sad carousel',
-      link: '',
-    },
-  ];
-
-  if (status === 'loading') return <>Loading...</>;
-  if (status === 'error') return <>Error</>;
-
   return (
     <Content>
       <Wrapper flexDirection={'column'} alignItems={'center'} gap={{ gap: 50 }}>
-        <Carousel imgLists={imgLists} />
-        <SearchBar onSearchClick={searchPost} placeholder={'검색어를 입력해주세요'} />
-        <SearchMenu state={SearchQuery} onClick={onHashtagChange} data={tempButtons as fetchedHashtag[]} />
+        <SearchBar onSearchClick={searchPost} />
       </Wrapper>
       <Wrapper
         flexDirection={'row'}
         justifyContent={'space-between'}
         padding={{ paddingTop: '50px', paddingBottom: '35px' }}
       >
-        <SortingTab state={SearchQuery} onClick={onSortChange} itemList={['최신순', '인기순', '조회순']} />
+        <SortingTab itemList={['최신순', '인기순', '조회순']} state={SearchQuery} onClick={onSortChange} />
+
         <Dropdown
+          list={['강서구', '구로구', '금천구', '관악구', '동작구', '영등포구', '양천구', ' 마포구', '서대문구']}
           state={SearchQuery}
           onClick={onRegionChange}
-          list={['강서구', '구로구', '금천구', '관악구', '동작구', '영등포구', '양천구', ' 마포구', '서대문구']}
         />
       </Wrapper>
       <Wrapper flexDirection={'row'} justifyContent="space-evenly" gap={{ gap: 20 }}>
@@ -91,8 +69,16 @@ const SearchPage = () => {
           return <PostCard key={idx} fetchedData={samplePostCard} setClickedPostId={setClickedPostId} />;
         })}
       </Wrapper>
-      <div ref={pageBottom} />
+      <Button
+        name="read more..."
+        color={'lightgray'}
+        fontColor={'darkgray'}
+        size={'sm'}
+        onClick={() => {
+          return;
+        }}
+      />
     </Content>
   );
 };
-export default SearchPage;
+export default ResultPage;

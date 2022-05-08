@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ButtonProps, Styled } from './SearchButton.styled';
 import Typography from '@components/common/Typography';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedData';
 
 interface SearchButtonProp extends ButtonProps {
   fetchedTag: fetchedHashtag;
+  onClick: (tagValue: string) => void;
   clicked: boolean;
-  setClickedButtonId: (hashtagId: number) => void;
 }
 
-const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, clicked, setClickedButtonId }) => {
+const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, onClick, clicked }) => {
   return (
-    <Styled.button
-      onClick={() => {
-        setClickedButtonId(fetchedTag.id);
-      }}
-      clicked={clicked}
-    >
+    <Styled.button onClick={() => onClick(fetchedTag.tag)} clicked={clicked}>
       <Typography size={'sm'} color={'black'}>
         #{fetchedTag.tag}
       </Typography>

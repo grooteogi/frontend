@@ -1,7 +1,7 @@
 import Button from '@components/common/Button';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedData';
 import Box from '@components/common/Box';
 import Hashtag from '@components/common/Hashtag';
 import Link from '@components/common/Link';
@@ -9,7 +9,7 @@ import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 
-import { fetchedHashtag as fetchedHashtagType } from 'types/fetchedHashtag';
+import { fetchedHashtag as fetchedHashtagType } from 'types/fetchedData';
 
 export const initialConcern: fetchedHashtagType[] = [
   { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },

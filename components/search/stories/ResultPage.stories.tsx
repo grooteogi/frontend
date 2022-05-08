@@ -1,23 +1,20 @@
-import { QueryContextProvider } from '@components/search/context';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import SearchPage from '../SearchPage';
+import ResultPage from '../ResultPage';
 
 export default {
-  title: 'Containers/SearchPage',
-  component: SearchPage,
-} as ComponentMeta<typeof SearchPage>;
+  title: 'Containers/ResultPage',
+  component: ResultPage,
+} as ComponentMeta<typeof ResultPage>;
 
 const queryClient = new QueryClient();
 
-const Template: ComponentStory<typeof SearchPage> = () => (
+const Template: ComponentStory<typeof ResultPage> = () => (
   <QueryClientProvider client={queryClient}>
     <GlobalThemeProvider theme={theme}>
-      <QueryContextProvider>
-        <SearchPage />
-      </QueryContextProvider>
+      <ResultPage />
     </GlobalThemeProvider>
   </QueryClientProvider>
 );

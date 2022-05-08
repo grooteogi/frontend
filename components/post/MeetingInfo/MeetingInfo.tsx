@@ -5,8 +5,8 @@ import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
 import { CreditTypeKR } from 'types/entity';
+import { fetchedHashtag } from 'types/fetchedData';
 import { MeetingInfoType } from 'types/postDetail';
-import { fetchedHashtag } from '../../../types/fetchedHashtag';
 import Styled from './MeetingInfo.style';
 
 const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hashtags, content, likes, creditType }) => {

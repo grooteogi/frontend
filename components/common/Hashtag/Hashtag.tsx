@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Styled } from './Hashtag.styled';
 import Image from 'next/image';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { fetchedHashtag } from 'types/fetchedData';
 
 interface SharedProps {
   fetchedTag: fetchedHashtag;
