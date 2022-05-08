@@ -116,31 +116,37 @@ const CreateSchedule: React.FC<SelectScheduleProps> = ({ payMethod = payMethodLi
         </Typography>
         <Styled.innerContainer>
           <Styled.row>
-            <Typography size={'md'} color={'black'}>
+            <Typography size={'sm'} color={'black'}>
               약속 지역
             </Typography>
             <Dropdown defaultString={regionList[0]} list={regionList} />
           </Styled.row>
           <Styled.row>
-            <Typography size={'md'} color={'black'}>
+            <Typography size={'sm'} color={'black'}>
               약속 장소
             </Typography>
-            <Dropdown defaultString={regionList[0]} list={regionList} />
+            <Styled.input type={'search'} />
           </Styled.row>
           <Styled.row>
-            <Typography size={'md'} color={'black'}>
-              약속 날짜
+            <Typography size={'sm'} color={'black'}>
+              약속 시작
             </Typography>
-            <Dropdown defaultString={regionList[0]} list={regionList} />
+            <Styled.input type={'datetime-local'} />
           </Styled.row>
           <Styled.row>
-            <Typography size={'md'} color={'black'}>
-              약속 시간
+            <Typography size={'sm'} color={'black'}>
+              약속 종료
             </Typography>
-            <Dropdown defaultString={regionList[0]} list={regionList} />
+            <Styled.input type={'datetime-local'} />
           </Styled.row>
           <Styled.row>
-            <Button name="추가하기" color={'primary'} fontColor={'white'} size={'lg'} onClick={() => addSchedule()} />
+            <Styled.submitBtn
+              name="추가하기"
+              color={'primary'}
+              fontColor={'white'}
+              size={'lg'}
+              onClick={() => addSchedule()}
+            />
           </Styled.row>
         </Styled.innerContainer>
       </Wrapper>

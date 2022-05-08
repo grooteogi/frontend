@@ -1,3 +1,4 @@
+import Button from '@components/common/Button';
 import Typography from '@components/common/Typography';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -34,6 +35,20 @@ export const Styled = {
   title: styled(Typography)`
     font-size: 1.2rem;
     font-weight: 600;
+  `,
+  input: styled.input`
+    border: 1px solid #bfbfbf;
+    border-width: 0 0 1px 0;
+    color: #878787;
+    width: 100%;
+    padding: 0.3rem;
+    font-size: 0.875rem;
+    height: 30px;
+    text-align: right;
+    width: 60%;
+  `,
+  submitBtn: styled(Button)`
+    height: 30px;
   `,
   hr: styled.hr`
     color: lightgray;
