@@ -23,6 +23,7 @@ export const StyledOptionList = styled.ul`
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 2px 2px 6px ${darken(0.3, '#ffffff')};
+  z-index: 1;
   ${activeExist};
   transition: 0.2s ease-in-out;
   overflow-y: scroll;
