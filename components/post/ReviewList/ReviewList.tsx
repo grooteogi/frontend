@@ -18,9 +18,9 @@ export interface ReviewListProps {
 const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
   if (reviewList.length > 0) {
     return (
-      <>
+      <Styled.itemBox>
         {reviewList.map(({ id, userProfilePicSrc, username, createTime, text }: Item) => (
-          <Wrapper key={id} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
+          <Wrapper key={id} flexDirection={'column'}>
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
               <Styled.profileImg src={userProfilePicSrc} />
               <Styled.userTimeBox>
@@ -39,7 +39,7 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
             </Wrapper>
           </Wrapper>
         ))}
-      </>
+      </Styled.itemBox>
     );
   } else {
     return (
@@ -55,9 +55,9 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
 const ReviewList: React.FC<ReviewListProps> = ({ ...reviewList }) => {
   return (
     <Styled.container>
-      <Typography weight="BOLD" size={'lg'} color={'black'}>
+      <Styled.title weight="BOLD" size={'md'} color={'black'}>
         약속 리뷰
-      </Typography>
+      </Styled.title>
       <Styled.hr />
       <ReviewItems {...reviewList} />
     </Styled.container>

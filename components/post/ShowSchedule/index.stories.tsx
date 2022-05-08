@@ -1,14 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import MeetingSchedule from './index';
+import ShowSchedule from './index';
 
 export default {
   title: 'Components/ShowSchedule',
-  component: MeetingSchedule,
-} as ComponentMeta<typeof MeetingSchedule>;
+  component: ShowSchedule,
+} as ComponentMeta<typeof ShowSchedule>;
 
-export const DefaultShow = (args: ComponentStory<typeof MeetingSchedule>) => {
+export const DefaultShow = (args: ComponentStory<typeof ShowSchedule>) => {
   const list = [
     {
       id: 1,
@@ -34,11 +34,11 @@ export const DefaultShow = (args: ComponentStory<typeof MeetingSchedule>) => {
   ];
   return (
     <GlobalThemeProvider theme={theme}>
-      <MeetingSchedule payMethod={'더치페이'} liked={false} itemList={list} {...args} />
+      <ShowSchedule payMethod={'더치페이'} itemList={list} {...args} />
     </GlobalThemeProvider>
   );
 };
-export const MaxShow = (args: ComponentStory<typeof MeetingSchedule>) => {
+export const MaxShow = (args: ComponentStory<typeof ShowSchedule>) => {
   const list = [
     {
       id: 1,
@@ -148,14 +148,7 @@ export const MaxShow = (args: ComponentStory<typeof MeetingSchedule>) => {
   ];
   return (
     <GlobalThemeProvider theme={theme}>
-      <MeetingSchedule payMethod={'더치페이'} liked={false} itemList={list} {...args} />
-    </GlobalThemeProvider>
-  );
-};
-export const DefaultSelect = (args: ComponentStory<typeof MeetingSchedule>) => {
-  return (
-    <GlobalThemeProvider theme={theme}>
-      <MeetingSchedule {...args} />
+      <ShowSchedule payMethod={'더치페이'} itemList={list} {...args} />
     </GlobalThemeProvider>
   );
 };

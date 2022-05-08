@@ -18,8 +18,9 @@ export const Styled = {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 0;
     gap: 1rem;
+    padding-bottom: 50px;
   `,
   thumbnailWrappper: styled.div`
     width: 100%;
@@ -29,6 +30,15 @@ export const Styled = {
     position: relative;
     padding-top: 100%;
     overflow: hidden;
+  `,
+  likedBtn: styled.button`
+    width: 30px;
+    height: 30px;
+    border: darkgray;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `,
   postPicWrapper: styled.div`
     position: absolute;

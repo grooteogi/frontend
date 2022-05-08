@@ -1,1 +1,1 @@
-export { default } from './MeetingSchedule';
+export { default } from './ShowSchedule';
