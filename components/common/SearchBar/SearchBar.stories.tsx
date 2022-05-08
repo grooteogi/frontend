@@ -17,14 +17,9 @@ const Template: ComponentStory<typeof SearchBar> = args => (
 export const DefaultInput = Template.bind({});
 DefaultInput.args = {
   placeholder: '관심사를 검색해보세요~',
-  hashtags: [],
 };
 
 export const HashInput = Template.bind({});
 HashInput.args = {
   placeholder: '관심사를 검색해보세요~',
-  hashtags: [
-    { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
-    { id: 2, hashtagType: 'CONCERN', tag: '대외활동', registered: '' },
-  ],
 };

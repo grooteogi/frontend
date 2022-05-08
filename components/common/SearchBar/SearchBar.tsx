@@ -19,10 +19,7 @@ type fetchedDataType = {
 };
 
 interface InputProps {
-  type?: string;
-  value?: string;
   placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchBar: React.FC<InputProps> = ({ placeholder }) => {
