@@ -3,15 +3,7 @@ import Typography from '@components/common/Typography';
 import React, { useEffect, useRef, useState } from 'react';
 import Styled from './MeetingSchedule.style';
 import Dropdown from '@components/common/Dropdown';
-import moment from 'moment';
-
-type DateType = Date | string | number;
-const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
-const dateFormater = (format: string, date: DateType = Date.now()): string => {
-  const mo = moment(date);
-  const day: string = WEEKDAY[mo.day()];
-  return mo.format(format.replace('w', day));
-};
+import { dateFormater } from '@lib/common';
 
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
