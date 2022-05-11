@@ -8,22 +8,17 @@ export interface ContainerProps {
 }
 
 const getSize = ({ width, height }: ContainerProps) => {
-  if (width && height) {
+  if (width) {
     return css`
       width: ${width}px;
+    `;
+  } else if (height) {
+    return css`
       height: ${height}px;
     `;
   } else {
     return css`
-      @media (min-width: 1060px) {
-        width: 1060px;
-      }
-      @media (min-width: 768px) and (max-width: 1059px) {
-        width: 767px;
-      }
-      @media (max-width: 767px) {
-        width: 390px;
-      }
+      width: 100%;
       height: auto;
     `;
   }
@@ -34,8 +29,6 @@ export const Styled = {
     ${getSize};
     border: 1px solid ${theme.style.lightgrey};
     border-radius: 12px;
-    margin: auto;
-    margin-top: 4rem;
     padding: 4rem 4rem;
     background: ${theme.style.white};
     display: flex;
