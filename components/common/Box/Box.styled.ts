@@ -29,7 +29,6 @@ export const Styled = {
     ${getSize};
     border: 1px solid ${theme.style.lightgrey};
     border-radius: 12px;
-    padding: 4rem 4rem;
     background: ${theme.style.white};
     display: flex;
     flex-direction: column;
