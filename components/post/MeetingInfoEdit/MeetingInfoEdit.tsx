@@ -5,45 +5,38 @@ import Textarea from '@components/common/Textarea';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { fetchedHashtag } from '../../../types/fetchedHashtag';
+import { HashtagEntity } from 'types/entity';
+import { MeetingInfoType } from '../detail.mock';
 import Styled from './MeetingInfoEdit.style';
 
-export interface MeetingInfoEditProps {
-  postPicSrc: string;
-  postTitle: string;
-  userPicSrc: string;
-  username: string;
-  location: string;
-  hashtags: fetchedHashtag[];
-  description: string;
-  liked?: boolean;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  getimg: (e: React.MouseEvent<HTMLInputElement>) => void;
+export interface MeetingInfoEditProps
+  extends Partial<Pick<MeetingInfoType, 'title' | 'content' | 'imageUrl' | 'hashtags'>> {
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  getimg?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
 
-const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
-  postPicSrc,
-  postTitle,
-  userPicSrc,
-  username,
-  location,
-  hashtags,
-  description,
-  getimg,
-}) => {
-  const postImg = useRef<any>();
+const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, imageUrl, hashtags = [] }) => {
+  const [editTitle, setEditTitle] = useState(title);
+  const [editContent, setEditContent] = useState(content);
+  const [editImageUrl, setEditImageUrl] = useState(imageUrl);
+  const [edithashtags, setEdithashtags] = useState<HashtagEntity[]>(hashtags);
+  const previewImage = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
   useEffect(() => {
-    setIsWidthBigger(postImg.current.width > postImg.current.height);
+    setIsWidthBigger(previewImage.current.width > previewImage.current.height);
   }, []);
-  const [hashtagsState, setHashtagState] = useState<fetchedHashtag[]>(hashtags);
-  const imgClickedHandler = () => {
-    alert('우클릭');
-    getimg;
+  const onChangeHandler = (fileInput: HTMLInputElement) => {
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        previewImage.current.src = e.target?.result;
+        setEditImageUrl(e.target?.result?.toString);
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
   };
-  const onRemove = () => {
-    alert('remove');
+  const onRemove = ({ target }: any) => {
+    alert(target);
   };
   return (
     <Styled.container>
@@ -55,7 +48,12 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
           <Typography size={'sm'} color={'black'} weight={'BOLD'}>
             내 약속을 설명할 수 있는 사진을 올려봐요
           </Typography>
-          <Input value={postTitle}></Input>
+          <Input
+            value={editTitle}
+            onChange={e => {
+              setEditTitle(e.target.value);
+            }}
+          ></Input>
         </Wrapper>
         <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
           <Typography size={'sm'} color={'black'} weight={'BOLD'}>
@@ -63,11 +61,10 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
           </Typography>
           <Styled.thumbnailWrappper>
             <Styled.thumbnail>
-              <Styled.imgSelectBox onClick={imgClickedHandler} onContextMenu={imgClickedHandler}>
-                사진 선택
-              </Styled.imgSelectBox>
+              <input type={'file'} id={'fileReader'} onChange={e => onChangeHandler(e.target)} hidden />
+              <Styled.imgSelectBox htmlFor={'fileReader'}>사진 선택</Styled.imgSelectBox>
               <Styled.postPicWrapper>
-                <Styled.postPic ref={postImg} src={postPicSrc} isWidthBigger={isWidthBigger} />
+                <Styled.postPic ref={previewImage} src={editImageUrl} isWidthBigger={isWidthBigger} />
               </Styled.postPicWrapper>
             </Styled.thumbnail>
           </Styled.thumbnailWrappper>
@@ -76,7 +73,13 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
           <Typography size={'sm'} color={'black'} weight={'BOLD'}>
             내 약속을 자세히 설명해봐요
           </Typography>
-          <Textarea value={description}></Textarea>
+          <Textarea
+            value={editContent}
+            onChange={e => {
+              setEditContent(e.target.value);
+            }}
+            rows={8}
+          />
         </Wrapper>
       </Wrapper>
       <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
@@ -85,8 +88,8 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
         </Typography>
         <SearchBar hashtags={[]}></SearchBar>
         <Wrapper flexDirection={'row'} gap={{ columnGap: 20 }}>
-          {hashtagsState.map(({ ...el }) => (
-            <Hashtag key={el.id} fetchedTag={el} removable onRemove={onRemove}></Hashtag>
+          {edithashtags.map(({ ...el }) => (
+            <Hashtag key={el.id} fetchedTag={el} removable onRemove={() => onRemove(el.id)}></Hashtag>
           ))}
         </Wrapper>
       </Wrapper>

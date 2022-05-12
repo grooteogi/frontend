@@ -2,33 +2,23 @@ import Wrapper from '../../common/Wrapper';
 import Typography from '../../common/Typography';
 import React from 'react';
 import Styled from './ReviewList.style';
+import { ReviewEntity } from 'types/entity';
+import { ReviewType } from '../detail.mock';
 
-export type Item = {
-  id: string | number;
-  userProfilePicSrc: string;
-  username: string;
-  createTime: string;
-  text: string;
-};
-
-export interface ReviewListProps {
-  reviewList: Item[];
-}
-
-const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
-  if (reviewList.length > 0) {
+const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
+  if (reviews.length > 0) {
     return (
       <Styled.itemBox>
-        {reviewList.map(({ id, userProfilePicSrc, username, createTime, text }: Item) => (
-          <Wrapper key={id} flexDirection={'column'}>
+        {reviews.map(({ reviewId, imageUrl, nickname, createAt, text }: ReviewEntity) => (
+          <Wrapper key={reviewId} flexDirection={'column'}>
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
-              <Styled.profileImg src={userProfilePicSrc} />
+              <Styled.profileImg src={imageUrl} />
               <Styled.userTimeBox>
                 <Typography size={'sm'} color={'black'} weight={'BOLD'}>
-                  {username}
+                  {nickname}
                 </Typography>
                 <Typography size={'xs'} color={'black'}>
-                  {createTime}
+                  {createAt}
                 </Typography>
               </Styled.userTimeBox>
             </Wrapper>
@@ -52,14 +42,14 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
   }
 };
 
-const ReviewList: React.FC<ReviewListProps> = ({ ...reviewList }) => {
+const ReviewList: React.FC<ReviewType> = ({ reviews }) => {
   return (
     <Styled.container>
       <Styled.title weight="BOLD" size={'md'} color={'black'}>
         약속 리뷰
       </Styled.title>
       <Styled.hr />
-      <ReviewItems {...reviewList} />
+      <ReviewItems reviews={reviews} />
     </Styled.container>
   );
 };

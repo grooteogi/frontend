@@ -33,14 +33,14 @@ export const Styled = {
   `,
   thumbnailWrappper: styled.div`
     width: 100%;
-    background-color: white;
+    background-color: lightgray;
   `,
   thumbnail: styled.div`
     position: relative;
     padding-top: 100%;
     overflow: hidden;
   `,
-  imgSelectBox: styled.div`
+  imgSelectBox: styled.label`
     position: absolute;
     top: 0;
     left: 0;

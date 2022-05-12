@@ -1,3 +1,4 @@
+import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
 
 interface SizeProps {
@@ -64,6 +65,13 @@ export const Styled = {
     height: 22px;
     object-fit: cover;
     border-radius: 50%;
+  `,
+  creditText: styled(Typography)`
+    padding: 0 1rem;
+    border-left: 1px solid #d1d1d1;
+  `,
+  content: styled(Typography)`
+    line-height: 1.4rem;
   `,
 };
 

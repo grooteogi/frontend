@@ -3,25 +3,9 @@ import Typography from '@components/common/Typography';
 import React, { useCallback, useState } from 'react';
 import Styled from './CreateSchedule.style';
 import Dropdown from '@components/common/Dropdown';
-import moment from 'moment';
-import Button from '@components/common/Button';
+import { dateFormater } from '@lib/common';
+import { ScheduleEntity } from 'types/entity';
 
-type DateType = Date | string | number;
-const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
-const dateFormater = (format: string, date: DateType = Date.now()): string => {
-  const mo = moment(date);
-  const day: string = WEEKDAY[mo.day()];
-  return mo.format(format.replace('w', day));
-};
-
-export type Item = {
-  id: string | number;
-  date: string;
-  startTime: string;
-  endTime: string;
-  region: string;
-  place: string;
-};
 const regionList = [
   '강서구',
   '구로구',
@@ -51,12 +35,11 @@ const regionList = [
 ];
 const payMethodList = ['만나서 선택', '더치페이', '사줄게요', '사주세요'];
 
-export interface SelectScheduleProps {
-  itemList?: Item[];
-  payMethod?: string;
+export interface CreateScheduleProps {
+  schedules?: ScheduleEntity[];
 }
 
-const ScheduleItems: React.FC<Pick<SelectScheduleProps, 'itemList'>> = ({ itemList }) => {
+const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   const [scrollHeight, setScrollHeight] = useState<number>(64);
   const callbackRef = useCallback(node => {
     if (node !== null) {
@@ -64,11 +47,10 @@ const ScheduleItems: React.FC<Pick<SelectScheduleProps, 'itemList'>> = ({ itemLi
       console.log(scrollHeight);
     }
   }, []);
-
   return (
     <Styled.scroll standardHeight={scrollHeight * 3}>
-      {itemList?.map(({ id, date, startTime, endTime, region, place }: Item) => (
-        <Styled.itemBox ref={callbackRef} key={id}>
+      {schedules?.map(({ scheduleId, date, startTime, endTime, region, place }: ScheduleEntity) => (
+        <Styled.itemBox ref={callbackRef} key={scheduleId}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
               {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', date + ' ' + startTime)}~
@@ -90,9 +72,17 @@ const ScheduleItems: React.FC<Pick<SelectScheduleProps, 'itemList'>> = ({ itemLi
   );
 };
 
-const CreateSchedule: React.FC<SelectScheduleProps> = ({ payMethod = payMethodList[0], ...itemList }) => {
+const CreateSchedule: React.FC = () => {
+  const [schedule, setSchedule] = useState([]);
+  const today = dateFormater('YYYY-MM-DDThh:mm', new Date());
   const addSchedule = () => {
     alert('추가하기');
+  };
+  const onSTChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    alert(`start Time : ${e.target.value}`);
+  };
+  const onETChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    alert(`end Time : ${e.target.value}`);
   };
   return (
     <Styled.container>
@@ -105,10 +95,10 @@ const CreateSchedule: React.FC<SelectScheduleProps> = ({ payMethod = payMethodLi
         <Typography size={'md'} color={'black'} weight={'BOLD'}>
           결제 방식
         </Typography>
-        <Dropdown defaultString={payMethod} list={payMethodList} />
+        <Dropdown defaultString={payMethodList[0]} list={payMethodList} />
       </Styled.row>
       <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <ScheduleItems itemList={itemList.itemList} />
+        <ScheduleItems schedules={schedule} />
       </Wrapper>
       <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
         <Typography size={'md'} color={'black'} weight={'BOLD'}>
@@ -131,13 +121,13 @@ const CreateSchedule: React.FC<SelectScheduleProps> = ({ payMethod = payMethodLi
             <Typography size={'sm'} color={'black'}>
               약속 시작
             </Typography>
-            <Styled.input type={'datetime-local'} />
+            <Styled.input type={'datetime-local'} value={today} onChange={e => onSTChangeHandler(e)} />
           </Styled.row>
           <Styled.row>
             <Typography size={'sm'} color={'black'}>
               약속 종료
             </Typography>
-            <Styled.input type={'datetime-local'} />
+            <Styled.input type={'datetime-local'} value={today} onChange={e => onETChangeHandler(e)} />
           </Styled.row>
           <Styled.row>
             <Styled.submitBtn

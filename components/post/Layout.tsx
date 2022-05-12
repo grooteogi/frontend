@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from '@emotion/styled';
 import Header from '@components/common/Header';
 
@@ -7,6 +6,9 @@ interface LayoutProps {
 }
 
 const Styled = {
+  container: styled.article`
+    background-color: white;
+  `,
   content: styled.main`
     margin: 25px auto 0;
     padding: 0 5% 10% 5%;
@@ -26,10 +28,10 @@ const Styled = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
+    <Styled.container>
       <Header device={'md'}></Header>
       <Styled.content>{children}</Styled.content>
-    </>
+    </Styled.container>
   );
 };
 

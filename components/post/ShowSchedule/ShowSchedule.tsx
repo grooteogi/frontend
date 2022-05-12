@@ -2,30 +2,11 @@ import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
 import React, { useCallback, useState } from 'react';
 import Styled from './ShowSchedule.style';
-import moment from 'moment';
+import { dateFormater } from '@lib/common';
+import { ScheduleEntity } from 'types/entity';
+import { ScheduleType } from '../detail.mock';
 
-type DateType = Date | string | number;
-const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
-const dateFormater = (format: string, date: DateType = Date.now()): string => {
-  const mo = moment(date);
-  const day: string = WEEKDAY[mo.day()];
-  return mo.format(format.replace('w', day));
-};
-
-export type Item = {
-  id: string | number;
-  startTime: string;
-  endTime: string;
-  location: string;
-  place: string;
-};
-
-export interface ShowScheduleProps {
-  payMethod?: string;
-  itemList?: Item[];
-}
-
-const ScheduleItems: React.FC<ShowScheduleProps> = ({ itemList }) => {
+const ScheduleItems: React.FC<ScheduleType> = ({ schedules }) => {
   const [scrollHeight, setScrollHeight] = useState<number>(64);
   const callbackRef = useCallback(node => {
     if (node !== null) {
@@ -36,15 +17,15 @@ const ScheduleItems: React.FC<ShowScheduleProps> = ({ itemList }) => {
 
   return (
     <Styled.scroll standardHeight={scrollHeight * 3}>
-      {itemList?.map(({ id, startTime, endTime, location, place }: Item) => (
-        <Styled.itemBox ref={callbackRef} key={id}>
+      {schedules?.map(({ scheduleId, date, startTime, endTime, region, place }: ScheduleEntity) => (
+        <Styled.itemBox ref={callbackRef} key={scheduleId}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
-              {dateFormater('MM월 DD일 (w)', startTime)} {dateFormater('HH:mm', startTime)}~
-              {dateFormater('HH:mm', endTime)}
+              {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', date + ` ` + startTime)}~
+              {dateFormater('HH:mm', date + ' ' + endTime)}
             </Typography>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
-              {location}
+              {region}
             </Typography>
           </Wrapper>
           <Wrapper flexDirection={'column'}>
@@ -59,24 +40,19 @@ const ScheduleItems: React.FC<ShowScheduleProps> = ({ itemList }) => {
   );
 };
 
-const MeetingSchedule: React.FC<ShowScheduleProps> = ({ payMethod = '만나서 결제', ...itemList }) => {
+const ShowSchedule: React.FC<ScheduleType> = ({ schedules }) => {
   return (
     <Styled.container>
       <Wrapper flexDirection={'row'} margin={{ margin: '0 0 20px 0' }}>
-        <Styled.title weight="BOLD" size={'md'} color={'black'}>
+        <Styled.title weight={'BOLD'} size={'md'} color={'black'}>
           약속 일정
         </Styled.title>
       </Wrapper>
       <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <ScheduleItems {...itemList} />
+        <ScheduleItems schedules={schedules} />
       </Wrapper>
-      <Styled.bottom>
-        <Typography size={'md'} color={'black'} weight={'BOLD'}>
-          {payMethod}
-        </Typography>
-      </Styled.bottom>
     </Styled.container>
   );
 };
 
-export default MeetingSchedule;
+export default ShowSchedule;
