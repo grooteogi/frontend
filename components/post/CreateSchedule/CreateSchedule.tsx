@@ -95,7 +95,7 @@ const CreateSchedule: React.FC = () => {
         <Typography size={'md'} color={'black'} weight={'BOLD'}>
           결제 방식
         </Typography>
-        <Dropdown defaultString={payMethodList[0]} list={payMethodList} />
+        <Dropdown defaultString={payMethodList[0]} list={payMethodList} zIndex={3} />
       </Styled.row>
       <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
         <ScheduleItems schedules={schedule} />
@@ -109,7 +109,7 @@ const CreateSchedule: React.FC = () => {
             <Typography size={'sm'} color={'black'}>
               약속 지역
             </Typography>
-            <Dropdown defaultString={regionList[0]} list={regionList} />
+            <Dropdown defaultString={regionList[0]} list={regionList} zIndex={2} />
           </Styled.row>
           <Styled.row>
             <Typography size={'sm'} color={'black'}>

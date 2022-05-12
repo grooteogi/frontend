@@ -4,17 +4,19 @@ import { StyledSelectbox, StyledSelectedLabel, StyledOptionList, StyledOptionIte
 interface DropdownProps {
   defaultString?: string;
   list: string[];
+  zIndex?: number;
+  active?: boolean;
 }
 
-const Dropdown = ({ defaultString = '지역구', list }: DropdownProps) => {
-  const [acitve, setActive] = useState(false);
+function Dropdown({ defaultString = '지역구', list, active = false, zIndex }: DropdownProps) {
+  const [acitve, setActive] = useState(active);
   const [selected, setSelected] = useState(defaultString);
   return (
     <StyledSelectbox>
       <StyledSelectedLabel value={selected} onClick={() => setActive(!acitve)}>
         {selected}
       </StyledSelectedLabel>
-      <StyledOptionList active={acitve}>
+      <StyledOptionList active={acitve} zIndex={zIndex}>
         {list.length === 0 ? (
           <StyledOptionItem onClick={() => setActive(false)}>-</StyledOptionItem>
         ) : (
@@ -35,6 +37,6 @@ const Dropdown = ({ defaultString = '지역구', list }: DropdownProps) => {
       </StyledOptionList>
     </StyledSelectbox>
   );
-};
+}
 
 export default Dropdown;
