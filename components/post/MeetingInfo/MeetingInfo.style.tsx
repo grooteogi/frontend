@@ -65,6 +65,7 @@ export const Styled = {
     height: 22px;
     object-fit: cover;
     border-radius: 50%;
+    background-color: gray;
   `,
   creditText: styled(Typography)`
     padding: 0 1rem;
