@@ -1,3 +1,5 @@
+import Button from '@components/common/Button';
+import Typography from '@components/common/Typography';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { darken } from 'polished';
@@ -16,33 +18,40 @@ export const Styled = {
   container: styled.div`
     @media (min-width: 1060px) {
       width: 325px;
+      padding: 2rem 1rem 1rem 1rem;
     }
-    @media (min-width: 768px) and (max-width: 1059px) {
+    @media (max-width: 1059px) {
       width: 100%;
-    }
-    @media (max-width: 767px) {
-      width: 100%;
+      padding: 2rem;
     }
     border: 1px solid lightgrey;
     border-radius: 12px;
-    padding: 2rem;
     background: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-self: start;
+  `,
+  title: styled(Typography)`
+    font-size: 1.2rem;
+    font-weight: 600;
+  `,
+  input: styled.input`
+    border: 1px solid #bfbfbf;
+    border-width: 0 0 1px 0;
+    color: #878787;
+    width: 100%;
+    padding: 0.3rem;
+    font-size: 0.7rem;
+    height: 30px;
+    width: 60%;
+  `,
+  submitBtn: styled(Button)`
+    height: 30px;
   `,
   hr: styled.hr`
     color: lightgray;
     width: 100%;
-  `,
-  likedBtn: styled.button`
-    width: 30px;
-    height: 30px;
-    border: darkgray;
-    padding: 3px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   `,
   scroll: styled.div`
     ${getStandardHeight};
@@ -75,15 +84,19 @@ export const Styled = {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
   `,
-  bottom: styled.div`
+  innerContainer: styled.div`
+    width: 100%;
+    margin-top: 20px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 12px;
+    background: white;
     display: flex;
-    flex-direction: row;
-    margin-right: 6px;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: start;
+    gap: 10px;
   `,
 };
 

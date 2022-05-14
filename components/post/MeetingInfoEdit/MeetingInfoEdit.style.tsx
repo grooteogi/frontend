@@ -20,17 +20,8 @@ export const Styled = {
     display: flex;
     flex-direction: column;
     padding: 0;
-    gap: 1rem;
+    row-gap: 50px;
     padding-bottom: 50px;
-  `,
-  thumbnailWrappper: styled.div`
-    width: 100%;
-    background-color: white;
-  `,
-  thumbnail: styled.div`
-    position: relative;
-    padding-top: 100%;
-    overflow: hidden;
   `,
   likedBtn: styled.button`
     width: 30px;
@@ -40,6 +31,28 @@ export const Styled = {
     display: flex;
     flex-direction: column;
     align-items: center;
+  `,
+  thumbnailWrappper: styled.div`
+    width: 100%;
+    background-color: lightgray;
+  `,
+  thumbnail: styled.div`
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+  `,
+  imgSelectBox: styled.label`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
   `,
   postPicWrapper: styled.div`
     position: absolute;
@@ -65,11 +78,6 @@ export const Styled = {
     height: 22px;
     object-fit: cover;
     border-radius: 50%;
-    background-color: gray;
-  `,
-  creditText: styled(Typography)`
-    padding: 0 1rem;
-    border-left: 1px solid #d1d1d1;
   `,
   content: styled(Typography)`
     line-height: 1.4rem;

@@ -10,8 +10,11 @@ export const StyledOptionItem = styled.li`
   }
 `;
 
-const activeExist = ({ active = true }) => {
-  return `max-height: ${active ? '300px' : '0'}`;
+const getOptionListStyle = ({ active = true, zIndex = 1 }) => {
+  return `
+    max-height: ${active ? '300px' : '0'};
+    z-index: ${zIndex};
+  `;
 };
 
 export const StyledOptionList = styled.ul`
@@ -23,7 +26,7 @@ export const StyledOptionList = styled.ul`
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 2px 2px 6px ${darken(0.3, '#ffffff')};
-  ${activeExist};
+  ${getOptionListStyle};
   transition: 0.2s ease-in-out;
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -62,5 +65,4 @@ export const StyledSelectbox = styled.div`
   width: 8rem;
   border-radius: 8px;
   cursor: pointer;
-  z-index: 1;
 `;
