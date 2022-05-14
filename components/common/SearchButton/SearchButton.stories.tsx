@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
+import { useState } from 'react';
 import SearchButton from './index';
 
 export default {
@@ -13,10 +14,41 @@ const Template: ComponentStory<typeof SearchButton> = args => (
     <SearchButton {...args} />
   </GlobalThemeProvider>
 );
-export const Default = (args: ComponentStory<typeof SearchButton>) => {
+export const Clicked = (args: ComponentStory<typeof SearchButton>) => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template fetchedTag={{ id: 1, hashtagType: 'CONCERN', tag: '#sample', registered: '' }} {...args} />
+      <Template
+        fetchedTag={{
+          id: 0,
+          hashtagType: 'PERSONALITY',
+          tag: 'sample tag',
+          registered: '',
+          count: 1,
+        }}
+        clicked={true}
+        setClickedButtonId={function doNothing() {
+          return;
+        }}
+      />
+    </GlobalThemeProvider>
+  );
+};
+export const NotClicked = (args: ComponentStory<typeof SearchButton>) => {
+  return (
+    <GlobalThemeProvider theme={theme}>
+      <Template
+        fetchedTag={{
+          id: 0,
+          hashtagType: 'PERSONALITY',
+          tag: 'sample tag',
+          registered: '',
+          count: 1,
+        }}
+        clicked={false}
+        setClickedButtonId={function doNothing() {
+          return;
+        }}
+      />
     </GlobalThemeProvider>
   );
 };

@@ -18,13 +18,7 @@ const tagsForCards: fetchedHashtag[] = [
 ];
 
 const SearchPage = () => {
-  const [selectedTags, setSelectedTags] = useState<fetchedHashtag[]>([]);
-
-  const onHashtagClick = (hashtag: fetchedHashtag, clicked: boolean) => {
-    clicked
-      ? setSelectedTags(selectedTags.filter(tag => tag.id !== hashtag.id))
-      : setSelectedTags([...selectedTags, hashtag]);
-  };
+  const [clickedButtonId, setClickedButtonId] = useState<number>(-1);
 
   const imgLists = [
     {
@@ -54,8 +48,12 @@ const SearchPage = () => {
     <Content>
       <Wrapper flexDirection={'column'} alignItems={'center'} gap={{ gap: 50 }}>
         <Carousel imgLists={imgLists} />
-        <SearchBar hashtags={selectedTags} />
-        <SearchMenu data={tempButtons as fetchedHashtag[]} onClick={onHashtagClick} />
+        <SearchBar />
+        <SearchMenu
+          data={tempButtons as fetchedHashtag[]}
+          clickedButtonId={clickedButtonId}
+          setClickedButtonId={setClickedButtonId}
+        />
       </Wrapper>
       <Wrapper
         flexDirection={'row'}
