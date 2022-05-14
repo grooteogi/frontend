@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import Styled from './ScheduleShow.style';
 import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
-import { ScheduleType } from '../detail.mock';
+import { ScheduleType } from 'types/postDetail';
 
 const ScheduleItems: React.FC<ScheduleType> = ({ schedules }) => {
   const [scrollHeight, setScrollHeight] = useState<number>(64);

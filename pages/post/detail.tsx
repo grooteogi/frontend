@@ -3,10 +3,10 @@ import type { NextPage } from 'next';
 import ReviewList from '@components/post/ReviewList';
 import ShowSchedule from '@components/post/ScheduleShow';
 import Layout from '@components/post/Layout';
-import post, { MeetingInfoType, ReviewType, ScheduleType } from '@components/post/detail.mock';
 import MeetingInfo from '@components/post/MeetingInfo';
+import { MeetingInfoType, ReviewType, ScheduleType } from 'types/postDetail';
 
-const Post: NextPage = () => {
+const Post: NextPage = ({ post }: any) => {
   const { ...meetingInfo }: MeetingInfoType = post;
   const { schedules }: ScheduleType = post;
   const { reviews }: ReviewType = post;

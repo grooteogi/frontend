@@ -1,5 +1,4 @@
 import Typography from '@components/common/Typography';
-import Wrapper from '@components/common/Wrapper';
 import styled from '@emotion/styled';
 
 export const Styled = {

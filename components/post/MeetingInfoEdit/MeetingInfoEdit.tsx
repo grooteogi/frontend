@@ -5,7 +5,7 @@ import Textarea from '@components/common/Textarea';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { MeetingInfoType } from '../detail.mock';
+import { MeetingInfoType } from 'types/postDetail';
 import Styled from './MeetingInfoEdit.style';
 
 export type MeetingInfoEditProps = Partial<Pick<MeetingInfoType, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;

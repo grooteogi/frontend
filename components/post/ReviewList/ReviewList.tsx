@@ -3,7 +3,7 @@ import Typography from '../../common/Typography';
 import React from 'react';
 import Styled from './ReviewList.style';
 import { ReviewEntity } from 'types/entity';
-import { ReviewType } from '../detail.mock';
+import { ReviewType } from 'types/postDetail';
 
 const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
   if (reviews.length > 0) {

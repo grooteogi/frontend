@@ -1,13 +1,5 @@
 import { CreditType, PostEntity } from 'types/entity';
 
-export type MeetingInfoType = Pick<
-  PostEntity,
-  'postId' | 'title' | 'content' | 'imageUrl' | 'createAt' | 'hashtags' | 'likes' | 'mentor' | 'creditType'
->;
-export type ScheduleType = Pick<PostEntity, 'schedules'>;
-export type ReviewType = Pick<PostEntity, 'reviews'>;
-export type DetailPostType = MeetingInfoType & ScheduleType & ReviewType;
-
 const postInfo: PostEntity = {
   postId: 1,
   title: '포스트의 타이틀은 이렇게 들어오겠죠?',

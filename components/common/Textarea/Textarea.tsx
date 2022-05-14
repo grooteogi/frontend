@@ -9,11 +9,10 @@ interface TextareaProps {
   borderColor?: string;
   value?: string;
   placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Textarea: React.FC<TextareaProps> = ({ value, placeholder, onChange, rows = 5 }) => {
-  return <Styled.textarea defaultValue={value} placeholder={placeholder} rows={rows} onChange={onChange} />;
+const Textarea: React.FC<TextareaProps> = ({ value, placeholder, rows = 5 }) => {
+  return <Styled.textarea defaultValue={value} placeholder={placeholder} rows={rows} />;
 };
 
 export default Textarea;
