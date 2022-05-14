@@ -72,9 +72,6 @@ export const Styled = {
     padding: 0 1rem;
     border-left: 1px solid #d1d1d1;
   `,
-  content: styled(Typography)`
-    line-height: 1.4rem;
-  `,
 };
 
 export default Styled;

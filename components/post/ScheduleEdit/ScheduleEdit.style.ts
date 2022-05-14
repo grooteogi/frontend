@@ -77,7 +77,7 @@ export const Styled = {
   itemBox: styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
   `,
   row: styled.div`
     display: flex;

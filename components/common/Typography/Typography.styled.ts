@@ -42,4 +42,5 @@ export const StyledTypo = styled.p`
   ${getSize};
   ${getColor};
   ${getOption};
+  line-height: 1.4rem;
 `;

@@ -57,9 +57,9 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
           </Styled.thumbnailWrappper>
         </Wrapper>
         <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
-          <Styled.content size={'md'} color={'black'} weight={'BOLD'}>
+          <Typography size={'md'} color={'black'} weight={'BOLD'}>
             내 약속을 자세히 설명해봐요
-          </Styled.content>
+          </Typography>
           <Textarea value={content} rows={8} />
         </Wrapper>
       </Wrapper>

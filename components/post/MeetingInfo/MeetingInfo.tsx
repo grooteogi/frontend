@@ -55,9 +55,9 @@ const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hasht
           <Hashtag key={fetched.id} fetchedTag={fetched} />
         ))}
       </Wrapper>
-      <Styled.content size={'md'} color={'darkgray'}>
+      <Typography size={'md'} color={'darkgray'}>
         {content}
-      </Styled.content>
+      </Typography>
     </Styled.container>
   );
 };

@@ -80,9 +80,6 @@ export const Styled = {
     object-fit: cover;
     border-radius: 50%;
   `,
-  content: styled(Typography)`
-    line-height: 1.4rem;
-  `,
 };
 
 export default Styled;
