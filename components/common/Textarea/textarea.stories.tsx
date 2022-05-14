@@ -20,3 +20,14 @@ DefaultTextarea.args = {
   placeholder: '값을 입력하세요.',
   rows: 10,
 };
+
+export const StyleChangedTextarea = Template.bind({});
+StyleChangedTextarea.args = {
+  value: 'style을 바꾼 textarea입니다.',
+  placeholder: '값을 입력하세요.',
+  rows: 10,
+  width: '60%',
+  height: '300px',
+  borderColor: 'red',
+  fontColor: 'blue',
+};
