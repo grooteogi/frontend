@@ -24,6 +24,6 @@
       "@containers/*": ["./containers/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/asset/heart.tss"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/asset/*"],
   "exclude": ["node_modules"]
 }
