@@ -25,7 +25,7 @@ const Checkbox = ({
   onClick,
   checked,
   defaultChecked = false,
-}: CheckBoxProps) => {
+}: React.InputHTMLAttributes<HTMLInputElement> & CheckBoxProps) => {
   const box = { width, height, paddingLeft };
   return (
     <StyledCheckbox {...box}>
