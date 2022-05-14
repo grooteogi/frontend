@@ -3,4 +3,5 @@ export type fetchedHashtag = {
   hashtagType: 'PERSONALITY' | 'CONCERN';
   tag: string;
   registered: string;
+  count?: number;
 };

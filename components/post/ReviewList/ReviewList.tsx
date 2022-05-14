@@ -2,44 +2,34 @@ import Wrapper from '../../common/Wrapper';
 import Typography from '../../common/Typography';
 import React from 'react';
 import Styled from './ReviewList.style';
+import { ReviewEntity } from 'types/entity';
+import { ReviewType } from 'types/postDetail';
 
-export type Item = {
-  id: string | number;
-  userProfilePicSrc: string;
-  username: string;
-  time: string;
-  text: string;
-};
-
-export interface ReviewListProps {
-  reviewList: Item[];
-}
-
-const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
-  if (reviewList.length > 0) {
+const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
+  if (reviews.length > 0) {
     return (
-      <>
-        {reviewList.map(({ id, userProfilePicSrc, username, time, text }: Item) => (
-          <Wrapper key={id} flexDirection={'column'} padding={{ paddingTop: '26px' }}>
+      <Styled.itemBox>
+        {reviews.map(({ reviewId, imageUrl, nickname, createAt, text }: ReviewEntity) => (
+          <Wrapper key={reviewId} flexDirection={'column'}>
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
-              <Styled.profileImg src={userProfilePicSrc} />
-              <Wrapper flexDirection={'column'} justifyContent={'space-around'}>
+              <Styled.profileImg src={imageUrl} />
+              <Styled.userTimeBox>
                 <Typography size={'sm'} color={'black'} weight={'BOLD'}>
-                  {username}
+                  {nickname}
                 </Typography>
                 <Typography size={'xs'} color={'black'}>
-                  {time}
+                  {createAt}
                 </Typography>
-              </Wrapper>
+              </Styled.userTimeBox>
             </Wrapper>
             <Wrapper flexDirection={'column'} margin={{ marginTop: '14px' }}>
-              <Typography size={'md'} color={'black'}>
+              <Styled.text size={'md'} color={'black'}>
                 {text}
-              </Typography>
+              </Styled.text>
             </Wrapper>
           </Wrapper>
         ))}
-      </>
+      </Styled.itemBox>
     );
   } else {
     return (
@@ -52,14 +42,14 @@ const ReviewItems: React.FC<ReviewListProps> = ({ reviewList }) => {
   }
 };
 
-const ReviewList: React.FC<ReviewListProps> = ({ ...reviewList }) => {
+const ReviewList: React.FC<ReviewType> = ({ reviews }) => {
   return (
     <Styled.container>
-      <Typography weight="BOLD" size={'lg'} color={'black'}>
-        밥약 리뷰
-      </Typography>
+      <Styled.title weight="BOLD" size={'md'} color={'black'}>
+        약속 리뷰
+      </Styled.title>
       <Styled.hr />
-      <ReviewItems {...reviewList} />
+      <ReviewItems reviews={reviews} />
     </Styled.container>
   );
 };

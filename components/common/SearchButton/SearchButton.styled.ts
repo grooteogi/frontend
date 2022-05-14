@@ -21,7 +21,7 @@ export const Styled = {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    border-radius: 16px;
+    border-radius: 8px;
     &:hover {
       background: ${darken(0.01, `${hashtagTheme.color.white}`)};
       cursor: pointer;
