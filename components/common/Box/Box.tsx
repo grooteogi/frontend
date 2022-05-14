@@ -5,7 +5,7 @@ interface BoxProps extends ContainerProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const Box: React.FC<BoxProps> = ({ children, ...props }) => {
+const Box: React.FC<React.HTMLAttributes<HTMLDivElement> & BoxProps> = ({ children, ...props }) => {
   return <Styled.container {...props}>{children}</Styled.container>;
 };
 

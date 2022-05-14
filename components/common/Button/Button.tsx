@@ -9,7 +9,7 @@ interface ButtonProps extends SButtonProps {
   name?: string;
 }
 
-const Button = ({ name, icon, alt, ...props }: ButtonProps) => {
+const Button = ({ name, icon, alt, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps) => {
   return icon ? (
     <StyledButton {...props}>
       <Image src={icon} alt={alt} width="20px" height="20px" quality="100" />
