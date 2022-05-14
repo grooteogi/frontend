@@ -42,9 +42,8 @@ export const Styled = {
     color: #878787;
     width: 100%;
     padding: 0.3rem;
-    font-size: 0.875rem;
+    font-size: 0.7rem;
     height: 30px;
-    text-align: right;
     width: 60%;
   `,
   submitBtn: styled(Button)`

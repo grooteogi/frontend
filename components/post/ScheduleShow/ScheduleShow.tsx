@@ -1,7 +1,7 @@
 import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
 import React, { useCallback, useState } from 'react';
-import Styled from './ShowSchedule.style';
+import Styled from './ScheduleShow.style';
 import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
 import { ScheduleType } from '../detail.mock';

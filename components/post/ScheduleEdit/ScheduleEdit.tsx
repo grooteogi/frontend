@@ -1,7 +1,7 @@
 import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
 import React, { useCallback, useState } from 'react';
-import Styled from './CreateSchedule.style';
+import Styled from './ScheduleEdit.style';
 import Dropdown from '@components/common/Dropdown';
 import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
@@ -72,7 +72,7 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   );
 };
 
-const CreateSchedule: React.FC = () => {
+const ScheduleEdit: React.FC = () => {
   const [schedule, setSchedule] = useState([]);
   const today = dateFormater('YYYY-MM-DDThh:mm', new Date());
   const addSchedule = () => {
@@ -144,4 +144,4 @@ const CreateSchedule: React.FC = () => {
   );
 };
 
-export default CreateSchedule;
+export default ScheduleEdit;

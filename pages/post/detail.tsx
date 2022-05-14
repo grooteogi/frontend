@@ -1,7 +1,7 @@
 import { withRouter } from 'next/router';
 import type { NextPage } from 'next';
 import ReviewList from '@components/post/ReviewList';
-import ShowSchedule from '@components/post/ShowSchedule';
+import ShowSchedule from '@components/post/ScheduleShow';
 import Layout from '@components/post/Layout';
 import post, { MeetingInfoType, ReviewType, ScheduleType } from '@components/post/detail.mock';
 import MeetingInfo from '@components/post/MeetingInfo';

@@ -1,17 +1,17 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import CreateSchedule from './index';
+import ScheduleEdit from './index';
 
 export default {
-  title: 'Components/CreateSchedule',
-  component: CreateSchedule,
-} as ComponentMeta<typeof CreateSchedule>;
+  title: 'Components/ScheduleEdit',
+  component: ScheduleEdit,
+} as ComponentMeta<typeof ScheduleEdit>;
 
-export const CreatePost = (args: ComponentStory<typeof CreateSchedule>) => {
+export const CreatePost = (args: ComponentStory<typeof ScheduleEdit>) => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <CreateSchedule />
+      <ScheduleEdit />
     </GlobalThemeProvider>
   );
 };
