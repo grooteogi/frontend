@@ -1,24 +1,15 @@
 import React from 'react';
-import Styled from './Input.styled';
+import Styled, { SInputProps } from './Input.styled';
 
-interface TextareaProps {
-  rows?: number;
-
-  width?: number;
-  height?: number;
-  fontColor?: string;
-  borderColor?: string;
-}
-
-interface InputProps extends TextareaProps {
-  type?: 'text' | 'textarea' | 'password';
+interface InputProps extends SInputProps {
   value?: string;
   placeholder?: string;
+  type?: 'text' | 'password';
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ type = 'text', value, placeholder, onChange, rows = 5 }) => {
-  return <Styled.input type={type} defaultValue={value} placeholder={placeholder} onChange={onChange} />;
+const Input: React.FC<InputProps> = ({ type = 'text', value, placeholder, onChange, ...style }) => {
+  return <Styled.input type={type} defaultValue={value} placeholder={placeholder} onChange={onChange} {...style} />;
 };
 
 export default Input;

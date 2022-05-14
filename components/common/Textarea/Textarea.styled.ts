@@ -1,4 +1,21 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+
+export interface STextareaProps {
+  width?: string;
+  height?: string;
+  fontColor?: string;
+  borderColor?: string;
+}
+
+const getStyle = ({ ...props }: STextareaProps) => {
+  return css`
+    width: ${props.width};
+    height: ${props.height};
+    color: ${props.fontColor};
+    border-color: ${props.borderColor};
+  `;
+};
 
 const Styled = {
   textarea: styled.textarea`
@@ -17,6 +34,7 @@ const Styled = {
     &::-webkit-scrollbar {
       display: none;
     }
+    ${getStyle}
   `,
 };
 

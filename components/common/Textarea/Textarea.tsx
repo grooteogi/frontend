@@ -1,18 +1,14 @@
 import React from 'react';
-import Styled from './Textarea.styled';
+import Styled, { STextareaProps } from './Textarea.styled';
 
-interface TextareaProps {
-  rows?: number;
-  width?: number;
-  height?: number;
-  fontColor?: string;
-  borderColor?: string;
+interface TextareaProps extends STextareaProps {
   value?: string;
   placeholder?: string;
+  rows?: number;
 }
 
-const Textarea: React.FC<TextareaProps> = ({ value, placeholder, rows = 5 }) => {
-  return <Styled.textarea defaultValue={value} placeholder={placeholder} rows={rows} />;
+const Textarea: React.FC<TextareaProps> = ({ value, placeholder, rows = 5, ...styles }) => {
+  return <Styled.textarea defaultValue={value} placeholder={placeholder} rows={rows} {...styles} />;
 };
 
 export default Textarea;
