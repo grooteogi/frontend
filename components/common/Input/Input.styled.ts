@@ -25,7 +25,7 @@ const Styled = {
     border-radius: 8px;
     padding: 0.3rem 1rem 0.3rem 1rem;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 14px;
     height: 40px;
     ${getStyle}
   `,
