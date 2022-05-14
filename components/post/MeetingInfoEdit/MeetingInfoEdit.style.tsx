@@ -35,6 +35,7 @@ export const Styled = {
   thumbnailWrappper: styled.div`
     width: 100%;
     background-color: lightgray;
+    border-radius: 8px;
   `,
   thumbnail: styled.div`
     position: relative;
