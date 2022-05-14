@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 export interface SInputProps {
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
   fontColor?: string;
   borderColor?: string;
 }

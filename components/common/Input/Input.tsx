@@ -8,7 +8,13 @@ interface InputProps extends SInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ type = 'text', value, placeholder, onChange, ...style }) => {
+const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement> & InputProps> = ({
+  type = 'text',
+  value,
+  placeholder,
+  onChange,
+  ...style
+}) => {
   return <Styled.input type={type} defaultValue={value} placeholder={placeholder} onChange={onChange} {...style} />;
 };
 

@@ -7,7 +7,12 @@ interface TextareaProps extends STextareaProps {
   rows?: number;
 }
 
-const Textarea: React.FC<TextareaProps> = ({ value, placeholder, rows = 5, ...styles }) => {
+const Textarea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement> & TextareaProps> = ({
+  value,
+  placeholder,
+  rows = 5,
+  ...styles
+}) => {
   return <Styled.textarea defaultValue={value} placeholder={placeholder} rows={rows} {...styles} />;
 };
 
