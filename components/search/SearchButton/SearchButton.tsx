@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ButtonProps, Styled } from './SearchButton.styled';
 import Typography from '@components/common/Typography';
 import { fetchedHashtag } from 'types/fetchedData';

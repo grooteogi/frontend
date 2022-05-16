@@ -72,16 +72,16 @@ const SearchPage = () => {
       <Wrapper flexDirection={'column'} alignItems={'center'} gap={{ gap: 50 }}>
         <Carousel imgLists={imgLists} />
         <SearchBar onSearchClick={searchPost} placeholder={'검색어를 입력해주세요'} />
-        <SearchMenu state={SearchQuery} onClick={onHashtagChange} data={tempButtons as fetchedHashtag[]} />
+        <SearchMenu state={SearchQuery.tag} onClick={onHashtagChange} data={tempButtons as fetchedHashtag[]} />
       </Wrapper>
       <Wrapper
         flexDirection={'row'}
         justifyContent={'space-between'}
         padding={{ paddingTop: '50px', paddingBottom: '35px' }}
       >
-        <SortingTab state={SearchQuery} onClick={onSortChange} itemList={['최신순', '인기순', '조회순']} />
+        <SortingTab state={SearchQuery.sort} onClick={onSortChange} itemList={['최신순', '인기순', '조회순']} />
         <Dropdown
-          state={SearchQuery}
+          state={SearchQuery.region}
           onClick={onRegionChange}
           list={['강서구', '구로구', '금천구', '관악구', '동작구', '영등포구', '양천구', ' 마포구', '서대문구']}
         />

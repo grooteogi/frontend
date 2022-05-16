@@ -39,7 +39,7 @@ const SearchMenu: React.FC<SearchMenuProps> = ({ data, state, onClick }) => {
     <Styled.container>
       <Styled.horizontalScroll ref={hScroll} onScroll={onHScroll}>
         {data.map(hash => {
-          return <SearchButton fetchedTag={hash} onClick={onClick} clicked={state.tag === hash.tag} key={hash.id} />;
+          return <SearchButton fetchedTag={hash} onClick={onClick} clicked={state === hash.tag} key={hash.id} />;
         })}
       </Styled.horizontalScroll>
       {slideLeft > 0 ? <LeftArrow onClick={moveLeft} hideButton={hideButtonLeft} /> : <></>}
