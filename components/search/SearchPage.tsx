@@ -10,7 +10,7 @@ import Wrapper from '@components/common/Wrapper';
 import { fetchedHashtag, fetchedPostCard } from 'types/fetchedData';
 import tempButtons from '@components/search/SearchMenu/data.json';
 import { useQuery } from 'react-query';
-import { useQueryDispatch, useQueryState } from '@components/search/context';
+import { useSearch } from '@components/search/context';
 import useOnScreen from '@hooks/useOnScreen';
 
 const howManyCards = Array.from(Array(20).keys());
@@ -34,8 +34,7 @@ const SearchPage = () => {
   const pageBottom = useRef<HTMLDivElement | null>(null);
   useOnScreen(pageBottom);
 
-  const SearchQuery = useQueryState();
-  const dispatch = useQueryDispatch();
+  const SearchQuery = useSearch();
 
   const fetchPosts = async () => {
     return;
@@ -47,9 +46,9 @@ const SearchPage = () => {
     console.log(wordEntered);
   };
 
-  const onHashtagChange = (tagValue: string) => dispatch({ type: 'TAG', tagValue });
-  const onSortChange = (sort: string) => dispatch({ type: 'SORT', sort });
-  const onRegionChange = (region: string) => dispatch({ type: 'REGION', region });
+  // const onHashtagChange = (tagValue: string) => dispatch({ type: 'SET_TAG', tagValue });
+  // const onSortChange = (sort: string) => dispatch({ type: 'SET_SORT', sort });
+  // const onRegionChange = (region: string) => dispatch({ type: 'SET_REGION', region });
 
   const imgLists = [
     {
@@ -72,17 +71,17 @@ const SearchPage = () => {
       <Wrapper flexDirection={'column'} alignItems={'center'} gap={{ gap: 50 }}>
         <Carousel imgLists={imgLists} />
         <SearchBar onSearchClick={searchPost} placeholder={'검색어를 입력해주세요'} />
-        <SearchMenu state={SearchQuery.tag} onClick={onHashtagChange} data={tempButtons as fetchedHashtag[]} />
+        <SearchMenu state={SearchQuery.tag} onClick={SearchQuery.SET_TAG} data={tempButtons as fetchedHashtag[]} />
       </Wrapper>
       <Wrapper
         flexDirection={'row'}
         justifyContent={'space-between'}
         padding={{ paddingTop: '50px', paddingBottom: '35px' }}
       >
-        <SortingTab state={SearchQuery.sort} onClick={onSortChange} itemList={['최신순', '인기순', '조회순']} />
+        <SortingTab state={SearchQuery.sort} onClick={SearchQuery.SET_SORT} itemList={['최신순', '인기순', '조회순']} />
         <Dropdown
           state={SearchQuery.region}
-          onClick={onRegionChange}
+          onClick={SearchQuery.SET_REGION}
           list={['강서구', '구로구', '금천구', '관악구', '동작구', '영등포구', '양천구', ' 마포구', '서대문구']}
         />
       </Wrapper>

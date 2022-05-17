@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
 
-export type SearchQuery = {
+export type SearchStateType = {
   keyword: string;
   tag: string;
   page: number;
@@ -8,49 +8,70 @@ export type SearchQuery = {
   region: string;
 };
 
-type queryState = SearchQuery;
+const SearchContext = createContext<any>(undefined);
 
-const queryStateContext = createContext<queryState | undefined>(undefined);
+type SearchAction =
+  | { type: 'SET_KEYWORD'; keyword: string }
+  | { type: 'SET_TAG'; tagValue: string }
+  | { type: 'SET_PAGE'; page: number }
+  | { type: 'SET_SORT'; sort: string }
+  | { type: 'SET_REGION'; region: string };
 
-type Action = { type: 'TAG'; tagValue: string } | { type: 'SORT'; sort: string } | { type: 'REGION'; region: string };
+// type queryDispatch = Dispatch<SearchAction>;
 
-type queryDispatch = Dispatch<Action>;
+// const queryDispatchContext = createContext<queryDispatch | undefined>(undefined);
 
-const queryDispatchContext = createContext<queryDispatch | undefined>(undefined);
-
-const queryReducer = (state: queryState, action: Action): queryState => {
+const queryReducer = (state: SearchStateType, action: SearchAction): SearchStateType => {
   switch (action.type) {
-    case 'TAG':
+    case 'SET_KEYWORD':
+      return { ...state, keyword: action.keyword };
+    case 'SET_TAG':
       return state.tag === action.tagValue ? { ...state, tag: '' } : { ...state, tag: action.tagValue };
-    case 'SORT':
+    case 'SET_PAGE':
+      return { ...state, page: action.page };
+    case 'SET_SORT':
       return { ...state, sort: action.sort };
-    case 'REGION':
+    case 'SET_REGION':
       return { ...state, region: action.region };
+    default:
+      return state;
   }
 };
 
-export const QueryContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [query, dispatch] = useReducer(queryReducer, {
+export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
+  const [searchState, dispatchSearch] = useReducer(queryReducer, {
     keyword: '',
     tag: '',
     page: 0,
     sort: '최신순',
     region: '지역구',
   });
+  const setKeyword = (keyword: string) => {
+    dispatchSearch({ type: 'SET_KEYWORD', keyword });
+  };
+  const setTag = (tagValue: string) => {
+    dispatchSearch({ type: 'SET_TAG', tagValue });
+  };
+  const setPage = (page: number) => {
+    dispatchSearch({ type: 'SET_PAGE', page });
+  };
+  const setSort = (sort: string) => {
+    dispatchSearch({ type: 'SET_SORT', sort });
+  };
+  const setRegion = (region: string) => {
+    dispatchSearch({ type: 'SET_REGION', region });
+  };
   return (
-    <queryDispatchContext.Provider value={dispatch}>
-      <queryStateContext.Provider value={query}>{children}</queryStateContext.Provider>
-    </queryDispatchContext.Provider>
+    <SearchContext.Provider
+      value={{ state: searchState, dispatch: dispatchSearch, setKeyword, setTag, setPage, setSort, setRegion }}
+    >
+      {children}
+    </SearchContext.Provider>
   );
 };
 
-export const useQueryState = () => {
-  const state = useContext(queryStateContext);
+export const useSearch = () => {
+  const state = useContext(SearchContext);
   if (!state) throw new Error('query State Provider not found');
   return state;
-};
-export const useQueryDispatch = () => {
-  const dispatch = useContext(queryDispatchContext);
-  if (!dispatch) throw new Error('query Dispatch Provider not found');
-  return dispatch;
 };

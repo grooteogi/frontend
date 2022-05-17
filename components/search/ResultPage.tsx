@@ -8,7 +8,7 @@ import Wrapper from '@components/common/Wrapper';
 import { fetchedPostCard } from 'types/fetchedData';
 import Button from '@components/common/Button';
 import { useQuery } from 'react-query';
-import { useQueryDispatch, useQueryState } from './context';
+import { queryDispatch, useSearch } from './context';
 
 const howManyCards = Array.from(Array(20).keys());
 const samplePostCard: fetchedPostCard = {
@@ -32,11 +32,11 @@ const fetchPosts = async () => {
 };
 
 const ResultPage = () => {
-  const SearchQuery = useQueryState();
-  const dispatch = useQueryDispatch();
+  const SearchQuery = useSearch();
+  const dispatch = queryDispatch();
 
-  const onSortChange = (sort: string) => dispatch({ type: 'SORT', sort });
-  const onRegionChange = (region: string) => dispatch({ type: 'REGION', region });
+  const onSortChange = (sort: string) => dispatch({ type: 'SET_SORT', sort });
+  const onRegionChange = (region: string) => dispatch({ type: 'SET_REGION', region });
 
   const [clickedButtonId, setClickedButtonId] = useState<number>(-1);
   const [clickedPostId, setClickedPostId] = useState<number>(-1);
