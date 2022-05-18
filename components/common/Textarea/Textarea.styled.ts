@@ -24,6 +24,7 @@ const Styled = {
     width: 100%;
     border-radius: 8px;
     padding: 1rem;
+    outline: none;
     font-family: inherit;
     font-size: 14px;
     box-sizing: border-box;
