@@ -13,11 +13,14 @@ const Layout = {
   `,
   SectionLeft: styled.section`
     width: 50%;
-    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    /* background-color: pink; */
   `,
   SectionRight: styled.section`
     width: 50%;
-    background-color: blue;
+    /* background-color: blue; */
   `,
 };
 
