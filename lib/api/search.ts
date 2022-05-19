@@ -1,13 +1,15 @@
 import { getData } from './restApi';
 
 const search = {
-  getAllPost: async (search: string, cursor: number) => {
-    const url = `/post?search=${search}&cursor=${cursor}`;
+  getHashtags: async () => {
+    // const url = `/hashtags`;
+    const url = `https://6285b1c296bccbf32d66c1f2.mockapi.io/hashtags`;
     const status = await getData(url);
     return status;
   },
-  getPostDetail: async (postId: number) => {
-    const url = `/post/${postId}`;
+  getPosts: async (params: any) => {
+    // const url = `/post/search/${params}`;
+    const url = `https://6285b1c296bccbf32d66c1f2.mockapi.io/post`;
     const status = await getData(url);
     return status;
   },

@@ -8,6 +8,8 @@ export type SearchStateType = {
   region: string;
 };
 
+export type PostStateType = {};
+
 const SearchContext = createContext<any>(undefined);
 
 type SearchAction =
@@ -16,10 +18,6 @@ type SearchAction =
   | { type: 'SET_PAGE'; page: number }
   | { type: 'SET_SORT'; sort: string }
   | { type: 'SET_REGION'; region: string };
-
-// type queryDispatch = Dispatch<SearchAction>;
-
-// const queryDispatchContext = createContext<queryDispatch | undefined>(undefined);
 
 const queryReducer = (state: SearchStateType, action: SearchAction): SearchStateType => {
   switch (action.type) {
@@ -71,7 +69,7 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const useSearch = () => {
-  const state = useContext(SearchContext);
-  if (!state) throw new Error('query State Provider not found');
-  return state;
+  const context = useContext(SearchContext);
+  if (!context) throw new Error('query State Provider not found');
+  return context;
 };

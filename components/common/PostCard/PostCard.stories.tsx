@@ -11,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof PostCard> = args => (
   <GlobalThemeProvider theme={theme}>
     <PostCard
-      fetchedData={{
+      postEntity={{
         id: 1,
         title: '포스트카드 타이틀',
         content: '아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말',
@@ -20,9 +20,9 @@ const Template: ComponentStory<typeof PostCard> = args => (
         createDate: '',
         modifiedDate: '',
         postHashtags: [
-          { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
-          { id: 2, hashtagType: 'CONCERN', tag: '대외활동', registered: '' },
-          { id: 3, hashtagType: 'CONCERN', tag: '포트폴리오', registered: '' },
+          { hashtagId: 1, name: '대학생활' },
+          { hashtagId: 2, name: '대외활동' },
+          { hashtagId: 3, name: '포트폴리오' },
         ],
       }}
       setClickedPostId={function (id: number): void {

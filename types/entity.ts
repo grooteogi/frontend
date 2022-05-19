@@ -34,7 +34,6 @@ export type ReviewEntity = {
 
 export type HashtagEntity = {
   id: number;
-  hashtagType: 'PERSONALITY' | 'CONCERN';
   tag: string;
   registered: string;
   count?: number;

@@ -6,24 +6,23 @@ interface DropdownProps {
   list: string[];
   zIndex?: number;
   active?: boolean;
-  state: any;
+  value: string;
   onClick: (region: string) => void;
 }
 
-function Dropdown({ defaultString = '지역구', list, active = false, zIndex, state, onClick }: DropdownProps) {
+function Dropdown({ defaultString = '지역구', list, active = false, zIndex, value, onClick }: DropdownProps) {
   const [acitve, setActive] = useState(active);
-  const [selected, setSelected] = useState(defaultString);
   return (
     <StyledSelectbox>
-      <StyledSelectedLabel value={state} onClick={() => setActive(!acitve)}>
-        {state}
+      <StyledSelectedLabel value={value} onClick={() => setActive(!acitve)}>
+        {value}
       </StyledSelectedLabel>
       <StyledOptionList active={acitve} zIndex={zIndex}>
         {list.length === 0 ? (
           <StyledOptionItem onClick={() => setActive(false)}>-</StyledOptionItem>
         ) : (
           list
-            .filter(element => element !== state)
+            .filter(element => element !== value)
             .map(element => (
               <StyledOptionItem
                 key={element}

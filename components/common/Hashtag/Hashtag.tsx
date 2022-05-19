@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Styled } from './Hashtag.styled';
 import Image from 'next/image';
-import { fetchedHashtag } from 'types/fetchedData';
+import { TagMenuEntity } from 'types/fetchedData';
 
 interface SharedProps {
-  fetchedTag: fetchedHashtag;
+  fetchedTag: TagMenuEntity;
 }
 interface ClickableProps extends SharedProps {
-  onClick: (hashtag: fetchedHashtag, clicked: boolean) => void;
+  onClick: (hashtag: TagMenuEntity, clicked: boolean) => void;
   clickable: boolean;
 }
 
 interface RemovableProps extends SharedProps {
-  onRemove: (hashtag: fetchedHashtag) => void;
+  onRemove: (hashtag: TagMenuEntity) => void;
   removable: boolean;
 }
 
@@ -32,7 +32,7 @@ const Hashtag: React.FC<HashtagProp> = ({ fetchedTag, clickable, removable, onCl
       }}
       clicked={clicked}
     >
-      #{fetchedTag.tag}
+      #{fetchedTag.name}
       <Styled.removeButton removable={removable}>
         <Image
           src={'/logos/x_button.png'}

@@ -1,7 +1,7 @@
 import Button from '@components/common/Button';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { fetchedHashtag } from 'types/fetchedData';
+import { TagMenuEntity } from 'types/fetchedData';
 import Box from '@components/common/Box';
 import Hashtag from '@components/common/Hashtag';
 import Link from '@components/common/Link';
@@ -9,7 +9,7 @@ import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 
-import { fetchedHashtag as fetchedHashtagType } from 'types/fetchedData';
+import { TagMenuEntity as fetchedHashtagType } from 'types/fetchedData';
 
 export const initialConcern: fetchedHashtagType[] = [
   { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
@@ -43,9 +43,9 @@ export const initialCharacter: fetchedHashtagType[] = [
 
 const SelectHashtagModal = () => {
   const router = useRouter();
-  const [selectedTags, setSelectedTags] = useState<fetchedHashtag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<TagMenuEntity[]>([]);
 
-  const onHashtagClick = (hashtag: fetchedHashtag, clicked: boolean) => {
+  const onHashtagClick = (hashtag: TagMenuEntity, clicked: boolean) => {
     clicked
       ? setSelectedTags(selectedTags.filter(tag => tag.id !== hashtag.id))
       : setSelectedTags([...selectedTags, hashtag]);

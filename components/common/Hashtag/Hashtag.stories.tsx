@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import { fetchedHashtag } from 'types/fetchedData';
+import { TagMenuEntity } from 'types/fetchedData';
 import Hashtag from './index';
 
-const sampleHashtags: fetchedHashtag[] = [
+const sampleHashtags: TagMenuEntity[] = [
   { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
   { id: 2, hashtagType: 'CONCERN', tag: '편입', registered: '' },
 ];

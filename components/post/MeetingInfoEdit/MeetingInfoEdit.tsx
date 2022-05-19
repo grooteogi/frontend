@@ -1,9 +1,9 @@
 import Hashtag from '@components/common/Hashtag';
 import Input from '@components/common/Input';
-import SearchBar from '@components/common/SearchBar';
 import Textarea from '@components/common/Textarea';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
+import SearchBar from '@components/search/SearchBar';
 import React, { useEffect, useRef, useState } from 'react';
 import { MeetingInfoType } from 'types/postDetail';
 import Styled from './MeetingInfoEdit.style';
@@ -67,7 +67,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
         <Typography size={'lg'} color={'black'} weight={'BOLD'}>
           저는 이런 분야에 관심이 있어요
         </Typography>
-        <SearchBar />
+        <SearchBar onSearchClick={() => {}} />
         <Wrapper flexDirection={'row'} gap={{ columnGap: 20 }}>
           {hashtags.map(({ ...el }) => (
             <Hashtag key={el.id} fetchedTag={el} removable onRemove={() => onRemove(el.id)}></Hashtag>

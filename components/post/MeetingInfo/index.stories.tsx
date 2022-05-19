@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CreditType, HashtagEntity } from 'types/entity';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
 import theme from '../../../styles/theme';
-import { fetchedHashtag } from '../../../types/fetchedData';
+import { TagMenuEntity } from '../../../types/fetchedData';
 import MeetingInfo from './index';
 
 export default {
@@ -38,7 +38,7 @@ export const PostImgHBig = (args: ComponentStory<typeof MeetingInfo>) => {
   );
 };
 export const PostImgWBig = (args: ComponentStory<typeof MeetingInfo>) => {
-  const sampleHashtags: fetchedHashtag[] = [
+  const sampleHashtags: TagMenuEntity[] = [
     { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
     { id: 2, hashtagType: 'CONCERN', tag: '편입', registered: '' },
   ];

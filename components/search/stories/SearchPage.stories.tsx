@@ -1,4 +1,3 @@
-import { SearchProvider } from '@components/search/context';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import GlobalThemeProvider from '../../../styles/GlobalThemeProvider';
@@ -15,9 +14,7 @@ const queryClient = new QueryClient();
 const Template: ComponentStory<typeof SearchPage> = () => (
   <QueryClientProvider client={queryClient}>
     <GlobalThemeProvider theme={theme}>
-      <SearchProvider>
-        <SearchPage />
-      </SearchProvider>
+      <SearchPage />
     </GlobalThemeProvider>
   </QueryClientProvider>
 );

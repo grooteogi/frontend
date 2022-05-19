@@ -4,14 +4,14 @@ import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
-import { fetchedHashtag, fetchedPostCard } from 'types/fetchedData';
+import { PostEntity, TagMenuEntity } from 'types/fetchedData';
 
 interface PostCardProps {
-  fetchedData: fetchedPostCard;
+  postEntity: PostEntity;
   setClickedPostId: (id: number) => void;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ fetchedData, setClickedPostId }) => {
+const PostCard: React.FC<PostCardProps> = ({ postEntity, setClickedPostId }) => {
   const hashtagRef = useRef<any>();
   const [ellipsisTags, setEllipsisTags] = useState<boolean>(false);
   useEffect(() => {
@@ -20,11 +20,11 @@ const PostCard: React.FC<PostCardProps> = ({ fetchedData, setClickedPostId }) =>
   return (
     <Styled.container
       onClick={() => {
-        setClickedPostId(fetchedData.id);
+        setClickedPostId(postEntity.postId);
       }}
     >
       <Styled.image
-        src={fetchedData.imageUrl}
+        src={postEntity.imageUrl}
         alt={'not found'}
         width="235px"
         height="200px"
@@ -34,24 +34,24 @@ const PostCard: React.FC<PostCardProps> = ({ fetchedData, setClickedPostId }) =>
       <Styled.hashRef ref={hashtagRef}>
         {ellipsisTags ? (
           <>
-            <Hashtag key={fetchedData.postHashtags[0].id} fetchedTag={fetchedData.postHashtags[0]} />
-            <Hashtag key={0} fetchedTag={{ id: 0, hashtagType: 'CONCERN', tag: '...', registered: '' }} />
+            <Hashtag key={postEntity.hashtags[0]} fetchedTag={{ hashtagId: 1, name: postEntity.hashtags[0] }} />
+            <Hashtag key={0} fetchedTag={{ hashtagId: 0, name: '...' }} />
           </>
         ) : (
-          fetchedData.postHashtags.map(hash => {
-            return <Hashtag key={hash.id} fetchedTag={hash} />;
+          postEntity.hashtags.map((hash, index) => {
+            return <Hashtag key={index} fetchedTag={{ hashtagId: index, name: hash }} />;
           })
         )}
       </Styled.hashRef>
       <Wrapper flexDirection="column" margin={{ marginTop: '12px' }} alignItems="flex-start" gap={{ rowGap: 6 }}>
         <Styled.title>
           <Title size={'h4'} color={'black'} align={'right'}>
-            {fetchedData.title}
+            {postEntity.title}
           </Title>
         </Styled.title>
         <Styled.content>
           <Typography size={'xs'} color={'dimgray'}>
-            {fetchedData.content}
+            {postEntity.content}
           </Typography>
         </Styled.content>
       </Wrapper>

@@ -19,17 +19,17 @@ type fetchedDataType = {
 };
 
 interface InputProps {
-  onSearchClick: (wordEntered: string) => void;
+  onSearchClick: (keyword: string) => void;
   placeholder?: string;
 }
 
 const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
   const [filteredData, setFilteredData] = useState<fetchedDataType[]>([]);
-  const [wordEntered, setWordEntered] = useState<string>('');
+  const [keyword, setKeyword] = useState<string>('');
 
   const handleFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchWord = event.target.value;
-    setWordEntered(searchWord);
+    setKeyword(searchWord);
     const newFilter = fetchedData.filter(value => {
       return value.keyword.includes(searchWord);
     });
@@ -39,14 +39,14 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
   return (
     <Styled.container>
       <Styled.section>
-        <Styled.input type={'text'} value={wordEntered} onChange={handleFilter} placeholder={placeholder} />
+        <Styled.input type={'text'} value={keyword} onChange={handleFilter} placeholder={placeholder} />
         <Image
           src={'/logos/search.png'}
           alt={'search icon not found'}
           width={'16px'}
           height={'16px'}
           onClick={() => {
-            onSearchClick(wordEntered);
+            onSearchClick(keyword);
           }}
         />
       </Styled.section>
@@ -64,7 +64,7 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
                   width={'12x'}
                   height={'12px'}
                   onClick={() => {
-                    setWordEntered(item.keyword);
+                    setKeyword(item.keyword);
                     setFilteredData([]);
                   }}
                 />
