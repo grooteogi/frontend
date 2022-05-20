@@ -7,15 +7,17 @@ import MeetingInfo from '@components/post/MeetingInfo';
 import postInfo from '@components/post/detail.meetingInfo.mock';
 import schedule from '@components/post/detail.schedule.mock';
 import review from '@components/post/detail.review.mock';
+import StickyBar from '@components/post/StickyBar';
 
-const Post: NextPage = () => {
+const Detail: NextPage = () => {
   return (
     <Layout>
       <MeetingInfo {...postInfo} />
       <ShowSchedule schedules={schedule} />
       <ReviewList reviews={review} />
+      <StickyBar buttonName={'약속 신청하기'}></StickyBar>
     </Layout>
   );
 };
 
-export default withRouter(Post);
+export default withRouter(Detail);

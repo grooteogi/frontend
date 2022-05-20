@@ -58,7 +58,7 @@ export type PostEntity = {
   imageUrl: string;
   createAt: string;
   hashtags: string[];
-  creditType: CreditType | CreditTypeKR;
+  creditType: CreditType;
   likes: {
     count: number;
     liked: boolean;

@@ -1,5 +1,6 @@
 import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 interface SizeProps {
   isWidthBigger: boolean;
@@ -71,6 +72,20 @@ export const Styled = {
   creditText: styled(Typography)`
     padding: 0 1rem;
     border-left: 1px solid #d1d1d1;
+  `,
+  bottomButtonBox: styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 7px;
+  `,
+  bottomButton: styled.button`
+    background-color: ${theme.style.button.color.lightgray};
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    &:hover {
+      opacity: 0.8;
+    }
   `,
 };
 

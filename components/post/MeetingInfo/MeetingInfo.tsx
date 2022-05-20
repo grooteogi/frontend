@@ -5,8 +5,9 @@ import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
 import { CreditTypeKR, PostEntity } from 'types/entity';
 import Styled from './MeetingInfo.style';
+import Link from 'next/link';
 
-const MeetingInfo: React.FC<PostEntity> = ({ imageUrl, title, mentor, hashtags, content, likes, creditType }) => {
+const MeetingInfo: React.FC<PostEntity> = ({ postId, imageUrl, title, mentor, content, likes, creditType }) => {
   const postImg = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
   const [liked, setLiked] = useState<boolean>(likes.liked);
@@ -56,6 +57,12 @@ const MeetingInfo: React.FC<PostEntity> = ({ imageUrl, title, mentor, hashtags, 
       <Typography size={'md'} color={'darkgray'}>
         {content}
       </Typography>
+      <Styled.bottomButtonBox>
+        <Link href={`/post/create`} passHref>
+          <Styled.bottomButton>수정하기</Styled.bottomButton>
+        </Link>
+        <Styled.bottomButton>삭제하기</Styled.bottomButton>
+      </Styled.bottomButtonBox>
     </Styled.container>
   );
 };
