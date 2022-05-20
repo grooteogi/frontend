@@ -4,8 +4,8 @@ import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
-import { PostEntity, TagMenuEntity } from 'types/fetchedData';
-
+import { PostEntity } from 'types/fetchedData';
+import sampleImg from 'public/imgs/dev_sample.jpg';
 interface PostCardProps {
   postEntity: PostEntity;
   setClickedPostId: (id: number) => void;
@@ -23,23 +23,16 @@ const PostCard: React.FC<PostCardProps> = ({ postEntity, setClickedPostId }) => 
         setClickedPostId(postEntity.postId);
       }}
     >
-      <Styled.image
-        src={postEntity.imageUrl}
-        alt={'not found'}
-        width="235px"
-        height="200px"
-        objectFit="cover"
-        quality="100"
-      />
+      <Styled.image src={sampleImg} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
       <Styled.hashRef ref={hashtagRef}>
         {ellipsisTags ? (
           <>
-            <Hashtag key={postEntity.hashtags[0]} fetchedTag={{ hashtagId: 1, name: postEntity.hashtags[0] }} />
-            <Hashtag key={0} fetchedTag={{ hashtagId: 0, name: '...' }} />
+            <Hashtag key={postEntity.hashtags[0]} fetchedTag={{ id: 1, tag: postEntity.hashtags[0], registered: '' }} />
+            <Hashtag key={0} fetchedTag={{ id: 0, tag: '...', registered: '' }} />
           </>
         ) : (
           postEntity.hashtags.map((hash, index) => {
-            return <Hashtag key={index} fetchedTag={{ hashtagId: index, name: hash }} />;
+            return <Hashtag key={index} fetchedTag={{ id: index, tag: hash, registered: '' }} />;
           })
         )}
       </Styled.hashRef>

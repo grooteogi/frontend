@@ -1,4 +1,6 @@
 import Carousel from '@components/common/Carousel';
+import { useSearch } from '../context';
+
 const imgLists = [
   {
     src: '/imgs/Carousel1.png',

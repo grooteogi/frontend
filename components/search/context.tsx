@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 
 export type SearchStateType = {
   keyword: string;
@@ -7,8 +7,6 @@ export type SearchStateType = {
   sort: string;
   region: string;
 };
-
-export type PostStateType = {};
 
 const SearchContext = createContext<any>(undefined);
 
@@ -40,7 +38,7 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchState, dispatchSearch] = useReducer(queryReducer, {
     keyword: '',
     tag: '',
-    page: 0,
+    page: 1,
     sort: '최신순',
     region: '지역구',
   });

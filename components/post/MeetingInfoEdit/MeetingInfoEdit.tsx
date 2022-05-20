@@ -67,7 +67,11 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
         <Typography size={'lg'} color={'black'} weight={'BOLD'}>
           저는 이런 분야에 관심이 있어요
         </Typography>
-        <SearchBar onSearchClick={() => {}} />
+        <SearchBar
+          onSearchClick={() => {
+            return;
+          }}
+        />
         <Wrapper flexDirection={'row'} gap={{ columnGap: 20 }}>
           {hashtags.map(({ ...el }) => (
             <Hashtag key={el.id} fetchedTag={el} removable onRemove={() => onRemove(el.id)}></Hashtag>
