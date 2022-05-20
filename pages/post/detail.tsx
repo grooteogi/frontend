@@ -4,19 +4,16 @@ import ReviewList from '@components/post/ReviewList';
 import ShowSchedule from '@components/post/ScheduleShow';
 import Layout from '@components/post/Layout';
 import MeetingInfo from '@components/post/MeetingInfo';
-import { MeetingInfoType, ReviewType, ScheduleType } from 'types/postDetail';
-import postInfo from '@components/post/detail.mock';
+import postInfo from '@components/post/detail.meetingInfo.mock';
+import schedule from '@components/post/detail.schedule.mock';
+import review from '@components/post/detail.review.mock';
 
 const Post: NextPage = () => {
-  const post = postInfo;
-  const { ...meetingInfo }: MeetingInfoType = post;
-  const { schedules }: ScheduleType = post;
-  const { reviews }: ReviewType = post;
   return (
     <Layout>
-      <MeetingInfo {...meetingInfo} />
-      <ShowSchedule schedules={schedules} />
-      <ReviewList reviews={reviews} />
+      <MeetingInfo {...postInfo} />
+      <ShowSchedule schedules={schedule} />
+      <ReviewList reviews={review} />
     </Layout>
   );
 };

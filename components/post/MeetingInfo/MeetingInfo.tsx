@@ -1,21 +1,19 @@
 import EmptyHeartIcon from '@components/asset/EmptyHeartIcon';
 import FullHeartIcon from '@components/asset/FullHeartIcon';
-import Hashtag from '@components/common/Hashtag';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { CreditTypeKR } from 'types/entity';
-import { MeetingInfoType } from 'types/postDetail';
-import { fetchedHashtag } from '../../../types/fetchedHashtag';
+import { CreditTypeKR, PostEntity } from 'types/entity';
 import Styled from './MeetingInfo.style';
 
-const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hashtags, content, likes, creditType }) => {
+const MeetingInfo: React.FC<PostEntity> = ({ imageUrl, title, mentor, hashtags, content, likes, creditType }) => {
   const postImg = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
-  const [liked, setLiked] = useState<boolean>(likes);
+  const [liked, setLiked] = useState<boolean>(likes.liked);
   useEffect(() => {
     setIsWidthBigger(postImg.current.width > postImg.current.height);
   }, []);
+  // let idx = 0;
   return (
     <Styled.container>
       <Styled.thumbnailWrappper>
@@ -51,9 +49,9 @@ const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hasht
         </Styled.likedBtn>
       </Wrapper>
       <Wrapper flexDirection={'row'} gap={{ gap: 5 }}>
-        {hashtags.map(({ ...fetched }: fetchedHashtag) => (
-          <Hashtag key={fetched.id} fetchedTag={fetched} />
-        ))}
+        {/* {hashtags.map({ {value} ) => (
+          <Hashtag key={idx++} fetchedTag={value} />
+        ))} */}
       </Wrapper>
       <Typography size={'md'} color={'darkgray'}>
         {content}

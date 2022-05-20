@@ -5,10 +5,10 @@ import Textarea from '@components/common/Textarea';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { MeetingInfoType } from 'types/postDetail';
+import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfoEdit.style';
 
-export type MeetingInfoEditProps = Partial<Pick<MeetingInfoType, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
+export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
 
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, imageUrl, hashtags = [] }) => {
   const [editImageUrl, setEditImageUrl] = useState(imageUrl);
@@ -69,9 +69,9 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
         </Typography>
         <SearchBar />
         <Wrapper flexDirection={'row'} gap={{ columnGap: 20 }}>
-          {hashtags.map(({ ...el }) => (
-            <Hashtag key={el.id} fetchedTag={el} removable onRemove={() => onRemove(el.id)}></Hashtag>
-          ))}
+          {/* {hashtags.map(value => (
+            <Hashtag key={idx++} fetchedTag={value} removable onRemove={() => onRemove(value)}></Hashtag>
+          ))} */}
         </Wrapper>
       </Wrapper>
     </Styled.container>

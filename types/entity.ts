@@ -60,14 +60,15 @@ export type PostEntity = {
   content: string;
   imageUrl: string;
   createAt: string;
-  hashtags: HashtagEntity[];
-  creditType: CreditType;
-  likes: boolean; // TODO : 논의 필요
+  hashtags: string[];
+  creditType: CreditType | CreditTypeKR;
+  likes: {
+    count: number;
+    liked: boolean;
+  };
   mentor: {
     userId: number;
     nickname: string;
     imageUrl: string;
   };
-  schedules: ScheduleEntity[];
-  reviews: ReviewEntity[];
 };
