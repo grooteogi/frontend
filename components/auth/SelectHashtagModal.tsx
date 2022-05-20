@@ -1,53 +1,51 @@
 import Button from '@components/common/Button';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { fetchedHashtag } from 'types/fetchedHashtag';
 import Box from '@components/common/Box';
 import Hashtag from '@components/common/Hashtag';
 import Link from '@components/common/Link';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
+import { HashtagEntity } from 'types/entity';
 
-import { fetchedHashtag as fetchedHashtagType } from 'types/fetchedHashtag';
-
-export const initialConcern: fetchedHashtagType[] = [
-  { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
-  { id: 2, hashtagType: 'CONCERN', tag: '대외활동', registered: '' },
-  { id: 3, hashtagType: 'CONCERN', tag: '유학', registered: '' },
-  { id: 4, hashtagType: 'CONCERN', tag: '취미생활', registered: '' },
-  { id: 5, hashtagType: 'CONCERN', tag: '편입', registered: '' },
-  { id: 6, hashtagType: 'CONCERN', tag: 'LEET', registered: '' },
-  { id: 7, hashtagType: 'CONCERN', tag: 'PEET', registered: '' },
-  { id: 8, hashtagType: 'CONCERN', tag: '고시준비', registered: '' },
-  { id: 9, hashtagType: 'CONCERN', tag: '취업준비', registered: '' },
-  { id: 10, hashtagType: 'CONCERN', tag: '창업', registered: '' },
-  { id: 11, hashtagType: 'CONCERN', tag: '포트폴리오', registered: '' },
-  { id: 12, hashtagType: 'CONCERN', tag: '기타', registered: '' },
+export const initialConcern: HashtagEntity[] = [
+  { hashtagId: 1, name: '대학생활' },
+  { hashtagId: 2, name: '대외활동' },
+  { hashtagId: 3, name: '유학' },
+  { hashtagId: 4, name: '취미생활' },
+  { hashtagId: 5, name: '편입' },
+  { hashtagId: 6, name: 'LEET' },
+  { hashtagId: 7, name: 'PEET' },
+  { hashtagId: 8, name: '고시준비' },
+  { hashtagId: 9, name: '취업준비' },
+  { hashtagId: 10, name: '창업' },
+  { hashtagId: 11, name: '포트폴리오' },
+  { hashtagId: 12, name: '기타' },
 ];
 
-export const initialCharacter: fetchedHashtagType[] = [
-  { id: 1, hashtagType: 'PERSONALITY', tag: '긍정적인', registered: '' },
-  { id: 2, hashtagType: 'PERSONALITY', tag: '열정적인', registered: '' },
-  { id: 3, hashtagType: 'PERSONALITY', tag: '조용한', registered: '' },
-  { id: 4, hashtagType: 'PERSONALITY', tag: '욕심많은', registered: '' },
-  { id: 5, hashtagType: 'PERSONALITY', tag: '외향적인', registered: '' },
-  { id: 6, hashtagType: 'PERSONALITY', tag: '내향적인', registered: '' },
-  { id: 7, hashtagType: 'PERSONALITY', tag: '현실적인', registered: '' },
-  { id: 8, hashtagType: 'PERSONALITY', tag: '이상적인', registered: '' },
-  { id: 9, hashtagType: 'PERSONALITY', tag: '감성적인', registered: '' },
-  { id: 10, hashtagType: 'PERSONALITY', tag: '이성적인', registered: '' },
-  { id: 11, hashtagType: 'PERSONALITY', tag: '계획적인', registered: '' },
-  { id: 12, hashtagType: 'PERSONALITY', tag: '엄청난', registered: '' },
+export const initialCharacter: HashtagEntity[] = [
+  { hashtagId: 1, name: '긍정적인' },
+  { hashtagId: 2, name: '열정적인' },
+  { hashtagId: 3, name: '조용한' },
+  { hashtagId: 4, name: '욕심많은' },
+  { hashtagId: 5, name: '외향적인' },
+  { hashtagId: 6, name: '내향적인' },
+  { hashtagId: 7, name: '현실적인' },
+  { hashtagId: 8, name: '이상적인' },
+  { hashtagId: 9, name: '감성적인' },
+  { hashtagId: 10, name: '이성적인' },
+  { hashtagId: 11, name: '계획적인' },
+  { hashtagId: 12, name: '엄청난' },
 ];
 
 const SelectHashtagModal = () => {
   const router = useRouter();
-  const [selectedTags, setSelectedTags] = useState<fetchedHashtag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<HashtagEntity[]>([]);
 
-  const onHashtagClick = (hashtag: fetchedHashtag, clicked: boolean) => {
+  const onHashtagClick = (hashtag: HashtagEntity, clicked: boolean) => {
     clicked
-      ? setSelectedTags(selectedTags.filter(tag => tag.id !== hashtag.id))
+      ? setSelectedTags(selectedTags.filter(tag => tag.hashtagId !== hashtag.hashtagId))
       : setSelectedTags([...selectedTags, hashtag]);
   };
 
@@ -81,7 +79,7 @@ const SelectHashtagModal = () => {
         </Typography>
         <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 8, columnGap: 8 }}>
           {initialConcern.map(concern => {
-            return <Hashtag key={concern.id} onClick={onHashtagClick} fetchedTag={concern} clickable={true} />;
+            return <Hashtag key={concern.hashtagId} onClick={onHashtagClick} fetchedTag={concern} clickable={true} />;
           })}
         </Wrapper>
       </Wrapper>
@@ -97,7 +95,9 @@ const SelectHashtagModal = () => {
         </Typography>
         <Wrapper flexDirection={'row'} margin={{ marginTop: '10px' }} gap={{ rowGap: 8, columnGap: 8 }}>
           {initialCharacter.map(character => {
-            return <Hashtag key={character.id} fetchedTag={character} clickable={true} onClick={onHashtagClick} />;
+            return (
+              <Hashtag key={character.hashtagId} fetchedTag={character} clickable={true} onClick={onHashtagClick} />
+            );
           })}
         </Wrapper>
       </Wrapper>

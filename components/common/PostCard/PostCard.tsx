@@ -4,11 +4,11 @@ import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { HashtagEntity } from 'types/entity';
 
 interface PostCardProps {
   imageSrc: string;
-  hashtags: fetchedHashtag[];
+  hashtags: HashtagEntity[];
   title: string;
   content: string;
 }
@@ -25,12 +25,12 @@ const PostCard: React.FC<PostCardProps> = ({ imageSrc, hashtags, title, content 
       <Styled.hashRef ref={hashtagRef}>
         {ellipsisTags ? (
           <>
-            <Hashtag key={hashtags[0].id} fetchedTag={hashtags[0]} />
-            <Hashtag key={0} fetchedTag={{ id: 0, hashtagType: 'CONCERN', tag: '...', registered: '' }} />
+            <Hashtag key={hashtags[0].hashtagId} fetchedTag={hashtags[0]} />
+            <Hashtag key={0} fetchedTag={{ hashtagId: 0, name: '...' }} />
           </>
         ) : (
           hashtags.map(hash => {
-            return <Hashtag key={hash.id} fetchedTag={hash} />;
+            return <Hashtag key={hash.hashtagId} fetchedTag={hash} />;
           })
         )}
       </Styled.hashRef>

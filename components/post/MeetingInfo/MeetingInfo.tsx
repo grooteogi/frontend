@@ -4,9 +4,8 @@ import Hashtag from '@components/common/Hashtag';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { CreditTypeKR } from 'types/entity';
+import { CreditTypeKR, HashtagEntity } from 'types/entity';
 import { MeetingInfoType } from 'types/postDetail';
-import { fetchedHashtag } from '../../../types/fetchedHashtag';
 import Styled from './MeetingInfo.style';
 
 const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hashtags, content, likes, creditType }) => {
@@ -51,8 +50,8 @@ const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hasht
         </Styled.likedBtn>
       </Wrapper>
       <Wrapper flexDirection={'row'} gap={{ gap: 5 }}>
-        {hashtags.map(({ ...fetched }: fetchedHashtag) => (
-          <Hashtag key={fetched.id} fetchedTag={fetched} />
+        {hashtags.map(({ ...fetched }: HashtagEntity) => (
+          <Hashtag key={fetched.hashtagId} fetchedTag={fetched} />
         ))}
       </Wrapper>
       <Styled.content size={'md'} color={'darkgray'}>

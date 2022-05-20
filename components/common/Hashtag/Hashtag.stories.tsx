@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { HashtagEntity } from 'types/entity';
 import Hashtag from './index';
 
-const sampleHashtags: fetchedHashtag[] = [
-  { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
-  { id: 2, hashtagType: 'CONCERN', tag: '편입', registered: '' },
+const sampleHashtags: HashtagEntity[] = [
+  { hashtagId: 1, name: '대학생활' },
+  { hashtagId: 2, name: '편입' },
 ];
 
 export default {
