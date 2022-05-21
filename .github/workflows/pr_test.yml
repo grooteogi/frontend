@@ -26,3 +26,12 @@ jobs:
         run: yarn format
       - name: Build
         run: yarn build
+      - name: Notify Result
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: Pull request Test Result
+          fields: repo, message, commit, author, eventName, workflow
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
