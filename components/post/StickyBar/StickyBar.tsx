@@ -7,7 +7,6 @@ interface StickyBarType {
 }
 
 const StickyBar: React.FC<StickyBarType> = ({ buttonName }) => {
-  console.log(buttonName);
   return (
     <Styled.container>
       <Button name={buttonName} color={'primary'} fontColor={'white'} size={'lg'} />

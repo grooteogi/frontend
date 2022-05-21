@@ -1,3 +1,5 @@
+import { CreditType } from './enum';
+
 export type UserEntity = {
   id: number;
   nickname: string;
@@ -36,20 +38,6 @@ export type HashtagEntity = {
   hashtagId: number;
   name: string;
 };
-
-export enum CreditType {
-  DIRECT, //만나서 결제
-  DUTCHPAY, //더치페이
-  YOURPAY, //사주세요
-  MYPAY, //사줄게요
-}
-
-export enum CreditTypeKR {
-  '만나서 결제',
-  '더치페이',
-  '사주세요',
-  '사줄게요',
-}
 
 export type PostEntity = {
   postId: number;

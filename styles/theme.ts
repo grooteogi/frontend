@@ -1,4 +1,4 @@
-import { FontWeight } from '../types/style';
+import { FontWeight } from '../types/enum';
 
 const style = {
   button: {

@@ -1,4 +1,5 @@
-import { CreditType, PostEntity } from 'types/entity';
+import { PostEntity } from 'types/entity';
+import { CreditType } from 'types/enum';
 
 const postInfo: PostEntity = {
   postId: 1,

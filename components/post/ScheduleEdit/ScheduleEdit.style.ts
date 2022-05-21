@@ -3,6 +3,7 @@ import Typography from '@components/common/Typography';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { darken } from 'polished';
+import { Field } from 'formik';
 
 interface SScorllProps {
   standardHeight: number;

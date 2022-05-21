@@ -1,39 +1,11 @@
 import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
-import React, { useCallback, useState } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Styled from './ScheduleEdit.style';
 import Dropdown from '@components/common/Dropdown';
 import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
-
-const regionList = [
-  '강서구',
-  '구로구',
-  '금천구',
-  '관악구',
-  '동작구',
-  '영등포구',
-  '양천구',
-  '마포구',
-  '서대문구',
-  '서초구',
-  '강남구',
-  '송파구',
-  '강동구',
-  '은평구',
-  '종로구',
-  '중구',
-  '용산구',
-  '성동구',
-  '동대문구',
-  '중랑구',
-  '광진구',
-  '노원구',
-  '성북구',
-  '강북구',
-  '도봉구',
-];
-const payMethodList = ['만나서 선택', '더치페이', '사줄게요', '사주세요'];
+import { RegionList, CreditTypeKR } from 'types/enum';
 
 export interface CreateScheduleProps {
   schedules?: ScheduleEntity[];
@@ -44,7 +16,6 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   const callbackRef = useCallback(node => {
     if (node !== null) {
       setScrollHeight(node.getBoundingClientRect().height);
-      console.log(scrollHeight);
     }
   }, []);
   return (
@@ -53,8 +24,7 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
         <Styled.itemBox ref={callbackRef} key={scheduleId}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
-              {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', date + ' ' + startTime)}~
-              {dateFormater('HH:mm', date + ' ' + endTime)}
+              {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', startTime)}~{dateFormater('HH:mm', endTime)}
             </Typography>
             <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
               {region}
@@ -71,76 +41,116 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
     </Styled.scroll>
   );
 };
+// Helper
+const StringIsNumber = (value: any) => isNaN(Number(value)) === false;
+
+// Turn enum into array
+function ToArray(enumme: any) {
+  return Object.keys(enumme)
+    .filter(StringIsNumber)
+    .map(key => enumme[key]);
+}
 
 const ScheduleEdit: React.FC = () => {
-  const [schedule, setSchedule] = useState([]);
-  const today = dateFormater('YYYY-MM-DDThh:mm', new Date());
+  const initStart = new Date();
+  const initEnd = new Date().setHours(initStart.getHours() + 2);
+
+  const [creditTypeInput, setCreditTypeInput] = useState(ToArray(CreditTypeKR)[0]);
+  const [regionInput, setRegionInput] = useState(ToArray(RegionList)[0]);
+  const [schedules, setSchedules] = useState<ScheduleEntity[]>([]);
+
+  const startTimeRef = useRef<any>();
+  const endTimeRef = useRef<any>();
+  const placeRef = useRef<any>();
+
+  let idx = 0;
   const addSchedule = () => {
-    alert('추가하기');
+    console.log(startTimeRef.current.value);
+    const newSchedule: ScheduleEntity = {
+      scheduleId: idx,
+      region: regionInput,
+      place: placeRef.current.value,
+      date: startTimeRef.current.value,
+      startTime: startTimeRef.current.value,
+      endTime: endTimeRef.current.value,
+    };
+    idx++;
+    const newScheduleArray: ScheduleEntity[] = [...schedules, newSchedule];
+    setSchedules(newScheduleArray);
+    console.log(newSchedule);
+    console.log(schedules);
   };
-  const onSTChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    alert(`start Time : ${e.target.value}`);
-  };
-  const onETChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    alert(`end Time : ${e.target.value}`);
-  };
+
   return (
-    <Styled.container>
-      <Wrapper flexDirection={'row'} margin={{ margin: '0 0 20px 0' }}>
-        <Styled.title weight="BOLD" size={'md'} color={'black'}>
-          약속 일정
-        </Styled.title>
-      </Wrapper>
-      <Styled.row>
-        <Typography size={'md'} color={'black'} weight={'BOLD'}>
-          결제 방식
-        </Typography>
-        <Dropdown defaultString={payMethodList[0]} list={payMethodList} zIndex={3} />
-      </Styled.row>
-      <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <ScheduleItems schedules={schedule} />
-      </Wrapper>
-      <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <Typography size={'md'} color={'black'} weight={'BOLD'}>
-          약속 추가
-        </Typography>
-        <Styled.innerContainer>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 지역
-            </Typography>
-            <Dropdown defaultString={regionList[0]} list={regionList} zIndex={2} />
-          </Styled.row>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 장소
-            </Typography>
-            <Styled.input type={'search'} />
-          </Styled.row>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 시작
-            </Typography>
-            <Styled.input type={'datetime-local'} value={today} onChange={e => onSTChangeHandler(e)} />
-          </Styled.row>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 종료
-            </Typography>
-            <Styled.input type={'datetime-local'} value={today} onChange={e => onETChangeHandler(e)} />
-          </Styled.row>
-          <Styled.row>
-            <Styled.submitBtn
-              name="추가하기"
-              color={'primary'}
-              fontColor={'white'}
-              size={'lg'}
-              onClick={() => addSchedule()}
-            />
-          </Styled.row>
-        </Styled.innerContainer>
-      </Wrapper>
-    </Styled.container>
+    <form onSubmit={addSchedule}>
+      <Styled.container>
+        <Wrapper flexDirection={'row'} margin={{ margin: '0 0 20px 0' }}>
+          <Styled.title weight="BOLD" size={'md'} color={'black'}>
+            약속 일정
+          </Styled.title>
+        </Wrapper>
+        <Styled.row>
+          <Typography size={'md'} color={'black'} weight={'BOLD'}>
+            결제 방식
+          </Typography>
+          <Dropdown zIndex={2} list={ToArray(CreditTypeKR)} value={creditTypeInput} onClick={setCreditTypeInput} />
+        </Styled.row>
+        <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
+          <ScheduleItems schedules={schedules} />
+        </Wrapper>
+        <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
+          <Typography size={'md'} color={'black'} weight={'BOLD'}>
+            약속 추가
+          </Typography>
+          <Styled.innerContainer>
+            <Styled.row>
+              <Typography size={'sm'} color={'black'}>
+                약속 지역
+              </Typography>
+              <Dropdown value={regionInput} list={ToArray(RegionList)} zIndex={3} onClick={setRegionInput} />
+            </Styled.row>
+            <Styled.row>
+              <Typography size={'sm'} color={'black'}>
+                약속 장소
+              </Typography>
+              <Styled.input ref={placeRef} defaultValue={''} name={'placeInput'} type={'search'} />
+            </Styled.row>
+            <Styled.row>
+              <Typography size={'sm'} color={'black'}>
+                약속 시작
+              </Typography>
+              <Styled.input
+                ref={startTimeRef}
+                defaultValue={dateFormater('YYYY-MM-DDThh:mm', initStart)}
+                name={'startTimeInput'}
+                type={'datetime-local'}
+              />
+            </Styled.row>
+            <Styled.row>
+              <Typography size={'sm'} color={'black'}>
+                약속 종료
+              </Typography>
+              <Styled.input
+                ref={endTimeRef}
+                defaultValue={dateFormater('YYYY-MM-DDThh:mm', initEnd)}
+                name={'endTimeInput'}
+                type={'datetime-local'}
+              />
+            </Styled.row>
+            <Styled.row>
+              <Styled.submitBtn
+                name="추가하기"
+                color={'primary'}
+                fontColor={'white'}
+                size={'lg'}
+                type={'button'}
+                onClick={() => addSchedule()}
+              />
+            </Styled.row>
+          </Styled.innerContainer>
+        </Wrapper>
+      </Styled.container>
+    </form>
   );
 };
 

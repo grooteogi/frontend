@@ -3,9 +3,10 @@ import FullHeartIcon from '@components/asset/FullHeartIcon';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { CreditTypeKR, PostEntity } from 'types/entity';
+import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfo.style';
 import Link from 'next/link';
+import { CreditTypeKR } from 'types/enum';
 
 const MeetingInfo: React.FC<PostEntity> = ({ postId, imageUrl, title, mentor, content, likes, creditType }) => {
   const postImg = useRef<any>();

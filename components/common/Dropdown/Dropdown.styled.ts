@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Field } from 'formik';
 import { darken } from 'polished';
 
 export const StyledOptionItem = styled.li`
@@ -45,16 +46,18 @@ export const StyledOptionList = styled.ul`
   }
 `;
 
-export const StyledSelectedLabel = styled.button`
+export const StyledSelectedLabel = styled.input`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  text-align: end;
   width: inherit;
   height: inherit;
   border: none;
   justify-content: right;
   padding-right: 2.5rem;
   font-size: 1rem;
+  color: black;
   background: url('/icons/expand_more.png') calc(100% - 0.5rem) center no-repeat;
   background-size: 2rem;
   cursor: pointer;

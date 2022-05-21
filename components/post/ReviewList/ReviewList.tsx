@@ -3,9 +3,8 @@ import Typography from '../../common/Typography';
 import React from 'react';
 import Styled from './ReviewList.style';
 import { ReviewEntity } from 'types/entity';
-import { ReviewType } from 'types/postDetail';
 
-const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
+const ReviewItems: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
   if (reviews.length > 0) {
     return (
       <Styled.itemBox>
@@ -42,7 +41,7 @@ const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
   }
 };
 
-const ReviewList: React.FC<ReviewType> = ({ reviews }) => {
+const ReviewList: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
   return (
     <Styled.container>
       <Styled.title weight="BOLD" size={'md'} color={'black'}>
