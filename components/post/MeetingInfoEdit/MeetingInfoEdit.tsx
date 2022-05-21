@@ -70,7 +70,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
         <SearchBar />
         <Wrapper flexDirection={'row'} gap={{ columnGap: 20 }}>
           {hashtags.map(({ ...el }) => (
-            <Hashtag key={el.id} fetchedTag={el} removable onRemove={() => onRemove(el.id)}></Hashtag>
+            <Hashtag key={el.hashtagId} fetchedTag={el} removable onRemove={() => onRemove(el.hashtagId)} />
           ))}
         </Wrapper>
       </Wrapper>

@@ -8,8 +8,8 @@ const postInfo: PostEntity = {
   imageUrl: '/imgs/RotatedImg.png',
   createAt: '2022-04-28 18:32',
   hashtags: [
-    { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
-    { id: 2, hashtagType: 'CONCERN', tag: '편입', registered: '' },
+    { hashtagId: 1, name: '대학생활' },
+    { hashtagId: 2, name: '편입' },
   ],
   creditType: CreditType.DIRECT,
   likes: true, // TODO : 논의 필요 ( back: 0, 1 )

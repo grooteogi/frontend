@@ -7,14 +7,14 @@ import SearchBar from '@components/common/SearchBar';
 import SearchMenu from '@components/common/SearchMenu';
 import SortingTab from '@components/common/SortingTab';
 import Wrapper from '@components/common/Wrapper';
-import { fetchedHashtag } from 'types/fetchedHashtag';
 import tempButtons from '@components/common/SearchMenu/data.json';
+import { HashtagEntity } from 'types/entity';
 
 const howManyCards = Array.from(Array(12).keys());
-const tagsForCards: fetchedHashtag[] = [
-  { id: 1, hashtagType: 'PERSONALITY', tag: '대학생활', registered: '' },
-  { id: 2, hashtagType: 'PERSONALITY', tag: '취업준비', registered: '' },
-  { id: 3, hashtagType: 'PERSONALITY', tag: '코딩테스트', registered: '' },
+const tagsForCards: HashtagEntity[] = [
+  { hashtagId: 1, name: '대학생활' },
+  { hashtagId: 2, name: '취업준비' },
+  { hashtagId: 3, name: '코딩테스트' },
 ];
 
 const SearchPage = () => {
@@ -50,7 +50,7 @@ const SearchPage = () => {
         <Carousel imgLists={imgLists} />
         <SearchBar />
         <SearchMenu
-          data={tempButtons as fetchedHashtag[]}
+          data={tempButtons as HashtagEntity[]}
           clickedButtonId={clickedButtonId}
           setClickedButtonId={setClickedButtonId}
         />

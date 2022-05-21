@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Styled } from './SearchMenu.style';
 import Image from 'next/image';
 import SearchButton from '@components/common/SearchButton';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { HashtagEntity } from 'types/entity';
 
 interface SearchMenuProps {
-  data: fetchedHashtag[];
+  data: HashtagEntity[];
   clickedButtonId: number;
   setClickedButtonId: (hashtagId: number) => void;
 }
@@ -42,9 +42,9 @@ const SearchMenu: React.FC<SearchMenuProps> = ({ data, clickedButtonId, setClick
           return (
             <SearchButton
               fetchedTag={hash}
-              clicked={clickedButtonId === hash.id}
+              clicked={clickedButtonId === hash.hashtagId}
               setClickedButtonId={setClickedButtonId}
-              key={hash.id}
+              key={hash.hashtagId}
             />
           );
         })}
