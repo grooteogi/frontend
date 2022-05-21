@@ -24,3 +24,5 @@ jobs:
         run: yarn lint
       - name: Format
         run: yarn format
+      - name: Build
+        run: yarn build
