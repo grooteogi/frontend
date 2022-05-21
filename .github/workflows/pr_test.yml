@@ -30,6 +30,7 @@ jobs:
           SERVER_URL: ${{ secrets.SERVER_URL }}
           NEXT_PUBLIC_KAKAO_AUTH: ${{ secrets.NEXT_PUBLIC_KAKAO_AUTH }}
           NEXT_PUBLIC_GOOGLE_AUTH: ${{ secrets.NEXT_PUBLIC_GOOGLE_AUTH }}
+
       - name: Notify Result
         uses: 8398a7/action-slack@v3
         with:
@@ -37,5 +38,5 @@ jobs:
           author_name: Pull request Test Result
           fields: repo, message, commit, author, eventName, workflow
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_PR_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
