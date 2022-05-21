@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
+import { PostEntity } from 'types/fetchedData';
 
 export type SearchStateType = {
   keyword: string;
@@ -17,7 +18,7 @@ type SearchAction =
   | { type: 'SET_SORT'; sort: string }
   | { type: 'SET_REGION'; region: string };
 
-const queryReducer = (state: SearchStateType, action: SearchAction): SearchStateType => {
+const searchReducer = (state: SearchStateType, action: SearchAction): SearchStateType => {
   switch (action.type) {
     case 'SET_KEYWORD':
       return { ...state, keyword: action.keyword };
@@ -35,7 +36,8 @@ const queryReducer = (state: SearchStateType, action: SearchAction): SearchState
 };
 
 export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
-  const [searchState, dispatchSearch] = useReducer(queryReducer, {
+  const [posts, setPosts] = useState<PostEntity[]>([]);
+  const [searchState, dispatchSearch] = useReducer(searchReducer, {
     keyword: '',
     tag: '',
     page: 1,
@@ -58,9 +60,7 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
     dispatchSearch({ type: 'SET_REGION', region });
   };
   return (
-    <SearchContext.Provider
-      value={{ state: searchState, dispatch: dispatchSearch, setKeyword, setTag, setPage, setSort, setRegion }}
-    >
+    <SearchContext.Provider value={{ searchState, setKeyword, setTag, setPage, setSort, setRegion, posts, setPosts }}>
       {children}
     </SearchContext.Provider>
   );

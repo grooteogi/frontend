@@ -1,5 +1,5 @@
 import PostCard from '@components/common/PostCard';
-import useOnScreen from '@hooks/useOnScreen';
+import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import search from '@lib/api/search';
 import { useRef } from 'react';
 import { useQuery } from 'react-query';
@@ -8,17 +8,19 @@ import { useSearch } from '../context';
 import Styled from './PostList.styled';
 
 const PostList = () => {
-  const SearchContext = useSearch();
-  const { data, isError, isLoading } = useQuery(['posts', SearchContext.state], search.getPosts);
+  const { searchState, posts, setPosts } = useSearch();
+  const { data, status, error } = useQuery(['posts', searchState], search.getPosts);
 
   const bottomRef = useRef<HTMLDivElement>(null);
-  const isOnScreen = useOnScreen(bottomRef);
+  useIntersectionObserver({ target: bottomRef, onIntersect: () => undefined });
 
-  if (isError) return <>Error</>;
-  if (isLoading) return <>Loading...</>;
-  return (
+  return status === 'loading' ? (
+    <p>Loading...</p>
+  ) : status === 'error' ? (
+    <p>Error: {error}</p>
+  ) : (
     <Styled.container>
-      {data?.map((post: PostEntity) => {
+      {data.map((post: PostEntity) => {
         return (
           <PostCard
             key={post.postId}

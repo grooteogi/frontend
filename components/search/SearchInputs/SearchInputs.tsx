@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import search from '@lib/api/search';
 
 const SearchInputs = () => {
-  const SearchContext = useSearch();
+  const { searchState, setKeyword, setTag, setSort, setRegion } = useSearch();
   const { data, isError, isLoading } = useQuery(['hashtags'], search.getHashtags);
 
   if (isError) return <>error</>;
@@ -17,18 +17,14 @@ const SearchInputs = () => {
   return (
     <Styled.container>
       <Styled.input>
-        <SearchBar onSearchClick={SearchContext.setKeyword} placeholder={'검색어를 입력해주세요'} />
+        <SearchBar onSearchClick={setKeyword} placeholder={'검색어를 입력해주세요'} />
       </Styled.input>
-      <SearchMenu value={SearchContext.state.tag} onClick={SearchContext.setTag} data={data as TagMenuEntity[]} />
+      <SearchMenu value={searchState.tag} onClick={setTag} data={data as TagMenuEntity[]} />
       <Styled.itemSelector>
-        <SortingTab
-          value={SearchContext.state.sort}
-          onClick={SearchContext.setSort}
-          itemList={['최신순', '인기순', '조회순']}
-        />
+        <SortingTab value={searchState.sort} onClick={setSort} itemList={['최신순', '인기순', '조회순']} />
         <Dropdown
-          value={SearchContext.state.region}
-          onClick={SearchContext.setRegion}
+          value={searchState.region}
+          onClick={setRegion}
           list={['강서구', '구로구', '금천구', '관악구', '동작구', '영등포구', '양천구', ' 마포구', '서대문구']}
         />
       </Styled.itemSelector>
