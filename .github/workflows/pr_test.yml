@@ -35,7 +35,7 @@ jobs:
         with:
           status: ${{ job.status }}
           author_name: Pull request Test Result
-          fields: repo, message, commit, author, eventName, workflow
+          fields: repo, pullRequest, eventName, workflow
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
