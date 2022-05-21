@@ -6,6 +6,7 @@ import Input from '@components/common/Input';
 import Button from '@components/common/Button';
 import Timer from '@components/common/Timer/Timer';
 import Textarea from '@components/common/Textarea';
+import { useReservation } from '../context';
 
 const PhoneVerifyForm = () => {
   return (
@@ -22,8 +23,15 @@ const PhoneVerifyForm = () => {
           휴대폰번호
         </Title>
         <Styled.innerContainer>
-          <Input type={'text'} placeholder={'휴대폰 번호를 - 없이 입력해주세요.'} name={'phone'} id={'phone'} />
+          <Field
+            type={'text'}
+            placeholder={'휴대폰 번호를 - 없이 입력해주세요.'}
+            name={'phone'}
+            id={'phone'}
+            component={Input}
+          />
           <Button
+            type={'button'}
             size={'md'}
             name={'SMS 전송'}
             fontColor={'darkgray'}
@@ -39,8 +47,15 @@ const PhoneVerifyForm = () => {
           인증번호
         </Title>
         <Styled.innerContainer>
-          <Input type={'text'} placeholder={'SMS로 수신된 인증번호 5자리 입력해주세요.'} name={'code'} id={'code'} />
+          <Field
+            type={'text'}
+            placeholder={'SMS로 수신된 인증번호 5자리 입력해주세요.'}
+            name={'code'}
+            id={'code'}
+            component={Input}
+          />
           <Button
+            type={'button'}
             size={'md'}
             name={'인증하기'}
             fontColor={'darkgray'}
@@ -56,6 +71,8 @@ const PhoneVerifyForm = () => {
 };
 
 const ReservationForm = () => {
+  const { setMessage } = useReservation();
+
   return (
     <Formik
       initialValues={{ agree: false, phone: '', code: '' }}
@@ -69,7 +86,12 @@ const ReservationForm = () => {
           <Title size={'h2'} color={'black'}>
             선배에게 전하는 말!
           </Title>
-          <Textarea placeholder={'하고싶은 말이 있다면 적어주세요!'} />
+          <Textarea
+            placeholder={'하고싶은 말이 있다면 적어주세요!'}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+              setMessage(e.target.value);
+            }}
+          />
           <Styled.checkboxContainer>
             <Field type={'checkbox'} name={'agree'} id={'agree'} style={{}} />
             <Typography size={'xs'} color={'lightgray'}>

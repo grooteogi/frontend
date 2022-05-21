@@ -20,7 +20,6 @@ const Layout = {
   `,
   SectionRight: styled.section`
     width: 50%;
-    /* background-color: blue; */
   `,
 };
 

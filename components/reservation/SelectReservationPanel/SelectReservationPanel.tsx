@@ -3,7 +3,7 @@ import Title from '@components/common/Title';
 import Styled from './SelectReservationPanel.styled';
 import { ScheduleEntity } from 'types/entity';
 import ScheduleItem from '@components/common/ScheduleItem';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useReservation } from '../context';
 
 const SelectReservationItem: React.FC<
