@@ -32,10 +32,10 @@ jobs:
           NEXT_PUBLIC_GOOGLE_AUTH: ${{ secrets.NEXT_PUBLIC_GOOGLE_AUTH }}
       - name: Notify Result
         uses: 8398a7/action-slack@v3
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
           status: ${{ job.status }}
           author_name: Pull request Test Result
           fields: repo, message, commit, author, eventName, workflow
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_PR_WEBHOOK_URL }}
         if: always()
