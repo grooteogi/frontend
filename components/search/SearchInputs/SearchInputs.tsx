@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import search from '@lib/api/search';
 
 const SearchInputs = () => {
-  const { searchState, setKeyword, setTag, setSort, setRegion } = useSearch();
+  const { searchState, setKeyword, setSort, setRegion } = useSearch();
   const { data, isError, isLoading } = useQuery(['hashtags'], search.getHashtags);
 
   if (isError) return <>error</>;
@@ -19,7 +19,7 @@ const SearchInputs = () => {
       <Styled.input>
         <SearchBar onSearchClick={setKeyword} placeholder={'검색어를 입력해주세요'} />
       </Styled.input>
-      <SearchMenu value={searchState.tag} onClick={setTag} data={data as TagMenuEntity[]} />
+      <SearchMenu value={searchState.keyword} onClick={setKeyword} data={data as TagMenuEntity[]} />
       <Styled.itemSelector>
         <SortingTab value={searchState.sort} onClick={setSort} itemList={['최신순', '인기순', '조회순']} />
         <Dropdown

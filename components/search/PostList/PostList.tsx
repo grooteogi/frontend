@@ -1,18 +1,24 @@
-import PostCard from '@components/common/PostCard';
-import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import search from '@lib/api/search';
-import { useRef } from 'react';
-import { useQuery } from 'react-query';
-import { PostEntity } from 'types/fetchedData';
-import { useSearch } from '../context';
+import React, { useState } from 'react';
 import Styled from './PostList.styled';
+import PostCard from '@components/common/PostCard';
+import { PostEntity } from 'types/fetchedData';
+import search from '@lib/api/search';
+import { useSearch } from '../context';
+import { useQuery } from 'react-query';
+import useIntersectionObserver from '@hooks/useIntersectionObserver';
 
 const PostList = () => {
-  const { searchState, posts, setPosts } = useSearch();
-  const { data, status, error } = useQuery(['posts', searchState], search.getPosts);
+  const { searchState } = useSearch();
+  const [pageParam, setPageParam] = useState<number>(1);
+  const { data, status, error } = useQuery(['posts', { ...searchState, pageParam }], search.getPosts, {
+    keepPreviousData: true,
+  });
 
-  const bottomRef = useRef<HTMLDivElement>(null);
-  useIntersectionObserver({ target: bottomRef, onIntersect: () => undefined });
+  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
+    isIntersecting ? setPageParam(pageParam + 1) : null;
+  };
+
+  const { setTarget } = useIntersectionObserver({ onIntersect });
 
   return status === 'loading' ? (
     <p>Loading...</p>
@@ -31,7 +37,7 @@ const PostList = () => {
           />
         );
       })}
-      <div ref={bottomRef}>load more...</div>
+      <div ref={setTarget}>load more...</div>
     </Styled.container>
   );
 };

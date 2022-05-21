@@ -11,7 +11,7 @@ interface SearchButtonProp extends ButtonProps {
 
 const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, onClick, clicked }) => {
   return (
-    <Styled.button onClick={() => onClick(fetchedTag.name)} clicked={clicked}>
+    <Styled.button onClick={() => (clicked ? onClick('') : onClick(fetchedTag.name))} clicked={clicked}>
       <Typography size={'sm'} color={'black'}>
         #{fetchedTag.name}
       </Typography>

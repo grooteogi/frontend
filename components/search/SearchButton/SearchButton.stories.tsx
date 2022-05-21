@@ -18,11 +18,8 @@ export const Clicked = (args: ComponentStory<typeof SearchButton>) => {
     <GlobalThemeProvider theme={theme}>
       <Template
         fetchedTag={{
-          id: 0,
-          hashtagType: 'PERSONALITY',
-          tag: 'sample tag',
-          registered: '',
-          count: 1,
+          hashtagId: 0,
+          name: 'sample tag',
         }}
         clicked={true}
         onClick={(tagValue: string) => {
@@ -37,11 +34,8 @@ export const NotClicked = (args: ComponentStory<typeof SearchButton>) => {
     <GlobalThemeProvider theme={theme}>
       <Template
         fetchedTag={{
-          id: 0,
-          hashtagType: 'PERSONALITY',
-          tag: 'sample tag',
-          registered: '',
-          count: 1,
+          hashtagId: 0,
+          name: 'sample tag',
         }}
         clicked={false}
         onClick={(tagValue: string) => {
