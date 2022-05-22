@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { ScheduleEntity } from 'types/entity';
 import { CreditType } from 'types/enum';
+import { PostFormData } from './MeetingInfoEdit/MeetingInfoEdit';
 
 export type PostCreateStateType = {
   title: string;
@@ -11,7 +12,15 @@ export type PostCreateStateType = {
   schedules: ScheduleEntity[];
 };
 
+export type PostFormData = {
+  title: string;
+  content: string;
+  imageUrl: string;
+  hashtags: string[];
+};
+
 type PostCreateAction =
+  | { type: 'SET_POST'; post: PostFormData }
   | { type: 'SET_TITLE'; title: string }
   | { type: 'SET_CONTENT'; content: string }
   | { type: 'SET_IMAGE_URL'; imageUrl: string }
@@ -23,6 +32,11 @@ const PostCreateContext = createContext<any>(null);
 
 function PostCreateReducer(state: PostCreateStateType, action: PostCreateAction): PostCreateStateType {
   switch (action.type) {
+    case 'SET_POST':
+      return {
+        ...state,
+        ...action.post,
+      };
     case 'SET_TITLE':
       return {
         ...state,
@@ -68,6 +82,10 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
     schedules: [],
   };
   const [postState, dispatchPost] = useReducer(PostCreateReducer, initialPost);
+
+  const setPost = (post: PostFormData) => {
+    dispatchPost({ type: 'SET_POST', post });
+  };
   const setTitle = (title: string) => {
     dispatchPost({ type: 'SET_TITLE', title });
   };
@@ -80,6 +98,7 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
   const setHashtags = (hashtags: string[]) => {
     dispatchPost({ type: 'SET_HASHTAGS', hashtags });
   };
+
   const setCreditType = (creditType: CreditType) => {
     dispatchPost({ type: 'SET_CREDITTYPE', creditType });
   };
@@ -97,6 +116,7 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
         hashtags: postState.hashtags,
         creditType: postState.creditType,
         schedules: postState.schedules,
+        setPost,
         setTitle,
         setContent,
         setImageUrl,
