@@ -31,7 +31,7 @@ const PostCard: React.FC<PostCardProps> = ({ postEntity, setClickedPostId }) => 
             <Hashtag key={0} fetchedTag={{ id: 0, tag: '...', registered: '' }} />
           </>
         ) : (
-          postEntity.hashtags.map((hash, index) => {
+          postEntity.hashtags?.map((hash, index) => {
             return <Hashtag key={index} fetchedTag={{ id: index, tag: hash, registered: '' }} />;
           })
         )}
