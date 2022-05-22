@@ -1,7 +1,7 @@
 import { PostEntity } from 'types/entity';
 import { CreditType } from 'types/enum';
 
-const postInfo: PostEntity = {
+const postInfo: Omit<PostEntity, 'hashtags'> & { hashtags: string[] } = {
   postId: 1,
   title: '포스트의 타이틀은 이렇게 들어오겠죠?',
   content:

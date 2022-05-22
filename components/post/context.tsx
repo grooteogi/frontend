@@ -1,14 +1,13 @@
-import { Formik, FormikHelpers, FormikValues, useFormik } from 'formik';
 import React, { createContext, useReducer } from 'react';
 import { ScheduleEntity } from 'types/entity';
-import { CreditType, CreditTypeKR } from 'types/enum';
+import { CreditType } from 'types/enum';
 
 export type PostCreateStateType = {
-  //   title: string;
-  //   content: string;
-  //   imageUrl: string;
-  //   hashtags: string[];
-  //   creditType: CreditType;
+  title: string;
+  content: string;
+  imageUrl: string;
+  hashtags: string[];
+  creditType: CreditType;
   schedules: ScheduleEntity[];
 };
 
@@ -27,27 +26,27 @@ function PostCreateReducer(state: PostCreateStateType, action: PostCreateAction)
     case 'SET_TITLE':
       return {
         ...state,
-        // title: action.title,
+        title: action.title,
       };
     case 'SET_CONTENT':
       return {
         ...state,
-        // content: action.content,
+        content: action.content,
       };
     case 'SET_IMAGE_URL':
       return {
         ...state,
-        // imageUrl: action.imageUrl,
+        imageUrl: action.imageUrl,
       };
     case 'SET_HASHTAGS':
       return {
         ...state,
-        // hashtags: action.hashtags,
+        hashtags: action.hashtags,
       };
     case 'SET_CREDITTYPE':
       return {
         ...state,
-        // creditType: action.creditType,
+        creditType: action.creditType,
       };
     case 'SET_SCHEDULES':
       return {
@@ -61,11 +60,11 @@ function PostCreateReducer(state: PostCreateStateType, action: PostCreateAction)
 
 export const PostCreateProvider = ({ children }: { children: React.ReactNode }) => {
   const initialPost: PostCreateStateType = {
-    // title,
-    // content,
-    // imageUrl,
-    // hashtags,
-    // creditType,
+    title: '',
+    content: '',
+    imageUrl: '',
+    hashtags: [],
+    creditType: CreditType.DIRECT,
     schedules: [],
   };
   const [postState, dispatchPost] = useReducer(PostCreateReducer, initialPost);
@@ -92,18 +91,18 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
       value={{
         state: postState,
         dispatch: dispatchPost,
-        // title: postState.title,
-        // content: postState.content,
-        // imageUrl: postState.imageUrl,
-        // hashtags: postState.hashtags,
-        // creditType: postState.creditType,
+        title: postState.title,
+        content: postState.content,
+        imageUrl: postState.imageUrl,
+        hashtags: postState.hashtags,
+        creditType: postState.creditType,
         schedules: postState.schedules,
-        // setTitle: setTitle,
-        // setContent: setContent,
-        // setImageUrl: setImageUrl,
-        // setHashtags: setHashtags,
-        // setCreditType: setCreditType,
-        setSchedules: setSchedules,
+        setTitle,
+        setContent,
+        setImageUrl,
+        setHashtags,
+        setCreditType,
+        setSchedules,
       }}
     >
       {children}

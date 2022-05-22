@@ -3,19 +3,36 @@ import FullHeartIcon from '@components/asset/FullHeartIcon';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { PostEntity } from 'types/entity';
+import { PostEntity, HashtagEntity } from 'types/entity';
 import Styled from './MeetingInfo.style';
 import Link from 'next/link';
 import { CreditTypeKR } from 'types/enum';
+import Hashtag from '@components/common/Hashtag';
 
-const MeetingInfo: React.FC<PostEntity> = ({ postId, imageUrl, title, mentor, content, likes, creditType }) => {
+const MeetingInfo: React.FC<PostEntity> = ({
+  postId,
+  imageUrl,
+  title,
+  mentor,
+  hashtags,
+  content,
+  likes,
+  creditType,
+}) => {
   const postImg = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
   const [liked, setLiked] = useState<boolean>(likes.liked);
   useEffect(() => {
     setIsWidthBigger(postImg.current.width > postImg.current.height);
   }, []);
-  // let idx = 0;
+  let idx = 0;
+  const hashtagsWithId: HashtagEntity[] = hashtags.map(hVal => {
+    const rObj: HashtagEntity = {
+      hashtagId: idx++,
+      name: hVal,
+    };
+    return rObj;
+  });
   return (
     <Styled.container>
       <Styled.thumbnailWrappper>
@@ -51,9 +68,9 @@ const MeetingInfo: React.FC<PostEntity> = ({ postId, imageUrl, title, mentor, co
         </Styled.likedBtn>
       </Wrapper>
       <Wrapper flexDirection={'row'} gap={{ gap: 5 }}>
-        {/* {hashtags.map({ {value} ) => (
-          <Hashtag key={idx++} fetchedTag={value} />
-        ))} */}
+        {hashtagsWithId.map(({ ...fetched }: HashtagEntity) => (
+          <Hashtag key={idx++} fetchedTag={fetched} />
+        ))}
       </Wrapper>
       <Typography size={'md'} color={'darkgray'}>
         {content}

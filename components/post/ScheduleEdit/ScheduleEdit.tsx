@@ -3,7 +3,7 @@ import Typography from '@components/common/Typography';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Styled from './ScheduleEdit.style';
 import Dropdown from '@components/common/Dropdown';
-import { dateFormater } from '@lib/common';
+import { dateFormater, enumToArray } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
 import { RegionList, CreditTypeKR } from 'types/enum';
 import { usePostCreate } from '../context';
@@ -42,31 +42,17 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
     </Styled.scroll>
   );
 };
-// Helper
-const StringIsNumber = (value: any) => isNaN(Number(value)) === false;
 
-// Turn enum into array
-function ToArray(enumme: any) {
-  return Object.keys(enumme)
-    .filter(StringIsNumber)
-    .map(key => enumme[key]);
-}
-
+let idx = 0;
 const ScheduleEdit: React.FC = () => {
-  const { schedules, setSchedules } = usePostCreate();
-
   const initStart = new Date();
   const initEnd = new Date().setHours(initStart.getHours() + 2);
-
-  const [creditTypeInput, setCreditTypeInput] = useState(ToArray(CreditTypeKR)[0]);
-  const [regionInput, setRegionInput] = useState(ToArray(RegionList)[0]);
-  // const [schedules, setSchedules] = useState<ScheduleEntity[]>([]);
-
+  const [creditTypeInput, setCreditTypeInput] = useState(enumToArray(CreditTypeKR)[0]);
+  const [regionInput, setRegionInput] = useState(enumToArray(RegionList)[0]);
+  const placeRef = useRef<any>();
   const startTimeRef = useRef<any>();
   const endTimeRef = useRef<any>();
-  const placeRef = useRef<any>();
 
-  let idx = 0;
   const addSchedule = () => {
     console.log(startTimeRef.current.value);
     const newSchedule: ScheduleEntity = {
@@ -77,13 +63,19 @@ const ScheduleEdit: React.FC = () => {
       startTime: startTimeRef.current.value,
       endTime: endTimeRef.current.value,
     };
-    idx++;
-    const newScheduleArray: ScheduleEntity[] = [...schedules, newSchedule];
-    setSchedules(newScheduleArray);
-    console.log(newSchedule);
-    console.log(schedules);
+    setSchedules([...schedules, newSchedule]);
   };
-
+  const { schedules, setSchedules, creditType, setCreditType } = usePostCreate();
+  const setCreditTypeFunc = (element: string) => {
+    setCreditTypeInput(element);
+    setCreditType(element);
+  };
+  idx++;
+  useEffect(() => {
+    setSchedules([]);
+    setCreditType(enumToArray(CreditTypeKR)[0]);
+    console.log('Rendering done');
+  }, []);
   return (
     <form onSubmit={addSchedule}>
       <Styled.container>
@@ -96,7 +88,7 @@ const ScheduleEdit: React.FC = () => {
           <Typography size={'md'} color={'black'} weight={'BOLD'}>
             결제 방식
           </Typography>
-          <Dropdown zIndex={2} list={ToArray(CreditTypeKR)} value={creditTypeInput} onClick={setCreditTypeInput} />
+          <Dropdown zIndex={2} list={enumToArray(CreditTypeKR)} value={creditTypeInput} onClick={setCreditTypeFunc} />
         </Styled.row>
         <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
           <ScheduleItems schedules={schedules} />
@@ -110,7 +102,7 @@ const ScheduleEdit: React.FC = () => {
               <Typography size={'sm'} color={'black'}>
                 약속 지역
               </Typography>
-              <Dropdown value={regionInput} list={ToArray(RegionList)} zIndex={3} onClick={setRegionInput} />
+              <Dropdown value={regionInput} list={enumToArray(RegionList)} zIndex={3} onClick={setRegionInput} />
             </Styled.row>
             <Styled.row>
               <Typography size={'sm'} color={'black'}>

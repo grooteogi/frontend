@@ -12,7 +12,9 @@ function Dropdown({ list, zIndex, value, onClick }: DropdownProps) {
   const [acitve, setActive] = useState(false);
   return (
     <StyledSelectbox>
-      <StyledSelectedLabel value={value} onClick={() => setActive(!acitve)} />
+      <StyledSelectedLabel value={value} onClick={() => setActive(!acitve)} type={'button'}>
+        {value}
+      </StyledSelectedLabel>
       <StyledOptionList active={acitve} zIndex={zIndex}>
         {list.length === 0 ? (
           <StyledOptionItem onClick={() => setActive(false)}>-</StyledOptionItem>
