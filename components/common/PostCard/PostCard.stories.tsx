@@ -18,9 +18,9 @@ export const Default = Template.bind({});
 Default.args = {
   imageSrc: '/logos/dev_sample.jpg',
   hashtags: [
-    { id: 1, hashtagType: 'CONCERN', tag: '대학생활', registered: '' },
-    { id: 2, hashtagType: 'CONCERN', tag: '대외활동', registered: '' },
-    { id: 3, hashtagType: 'CONCERN', tag: '유학', registered: '' },
+    { hashtagId: 1, name: '대학생활' },
+    { hashtagId: 2, name: '대외활동' },
+    { hashtagId: 3, name: '유학' },
   ],
   title: '밥 먹으면서 진로 이야기 해요~ 이후 텍스트 보이지 않음.',
   content:

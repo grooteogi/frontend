@@ -1,10 +1,10 @@
 import React from 'react';
 import { ButtonProps, Styled } from './SearchButton.styled';
 import Typography from '@components/common/Typography';
-import { fetchedHashtag } from 'types/fetchedHashtag';
+import { HashtagEntity } from 'types/entity';
 
 interface SearchButtonProp extends ButtonProps {
-  fetchedTag: fetchedHashtag;
+  fetchedTag: HashtagEntity;
   clicked: boolean;
   setClickedButtonId: (hashtagId: number) => void;
 }
@@ -13,12 +13,12 @@ const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, clicked, setClic
   return (
     <Styled.button
       onClick={() => {
-        setClickedButtonId(fetchedTag.id);
+        setClickedButtonId(fetchedTag.hashtagId);
       }}
       clicked={clicked}
     >
       <Typography size={'sm'} color={'black'}>
-        #{fetchedTag.tag}
+        #{fetchedTag.name}
       </Typography>
     </Styled.button>
   );

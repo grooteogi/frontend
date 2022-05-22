@@ -1,36 +1,24 @@
 [
-  { "id": 1, "hashtagType": "CONCERN", "tag": "학교생활", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  { "hashtagId": 1, "name": "학교생활" },
   {
-    "id": 2,
-    "hashtagType": "CONCERN",
-    "tag": "포트폴리오",
-    "registered": "2022-04-06T03:36:59.002+00:00",
-    "count": 15
+    "hashtagId": 2,
+    "name": "포트폴리오"
   },
-  { "id": 3, "hashtagType": "CONCERN", "tag": "개발공부", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  { "hashtagId": 3, "name": "개발공부" },
   {
-    "id": 4,
-    "hashtagType": "CONCERN",
-    "tag": "소프트웨어",
-    "registered": "2022-04-06T03:36:59.002+00:00",
-    "count": 15
+    "hashtagId": 4,
+    "name": "소프트웨어"
   },
-  { "id": 5, "hashtagType": "CONCERN", "tag": "동아리", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
-  { "id": 6, "hashtagType": "CONCERN", "tag": "코딩", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  { "hashtagId": 5, "name": "동아리" },
+  { "hashtagId": 6, "name": "코딩" },
   {
-    "id": 7,
-    "hashtagType": "CONCERN",
-    "tag": "개발자취업",
-    "registered": "2022-04-06T03:36:59.002+00:00",
-    "count": 15
+    "hashtagId": 7,
+    "name": "개발자취업"
   },
-  { "id": 8, "hashtagType": "CONCERN", "tag": "유학", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
-  { "id": 9, "hashtagType": "CONCERN", "tag": "편입", "registered": "2022-04-06T03:36:59.002+00:00", "count": 15 },
+  { "hashtagId": 8, "name": "유학" },
+  { "hashtagId": 9, "name": "편입" },
   {
-    "id": 10,
-    "hashtagType": "CONCERN",
-    "tag": "자기소개서",
-    "registered": "2022-04-06T03:36:59.002+00:00",
-    "count": 15
+    "hashtagId": 10,
+    "name": "자기소개서"
   }
 ]
