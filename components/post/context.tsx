@@ -110,7 +110,7 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
   );
 };
 
-export const usePostCreate = () => {
+export const usePostContext = () => {
   const context = React.useContext(PostCreateContext);
   if (context === undefined) {
     throw new Error('usePostCreate must be used within a PostCreateProvider');

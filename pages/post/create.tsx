@@ -10,13 +10,13 @@ import { PostCreateProvider } from '@components/post/context';
 const Create: NextPage = () => {
   return (
     <PostCreateProvider>
-      <CreateFormik>
-        <Layout>
+      <Layout>
+        <CreateFormik>
           <MeetingInfoEdit />
-          <CreateSchedule />
-        </Layout>
-        <StickyBar buttonName={'약속 생성하기'} />
-      </CreateFormik>
+        </CreateFormik>
+        <CreateSchedule />
+      </Layout>
+      <StickyBar buttonName={'약속 생성하기'} />
     </PostCreateProvider>
   );
 };
