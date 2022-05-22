@@ -11,7 +11,7 @@ export type ProfileEntity = UserEntity & {
 };
 
 export type ScheduleEntity = {
-  scheduleId: number;
+  scheduleId: number | string;
   date: string;
   startTime: string;
   endTime: string;
