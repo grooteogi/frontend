@@ -1,38 +1,23 @@
-import Hashtag from '@components/common/Hashtag';
 import Input from '@components/common/Input';
 import Textarea from '@components/common/Textarea';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { HashtagEntity, PostEntity } from 'types/entity';
+import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfoEdit.style';
-import { usePostContext } from '../context';
-import AddHashtagBar from '../AddHashtagBar/AddHashtagBar';
-import { hashtagIdAdd } from '@lib/common';
+import { PostFormData, usePostContext } from '../context';
+import AddHashtagBar from './AddHashtagBar/AddHashtagBar';
+import { Field, Form, Formik } from 'formik';
 
 export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
 
-let idx = 0;
-const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
-  title: prevTitle,
-  content: prevContent,
-  imageUrl: prevImageUrl,
-  hashtags: prevHashtags = [],
-}) => {
-  const { title, content, imageUrl, hashtags, setTitle, setContent, setImageUrl, setHashtags } = usePostContext();
+const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
+  const { hashtags, setPost } = usePostContext();
   const previewImageRef = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
 
   useEffect(() => {
     setIsWidthBigger(previewImageRef.current.width > previewImageRef.current.height);
-  }, []);
-
-  useEffect(() => {
-    const hashtagsWithId = hashtagIdAdd(prevHashtags);
-    if (prevTitle) setTitle(prevTitle);
-    if (prevContent) setContent(prevContent);
-    if (prevImageUrl) setImageUrl(prevImageUrl);
-    if (hashtagsWithId !== null && hashtagsWithId !== undefined) setHashtags(hashtagsWithId);
   }, []);
 
   const onChangeHandler = (fileInput: HTMLInputElement) => {
@@ -46,58 +31,59 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
     }
   };
 
-  const addHashtag = (value: string) => {
-    const newHashtag: HashtagEntity = { hashtagId: idx++, name: value };
-    setHashtags([...hashtags, newHashtag]);
-  };
-  const removeHashtag = async (hashtag: HashtagEntity) => {
-    setHashtags(hashtags.filter((h: HashtagEntity) => h.hashtagId !== hashtag.hashtagId));
-    console.log(hashtags);
-  };
   return (
     <Styled.container>
-      <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
-        <Typography size={'lg'} color={'black'} weight={'BOLD'}>
-          저는 이런 약속을 계획하고 있어요
-        </Typography>
-        <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
-          <Typography size={'md'} color={'black'} weight={'BOLD'}>
-            내 약속의 제목을 정해봐요
-          </Typography>
-          <Input name={'title'} />
-        </Wrapper>
-        <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
-          <Typography size={'md'} color={'black'} weight={'BOLD'}>
-            내 약속을 설명할 수 있는 사진을 올려봐요
-          </Typography>
-          <Styled.thumbnailWrappper>
-            <Styled.thumbnail>
-              <input type={'file'} id={'fileReader'} onChange={e => onChangeHandler(e.target)} hidden />
-              <Styled.imgSelectBox htmlFor={'fileReader'}>사진 선택</Styled.imgSelectBox>
-              <Styled.postPicWrapper>
-                <Styled.postPic ref={previewImageRef} src={prevContent} isWidthBigger={isWidthBigger} />
-              </Styled.postPicWrapper>
-            </Styled.thumbnail>
-          </Styled.thumbnailWrappper>
-        </Wrapper>
-        <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
-          <Typography size={'md'} color={'black'} weight={'BOLD'}>
-            내 약속을 자세히 설명해봐요
-          </Typography>
-          <Textarea name={'content'} rows={8} />
-        </Wrapper>
-      </Wrapper>
-      <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
-        <Typography size={'lg'} color={'black'} weight={'BOLD'}>
-          저는 이런 분야에 관심이 있어요
-        </Typography>
-        <AddHashtagBar addHashtags={addHashtag} />
-        <Wrapper flexDirection={'row'} gap={{ columnGap: 10 }}>
-          {hashtags.map(({ ...fetched }: HashtagEntity) => (
-            <Hashtag key={fetched.hashtagId} fetchedTag={fetched} removable onRemove={() => removeHashtag(fetched)} />
-          ))}
-        </Wrapper>
-      </Wrapper>
+      <Formik
+        initialValues={{
+          title: '',
+          content: '',
+          imageUrl: '',
+          hashtags: [],
+        }}
+        onSubmit={async (values: PostFormData) => {
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        <Form>
+          <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
+            <Typography size={'lg'} color={'black'} weight={'BOLD'}>
+              저는 이런 약속을 계획하고 있어요
+            </Typography>
+            <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
+              <Typography size={'md'} color={'black'} weight={'BOLD'}>
+                내 약속의 제목을 정해봐요
+              </Typography>
+              <Field type={'text'} id={'title'} name={'title'} component={Input} />
+            </Wrapper>
+            <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
+              <Typography size={'md'} color={'black'} weight={'BOLD'}>
+                내 약속을 설명할 수 있는 사진을 올려봐요
+              </Typography>
+              <Styled.thumbnailWrappper>
+                <Styled.thumbnail>
+                  <input type={'file'} id={'fileReader'} onChange={e => onChangeHandler(e.target)} hidden />
+                  <Styled.imgSelectBox htmlFor={'fileReader'}>사진 선택</Styled.imgSelectBox>
+                  <Styled.postPicWrapper>
+                    <Styled.postPic ref={previewImageRef} isWidthBigger={isWidthBigger} />
+                  </Styled.postPicWrapper>
+                </Styled.thumbnail>
+              </Styled.thumbnailWrappper>
+            </Wrapper>
+            <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
+              <Typography size={'md'} color={'black'} weight={'BOLD'}>
+                내 약속을 자세히 설명해봐요
+              </Typography>
+              <Field id={'content'} name={'content'} rows={8} component={Textarea} />
+            </Wrapper>
+          </Wrapper>
+          <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
+            <Typography size={'lg'} color={'black'} weight={'BOLD'}>
+              저는 이런 분야에 관심이 있어요
+            </Typography>
+            <AddHashtagBar hashtags={hashtags} />
+          </Wrapper>
+        </Form>
+      </Formik>
     </Styled.container>
   );
 };

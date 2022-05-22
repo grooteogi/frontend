@@ -1,6 +1,6 @@
 import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Styled from './ScheduleEdit.style';
 import Dropdown from '@components/common/Dropdown';
 import { dateFormater, enumToArray } from '@lib/common';
@@ -9,7 +9,6 @@ import { RegionList, CreditTypeKR } from 'types/enum';
 import { usePostContext } from '../context';
 import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
-import Input from '@components/common/Input';
 
 export interface CreateScheduleProps {
   schedules?: ScheduleEntity[];
