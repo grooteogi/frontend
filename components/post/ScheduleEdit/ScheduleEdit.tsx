@@ -15,9 +15,7 @@ export interface CreateScheduleProps {
 const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   const [scrollHeight, setScrollHeight] = useState<number>(64);
   const callbackRef = useCallback(node => {
-    if (node !== null) {
-      setScrollHeight(node.getBoundingClientRect().height);
-    }
+    if (node !== null) setScrollHeight(node.getBoundingClientRect().height);
   }, []);
   return (
     <Styled.scroll standardHeight={scrollHeight * 3}>
