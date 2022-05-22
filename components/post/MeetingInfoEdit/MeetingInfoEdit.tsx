@@ -6,7 +6,7 @@ import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
 import { HashtagEntity, PostEntity } from 'types/entity';
 import Styled from './MeetingInfoEdit.style';
-import { usePostCreate } from '../context';
+import { usePostContext } from '../context';
 import AddHashtagBar from '../AddHashtagBar/AddHashtagBar';
 import { hashtagIdAdd } from '@lib/common';
 
@@ -19,12 +19,22 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
   imageUrl: prevImageUrl,
   hashtags: prevHashtags = [],
 }) => {
-  const { title, content, imageUrl, hashtags, setTitle, setContent, setImageUrl, setHashtags } = usePostCreate();
+  const { title, content, imageUrl, hashtags, setTitle, setContent, setImageUrl, setHashtags } = usePostContext();
   const previewImageRef = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
+
   useEffect(() => {
     setIsWidthBigger(previewImageRef.current.width > previewImageRef.current.height);
   }, []);
+
+  useEffect(() => {
+    const hashtagsWithId = hashtagIdAdd(prevHashtags);
+    if (prevTitle) setTitle(prevTitle);
+    if (prevContent) setContent(prevContent);
+    if (prevImageUrl) setImageUrl(prevImageUrl);
+    if (hashtagsWithId !== null && hashtagsWithId !== undefined) setHashtags(hashtagsWithId);
+  }, []);
+
   const onChangeHandler = (fileInput: HTMLInputElement) => {
     if (fileInput.files && fileInput.files[0]) {
       const reader = new FileReader();
@@ -35,13 +45,6 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
       reader.readAsDataURL(fileInput.files[0]);
     }
   };
-  useEffect(() => {
-    const hashtagsWithId = hashtagIdAdd(prevHashtags);
-    if (prevTitle) setTitle(prevTitle);
-    if (prevContent) setContent(prevContent);
-    if (prevImageUrl) setImageUrl(prevImageUrl);
-    if (hashtagsWithId !== null && hashtagsWithId !== undefined) setHashtags(hashtagsWithId);
-  }, []);
 
   const addHashtag = (value: string) => {
     const newHashtag: HashtagEntity = { hashtagId: idx++, name: value };
