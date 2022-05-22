@@ -1,6 +1,7 @@
 import React from 'react';
 import Styled from './StickyBar.style';
 import Button from '@components/common/Button';
+import { usePostCreate } from '../context';
 
 interface StickyBarType {
   buttonName: string;
@@ -9,7 +10,7 @@ interface StickyBarType {
 const StickyBar: React.FC<StickyBarType> = ({ buttonName }) => {
   return (
     <Styled.container>
-      <Button name={buttonName} color={'primary'} fontColor={'white'} size={'lg'} />
+      <Button name={buttonName} color={'primary'} fontColor={'white'} size={'lg'} type={'submit'} />
     </Styled.container>
   );
 };

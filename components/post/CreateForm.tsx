@@ -1,6 +1,5 @@
 import { Form, Formik, FormikHelpers } from 'formik';
 import { createContext } from 'react';
-import { sleep } from 'react-query/types/core/utils';
 import { ScheduleEntity } from 'types/entity';
 import { CreditType } from 'types/enum';
 
@@ -25,7 +24,6 @@ const CreateFormik = ({ children }: { children: React.ReactNode }) => {
         schedules: [],
       }}
       onSubmit={async (values: PostCreateStateType) => {
-        await sleep(1000);
         alert(JSON.stringify(values, null, 2));
       }}
     >

@@ -6,6 +6,7 @@ import Dropdown from '@components/common/Dropdown';
 import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
 import { RegionList, CreditTypeKR } from 'types/enum';
+import { usePostCreate } from '../context';
 
 export interface CreateScheduleProps {
   schedules?: ScheduleEntity[];
@@ -52,12 +53,14 @@ function ToArray(enumme: any) {
 }
 
 const ScheduleEdit: React.FC = () => {
+  const { schedules, setSchedules } = usePostCreate();
+
   const initStart = new Date();
   const initEnd = new Date().setHours(initStart.getHours() + 2);
 
   const [creditTypeInput, setCreditTypeInput] = useState(ToArray(CreditTypeKR)[0]);
   const [regionInput, setRegionInput] = useState(ToArray(RegionList)[0]);
-  const [schedules, setSchedules] = useState<ScheduleEntity[]>([]);
+  // const [schedules, setSchedules] = useState<ScheduleEntity[]>([]);
 
   const startTimeRef = useRef<any>();
   const endTimeRef = useRef<any>();

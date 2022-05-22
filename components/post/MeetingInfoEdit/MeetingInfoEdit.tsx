@@ -7,11 +7,17 @@ import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
 import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfoEdit.style';
+import { usePostCreate } from '../context';
 
 export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
 
-const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, imageUrl, hashtags = [] }) => {
-  const [editImageUrl, setEditImageUrl] = useState(imageUrl);
+const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
+  title: prevTitle,
+  content: prevContent,
+  imageUrl: prevImageUrl,
+  hashtags: prevHashtags,
+}) => {
+  // const { setTitle, setContent, setImageUrl, setHashtags } = usePostCreate();
   const previewImageRef = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
   useEffect(() => {
@@ -22,13 +28,10 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
       const reader = new FileReader();
       reader.onload = e => {
         previewImageRef.current.src = e.target?.result;
-        setEditImageUrl(previewImageRef.current.src);
+        // setImageUrl(previewImageRef.current.src);
       };
       reader.readAsDataURL(fileInput.files[0]);
     }
-  };
-  const onRemove = ({ target }: any) => {
-    alert(target);
   };
   return (
     <Styled.container>
@@ -40,7 +43,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
           <Typography size={'md'} color={'black'} weight={'BOLD'}>
             내 약속의 제목을 정해봐요
           </Typography>
-          <Input value={title} />
+          <Input name={'title'} defaultValue={prevTitle} />
         </Wrapper>
         <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
           <Typography size={'md'} color={'black'} weight={'BOLD'}>
@@ -51,7 +54,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
               <input type={'file'} id={'fileReader'} onChange={e => onChangeHandler(e.target)} hidden />
               <Styled.imgSelectBox htmlFor={'fileReader'}>사진 선택</Styled.imgSelectBox>
               <Styled.postPicWrapper>
-                <Styled.postPic ref={previewImageRef} src={editImageUrl} isWidthBigger={isWidthBigger} />
+                <Styled.postPic ref={previewImageRef} src={prevContent} isWidthBigger={isWidthBigger} />
               </Styled.postPicWrapper>
             </Styled.thumbnail>
           </Styled.thumbnailWrappper>
@@ -60,7 +63,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({ title, content, image
           <Typography size={'md'} color={'black'} weight={'BOLD'}>
             내 약속을 자세히 설명해봐요
           </Typography>
-          <Textarea value={content} rows={8} />
+          <Textarea name="content" defaultValue={prevImageUrl} rows={8} />
         </Wrapper>
       </Wrapper>
       <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
