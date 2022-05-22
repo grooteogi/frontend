@@ -9,7 +9,6 @@ export interface SListProps {
 export const Styled = {
   container: styled.div`
     width: 100%;
-    max-width: 600px;
     height: auto;
     background: ${searchTheme.backgroundColor.white};
     border-radius: 8px;

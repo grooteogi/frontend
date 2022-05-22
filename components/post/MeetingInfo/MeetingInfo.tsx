@@ -8,6 +8,8 @@ import Styled from './MeetingInfo.style';
 import Link from 'next/link';
 import { CreditTypeKR } from 'types/enum';
 import Hashtag from '@components/common/Hashtag';
+import { useRouter } from 'next/router';
+import post from '@lib/api/post';
 
 const MeetingInfo: React.FC<PostEntity> = ({
   postId,
@@ -19,6 +21,7 @@ const MeetingInfo: React.FC<PostEntity> = ({
   likes,
   creditType,
 }) => {
+  const router = useRouter();
   const postImg = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
   const [liked, setLiked] = useState<boolean>(likes.liked);
@@ -33,6 +36,12 @@ const MeetingInfo: React.FC<PostEntity> = ({
     };
     return rObj;
   });
+  const deletePost = async () => {
+    const status = await post.deletePost({ postId });
+    if (status === 200) {
+      router.push('/search');
+    }
+  };
   return (
     <Styled.container>
       <Styled.thumbnailWrappper>
@@ -79,7 +88,7 @@ const MeetingInfo: React.FC<PostEntity> = ({
         <Link href={`/post/create`} passHref>
           <Styled.bottomButton>수정하기</Styled.bottomButton>
         </Link>
-        <Styled.bottomButton>삭제하기</Styled.bottomButton>
+        <Styled.bottomButton onClick={() => deletePost()}>삭제하기</Styled.bottomButton>
       </Styled.bottomButtonBox>
     </Styled.container>
   );

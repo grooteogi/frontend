@@ -12,6 +12,7 @@ import { hashtagIdAdd } from '@lib/common';
 
 export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
 
+let idx = 0;
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
   title: prevTitle,
   content: prevContent,
@@ -34,21 +35,21 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
       reader.readAsDataURL(fileInput.files[0]);
     }
   };
-  let idx = 0;
   useEffect(() => {
     const hashtagsWithId = hashtagIdAdd(prevHashtags);
     if (prevTitle) setTitle(prevTitle);
     if (prevContent) setContent(prevContent);
     if (prevImageUrl) setImageUrl(prevImageUrl);
-    if (hashtagsWithId !== null && hashtagsWithId !== undefined && hashtags) setHashtags(hashtagsWithId);
+    if (hashtagsWithId !== null && hashtagsWithId !== undefined) setHashtags(hashtagsWithId);
   }, []);
 
   const addHashtag = (value: string) => {
     const newHashtag: HashtagEntity = { hashtagId: idx++, name: value };
-    setHashtags(...hashtags, newHashtag);
+    setHashtags([...hashtags, newHashtag]);
   };
-  const removeHashtag = (hashtag: HashtagEntity) => {
-    setHashtags(hashtags.filter((h: HashtagEntity) => h !== hashtag));
+  const removeHashtag = async (hashtag: HashtagEntity) => {
+    setHashtags(hashtags.filter((h: HashtagEntity) => h.hashtagId !== hashtag.hashtagId));
+    console.log(hashtags);
   };
   return (
     <Styled.container>
@@ -88,7 +89,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = ({
           저는 이런 분야에 관심이 있어요
         </Typography>
         <AddHashtagBar addHashtags={addHashtag} />
-        <Wrapper flexDirection={'row'} gap={{ columnGap: 20 }}>
+        <Wrapper flexDirection={'row'} gap={{ columnGap: 10 }}>
           {hashtags.map(({ ...fetched }: HashtagEntity) => (
             <Hashtag key={fetched.hashtagId} fetchedTag={fetched} removable onRemove={() => removeHashtag(fetched)} />
           ))}

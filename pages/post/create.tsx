@@ -9,15 +9,15 @@ import { PostCreateProvider } from '@components/post/context';
 
 const Create: NextPage = () => {
   return (
-    // <CreateFormik>
     <PostCreateProvider>
-      <Layout>
-        <MeetingInfoEdit />
-        <CreateSchedule />
+      <CreateFormik>
+        <Layout>
+          <MeetingInfoEdit />
+          <CreateSchedule />
+        </Layout>
         <StickyBar buttonName={'약속 생성하기'} />
-      </Layout>
+      </CreateFormik>
     </PostCreateProvider>
-    // </CreateFormik>
   );
 };
 

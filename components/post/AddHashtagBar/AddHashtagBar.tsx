@@ -8,12 +8,13 @@ interface InputProps {
 
 const AddHashtagBar: React.FC<InputProps> = ({ addHashtags }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const checkEnter = (e: React.KeyboardEvent) => {
+  const checkEnter = async (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       // 엔터 이벤트 처리
       if (inputRef.current) {
         addHashtags(inputRef.current.value);
         inputRef.current.value = '';
+        inputRef.current.focus();
       }
     }
   };
