@@ -32,6 +32,6 @@ export const Styled = {
     flex-grow: 1;
     height: 25px;
     padding: 4px;
-    fontsize: 0.875rem;
+    font-size: 0.875rem;
   `,
 };
