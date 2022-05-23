@@ -9,7 +9,8 @@ interface ResponseData {
 export const GAxios = axios.create({
   baseURL: '/api',
   headers: { 'Content-Type': 'application/json' },
-  withCredentials: true,
+  withCredentials: false,
+  // TRUE!
 });
 
 export const getData = async (url: string) => {

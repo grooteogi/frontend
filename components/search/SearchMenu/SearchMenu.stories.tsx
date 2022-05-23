@@ -4,6 +4,7 @@ import theme from '@styles/theme';
 import Box from '@components/common/Box';
 import SearchMenu from './SearchMenu';
 import sampleData from './data.json';
+import { TagMenuEntity } from 'types/fetchedData';
 
 export default {
   title: 'Containers/SearchMenu',
@@ -20,5 +21,5 @@ const Template: ComponentStory<typeof SearchMenu> = args => (
 
 export const Default = Template.bind({});
 Default.args = {
-  data: sampleData,
+  data: sampleData as TagMenuEntity[],
 };

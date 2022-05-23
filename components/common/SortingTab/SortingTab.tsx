@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
 import { Styled } from './SortingTab.styled';
 
-export interface ItemProps {
-  value: string;
-  onclick?: (e: React.MouseEvent) => void;
-}
-
 export interface SortingTabProps {
-  itemList: ItemProps[];
+  itemList: string[];
+  value: string;
+  onClick: (sort: string) => void;
 }
 
-const SortingTab: React.FC<SortingTabProps> = ({ itemList }) => {
-  const [selectedIdx, setSelectedIdx] = useState(0);
-
+const SortingTab: React.FC<SortingTabProps> = ({ itemList, value, onClick }) => {
   return (
     <Styled.container>
-      {itemList.map(({ onclick, value }: ItemProps, index) => (
-        <Styled.item
-          key={index}
-          active={selectedIdx === index ? true : false}
-          onClick={(e: React.MouseEvent) => {
-            setSelectedIdx(index);
-            onclick && onclick(e);
-          }}
-        >
-          {value}
+      {itemList.map((item, index) => (
+        <Styled.item key={index} active={value === item} onClick={() => onClick(item)}>
+          {item}
         </Styled.item>
       ))}
     </Styled.container>

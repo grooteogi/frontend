@@ -1,22 +1,17 @@
 import React from 'react';
 import { ButtonProps, Styled } from './SearchButton.styled';
 import Typography from '@components/common/Typography';
-import { HashtagEntity } from 'types/entity';
+import { TagMenuEntity } from 'types/fetchedData';
 
 interface SearchButtonProp extends ButtonProps {
-  fetchedTag: HashtagEntity;
+  fetchedTag: TagMenuEntity;
+  onClick: (tagValue: string) => void;
   clicked: boolean;
-  setClickedButtonId: (hashtagId: number) => void;
 }
 
-const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, clicked, setClickedButtonId }) => {
+const SearchButton: React.FC<SearchButtonProp> = ({ fetchedTag, onClick, clicked }) => {
   return (
-    <Styled.button
-      onClick={() => {
-        setClickedButtonId(fetchedTag.hashtagId);
-      }}
-      clicked={clicked}
-    >
+    <Styled.button onClick={() => (clicked ? onClick('') : onClick(fetchedTag.name))} clicked={clicked}>
       <Typography size={'sm'} color={'black'}>
         #{fetchedTag.name}
       </Typography>

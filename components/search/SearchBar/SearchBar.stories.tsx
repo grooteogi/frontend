@@ -18,8 +18,3 @@ export const DefaultInput = Template.bind({});
 DefaultInput.args = {
   placeholder: '관심사를 검색해보세요~',
 };
-
-export const HashInput = Template.bind({});
-HashInput.args = {
-  placeholder: '관심사를 검색해보세요~',
-};
