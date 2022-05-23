@@ -66,7 +66,7 @@ export const ReservationProvider = ({ children }: { children: React.ReactNode })
   );
 };
 
-export const useReservation = () => {
+export const useReservationContext = () => {
   const context = React.useContext(ReservationContext);
   if (context === undefined) {
     throw new Error('useReservation must be used within a ReservationProvider');
