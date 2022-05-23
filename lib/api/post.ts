@@ -22,6 +22,11 @@ export const post = {
     const res = await getData(url);
     return res;
   },
+  updatePostImg: async (formData: FormData) => {
+    const url = `/s3/image`;
+    const res = await postData(url, formData);
+    return res;
+  },
   detailSchedules: async (postId: number) => {
     const url = `post/${postId}/schedules`;
     const res = await getData(url);

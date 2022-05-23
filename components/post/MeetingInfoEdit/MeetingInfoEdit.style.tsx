@@ -84,6 +84,7 @@ export const Styled = {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    min-width: 100%;
   `,
   userPic: styled.img`
     width: 22px;

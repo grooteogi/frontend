@@ -14,7 +14,7 @@ import StickyBar from '../StickyBar/StickyBar';
 export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
 
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
-  const { hashtags, creditType, schedules } = usePostContext();
+  const { hashtags, creditType, schedules, imageUrl, setImageUrl } = usePostContext();
   const previewImageRef = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
 
@@ -25,9 +25,17 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
   const onChangeHandler = (fileInput: HTMLInputElement) => {
     if (fileInput.files && fileInput.files[0]) {
       const reader = new FileReader();
-      reader.onload = e => {
+      const formData = new FormData();
+      formData.append('aa', fileInput.files[0]);
+      reader.onload = async e => {
+        const res = await post.updatePostImg(formData);
+        if (res) {
+          previewImageRef.current.src = e.target?.result;
+          setImageUrl(res);
+        }
+        //  TODO: auth 통합후 지울것 (res 되기전에 테스트)
         previewImageRef.current.src = e.target?.result;
-        // setImageUrl(previewImageRef.current.src);
+        setImageUrl(e.target?.result);
       };
       reader.readAsDataURL(fileInput.files[0]);
     }
@@ -42,8 +50,8 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
           hashtags: [],
         }}
         onSubmit={async (values: PostFormData) => {
-          console.log(JSON.stringify(values, null, 2));
-          const sendData = { ...values, hashtags, creditType, schedules };
+          const sendData = { ...values, imageUrl, hashtags, creditType, schedules };
+          console.log(sendData);
           const status = await post.createPost(sendData);
           console.log(status);
         }}
@@ -65,7 +73,13 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
               </Typography>
               <Styled.thumbnailWrappper>
                 <Styled.thumbnail>
-                  <input type={'file'} id={'fileReader'} onChange={e => onChangeHandler(e.target)} hidden />
+                  <input
+                    name={'imageUrl'}
+                    type={'file'}
+                    id={'fileReader'}
+                    onChange={e => onChangeHandler(e.target)}
+                    hidden
+                  />
                   <Styled.imgSelectBox htmlFor={'fileReader'}>사진 선택</Styled.imgSelectBox>
                   <Styled.postPicWrapper>
                     <Styled.postPic ref={previewImageRef} isWidthBigger={isWidthBigger} />

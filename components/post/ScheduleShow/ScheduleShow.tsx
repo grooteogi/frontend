@@ -14,7 +14,6 @@ const ScheduleItems: React.FC<ScheduleProps> = ({ schedules }) => {
   const callbackRef = useCallback(node => {
     if (node !== null) {
       setScrollHeight(node.getBoundingClientRect().height);
-      console.log(scrollHeight);
     }
   }, []);
 
