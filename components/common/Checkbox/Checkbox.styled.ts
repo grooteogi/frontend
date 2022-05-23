@@ -44,7 +44,7 @@ export const StyledCheckboxInput = styled.input`
   accent-color: #4e4e4e;
 `;
 export const StyledCheckboxText = styled.div`
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   font-size: 0.875rem;
   color: #4e4e4e;
 `;
