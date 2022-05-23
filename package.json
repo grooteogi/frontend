@@ -30,6 +30,7 @@
     "@types/react-slick": "^0.23.8",
     "axios": "^0.26.1",
     "babel-plugin-module-resolver": "^4.1.0",
+    "formik": "^2.2.9",
     "moment": "^2.29.3",
     "next": "12.1.0",
     "path": "^0.12.7",
