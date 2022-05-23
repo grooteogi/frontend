@@ -1,10 +1,11 @@
-import NormalSignupModal from '@components/auth/SignUpModal';
+import Layout from '@components/auth/layout';
+import SignupModal from '@components/auth/SignUpModal';
 
 const SigNormalSignupPage = () => {
   return (
-    <div>
-      <NormalSignupModal />
-    </div>
+    <Layout.container>
+      <SignupModal />
+    </Layout.container>
   );
 };
 

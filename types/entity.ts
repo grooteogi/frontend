@@ -1,5 +1,10 @@
 import { CreditType } from './enum';
 
+export type AuthEntity = {
+  email: string;
+  password: string;
+};
+
 export type UserEntity = {
   id: number;
   nickname: string;

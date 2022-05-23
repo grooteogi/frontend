@@ -1,169 +1,161 @@
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import useInput from '@hooks/useInput';
-import auth from '@lib/api/auth';
 import { validEmail, validPassword } from '@lib/validator';
+import { Field, Form, Formik, FormikErrors, useFormikContext } from 'formik';
+import auth from '@lib/api/auth';
 import Box from '@components/common/Box';
 import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import Input from '@components/common/Input';
-import Typography from '@components/common/Typography';
-import Wrapper from '@components/common/Wrapper';
+import Styled from './style';
+import Title from '@components/common/Title';
+import Timer from '@components/common/Timer/Timer';
 
-const NormalSignupModal = () => {
-  const router = useRouter();
-  const { value: email, onChange: onEmailChange, valid: emailValid } = useInput('', validEmail);
-  const { value: pwd, onChange: onPwdChange, valid: pwdValid } = useInput('', validPassword);
-  const { value: pwdConfirm, onChange: onPwdConfirmChange } = useInput('', validPassword);
-  const { value: code, onChange: onCodeChange } = useInput('');
+interface LoginFormikValues {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  code: string;
+  allAgree: boolean;
+  serviceAgree: boolean;
+  privacyAgree: boolean;
+  ageAgree: boolean;
+}
+
+const SignupForm = () => {
+  const { values, errors, setFieldValue } = useFormikContext<LoginFormikValues>();
+  const { email, password, passwordConfirm, code, allAgree } = values;
   const [emailClicked, setEmailClicked] = useState(false);
-  const [emailConfirm, setEmailConfirm] = useState(false);
-  const [allChecked, setAllChecked] = useState(false);
-  const [minutes, setMinutes] = useState(3);
-  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    router.prefetch('/auth/hashtag');
-
-    if (emailClicked) {
-      const countdown = setInterval(() => {
-        if (seconds > 0) {
-          setSeconds(seconds - 1);
-        }
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(countdown);
-          } else {
-            setMinutes(minutes - 1);
-            setSeconds(59);
-          }
-        }
-      }, 1000);
-      return () => clearInterval(countdown);
+    if (allAgree === true) {
+      setFieldValue('serviceAgree', true);
+      setFieldValue('privacyAgree', true);
+      setFieldValue('ageAgree', true);
     }
-  }, [minutes, seconds, emailClicked, router]);
+  }, [allAgree, setFieldValue]);
 
-  const handleEmailVerifiedClick = async () => {
-    setEmailClicked(true);
-    const status = await auth.sendEmail(email);
-    if (status === 200) console.log('email verified');
-    else console.log('email not verified');
-  };
-  const handleEmailVerified = async () => {
-    const status = await auth.confirmEmail({ email, code });
-    if (status === 200) setEmailConfirm(true);
-    else console.log('email sending fail');
-  };
-  const handleSubmit = async () => {
-    const status = await auth.signupUser({ type: 0, email, password: pwd });
-    // if (status === 200) router.push('/auth/hashtag');
-    router.push('/auth/hashtag');
+  const handleEmailClick = async () => {
+    if (!emailClicked) {
+      setEmailClicked(true);
+      const status = await auth.sendEmail(email);
+      if (status === 200) console.log('email verified');
+      else console.log('email not verified');
+    } else {
+      const status = await auth.confirmEmail({ email, code });
+      if (status === 200) console.log('email verified confirmed');
+      else console.log('email sending fail');
+    }
   };
 
   return (
-    <Box width={500} height={800}>
-      <Wrapper flexDirection={'row'} gap={{ rowGap: 20 }}>
-        <Typography size={'lg'} color={'black'} weight={'BOLD'}>
+    <Form>
+      <Field
+        type={'text'}
+        placeholder={'이메일'}
+        name={'email'}
+        id={'email'}
+        fontColor={email && !errors.email ? 'black' : 'darkgray'}
+        borderColor={email && !errors.email ? 'primary' : 'lightgray'}
+        component={Input}
+      />
+      {emailClicked && <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />}
+      {emailClicked && <Timer isStart={true} limitMin={0} fontColor={'black'} />}
+      <Button
+        type={'button'}
+        name={'이메일 인증'}
+        size={'md'}
+        fontColor={'white'}
+        borderColor={'none'}
+        color={email && !errors.email ? 'black' : 'lightgray'}
+        disabled={email && !errors.email ? false : true}
+        onClick={handleEmailClick}
+      />
+      <Field
+        type={'password'}
+        placeholder={'비밀번호'}
+        name={'password'}
+        id={'password'}
+        fontColor={password && !errors.password ? 'black' : 'darkgray'}
+        borderColor={password && !errors.password ? 'primary' : 'lightgray'}
+        component={Input}
+      />
+      <Field
+        type={'password'}
+        placeholder={'비밀번호 확인'}
+        name={'passwordConfirm'}
+        id={'passwordConfirm'}
+        fontColor={passwordConfirm === password ? 'black' : 'darkgray'}
+        borderColor={passwordConfirm && passwordConfirm === password ? 'primary' : 'lightgray'}
+        component={Input}
+      />
+
+      <Field type={'checkbox'} name={'allAgree'} id={'allAgree'} label={'전체 동의'} component={Checkbox} />
+      <Field
+        type={'checkbox'}
+        name={'serviceAgree'}
+        id={'serviceAgree'}
+        label={'서비스 이용 약관 동의 (필수)'}
+        checked={allAgree}
+        paddingLeft={'1.5rem'}
+        component={Checkbox}
+      />
+      <Field
+        type={'checkbox'}
+        name={'privacyAgree'}
+        id={'privacyAgree'}
+        label={'개인정보 수집 및 이용 동의 (필수)'}
+        checked={allAgree}
+        paddingLeft={'1.5rem'}
+        component={Checkbox}
+      />
+      <Field
+        type={'checkbox'}
+        name={'ageAgree'}
+        id={'ageAgree'}
+        label={'만 14세 이상입니다 (필수)'}
+        checked={allAgree}
+        paddingLeft={'1.5rem'}
+        component={Checkbox}
+      />
+      <Button type={'submit'} color={'primary'} name={'회원가입하기'} fontColor={'black'} size={'lg'} />
+    </Form>
+  );
+};
+
+const SignupModal = () => {
+  return (
+    <Box width={450}>
+      <Styled.container>
+        <Title size="h1" color={'black'} align="left">
           🌳 간편 가입하기
-        </Typography>
-      </Wrapper>
-      <Wrapper flexDirection={'column'} gap={{ gap: 20 }}>
-        <Input placeholder={'이메일'} />
-        <Wrapper flexDirection={'row'} gap={{ columnGap: 1 }} justifyContent={'flex-end'}>
-          <Button color={'black'} fontColor={'white'} borderColor={'none'} name={'이메일 인증'} size={'md'} />
-        </Wrapper>
-        <Wrapper flexDirection={'row'} gap={{ gap: 20 }}>
-          <Input
-            width={375}
-            height={40}
-            placeholder={'이메일'}
-            value={email}
-            onChange={onEmailChange}
-            fontColor={emailValid ? 'black' : 'gray'}
-            borderColor={emailConfirm ? 'primary' : 'lightgray'}
-          />
-          {emailClicked ? (
-            <Input width={375} height={40} placeholder={'인증번호를 입력하세요'} value={code} onChange={onCodeChange} />
-          ) : (
-            <></>
-          )}
-          {emailConfirm ? (
-            <></>
-          ) : (
-            <Wrapper flexDirection={'row'} justifyContent={'flex-end'} alignItems={'center'} gap={{ gap: 10 }}>
-              {emailClicked ? (
-                <Typography size={'sm'} color={'black'}>
-                  {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                </Typography>
-              ) : (
-                <></>
-              )}
-              <Button
-                fontColor={'white'}
-                borderColor={'none'}
-                name={'이메일 인증'}
-                size={'md'}
-                color={emailValid ? 'black' : 'lightgray'}
-                disabled={emailValid ? false : true}
-                onClick={emailClicked ? handleEmailVerified : handleEmailVerifiedClick}
-              />
-            </Wrapper>
-          )}
-          <Input
-            width={375}
-            height={40}
-            placeholder={'비밀번호'}
-            type={'password'}
-            value={pwd}
-            onChange={onPwdChange}
-            fontColor={pwdValid ? 'black' : 'gray'}
-            borderColor={pwd && pwd === pwdConfirm ? 'primary' : 'lightgray'}
-          />
-          <Input
-            width={375}
-            height={40}
-            placeholder={'비밀번호 확인'}
-            type={'password'}
-            value={pwdConfirm}
-            onChange={onPwdConfirmChange}
-            fontColor={pwd === pwdConfirm ? 'black' : 'gray'}
-            borderColor={pwd && pwd === pwdConfirm ? 'primary' : 'lightgray'}
-          />
-          <Wrapper flexDirection={'row'} gap={{ rowGap: 5 }}>
-            <Checkbox
-              label={'전체 동의'}
-              checked={allChecked}
-              defaultChecked={allChecked}
-              onClick={() => setAllChecked(!allChecked)}
-            />
-            <Wrapper flexDirection={'row'} gap={{ rowGap: 10 }}>
-              <Checkbox
-                label={'서비스 이용 약관 동의 (필수)'}
-                link={true}
-                paddingLeft={'1rem'}
-                checked={allChecked}
-                defaultChecked={allChecked}
-              />
-              <Checkbox
-                label={'개인정보 수집 및 이용 동의 (필수)'}
-                link={true}
-                paddingLeft={'1rem'}
-                checked={allChecked}
-                defaultChecked={allChecked}
-              />
-              <Checkbox
-                label={'만 14세 이상입니다 (필수)'}
-                paddingLeft={'1rem'}
-                checked={allChecked}
-                defaultChecked={allChecked}
-              />
-            </Wrapper>
-          </Wrapper>
-        </Wrapper>
-        <Button color={'primary'} name={'회원가입하기'} fontColor={'black'} size={'lg'} onClick={handleSubmit}></Button>
-      </Wrapper>
+        </Title>
+
+        <Formik
+          initialValues={{
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            code: '',
+            allAgree: false,
+            serviceAgree: false,
+            privacyAgree: false,
+            ageAgree: false,
+          }}
+          validate={values => {
+            const errors: FormikErrors<{ email: string; password: string }> = { email: '', password: '' };
+            if (values.email && !validEmail(values.email)) errors.email = 'Email Fail';
+            if (values.password && !validPassword(values.password)) errors.password = 'Password Fail';
+            return errors;
+          }}
+          onSubmit={values => {
+            console.log('formData', values);
+          }}
+        >
+          <SignupForm />
+        </Formik>
+      </Styled.container>
     </Box>
   );
 };
 
-export default NormalSignupModal;
+export default SignupModal;
