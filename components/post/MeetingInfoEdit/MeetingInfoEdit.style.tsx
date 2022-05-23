@@ -1,3 +1,4 @@
+import { StyledLink } from '@components/common/Link/Link.styled';
 import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
 
@@ -15,6 +16,16 @@ const getSize = ({ isWidthBigger }: SizeProps) => {
 };
 
 export const Styled = {
+  postInfoBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  `,
+  postInfoElementBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  `,
   container: styled.div`
     width: 100%;
     display: flex;
@@ -79,6 +90,12 @@ export const Styled = {
     height: 22px;
     object-fit: cover;
     border-radius: 50%;
+  `,
+  addHashtagBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    margin-top: 4rem;
   `,
 };
 

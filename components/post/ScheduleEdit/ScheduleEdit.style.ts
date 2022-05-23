@@ -32,6 +32,7 @@ export const Styled = {
     flex-direction: column;
     justify-content: space-around;
     align-self: start;
+    row-gap: 1rem;
   `,
   title: styled(Typography)`
     font-size: 1.2rem;
@@ -88,8 +89,7 @@ export const Styled = {
   `,
   innerContainer: styled.div`
     width: 100%;
-    margin-top: 20px;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 1rem;
     border: 1px solid lightgrey;
     border-radius: 12px;
     background: white;

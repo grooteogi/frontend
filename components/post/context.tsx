@@ -1,13 +1,13 @@
 import React, { createContext, useReducer } from 'react';
-import { ScheduleEntity } from 'types/entity';
+import { HashtagEntity, ScheduleEntity } from 'types/entity';
 import { CreditType } from 'types/enum';
-import { PostFormData } from './MeetingInfoEdit/MeetingInfoEdit';
 
 export type PostCreateStateType = {
+  post: PostFormData;
   title: string;
   content: string;
   imageUrl: string;
-  hashtags: string[];
+  hashtags: HashtagEntity[];
   creditType: CreditType;
   schedules: ScheduleEntity[];
 };
@@ -16,15 +16,14 @@ export type PostFormData = {
   title: string;
   content: string;
   imageUrl: string;
-  hashtags: string[];
+  hashtags: HashtagEntity[];
 };
 
 type PostCreateAction =
-  | { type: 'SET_POST'; post: PostFormData }
   | { type: 'SET_TITLE'; title: string }
   | { type: 'SET_CONTENT'; content: string }
   | { type: 'SET_IMAGE_URL'; imageUrl: string }
-  | { type: 'SET_HASHTAGS'; hashtags: string[] }
+  | { type: 'SET_HASHTAGS'; hashtags: HashtagEntity[] }
   | { type: 'SET_CREDITTYPE'; creditType: CreditType }
   | { type: 'SET_SCHEDULES'; schedules: ScheduleEntity[] };
 
@@ -32,11 +31,6 @@ const PostCreateContext = createContext<any>(null);
 
 function PostCreateReducer(state: PostCreateStateType, action: PostCreateAction): PostCreateStateType {
   switch (action.type) {
-    case 'SET_POST':
-      return {
-        ...state,
-        ...action.post,
-      };
     case 'SET_TITLE':
       return {
         ...state,
@@ -80,12 +74,15 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
     hashtags: [],
     creditType: CreditType.DIRECT,
     schedules: [],
+    post: {
+      title: '',
+      content: '',
+      imageUrl: '',
+      hashtags: [],
+    },
   };
   const [postState, dispatchPost] = useReducer(PostCreateReducer, initialPost);
 
-  const setPost = (post: PostFormData) => {
-    dispatchPost({ type: 'SET_POST', post });
-  };
   const setTitle = (title: string) => {
     dispatchPost({ type: 'SET_TITLE', title });
   };
@@ -95,10 +92,9 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
   const setImageUrl = (imageUrl: string) => {
     dispatchPost({ type: 'SET_IMAGE_URL', imageUrl });
   };
-  const setHashtags = (hashtags: string[]) => {
+  const setHashtags = (hashtags: HashtagEntity[]) => {
     dispatchPost({ type: 'SET_HASHTAGS', hashtags });
   };
-
   const setCreditType = (creditType: CreditType) => {
     dispatchPost({ type: 'SET_CREDITTYPE', creditType });
   };
@@ -110,13 +106,18 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
       value={{
         state: postState,
         dispatch: dispatchPost,
+        post: {
+          title: postState.title,
+          content: postState.content,
+          imageUrl: postState.imageUrl,
+          hashtags: postState.hashtags,
+        },
         title: postState.title,
         content: postState.content,
         imageUrl: postState.imageUrl,
         hashtags: postState.hashtags,
         creditType: postState.creditType,
         schedules: postState.schedules,
-        setPost,
         setTitle,
         setContent,
         setImageUrl,

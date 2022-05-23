@@ -60,58 +60,59 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: ScheduleEnt
         date: new Date(values.startTime).toString(), // TODO: backend date format 확인할것
         ...values,
       };
-      console.log('new', newSchedule);
       onCreateSchedule(newSchedule);
     },
   });
 
   return (
     <form onSubmit={scheduleFormik.handleSubmit}>
-      <Styled.row>
-        <Typography size={'sm'} color={'black'}>
-          약속 지역
-        </Typography>
-        <Dropdown value={regionInput} list={enumToArray(RegionList)} zIndex={3} onClick={setRegionInput} />
-      </Styled.row>
-      <Styled.row>
-        <Typography size={'sm'} color={'black'}>
-          약속 장소
-        </Typography>
-        <Styled.input
-          id={'place'}
-          name={'place'}
-          type={'search'}
-          onChange={scheduleFormik.handleChange}
-          value={scheduleFormik.values.place}
-        />
-      </Styled.row>
-      <Styled.row>
-        <Typography size={'sm'} color={'black'}>
-          약속 시작
-        </Typography>
-        <Styled.input
-          id={'startTime'}
-          name={'startTime'}
-          type={'datetime-local'}
-          onChange={scheduleFormik.handleChange}
-          value={scheduleFormik.values.startTime}
-        />
-      </Styled.row>
-      <Styled.row>
-        <Typography size={'sm'} color={'black'}>
-          약속 종료
-        </Typography>
-        <Styled.input
-          id={'endTime'}
-          name={'endTime'}
-          type={'datetime-local'}
-          onChange={scheduleFormik.handleChange}
-          value={scheduleFormik.values.endTime}
-        />
-      </Styled.row>
-      <Styled.row>
-        <Styled.submitBtn type={'submit'} name="추가하기" color={'primary'} fontColor={'white'} size={'lg'} />
-      </Styled.row>
+      <Styled.innerContainer>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 지역
+          </Typography>
+          <Dropdown value={regionInput} list={enumToArray(RegionList)} zIndex={3} onClick={setRegionInput} />
+        </Styled.row>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 장소
+          </Typography>
+          <Styled.input
+            id={'place'}
+            name={'place'}
+            type={'search'}
+            onChange={scheduleFormik.handleChange}
+            value={scheduleFormik.values.place}
+          />
+        </Styled.row>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 시작
+          </Typography>
+          <Styled.input
+            id={'startTime'}
+            name={'startTime'}
+            type={'datetime-local'}
+            onChange={scheduleFormik.handleChange}
+            value={scheduleFormik.values.startTime}
+          />
+        </Styled.row>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 종료
+          </Typography>
+          <Styled.input
+            id={'endTime'}
+            name={'endTime'}
+            type={'datetime-local'}
+            onChange={scheduleFormik.handleChange}
+            value={scheduleFormik.values.endTime}
+          />
+        </Styled.row>
+        <Styled.row>
+          <Styled.submitBtn type={'submit'} name="추가하기" color={'primary'} fontColor={'white'} size={'lg'} />
+        </Styled.row>
+      </Styled.innerContainer>
     </form>
   );
 };
@@ -131,28 +132,20 @@ const ScheduleEdit: React.FC = () => {
 
   return (
     <Styled.container>
-      <Wrapper flexDirection={'row'} margin={{ margin: '0 0 20px 0' }}>
-        <Styled.title weight="BOLD" size={'md'} color={'black'}>
-          약속 일정
-        </Styled.title>
-      </Wrapper>
+      <Styled.title weight="BOLD" size={'md'} color={'black'}>
+        약속 일정
+      </Styled.title>
       <Styled.row>
         <Typography size={'md'} color={'black'} weight={'BOLD'}>
           결제 방식
         </Typography>
         <Dropdown zIndex={2} list={enumToArray(CreditTypeKR)} value={creditTypeInput} onClick={setCreditTypeFunc} />
       </Styled.row>
-      <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <ScheduleItems schedules={schedules} />
-      </Wrapper>
-      <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <Typography size={'md'} color={'black'} weight={'BOLD'}>
-          약속 추가
-        </Typography>
-        <Styled.innerContainer>
-          <ScheduleCreateForm onCreateSchedule={handleCreateSchedule} />
-        </Styled.innerContainer>
-      </Wrapper>
+      <ScheduleItems schedules={schedules} />
+      <Typography size={'md'} color={'black'} weight={'BOLD'}>
+        약속 추가
+      </Typography>
+      <ScheduleCreateForm onCreateSchedule={handleCreateSchedule} />
     </Styled.container>
   );
 };

@@ -27,6 +27,11 @@ export const Styled = {
     padding: 8px;
     background: inherit;
   `,
+  hashtagBox: styled.div`
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+  `,
   input: styled.input`
     width: auto;
     flex-grow: 1;

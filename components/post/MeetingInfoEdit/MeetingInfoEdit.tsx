@@ -1,18 +1,20 @@
 import Input from '@components/common/Input';
 import Textarea from '@components/common/Textarea';
 import Typography from '@components/common/Typography';
-import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
 import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfoEdit.style';
-import { PostFormData, usePostContext } from '../context';
+import { PostCreateStateType, PostFormData, usePostContext } from '../context';
 import AddHashtagBar from './AddHashtagBar/AddHashtagBar';
 import { Field, Form, Formik } from 'formik';
+import schedules from './../detail.schedule.mock';
+import post from '@lib/api/post';
+import StickyBar from '../StickyBar/StickyBar';
 
 export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
 
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
-  const { hashtags, setPost } = usePostContext();
+  const { hashtags, creditType, schedules } = usePostContext();
   const previewImageRef = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
 
@@ -30,7 +32,6 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
       reader.readAsDataURL(fileInput.files[0]);
     }
   };
-
   return (
     <Styled.container>
       <Formik
@@ -41,21 +42,24 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
           hashtags: [],
         }}
         onSubmit={async (values: PostFormData) => {
-          alert(JSON.stringify(values, null, 2));
+          console.log(JSON.stringify(values, null, 2));
+          const sendData = { ...values, hashtags, creditType, schedules };
+          const status = await post.createPost(sendData);
+          console.log(status);
         }}
       >
-        <Form>
-          <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
+        <Form id="createPage">
+          <Styled.postInfoBox>
             <Typography size={'lg'} color={'black'} weight={'BOLD'}>
               저는 이런 약속을 계획하고 있어요
             </Typography>
-            <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
+            <Styled.postInfoElementBox>
               <Typography size={'md'} color={'black'} weight={'BOLD'}>
                 내 약속의 제목을 정해봐요
               </Typography>
               <Field type={'text'} id={'title'} name={'title'} component={Input} />
-            </Wrapper>
-            <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
+            </Styled.postInfoElementBox>
+            <Styled.postInfoElementBox>
               <Typography size={'md'} color={'black'} weight={'BOLD'}>
                 내 약속을 설명할 수 있는 사진을 올려봐요
               </Typography>
@@ -68,20 +72,21 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
                   </Styled.postPicWrapper>
                 </Styled.thumbnail>
               </Styled.thumbnailWrappper>
-            </Wrapper>
-            <Wrapper flexDirection={'column'} gap={{ rowGap: 10 }}>
+            </Styled.postInfoElementBox>
+            <Styled.postInfoElementBox>
               <Typography size={'md'} color={'black'} weight={'BOLD'}>
                 내 약속을 자세히 설명해봐요
               </Typography>
               <Field id={'content'} name={'content'} rows={8} component={Textarea} />
-            </Wrapper>
-          </Wrapper>
-          <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
+            </Styled.postInfoElementBox>
+          </Styled.postInfoBox>
+          <Styled.addHashtagBox>
             <Typography size={'lg'} color={'black'} weight={'BOLD'}>
               저는 이런 분야에 관심이 있어요
             </Typography>
-            <AddHashtagBar hashtags={hashtags} />
-          </Wrapper>
+            <AddHashtagBar />
+          </Styled.addHashtagBox>
+          <StickyBar buttonName={'약속 생성하기'} />
         </Form>
       </Formik>
     </Styled.container>

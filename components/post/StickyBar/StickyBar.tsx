@@ -10,7 +10,7 @@ interface StickyBarType {
 const StickyBar: React.FC<StickyBarType> = ({ buttonName }) => {
   return (
     <Styled.container>
-      <Button name={buttonName} color={'primary'} fontColor={'white'} size={'lg'} type={'submit'} />
+      <Button name={buttonName} color={'primary'} fontColor={'white'} size={'lg'} type={'submit'} form="createPage" />
     </Styled.container>
   );
 };
