@@ -41,7 +41,7 @@ const Hashtag: React.FC<HashtagProp> = ({ fetchedTag, clickable, removable, onCl
           height="8px"
           quality="100"
           onClick={() => {
-            onRemove;
+            onRemove && onRemove(fetchedTag);
           }}
         />
       </Styled.removeButton>
