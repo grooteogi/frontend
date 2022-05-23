@@ -9,7 +9,7 @@ export const globalStyle = (
         padding: 0 !important;
         overflow-y: scroll;
         height: 100%;
-        background: #f9f9f9;
+        background: #ffffff;
       }
       html,
       body,

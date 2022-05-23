@@ -1,10 +1,11 @@
 import SignInModal from '@components/auth/AuthModal';
+import Layout from '@components/auth/layout';
 
 const SignInPage = () => {
   return (
-    <div>
+    <Layout.container>
       <SignInModal />
-    </div>
+    </Layout.container>
   );
 };
 

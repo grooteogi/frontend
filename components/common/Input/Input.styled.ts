@@ -1,19 +1,20 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import theme from '@styles/theme';
 
 export interface SInputProps {
   width?: string | number;
   height?: string | number;
-  fontColor?: string;
-  borderColor?: string;
+  fontColor?: keyof typeof theme.style.input.fontColor;
+  borderColor?: keyof typeof theme.style.input.borderColor;
 }
 
-const getStyle = ({ ...props }: SInputProps) => {
+const getStyle = ({ width, height, fontColor, borderColor }: SInputProps) => {
   return css`
-    width: ${props.width};
-    height: ${props.height};
-    color: ${props.fontColor};
-    border-color: ${props.borderColor};
+    width: ${width};
+    height: ${height};
+    color: ${theme.style.input.fontColor[fontColor ? fontColor : 'black']};
+    border-color: ${theme.style.input.borderColor[borderColor ? borderColor : 'lightgray']};
   `;
 };
 

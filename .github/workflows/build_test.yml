@@ -1,0 +1,33 @@
+name: Build Test
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+        env:
+          SERVER_URL: ${{ secrets.SERVER_URL }}
+          NEXT_PUBLIC_KAKAO_AUTH: ${{ secrets.NEXT_PUBLIC_KAKAO_AUTH }}
+          NEXT_PUBLIC_GOOGLE_AUTH: ${{ secrets.NEXT_PUBLIC_GOOGLE_AUTH }}
+      - name: If fail
+        uses: peter-evans/commit-comment@v2
+        with:
+          sha: ${{ github.sha }}
+          body: |
+            @${{ github.actor }} 다시 확인 부탁드립니다!
+        if: failure()
