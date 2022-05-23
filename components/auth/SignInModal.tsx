@@ -4,55 +4,81 @@ import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import Input from '@components/common/Input';
 import Typography from '@components/common/Typography';
-import Wrapper from '@components/common/Wrapper';
-import useInput from '@hooks/useInput';
-import { useState } from 'react';
-import useSigninMutation from '@hooks/useSigninMutation';
+import Styled from './style';
+import Title from '@components/common/Title';
+import { useFormik } from 'formik';
+import auth from '@lib/api/auth';
+import { useRouter } from 'next/router';
 
-const NormalSignInModal = () => {
-  const { value: email, onChange: onEmailChange } = useInput('');
-  const { value: pwd, onChange: onPwdChange } = useInput('');
-  const [checked, setChecked] = useState(true);
-  const { mutate: signinMutate, isLoading, isError, error, isSuccess } = useSigninMutation({ email, password: pwd });
-
-  const handleSubmit = (e: React.MouseEvent) => {
-    e.preventDefault();
-    signinMutate();
-    location.href = '/';
-    console.log(email, pwd);
-  };
+const SignInModal = () => {
+  const router = useRouter();
+  const loginFormik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: async values => {
+      console.log(values);
+      const status = await auth.signinUser(values);
+      if (status === 200) router.push('/');
+      else alert('로그인에 실패하였습니다!');
+    },
+  });
 
   return (
-    <Box width={500} height={550}>
-      <Wrapper flexDirection={'row'} gap={{ rowGap: 20 }}>
-        <Typography size={'lg'} color={'black'} weight={'BOLD'}>
-          🌳 그루터기 로그인
-        </Typography>
-        <Wrapper flexDirection={'column'} gap={{ rowGap: 15 }}>
-          <Typography size={'lg'} color={'darkgray'}>
+    <Box width={450} height={550}>
+      <Styled.container>
+        <Title size="h1" color={'black'} align="left">
+          🌳 그루터기
+        </Title>
+        <Styled.descriptionContainer>
+          <Typography size={'lg'} weight={'LIGHT'} color={'darkgray'}>
             인생선배를 찾는 지름길,
           </Typography>
-          <Typography size={'lg'} color={'darkgray'}>
+          <Typography size={'lg'} weight={'LIGHT'} color={'darkgray'}>
             그루터기
           </Typography>
-        </Wrapper>
-      </Wrapper>
-      <Wrapper flexDirection={'column'} gap={{ rowGap: 20 }}>
-        <Input placeholder={'이메일'}></Input>
-        <Input type={'password'} placeholder={'비밀번호'}></Input>
-        <Checkbox label={'로그인 유지'}></Checkbox>
-        <Button color={'primary'} fontColor={'black'} borderColor={'none'} name={'로그인'} size={'lg'} />
-      </Wrapper>
-      <Wrapper flexDirection={'row'} gap={{ columnGap: 1 }} justifyContent={'center'}>
-        <Typography size={'xs'} color={'black'} align={'center'}>
-          아직 회원이 아니신가요?
-        </Typography>
-        <Link href={'/auth/signup'} size={'xs'} color={'primary'} weight={'REGULAR'}>
-          회원가입하기
-        </Link>
-      </Wrapper>
+        </Styled.descriptionContainer>
+
+        <Styled.formContainer onSubmit={loginFormik.handleSubmit}>
+          <Input
+            id={'email'}
+            name={'email'}
+            type={'text'}
+            onChange={loginFormik.handleChange}
+            value={loginFormik.values.email}
+            placeholder={'이메일'}
+          />
+          <Input
+            id={'password'}
+            name={'password'}
+            type={'password'}
+            onChange={loginFormik.handleChange}
+            value={loginFormik.values.password}
+            placeholder={'비밀번호'}
+          />
+          <Checkbox label={'로그인 유지'} checked={true} />
+          <Button
+            type={'submit'}
+            color={'primary'}
+            fontColor={'black'}
+            borderColor={'none'}
+            name={'로그인'}
+            size={'lg'}
+          />
+
+          <Styled.labelContainer>
+            <Typography size={'xs'} color={'black'} align={'center'}>
+              아직 회원이 아니신가요?
+            </Typography>
+            <Link href={'/auth/signup'} size={'xs'} color={'primary'} weight={'REGULAR'}>
+              회원가입하기
+            </Link>
+          </Styled.labelContainer>
+        </Styled.formContainer>
+      </Styled.container>
     </Box>
   );
 };
 
-export default NormalSignInModal;
+export default SignInModal;
