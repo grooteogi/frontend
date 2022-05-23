@@ -6,7 +6,7 @@ import Input from '@components/common/Input';
 import Button from '@components/common/Button';
 import Timer from '@components/common/Timer/Timer';
 import Textarea from '@components/common/Textarea';
-import { useReservation } from '../context';
+import { useReservationContext } from '../context';
 
 const PhoneVerifyForm = () => {
   return (
@@ -71,7 +71,7 @@ const PhoneVerifyForm = () => {
 };
 
 const ReservationForm = () => {
-  const { setMessage } = useReservation();
+  const { setMessage } = useReservationContext();
 
   return (
     <Formik

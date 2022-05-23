@@ -4,7 +4,7 @@ import Styled from './SelectReservationPanel.styled';
 import { ScheduleEntity } from 'types/entity';
 import ScheduleItem from '@components/common/ScheduleItem';
 import { useEffect } from 'react';
-import { useReservation } from '../context';
+import { useReservationContext } from '../context';
 
 const SelectReservationItem: React.FC<
   ScheduleEntity & { radioGroupName: string; style?: React.CSSProperties } & React.InputHTMLAttributes<HTMLInputElement>
@@ -54,7 +54,7 @@ const itemList = [
 ];
 
 const SelectReservationPanel = () => {
-  const { scheduleId, setScheduleId } = useReservation();
+  const { scheduleId, setScheduleId } = useReservationContext();
 
   useEffect(() => {
     if (scheduleId === 0) setScheduleId(itemList[0].scheduleId);
