@@ -28,8 +28,8 @@ StyleChangedInput.args = {
   type: 'text',
   width: '60%',
   height: '40px',
-  borderColor: 'red',
-  fontColor: 'blue',
+  borderColor: 'primary',
+  fontColor: 'black',
 };
 
 export const DefaultPassword = Template.bind({});

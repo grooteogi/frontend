@@ -7,9 +7,9 @@ const reservation = {
     const status = await postData(url, reservation);
     return status;
   },
-  sendMessage: async (reservation: ReservationEntity) => {
-    const url = '/reservation/sms/send';
-    const status = await postData(url, reservation);
+  sendMessage: async (phoneNumber: string) => {
+    const url = `/reservation/sms/send/phoneNumber=${phoneNumber}`;
+    const status = await postData(url, {});
     return status;
   },
   confirmMessage: async (reservation: ReservationEntity) => {
