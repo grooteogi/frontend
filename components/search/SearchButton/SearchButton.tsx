@@ -1,10 +1,10 @@
 import React from 'react';
 import { ButtonProps, Styled } from './SearchButton.styled';
 import Typography from '@components/common/Typography';
-import { TagMenuEntity } from 'types/fetchedData';
+import { HashtagEntity } from 'types/entity';
 
 interface SearchButtonProp extends ButtonProps {
-  fetchedTag: TagMenuEntity;
+  fetchedTag: HashtagEntity;
   onClick: (tagValue: string) => void;
   clicked: boolean;
 }

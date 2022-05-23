@@ -14,7 +14,7 @@ export const DefaultMeetingPost = () => {
   const [sortingValue, setSortingValue] = useState<string>('인기순');
   return (
     <GlobalThemeProvider theme={theme}>
-      <SortingTab itemList={itemList} onClick={setSortingValue} state={sortingValue} />
+      <SortingTab itemList={itemList} onClick={setSortingValue} value={sortingValue} />
     </GlobalThemeProvider>
   );
 };
@@ -25,7 +25,7 @@ export const DefaultMyMeeting = () => {
 
   return (
     <GlobalThemeProvider theme={theme}>
-      <SortingTab itemList={itemList} onClick={setSortingValue} state={sortingValue} />
+      <SortingTab itemList={itemList} onClick={setSortingValue} value={sortingValue} />
     </GlobalThemeProvider>
   );
 };

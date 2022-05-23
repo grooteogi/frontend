@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Styled from './PostList.styled';
 import PostCard from '@components/common/PostCard';
 import { PostEntity } from 'types/fetchedData';
@@ -6,11 +6,12 @@ import search from '@lib/api/search';
 import { useSearch } from '../context';
 import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import { CreditType } from 'types/entity';
 
 const PostList = () => {
   const { searchState } = useSearch();
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
-    ['posts'],
+    ['posts', searchState],
     ({ pageParam = 1 }) => search.getPosts({ ...searchState, pageParam }),
     {
       getNextPageParam: (lastPage, pages) => {
@@ -37,10 +38,24 @@ const PostList = () => {
             {group.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
-                postEntity={post}
-                setClickedPostId={() => {
-                  return;
+                postEntity={{
+                  ...post,
+                  hashtags: [
+                    {
+                      hashtagId: 7,
+                      name: '개발자취업',
+                    },
+                    { hashtagId: 8, name: '포트폴리오' },
+                    { hashtagId: 9, name: '샘플태그' },
+                  ],
+                  createAt: '',
+                  creditType: CreditType.DIRECT,
+                  likes: true,
+                  mentor: { userId: 1, nickname: 'mentor nickname', imageUrl: '' },
+                  schedules: [],
+                  reviews: [],
                 }}
+                setClickedPostId={() => undefined}
               />
             ))}
           </React.Fragment>

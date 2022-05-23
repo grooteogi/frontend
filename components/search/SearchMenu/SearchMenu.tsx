@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Styled } from './SearchMenu.style';
 import Image from 'next/image';
-import { TagMenuEntity } from 'types/fetchedData';
 import SearchButton from '../SearchButton';
+import { HashtagEntity } from 'types/entity';
 
 interface SearchMenuProps {
-  data: TagMenuEntity[];
+  data: HashtagEntity[];
   value: string;
   onClick: (tagValue: string) => void;
 }

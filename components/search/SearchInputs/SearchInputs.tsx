@@ -1,12 +1,12 @@
 import Dropdown from '@components/common/Dropdown';
 import SortingTab from '@components/common/SortingTab';
-import { TagMenuEntity } from 'types/fetchedData';
 import { useSearch } from '../context';
 import SearchBar from '@components/search/SearchBar';
 import SearchMenu from '@components/search/SearchMenu';
 import Styled from './SearchInputs.styled';
 import { useQuery } from 'react-query';
 import search from '@lib/api/search';
+import { HashtagEntity } from 'types/entity';
 
 const SearchInputs = () => {
   const { searchState, setKeyword, setSort, setRegion } = useSearch();
@@ -19,7 +19,7 @@ const SearchInputs = () => {
       <Styled.input>
         <SearchBar onSearchClick={setKeyword} placeholder={'검색어를 입력해주세요'} />
       </Styled.input>
-      <SearchMenu value={searchState.keyword} onClick={setKeyword} data={data as TagMenuEntity[]} />
+      <SearchMenu value={searchState.keyword} onClick={setKeyword} data={data as HashtagEntity[]} />
       <Styled.itemSelector>
         <SortingTab value={searchState.sort} onClick={setSort} itemList={['최신순', '인기순', '조회순']} />
         <Dropdown

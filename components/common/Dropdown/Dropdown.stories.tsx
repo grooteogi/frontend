@@ -48,12 +48,12 @@ export const DefaultLocale = (args: ComponentStory<typeof Dropdown>) => {
   };
   const [regionValue, setRegionValue] = useState<string>('강서구');
 
-  return <Template state={regionValue} onClick={setRegionValue} {...defaultArgs} {...args}></Template>;
+  return <Template value={regionValue} onClick={setRegionValue} {...defaultArgs} {...args}></Template>;
 };
 export const NoLocale = (args: ComponentStory<typeof Dropdown>) => {
   const [regionValue, setRegionValue] = useState<string>('');
   const defaultArgs = {
     list: [],
   };
-  return <Template state={regionValue} onClick={setRegionValue} {...defaultArgs} {...args}></Template>;
+  return <Template value={regionValue} onClick={setRegionValue} {...defaultArgs} {...args}></Template>;
 };
