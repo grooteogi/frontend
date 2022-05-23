@@ -14,11 +14,11 @@ const MentorProfile = () => {
   }, []);
 
   const title = '저랑같이 공부해요!';
-  const hashtags: HashtagEntity[] = [
-    { id: 1, hashtagType: 'PERSONALITY', tag: '대학생활', registered: '' },
-    { id: 2, hashtagType: 'PERSONALITY', tag: '취업준비', registered: '' },
-    { id: 3, hashtagType: 'PERSONALITY', tag: '코딩테스트', registered: '' },
-  ];
+  //   const hashtags: HashtagEntity[] = [
+  //     { id: 1, hashtagType: 'PERSONALITY', tag: '대학생활', registered: '' },
+  //     { id: 2, hashtagType: 'PERSONALITY', tag: '취업준비', registered: '' },
+  //     { id: 3, hashtagType: 'PERSONALITY', tag: '코딩테스트', registered: '' },
+  //   ];
 
   return (
     <Styled.container>
@@ -28,7 +28,7 @@ const MentorProfile = () => {
           {title}
         </Title>
         <Styled.hashRef ref={hashtagRef}>
-          {ellipsisTags ? (
+          {/* {ellipsisTags ? (
             <>
               <Hashtag key={hashtags[0].id} fetchedTag={hashtags[0]} />
               <Hashtag key={0} fetchedTag={{ id: 0, hashtagType: 'CONCERN', tag: '...', registered: '' }} />
@@ -37,7 +37,7 @@ const MentorProfile = () => {
             hashtags.map(hash => {
               return <Hashtag key={hash.id} fetchedTag={hash} />;
             })
-          )}
+          )} */}
         </Styled.hashRef>
         <Typography size={'xs'} color={'dimgray'}>
           더치페이
