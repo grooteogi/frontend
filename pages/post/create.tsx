@@ -5,7 +5,7 @@ import MeetingInfoEdit from '@components/post/MeetingInfoEdit/MeetingInfoEdit';
 import { PostCreateProvider } from '@components/post/context';
 import Link from 'next/link';
 import Layout from '@components/post/layout';
-
+        
 const Create: NextPage = () => {
   return (
     <PostCreateProvider>
