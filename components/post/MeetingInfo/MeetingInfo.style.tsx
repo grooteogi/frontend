@@ -1,5 +1,6 @@
 import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 interface SizeProps {
   isWidthBigger: boolean;
@@ -26,6 +27,7 @@ export const Styled = {
   thumbnailWrappper: styled.div`
     width: 100%;
     background-color: white;
+    border-radius: ${theme.borderRadius.md};
   `,
   thumbnail: styled.div`
     position: relative;
@@ -71,8 +73,19 @@ export const Styled = {
     padding: 0 1rem;
     border-left: 1px solid #d1d1d1;
   `,
-  content: styled(Typography)`
-    line-height: 1.4rem;
+  bottomButtonBox: styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 7px;
+  `,
+  bottomButton: styled.button`
+    background-color: ${theme.color.gray200};
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: ${theme.borderRadius.sm};
+    &:hover {
+      opacity: 0.8;
+    }
   `,
 };
 

@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const Layout = {
   PageTitle: styled.div`
     padding: 20px 0;
-    border-bottom: 1px solid ${theme.style.lightgrey};
+    border-bottom: 1px solid ${theme.color.gray200};
     margin-bottom: 2rem;
   `,
   PageContent: styled.article`

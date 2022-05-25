@@ -19,10 +19,10 @@ const SignInModal = () => {
           🌳 그루터기
         </Title>
         <Styled.descriptionContainer>
-          <Typography size={'lg'} weight={'LIGHT'} color={'darkgray'}>
+          <Typography size={'lg'} weight={'light'} color={'darkgray'}>
             인생선배를 찾는 지름길,
           </Typography>
-          <Typography size={'lg'} weight={'LIGHT'} color={'darkgray'}>
+          <Typography size={'lg'} weight={'light'} color={'darkgray'}>
             그루터기
           </Typography>
         </Styled.descriptionContainer>
@@ -42,7 +42,7 @@ const SignInModal = () => {
             icon={'/logos/google_logo.png'}
             color={'white'}
             fontColor={'black'}
-            borderColor={'lightgray'}
+            borderColor={'gray200'}
             name={'구글계정으로 시작하기'}
             size={'lg'}
             onClick={() => {
@@ -50,7 +50,7 @@ const SignInModal = () => {
             }}
           />
           <Button
-            color={'lightgray'}
+            color={'gray200'}
             fontColor={'darkgray'}
             name={'이메일로 시작하기'}
             size={'lg'}

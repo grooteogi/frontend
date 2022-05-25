@@ -1,15 +1,15 @@
 import React from 'react';
 import Styled from './PostList.styled';
 import PostCard from '@components/common/PostCard';
-import { PostEntity } from 'types/fetchedData';
 import search from '@lib/api/search';
-import { useSearch } from '../context';
+import { useSearchContext } from '../context';
 import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import { CreditType } from 'types/entity';
+import { CreditType } from 'types/enum';
+import { PostEntity } from 'types/entity';
 
 const PostList = () => {
-  const { searchState } = useSearch();
+  const { searchState } = useSearchContext();
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
     ['posts', searchState],
     ({ pageParam = 1 }) => search.getPosts({ ...searchState, pageParam }),
@@ -32,28 +32,22 @@ const PostList = () => {
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
-      {data?.pages.map((group, index) => {
+      {data?.pages.map((page, index) => {
         return (
           <React.Fragment key={index}>
-            {group.map((post: PostEntity) => (
+            {page.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
                 postEntity={{
                   ...post,
-                  hashtags: [
-                    {
-                      hashtagId: 7,
-                      name: '개발자취업',
-                    },
-                    { hashtagId: 8, name: '포트폴리오' },
-                    { hashtagId: 9, name: '샘플태그' },
-                  ],
+                  hashtags: ['개발자취업', '포트폴리오', '샘플태그'],
                   createAt: '',
                   creditType: CreditType.DIRECT,
-                  likes: true,
+                  likes: {
+                    liked: true,
+                    count: 10,
+                  },
                   mentor: { userId: 1, nickname: 'mentor nickname', imageUrl: '' },
-                  schedules: [],
-                  reviews: [],
                 }}
                 setClickedPostId={() => undefined}
               />
@@ -61,8 +55,8 @@ const PostList = () => {
           </React.Fragment>
         );
       })}
-      {hasNextPage ? <div ref={setTarget}>load more...</div> : <></>}
-      <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
+      {hasNextPage ? <div ref={setTarget}>load more...</div> : null}
+      {isFetching && !isFetchingNextPage ? <div>Fetching...</div> : null}
     </Styled.container>
   );
 };

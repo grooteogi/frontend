@@ -1,20 +1,39 @@
 import EmptyHeartIcon from '@components/asset/EmptyHeartIcon';
 import FullHeartIcon from '@components/asset/FullHeartIcon';
-import Hashtag from '@components/common/Hashtag';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { CreditTypeKR, HashtagEntity } from 'types/entity';
-import { MeetingInfoType } from 'types/postDetail';
+import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfo.style';
+import Link from 'next/link';
+import { CreditTypeKR } from 'types/enum';
+import Hashtag from '@components/common/Hashtag';
+import { useRouter } from 'next/router';
+import { nanoid } from 'nanoid';
 
-const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hashtags, content, likes, creditType }) => {
+const MeetingInfo: React.FC<Omit<PostEntity, 'hashtags'> & { hashtags: string[] }> = ({
+  postId,
+  imageUrl,
+  title,
+  mentor,
+  hashtags,
+  content,
+  likes,
+  creditType,
+}) => {
+  const router = useRouter();
   const postImg = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
-  const [liked, setLiked] = useState<boolean>(likes);
+  const [liked, setLiked] = useState<boolean>(likes.liked);
   useEffect(() => {
     setIsWidthBigger(postImg.current.width > postImg.current.height);
   }, []);
+  const deletePost = async () => {
+    // const status = await post.deletePost({ postId });
+    // if (status === 200) {
+    //   router.push('/search');
+    // }
+  };
   return (
     <Styled.container>
       <Styled.thumbnailWrappper>
@@ -25,7 +44,7 @@ const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hasht
         </Styled.thumbnail>
       </Styled.thumbnailWrappper>
       <Wrapper flexDirection={'row'}>
-        <Typography size={'lg'} color={'black'} weight={'BOLD'}>
+        <Typography size={'lg'} color={'black'} weight={'bold'}>
           {title}
         </Typography>
       </Wrapper>
@@ -50,13 +69,19 @@ const MeetingInfo: React.FC<MeetingInfoType> = ({ imageUrl, title, mentor, hasht
         </Styled.likedBtn>
       </Wrapper>
       <Wrapper flexDirection={'row'} gap={{ gap: 5 }}>
-        {hashtags.map(({ ...fetched }: HashtagEntity) => (
-          <Hashtag key={fetched.hashtagId} fetchedTag={fetched} />
+        {hashtags.map((hashtag: string) => (
+          <Hashtag key={nanoid()} hashtag={hashtag} />
         ))}
       </Wrapper>
-      <Styled.content size={'md'} color={'darkgray'}>
+      <Typography size={'md'} color={'darkgray'}>
         {content}
-      </Styled.content>
+      </Typography>
+      <Styled.bottomButtonBox>
+        <Link href={`/post/create`} passHref>
+          <Styled.bottomButton>수정하기</Styled.bottomButton>
+        </Link>
+        <Styled.bottomButton onClick={() => deletePost()}>삭제하기</Styled.bottomButton>
+      </Styled.bottomButtonBox>
     </Styled.container>
   );
 };

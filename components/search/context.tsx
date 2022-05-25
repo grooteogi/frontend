@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import { PostEntity } from 'types/fetchedData';
+import { PostEntity } from 'types/entity';
 
 export type SearchStateType = {
   keyword: string;
@@ -44,13 +44,11 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
     dispatchSearch({ type: 'SET_REGION', region });
   };
   return (
-    <SearchContext.Provider value={{ searchState, setKeyword, setSort, setRegion, posts, setPosts }}>
-      {children}
-    </SearchContext.Provider>
+    <SearchContext.Provider value={{ searchState, setKeyword, setSort, setRegion }}>{children}</SearchContext.Provider>
   );
 };
 
-export const useSearch = () => {
+export const useSearchContext = () => {
   const context = useContext(SearchContext);
   if (!context) throw new Error('query State Provider not found');
   return context;

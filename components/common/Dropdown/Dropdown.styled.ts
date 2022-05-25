@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 import { darken } from 'polished';
 
 export const StyledOptionItem = styled.li`
@@ -6,7 +7,7 @@ export const StyledOptionItem = styled.li`
   padding: 0.8rem 1rem 0.8rem 1rem;
   transition: 0.3s;
   &:hover {
-    background: ${darken(0.1, '#ffffff')};
+    background: ${darken(0.1, theme.color.white)};
   }
 `;
 
@@ -23,9 +24,9 @@ export const StyledOptionList = styled.ul`
   list-style-type: none;
   top: 2.6rem;
   width: 100%;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 2px 2px 6px ${darken(0.3, '#ffffff')};
+  border-radius: ${theme.borderRadius.md};
+  background: ${theme.color.white};
+  box-shadow: 2px 2px 6px ${darken(0.3, theme.color.white)};
   ${getOptionListStyle};
   transition: 0.2s ease-in-out;
   overflow-y: scroll;
@@ -37,7 +38,7 @@ export const StyledOptionList = styled.ul`
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 1rem;
-    background: ${darken(0.1, '#ffffff')};
+    background: ${darken(0.1, theme.color.white)};
   }
   &::-webkit-scrollbar-button {
     width: 0;
@@ -63,6 +64,6 @@ export const StyledSelectedLabel = styled.button`
 export const StyledSelectbox = styled.div`
   position: relative;
   width: 8rem;
-  border-radius: 8px;
+  border-radius: ${theme.borderRadius.md};
   cursor: pointer;
 `;

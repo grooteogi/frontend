@@ -66,7 +66,7 @@ const SignupForm = () => {
         size={'md'}
         fontColor={'white'}
         borderColor={'none'}
-        color={email && !errors.email ? 'black' : 'lightgray'}
+        color={email && !errors.email ? 'black' : 'gray200'}
         disabled={email && !errors.email ? false : true}
         onClick={handleEmailClick}
       />
@@ -76,7 +76,7 @@ const SignupForm = () => {
         name={'password'}
         id={'password'}
         fontColor={password && !errors.password ? 'black' : 'darkgray'}
-        borderColor={password && !errors.password ? 'primary' : 'lightgray'}
+        borderColor={password && !errors.password ? 'primary' : 'gray200'}
         component={Input}
       />
       <Field
@@ -85,7 +85,7 @@ const SignupForm = () => {
         name={'passwordConfirm'}
         id={'passwordConfirm'}
         fontColor={passwordConfirm === password ? 'black' : 'darkgray'}
-        borderColor={passwordConfirm && passwordConfirm === password ? 'primary' : 'lightgray'}
+        borderColor={passwordConfirm && passwordConfirm === password ? 'primary' : 'gray200'}
         component={Input}
       />
 

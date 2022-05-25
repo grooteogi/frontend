@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 export interface STextareaProps {
   width?: string;
@@ -19,10 +20,10 @@ const getStyle = ({ ...props }: STextareaProps) => {
 
 const Styled = {
   textarea: styled.textarea`
-    border: 1px solid #bfbfbf;
-    color: #878787;
+    border: 1px solid ${theme.color.gray200};
+    color: ${theme.color.gray700};
     width: 100%;
-    border-radius: 8px;
+    border-radius: ${theme.borderRadius.md};
     padding: 1rem;
     outline: none;
     font-family: inherit;

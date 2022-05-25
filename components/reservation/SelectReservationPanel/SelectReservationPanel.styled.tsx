@@ -18,15 +18,14 @@ const Styled = {
     overflow-y: auto;
   `,
   itemContainer: styled.div`
-    height: 64px;
     width: 100%;
 
     display: flex;
     margin-top: 1.75rem;
-    padding-bottom: 1.75rem;
+    padding-bottom: 1.5rem;
     column-gap: 1rem;
 
-    border-bottom: 1px solid ${theme.style.lightgrey};
+    border-bottom: 1px solid ${theme.color.gray200};
   `,
 };
 

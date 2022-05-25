@@ -1,5 +1,5 @@
-import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 interface SizeProps {
   isWidthBigger: boolean;
@@ -15,6 +15,16 @@ const getSize = ({ isWidthBigger }: SizeProps) => {
 };
 
 export const Styled = {
+  postInfoBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  `,
+  postInfoElementBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  `,
   container: styled.div`
     width: 100%;
     display: flex;
@@ -35,6 +45,7 @@ export const Styled = {
   thumbnailWrappper: styled.div`
     width: 100%;
     background-color: lightgray;
+    border-radius: ${theme.borderRadius.md};
   `,
   thumbnail: styled.div`
     position: relative;
@@ -72,6 +83,7 @@ export const Styled = {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    min-width: 100%;
   `,
   userPic: styled.img`
     width: 22px;
@@ -79,8 +91,11 @@ export const Styled = {
     object-fit: cover;
     border-radius: 50%;
   `,
-  content: styled(Typography)`
-    line-height: 1.4rem;
+  addHashtagBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    margin-top: 4rem;
   `,
 };
 

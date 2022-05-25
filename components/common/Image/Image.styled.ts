@@ -1,3 +1,4 @@
+import theme from '@styles/theme';
 import styled from '@emotion/styled';
 
 export interface StyledImageProps {
@@ -6,10 +7,11 @@ export interface StyledImageProps {
 const getSize = ({ size }: StyledImageProps) => {
   if (size === 'lg')
     return `
-    @media (max-width: 767px) {
+    ${theme.responsive.mobile} {
       width: 180px;
       height: 150px;
     }
+	// TODO: 이거모임 투 수혁
     width: 235px;
     height: 200px;
   `;

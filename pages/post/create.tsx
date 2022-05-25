@@ -1,16 +1,21 @@
 import { withRouter } from 'next/router';
 import type { NextPage } from 'next';
-import Layout from '@components/post/Layout';
-import CreateSchedule from '@components/post/ScheduleEdit';
-import MeetingInfoEdit from '@components/post/MeetingInfoEdit';
+import ScheduleEdit from '@components/post/ScheduleEdit/ScheduleEdit';
+import MeetingInfoEdit from '@components/post/MeetingInfoEdit/MeetingInfoEdit';
+import { PostCreateProvider } from '@components/post/context';
+import Link from 'next/link';
+import Layout from '@components/post/layout';
 
-const Post: NextPage = () => {
+const Create: NextPage = () => {
   return (
-    <Layout>
-      <MeetingInfoEdit />
-      <CreateSchedule />
-    </Layout>
+    <PostCreateProvider>
+      <Layout>
+        <MeetingInfoEdit />
+        <ScheduleEdit />
+        <Link href="/post/3">Move to Detail</Link>
+      </Layout>
+    </PostCreateProvider>
   );
 };
 
-export default withRouter(Post);
+export default withRouter(Create);

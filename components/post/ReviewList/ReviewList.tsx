@@ -3,9 +3,8 @@ import Typography from '../../common/Typography';
 import React from 'react';
 import Styled from './ReviewList.style';
 import { ReviewEntity } from 'types/entity';
-import { ReviewType } from 'types/postDetail';
 
-const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
+const ReviewItems: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
   if (reviews.length > 0) {
     return (
       <Styled.itemBox>
@@ -14,7 +13,7 @@ const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
             <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
               <Styled.profileImg src={imageUrl} />
               <Styled.userTimeBox>
-                <Typography size={'sm'} color={'black'} weight={'BOLD'}>
+                <Typography size={'sm'} color={'black'} weight={'bold'}>
                   {nickname}
                 </Typography>
                 <Typography size={'xs'} color={'black'}>
@@ -34,7 +33,7 @@ const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
   } else {
     return (
       <Wrapper flexDirection={'column'} alignItems={'center'} padding={{ paddingTop: '26px' }}>
-        <Typography weight="BOLD" size={'md'} color={'black'}>
+        <Typography weight="bold" size={'md'} color={'black'}>
           아직 작성된 리뷰가 없어요 😢
         </Typography>
       </Wrapper>
@@ -42,10 +41,10 @@ const ReviewItems: React.FC<ReviewType> = ({ reviews }) => {
   }
 };
 
-const ReviewList: React.FC<ReviewType> = ({ reviews }) => {
+const ReviewList: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
   return (
     <Styled.container>
-      <Styled.title weight="BOLD" size={'md'} color={'black'}>
+      <Styled.title weight="bold" size={'md'} color={'black'}>
         약속 리뷰
       </Styled.title>
       <Styled.hr />

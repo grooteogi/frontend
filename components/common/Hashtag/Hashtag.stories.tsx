@@ -1,13 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import { HashtagEntity } from 'types/entity';
 import Hashtag from './index';
 
-const sampleHashtags: HashtagEntity[] = [
-  { hashtagId: 1, name: '대학생활' },
-  { hashtagId: 2, name: '편입' },
-];
+const sampleHashtags: string[] = ['대학생활', '편입'];
 
 export default {
   title: 'Components/Hashtag',
@@ -25,10 +21,10 @@ const temporaryClickHandler = () => undefined;
 export const Types = (args: ComponentStory<typeof Hashtag>) => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template fetchedTag={sampleHashtags[0]} clickable={true} {...args} onClick={temporaryClickHandler} />
-      <Template fetchedTag={sampleHashtags[0]} removable={true} {...args} onRemove={temporaryClickHandler} />
-      <Template fetchedTag={sampleHashtags[1]} clickable={true} {...args} onClick={temporaryClickHandler} />
-      <Template fetchedTag={sampleHashtags[1]} removable={true} {...args} onRemove={temporaryClickHandler} />
+      <Template hashtag={sampleHashtags[0]} clickable={true} {...args} onClick={temporaryClickHandler} />
+      <Template hashtag={sampleHashtags[0]} removable={true} {...args} onRemove={temporaryClickHandler} />
+      <Template hashtag={sampleHashtags[1]} clickable={true} {...args} onClick={temporaryClickHandler} />
+      <Template hashtag={sampleHashtags[1]} removable={true} {...args} onRemove={temporaryClickHandler} />
     </GlobalThemeProvider>
   );
 };

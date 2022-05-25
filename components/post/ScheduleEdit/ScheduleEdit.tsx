@@ -1,39 +1,14 @@
 import Wrapper from '@components/common/Wrapper';
 import Typography from '@components/common/Typography';
-import React, { useCallback, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Styled from './ScheduleEdit.style';
 import Dropdown from '@components/common/Dropdown';
-import { dateFormater } from '@lib/common';
+import { dateFormater, enumToArray } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
-
-const regionList = [
-  '강서구',
-  '구로구',
-  '금천구',
-  '관악구',
-  '동작구',
-  '영등포구',
-  '양천구',
-  '마포구',
-  '서대문구',
-  '서초구',
-  '강남구',
-  '송파구',
-  '강동구',
-  '은평구',
-  '종로구',
-  '중구',
-  '용산구',
-  '성동구',
-  '동대문구',
-  '중랑구',
-  '광진구',
-  '노원구',
-  '성북구',
-  '강북구',
-  '도봉구',
-];
-const payMethodList = ['만나서 선택', '더치페이', '사줄게요', '사주세요'];
+import { RegionList, CreditTypeKR } from 'types/enum';
+import { usePostContext } from '../context';
+import { useFormik } from 'formik';
+import { nanoid } from 'nanoid';
 
 export interface CreateScheduleProps {
   schedules?: ScheduleEntity[];
@@ -42,21 +17,17 @@ export interface CreateScheduleProps {
 const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   const [scrollHeight, setScrollHeight] = useState<number>(64);
   const callbackRef = useCallback(node => {
-    if (node !== null) {
-      setScrollHeight(node.getBoundingClientRect().height);
-      console.log(scrollHeight);
-    }
+    if (node !== null) setScrollHeight(node.getBoundingClientRect().height);
   }, []);
   return (
     <Styled.scroll standardHeight={scrollHeight * 3}>
       {schedules?.map(({ scheduleId, date, startTime, endTime, region, place }: ScheduleEntity) => (
         <Styled.itemBox ref={callbackRef} key={scheduleId}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
-            <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
-              {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', date + ' ' + startTime)}~
-              {dateFormater('HH:mm', date + ' ' + endTime)}
+            <Typography size={'sm'} color={'black'} weight={'medium'}>
+              {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', startTime)}~{dateFormater('HH:mm', endTime)}
             </Typography>
-            <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
+            <Typography size={'sm'} color={'black'} weight={'medium'}>
               {region}
             </Typography>
           </Wrapper>
@@ -72,74 +43,109 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   );
 };
 
+const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: ScheduleEntity) => void }> = ({
+  onCreateSchedule,
+}) => {
+  const [regionInput, setRegionInput] = useState(enumToArray(RegionList)[0]);
+  const scheduleFormik = useFormik({
+    initialValues: {
+      place: '',
+      startTime: '',
+      endTime: '',
+    },
+    onSubmit: values => {
+      const newSchedule = {
+        scheduleId: nanoid(),
+        region: regionInput,
+        date: new Date(values.startTime).toString(), // TODO: backend date format 확인할것
+        ...values,
+      };
+      onCreateSchedule(newSchedule);
+    },
+  });
+
+  return (
+    <form onSubmit={scheduleFormik.handleSubmit}>
+      <Styled.innerContainer>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 지역
+          </Typography>
+          <Dropdown value={regionInput} list={enumToArray(RegionList)} zIndex={3} onClick={setRegionInput} />
+        </Styled.row>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 장소
+          </Typography>
+          <Styled.input
+            id={'place'}
+            name={'place'}
+            type={'search'}
+            onChange={scheduleFormik.handleChange}
+            value={scheduleFormik.values.place}
+          />
+        </Styled.row>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 시작
+          </Typography>
+          <Styled.input
+            id={'startTime'}
+            name={'startTime'}
+            type={'datetime-local'}
+            onChange={scheduleFormik.handleChange}
+            value={scheduleFormik.values.startTime}
+          />
+        </Styled.row>
+        <Styled.row>
+          <Typography size={'sm'} color={'black'}>
+            약속 종료
+          </Typography>
+          <Styled.input
+            id={'endTime'}
+            name={'endTime'}
+            type={'datetime-local'}
+            onChange={scheduleFormik.handleChange}
+            value={scheduleFormik.values.endTime}
+          />
+        </Styled.row>
+        <Styled.row>
+          <Styled.submitBtn type={'submit'} name="추가하기" color={'primary'} fontColor={'white'} size={'lg'} />
+        </Styled.row>
+      </Styled.innerContainer>
+    </form>
+  );
+};
+
 const ScheduleEdit: React.FC = () => {
-  const [schedule, setSchedule] = useState([]);
-  const today = dateFormater('YYYY-MM-DDThh:mm', new Date());
-  const addSchedule = () => {
-    alert('추가하기');
+  const [creditTypeInput, setCreditTypeInput] = useState(enumToArray(CreditTypeKR)[0]);
+  const { schedules, setSchedules, creditType, setCreditType } = usePostContext();
+
+  const setCreditTypeFunc = (element: string) => {
+    setCreditTypeInput(element);
+    setCreditType(element);
   };
-  const onSTChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    alert(`start Time : ${e.target.value}`);
+
+  const handleCreateSchedule = (newSchedule: ScheduleEntity) => {
+    setSchedules([...schedules, newSchedule]);
   };
-  const onETChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    alert(`end Time : ${e.target.value}`);
-  };
+
   return (
     <Styled.container>
-      <Wrapper flexDirection={'row'} margin={{ margin: '0 0 20px 0' }}>
-        <Styled.title weight="BOLD" size={'md'} color={'black'}>
-          약속 일정
-        </Styled.title>
-      </Wrapper>
+      <Styled.title weight={'bold'} size={'md'} color={'black'}>
+        약속 일정
+      </Styled.title>
       <Styled.row>
-        <Typography size={'md'} color={'black'} weight={'BOLD'}>
+        <Typography size={'md'} color={'black'} weight={'bold'}>
           결제 방식
         </Typography>
-        <Dropdown value={payMethodList[0]} list={payMethodList} zIndex={3} onClick={() => undefined} />
+        <Dropdown zIndex={2} list={enumToArray(CreditTypeKR)} value={creditTypeInput} onClick={setCreditTypeFunc} />
       </Styled.row>
-      <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <ScheduleItems schedules={schedule} />
-      </Wrapper>
-      <Wrapper flexDirection={'column'} margin={{ marginTop: '10px' }}>
-        <Typography size={'md'} color={'black'} weight={'BOLD'}>
-          약속 추가
-        </Typography>
-        <Styled.innerContainer>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 지역
-            </Typography>
-            <Dropdown value={regionList[0]} list={regionList} zIndex={2} onClick={() => undefined} />
-          </Styled.row>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 장소
-            </Typography>
-            <Styled.input type={'search'} />
-          </Styled.row>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 시작
-            </Typography>
-            <Styled.input type={'datetime-local'} value={today} onChange={e => onSTChangeHandler(e)} />
-          </Styled.row>
-          <Styled.row>
-            <Typography size={'sm'} color={'black'}>
-              약속 종료
-            </Typography>
-            <Styled.input type={'datetime-local'} value={today} onChange={e => onETChangeHandler(e)} />
-          </Styled.row>
-          <Styled.row>
-            <Styled.submitBtn
-              name="추가하기"
-              color={'primary'}
-              fontColor={'white'}
-              size={'lg'}
-              onClick={() => addSchedule()}
-            />
-          </Styled.row>
-        </Styled.innerContainer>
-      </Wrapper>
+      <ScheduleItems schedules={schedules} />
+      <Typography size={'md'} color={'black'} weight={'bold'}>
+        약속 추가
+      </Typography>
+      <ScheduleCreateForm onCreateSchedule={handleCreateSchedule} />
     </Styled.container>
   );
 };

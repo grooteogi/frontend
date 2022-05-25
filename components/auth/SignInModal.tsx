@@ -32,10 +32,10 @@ const SignInModal = () => {
           🌳 그루터기
         </Title>
         <Styled.descriptionContainer>
-          <Typography size={'lg'} weight={'LIGHT'} color={'darkgray'}>
+          <Typography size={'lg'} weight={'light'} color={'darkgray'}>
             인생선배를 찾는 지름길,
           </Typography>
-          <Typography size={'lg'} weight={'LIGHT'} color={'darkgray'}>
+          <Typography size={'lg'} weight={'light'} color={'darkgray'}>
             그루터기
           </Typography>
         </Styled.descriptionContainer>
@@ -71,7 +71,7 @@ const SignInModal = () => {
             <Typography size={'xs'} color={'black'} align={'center'}>
               아직 회원이 아니신가요?
             </Typography>
-            <Link href={'/auth/signup'} size={'xs'} color={'primary'} weight={'REGULAR'}>
+            <Link href={'/auth/signup'} size={'xs'} color={'primary'} weight={'regular'}>
               회원가입하기
             </Link>
           </Styled.labelContainer>
