@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16]
 
     steps:
       - uses: actions/checkout@v1
@@ -21,9 +21,9 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-next-js-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-next-js-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-
       - name: Install dependencies
         run: yarn install
       - name: Build
