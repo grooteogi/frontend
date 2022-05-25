@@ -25,8 +25,6 @@ const Styled = {
   `,
 };
 
-const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
   return <Styled.content>{children}</Styled.content>;
 };
-
-export default Layout;
