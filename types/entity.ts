@@ -1,3 +1,5 @@
+import { CreditType } from './enum';
+
 export type AuthEntity = {
   email: string;
   password: string;
@@ -14,7 +16,7 @@ export type ProfileEntity = UserEntity & {
 };
 
 export type ScheduleEntity = {
-  scheduleId: number;
+  scheduleId: number | string;
   date: string;
   startTime: string;
   endTime: string;
@@ -42,20 +44,6 @@ export type HashtagEntity = {
   name: string;
 };
 
-export enum CreditType {
-  DIRECT, //만나서 결제
-  DUTCHPAY, //더치페이
-  YOURPAY, //사주세요
-  MYPAY, //사줄게요
-}
-
-export enum CreditTypeKR {
-  '만나서 결제',
-  '더치페이',
-  '사주세요',
-  '사줄게요',
-}
-
 export type PostEntity = {
   postId: number;
   title: string;
@@ -64,12 +52,13 @@ export type PostEntity = {
   createAt: string;
   hashtags: HashtagEntity[];
   creditType: CreditType;
-  likes: boolean; // TODO : 논의 필요
+  likes: {
+    count: number;
+    liked: boolean;
+  };
   mentor: {
     userId: number;
     nickname: string;
     imageUrl: string;
   };
-  schedules: ScheduleEntity[];
-  reviews: ReviewEntity[];
 };

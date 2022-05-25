@@ -6,7 +6,7 @@ import search from '@lib/api/search';
 import { useSearch } from '../context';
 import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import { CreditType } from 'types/entity';
+import { CreditType } from 'types/enum';
 
 const PostList = () => {
   const { searchState } = useSearch();
@@ -50,10 +50,11 @@ const PostList = () => {
                   ],
                   createAt: '',
                   creditType: CreditType.DIRECT,
-                  likes: true,
+                  likes: {
+                    liked: true,
+                    count: 10,
+                  },
                   mentor: { userId: 1, nickname: 'mentor nickname', imageUrl: '' },
-                  schedules: [],
-                  reviews: [],
                 }}
                 setClickedPostId={() => undefined}
               />

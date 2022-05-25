@@ -4,14 +4,16 @@ import React, { useCallback, useState } from 'react';
 import Styled from './ScheduleShow.style';
 import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
-import { ScheduleType } from 'types/postDetail';
 
-const ScheduleItems: React.FC<ScheduleType> = ({ schedules }) => {
+export interface ScheduleProps {
+  schedules: ScheduleEntity[];
+}
+
+const ScheduleItems: React.FC<ScheduleProps> = ({ schedules }) => {
   const [scrollHeight, setScrollHeight] = useState<number>(64);
   const callbackRef = useCallback(node => {
     if (node !== null) {
       setScrollHeight(node.getBoundingClientRect().height);
-      console.log(scrollHeight);
     }
   }, []);
 
@@ -40,7 +42,7 @@ const ScheduleItems: React.FC<ScheduleType> = ({ schedules }) => {
   );
 };
 
-const ShowSchedule: React.FC<ScheduleType> = ({ schedules }) => {
+const ShowSchedule: React.FC<ScheduleProps> = ({ schedules }) => {
   return (
     <Styled.container>
       <Wrapper flexDirection={'row'} margin={{ margin: '0 0 20px 0' }}>

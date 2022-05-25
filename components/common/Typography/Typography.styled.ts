@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-import { FontWeight } from 'types/style';
+import { FontWeight } from 'types/enum';
 
 const typoTheme = theme.style.typo;
 export interface STypoProps {
@@ -42,4 +42,5 @@ export const StyledTypo = styled.p`
   ${getSize};
   ${getColor};
   ${getOption};
+  line-height: 1.4rem;
 `;

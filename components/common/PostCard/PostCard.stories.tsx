@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import { CreditType } from 'types/entity';
+import { CreditType } from 'types/enum';
 import PostCard from './index';
 
 export default {
@@ -25,14 +25,15 @@ const Template: ComponentStory<typeof PostCard> = args => (
           { hashtagId: 3, name: '귀찮아라' },
         ],
         creditType: CreditType.DIRECT,
-        likes: true, //boolean, TODO : 논의 필요
+        likes: {
+          liked: true,
+          count: 10,
+        },
         mentor: {
           userId: 1,
           nickname: 'mentor nickname',
           imageUrl: 'mentor imageUrl',
         },
-        schedules: [],
-        reviews: [],
       }}
       setClickedPostId={(postId: number) => undefined}
     />
