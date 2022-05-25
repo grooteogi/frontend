@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Header from '@components/common/Header';
 
 interface LayoutProps {
   children: JSX.Element | JSX.Element[];
