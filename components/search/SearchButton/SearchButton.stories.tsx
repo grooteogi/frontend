@@ -22,7 +22,7 @@ export const Clicked = (args: ComponentStory<typeof SearchButton>) => {
           name: 'sample tag',
         }}
         clicked={true}
-        setClickedButtonId={() => undefined}
+        onClick={(tagValue: string) => undefined}
       />
     </GlobalThemeProvider>
   );
@@ -36,7 +36,7 @@ export const NotClicked = (args: ComponentStory<typeof SearchButton>) => {
           name: 'sample tag',
         }}
         clicked={false}
-        setClickedButtonId={() => undefined}
+        onClick={(tagValue: string) => undefined}
       />
     </GlobalThemeProvider>
   );

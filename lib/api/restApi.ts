@@ -1,3 +1,4 @@
+import { storage } from '@lib/storage';
 import axios from 'axios';
 
 interface ResponseData {
@@ -30,6 +31,7 @@ export const getData = async (url: string) => {
 
 export const postData = async (url: string, data: any) => {
   const res = await GAxios({
+    headers: { Authorization: `Bearer ${storage.getToken()}` },
     method: 'post',
     data: data,
     url: url,

@@ -25,7 +25,7 @@ export type ScheduleEntity = {
 };
 
 export type ReservationEntity = ScheduleEntity & {
-  id: number;
+  scheduleId: number;
   message: string;
   mentor: UserEntity;
   menti: UserEntity;

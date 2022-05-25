@@ -3,3 +3,13 @@ export type UserRegister = {
   id: string;
   password: string;
 };
+
+export type ReservationCreateRequestDto = {
+  scheduleId: number;
+  phoneNumber?: string;
+  message: string;
+};
+
+export type ReservationCreateResponseDto = {
+  reservationId: number;
+};

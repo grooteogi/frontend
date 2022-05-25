@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
+import { CreditType } from 'types/entity';
 import PostCard from './index';
 
 export default {
@@ -10,19 +11,33 @@ export default {
 
 const Template: ComponentStory<typeof PostCard> = args => (
   <GlobalThemeProvider theme={theme}>
-    <PostCard {...args} />
+    <PostCard
+      postEntity={{
+        postId: 1,
+        title: '샘플 포스트 제목, mentor imageUrl 바꿔야함',
+        content:
+          '샘플 포스트 제목 아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말',
+        imageUrl: '',
+        createAt: '',
+        hashtags: [
+          { hashtagId: 1, name: '스토리북' },
+          { hashtagId: 2, name: '세팅하기' },
+          { hashtagId: 3, name: '귀찮아라' },
+        ],
+        creditType: CreditType.DIRECT,
+        likes: true, //boolean, TODO : 논의 필요
+        mentor: {
+          userId: 1,
+          nickname: 'mentor nickname',
+          imageUrl: 'mentor imageUrl',
+        },
+        schedules: [],
+        reviews: [],
+      }}
+      setClickedPostId={(postId: number) => undefined}
+    />
   </GlobalThemeProvider>
 );
 
 export const Default = Template.bind({});
-Default.args = {
-  imageSrc: '/logos/dev_sample.jpg',
-  hashtags: [
-    { hashtagId: 1, name: '대학생활' },
-    { hashtagId: 2, name: '대외활동' },
-    { hashtagId: 3, name: '유학' },
-  ],
-  title: '밥 먹으면서 진로 이야기 해요~ 이후 텍스트 보이지 않음.',
-  content:
-    '대외활동 다수 경험, 공모전 수상 팁들 알려드릴 수 있어요, 앞으로 진로계획들 들어보고싶어요! 이후 텍스트 보이지 않음.',
-};
+Default.args = {};
