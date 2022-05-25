@@ -24,3 +24,19 @@ jobs:
         run: yarn lint
       - name: Format
         run: yarn format
+      - name: If fail
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const ref = '${{ github.ref }}'
+            const pull_number = Number(ref.split('/')[2])
+
+            await github.pulls.createReview({
+              ...context.repo,
+              pull_number,
+              body: @${{ github.actor }} format 또는 lint 확인 부탁드립니다!',
+              event: 'REQUEST_CHANGES'
+            })
+
+#        if: failure()
