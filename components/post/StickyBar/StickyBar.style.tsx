@@ -4,7 +4,7 @@ import theme from '@styles/theme';
 export const Styled = {
   container: styled.div`
     display: flex;
-    background-color: ${theme.style.lightgrey};
+    background-color: ${theme.color.gray200};
     flex-direction: row-reverse;
     width: 100%;
     height: 80px;

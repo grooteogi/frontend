@@ -40,7 +40,7 @@ export const Colors = (args: ComponentStory<typeof Button>) => {
     <GlobalThemeProvider theme={theme}>
       <Template color="primary" fontColor="black" {...defaultArgs} {...args} />
       <Template color="black" fontColor="white" {...defaultArgs} {...args} />
-      <Template color="lightgray" fontColor="black" {...defaultArgs} {...args} />
+      <Template color="gray200" fontColor="black" {...defaultArgs} {...args} />
       <Template color="white" fontColor="black" {...defaultArgs} {...args} />
     </GlobalThemeProvider>
   );
@@ -58,11 +58,11 @@ export const Icons = (args: ComponentStory<typeof Button>) => {
     fontColor: 'black' as const,
     name: '구글계정으로 시작하기',
     size: 'lg' as const,
-    borderColor: 'lightgray' as const,
+    borderColor: 'gray200' as const,
   };
   const emailArgs = {
-    color: 'lightgray' as const,
-    fontColor: 'darkgray' as const,
+    color: 'gray200' as const,
+    fontColor: 'gray600' as const,
     name: '이메일로 시작하기',
     size: 'lg' as const,
   };

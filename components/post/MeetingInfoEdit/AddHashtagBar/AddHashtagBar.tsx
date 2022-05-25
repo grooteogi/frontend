@@ -2,21 +2,20 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Styled } from './AddHashtagBar.styled';
 import Hashtag from '@components/common/Hashtag';
-import { HashtagEntity } from 'types/entity';
 import { usePostContext } from '@components/post/context';
+import { nanoid } from 'nanoid';
 
-let idx = 0;
 const AddHashtagBar: React.FC = () => {
   const { hashtags, setHashtags } = usePostContext();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleUpdateHashtag = (value: string) => {
-    const newHashtag: HashtagEntity = { hashtagId: idx++, name: value };
-    setHashtags([...hashtags, newHashtag]);
+    // TODO: 중복된 해시태그 체크
+    setHashtags([...hashtags, value]);
   };
 
-  const handleRemoveHashtag = async (hashtag: HashtagEntity) => {
-    setHashtags(hashtags.filter((h: HashtagEntity) => h.hashtagId !== hashtag.hashtagId));
+  const handleRemoveHashtag = async (hashtag: string) => {
+    setHashtags(hashtags.filter((targetHashtag: string) => targetHashtag !== hashtag));
   };
 
   const handleCheckEnter = async (e: React.KeyboardEvent) => {
@@ -37,13 +36,8 @@ const AddHashtagBar: React.FC = () => {
         </Styled.section>
       </Styled.container>
       <Styled.hashtagBox>
-        {hashtags.map(({ ...fetched }: HashtagEntity) => (
-          <Hashtag
-            key={fetched.hashtagId}
-            fetchedTag={fetched}
-            removable
-            onRemove={() => handleRemoveHashtag(fetched)}
-          />
+        {hashtags.map((hash: string) => (
+          <Hashtag key={nanoid()} hashtag={hash} removable onRemove={() => handleRemoveHashtag(hash)} />
         ))}
       </Styled.hashtagBox>
     </>

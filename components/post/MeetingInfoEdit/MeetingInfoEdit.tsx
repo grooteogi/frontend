@@ -4,10 +4,9 @@ import Typography from '@components/common/Typography';
 import React, { useEffect, useRef, useState } from 'react';
 import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfoEdit.style';
-import { PostCreateStateType, PostFormData, usePostContext } from '../context';
+import { PostFormData, usePostContext } from '../context';
 import AddHashtagBar from './AddHashtagBar/AddHashtagBar';
 import { Field, Form, Formik } from 'formik';
-import schedules from './../detail.schedule.mock';
 import post from '@lib/api/post';
 import StickyBar from '../StickyBar/StickyBar';
 import { useRouter } from 'next/router';
@@ -61,17 +60,17 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
       >
         <Form id="createPage">
           <Styled.postInfoBox>
-            <Typography size={'lg'} color={'black'} weight={'BOLD'}>
+            <Typography size={'lg'} color={'black'} weight={'bold'}>
               저는 이런 약속을 계획하고 있어요
             </Typography>
             <Styled.postInfoElementBox>
-              <Typography size={'md'} color={'black'} weight={'BOLD'}>
+              <Typography size={'md'} color={'black'} weight={'bold'}>
                 내 약속의 제목을 정해봐요
               </Typography>
               <Field type={'text'} id={'title'} name={'title'} component={Input} />
             </Styled.postInfoElementBox>
             <Styled.postInfoElementBox>
-              <Typography size={'md'} color={'black'} weight={'BOLD'}>
+              <Typography size={'md'} color={'black'} weight={'bold'}>
                 내 약속을 설명할 수 있는 사진을 올려봐요
               </Typography>
               <Styled.thumbnailWrappper>
@@ -91,14 +90,14 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
               </Styled.thumbnailWrappper>
             </Styled.postInfoElementBox>
             <Styled.postInfoElementBox>
-              <Typography size={'md'} color={'black'} weight={'BOLD'}>
+              <Typography size={'md'} color={'black'} weight={'bold'}>
                 내 약속을 자세히 설명해봐요
               </Typography>
               <Field id={'content'} name={'content'} rows={8} component={Textarea} />
             </Styled.postInfoElementBox>
           </Styled.postInfoBox>
           <Styled.addHashtagBox>
-            <Typography size={'lg'} color={'black'} weight={'BOLD'}>
+            <Typography size={'lg'} color={'black'} weight={'bold'}>
               저는 이런 분야에 관심이 있어요
             </Typography>
             <AddHashtagBar />

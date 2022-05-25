@@ -3,13 +3,13 @@ import FullHeartIcon from '@components/asset/FullHeartIcon';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { PostEntity, HashtagEntity } from 'types/entity';
+import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfo.style';
 import Link from 'next/link';
 import { CreditTypeKR } from 'types/enum';
 import Hashtag from '@components/common/Hashtag';
 import { useRouter } from 'next/router';
-import post from '@lib/api/post';
+import { nanoid } from 'nanoid';
 
 const MeetingInfo: React.FC<Omit<PostEntity, 'hashtags'> & { hashtags: string[] }> = ({
   postId,
@@ -28,14 +28,6 @@ const MeetingInfo: React.FC<Omit<PostEntity, 'hashtags'> & { hashtags: string[] 
   useEffect(() => {
     setIsWidthBigger(postImg.current.width > postImg.current.height);
   }, []);
-  let idx = 0;
-  const hashtagsWithId: HashtagEntity[] = hashtags.map(hVal => {
-    const rObj: HashtagEntity = {
-      hashtagId: idx++,
-      name: hVal,
-    };
-    return rObj;
-  });
   const deletePost = async () => {
     // const status = await post.deletePost({ postId });
     // if (status === 200) {
@@ -52,7 +44,7 @@ const MeetingInfo: React.FC<Omit<PostEntity, 'hashtags'> & { hashtags: string[] 
         </Styled.thumbnail>
       </Styled.thumbnailWrappper>
       <Wrapper flexDirection={'row'}>
-        <Typography size={'lg'} color={'black'} weight={'BOLD'}>
+        <Typography size={'lg'} color={'black'} weight={'bold'}>
           {title}
         </Typography>
       </Wrapper>
@@ -77,8 +69,8 @@ const MeetingInfo: React.FC<Omit<PostEntity, 'hashtags'> & { hashtags: string[] 
         </Styled.likedBtn>
       </Wrapper>
       <Wrapper flexDirection={'row'} gap={{ gap: 5 }}>
-        {hashtagsWithId.map(({ ...fetched }: HashtagEntity) => (
-          <Hashtag key={idx++} fetchedTag={fetched} />
+        {hashtags.map((hashtag: string) => (
+          <Hashtag key={nanoid()} hashtag={hashtag} />
         ))}
       </Wrapper>
       <Typography size={'md'} color={'darkgray'}>

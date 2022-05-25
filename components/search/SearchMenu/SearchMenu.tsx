@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Styled } from './SearchMenu.style';
 import Image from 'next/image';
 import SearchButton from '../SearchButton';
-import { HashtagEntity } from 'types/entity';
 
 interface SearchMenuProps {
-  data: HashtagEntity[];
+  data: string[];
   value: string;
   onClick: (tagValue: string) => void;
 }
@@ -39,9 +38,7 @@ const SearchMenu: React.FC<SearchMenuProps> = ({ data, value, onClick }) => {
     <Styled.container>
       <Styled.horizontalScroll ref={hScroll} onScroll={onHScroll}>
         {data.map(hash => {
-          return (
-            <SearchButton fetchedTag={hash} onClick={onClick} clicked={value === hash.name} key={hash.hashtagId} />
-          );
+          return <SearchButton hashtag={hash} onClick={onClick} clicked={value === hash} key={hash} />;
         })}
       </Styled.horizontalScroll>
       {slideLeft > 0 ? <LeftArrow onClick={moveLeft} hideButton={hideButtonLeft} /> : <></>}

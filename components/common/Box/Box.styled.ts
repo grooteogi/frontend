@@ -27,9 +27,9 @@ const getSize = ({ width, height }: ContainerProps) => {
 export const Styled = {
   container: styled.div<ContainerProps>`
     ${getSize};
-    border: 1px solid ${theme.style.lightgrey};
+    border: 1px solid ${theme.color.gray200};
     border-radius: 12px;
-    background: ${theme.style.white};
+    background: ${theme.color.white};
     display: flex;
     flex-direction: column;
     justify-content: space-around;

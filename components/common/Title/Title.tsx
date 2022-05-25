@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import theme from '@styles/theme';
-import { StyledTitle, STitleProps } from './Title.styled';
+import { StyledTitle, STitleProps, sizes } from './Title.styled';
 
 export interface TitleProps extends STitleProps {
   icon?: string | StaticImageData;
@@ -15,7 +14,7 @@ const remToPixel = (rem_size: string) => {
 
 const Title = ({ children, icon, alt, size, ...props }: TitleProps) => {
   const StyledHeader = StyledTitle.withComponent(size);
-  const imgPixel = remToPixel(theme.style.title.sizes[size].fontSize);
+  const imgPixel = remToPixel(sizes[size].fontSize);
   return (
     <>
       <StyledHeader size={size} {...props}>

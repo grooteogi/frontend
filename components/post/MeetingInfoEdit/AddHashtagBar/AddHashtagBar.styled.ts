@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-const searchTheme = theme.style.searchBar;
 
 export interface SListProps {
   children: JSX.Element;
@@ -10,9 +9,9 @@ export const Styled = {
   container: styled.div`
     width: 100%;
     height: auto;
-    background: ${searchTheme.backgroundColor.white};
-    border-radius: 8px;
-    border: 1px solid ${searchTheme.borderColor.lightgray};
+    background: ${theme.color.white};
+    border-radius: ${theme.borderRadius.md};
+    border: 1px solid ${theme.color.gray200};
   `,
   section: styled.section`
     display: flex;

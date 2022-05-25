@@ -34,14 +34,10 @@ export type ReservationEntity = ScheduleEntity & {
 export type ReviewEntity = {
   reviewId: number;
   nickname: string;
+  score: number;
   imageUrl: string;
   createAt: string;
   text: string;
-};
-
-export type HashtagEntity = {
-  hashtagId: number;
-  name: string;
 };
 
 export type PostEntity = {
@@ -50,7 +46,7 @@ export type PostEntity = {
   content: string;
   imageUrl: string;
   createAt: string;
-  hashtags: HashtagEntity[];
+  hashtags: string[];
   creditType: CreditType;
   likes: {
     count: number;

@@ -1,41 +1,40 @@
-import { storage } from '../storage';
-import { postData, GAxios, deleteData, putData, getData } from './restApi';
+import client from './client';
 
 export const post = {
   deletePost: async (postId: number) => {
     const url = `/post/${postId}`;
-    const status = await deleteData(url, { status: 200 });
+    const status = await client.delete(url, { status: 200 });
     return status;
   },
   createPost: async (post: any) => {
     const url = `/post`;
     console.log(post);
-    const status = await postData(url, post);
+    const status = await client.post(url, post);
     return status;
   },
   modifyPost: async (post: any) => {
     const url = `/post/${post.postId}`;
-    const res = await putData(url, post);
+    const res = await client.put(url, post);
     return res;
   },
   detailPost: async (postId: number) => {
     const url = `/post/${postId}`;
-    const res = await getData(url);
+    const res = await client.get(url);
     return res;
   },
   updatePostImg: async (formData: FormData) => {
     const url = `/s3/image`;
-    const res = await postData(url, formData);
+    const res = await client.post(url, formData);
     return res;
   },
   detailSchedules: async (postId: number) => {
     const url = `post/${postId}/schedules`;
-    const res = await getData(url);
+    const res = await client.get(url);
     return res;
   },
   detailReviews: async (postId: number) => {
     const url = `post/${postId}/reviews`;
-    const res = await getData(url);
+    const res = await client.get(url);
     return res;
   },
   // detailLikes :async (postId: number) => {
@@ -45,7 +44,7 @@ export const post = {
   // },
   detailHashtags: async (postId: number) => {
     const url = `post/${postId}/hashtags`;
-    const res = await getData(url);
+    const res = await client.get(url);
     return res;
   },
 };

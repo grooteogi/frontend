@@ -10,15 +10,15 @@ export const Styled = {
       width: 100vw;
       height: 30vh;
       height: fit-content;
-      border-radius: 8px;
+      border-radius: ${theme.borderRadius.md};
     }
-    @media screen and (min-width: 768px) {
+    ${theme.responsive.mobile} {
       .slick-list {
         width: 85vw;
-        border-radius: 8px;
+        border-radius: ${theme.borderRadius.md};
       }
     }
-    @media screen and (min-width: 1060px) {
+    ${theme.responsive.pc} {
       .slick-list {
         width: 60vw;
       }
@@ -37,7 +37,7 @@ export const Styled = {
     .slick-dots li button:before,
     .slick-dots li button:focus:before,
     .slick-dots li button:hover:before {
-      color: ${theme.style.deepgray};
+      color: ${theme.color.gray400};
       opacity: 0.5;
     }
     .slick-dots li button:hover,
@@ -55,7 +55,7 @@ export const Styled = {
     width: 100vw;
     height: 30vh;
     object-fit: none;
-    @media screen and (min-width: 600px) {
+    ${theme.responsive.mobile} {
       width: 100%;
       height: auto;
       object-fit: contain;

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { HashtagEntity, ScheduleEntity } from 'types/entity';
+import { ScheduleEntity } from 'types/entity';
 import { CreditType } from 'types/enum';
 
 export type PostCreateStateType = {
@@ -7,7 +7,7 @@ export type PostCreateStateType = {
   title: string;
   content: string;
   imageUrl: string;
-  hashtags: HashtagEntity[];
+  hashtags: string[];
   creditType: CreditType;
   schedules: ScheduleEntity[];
 };
@@ -16,14 +16,14 @@ export type PostFormData = {
   title: string;
   content: string;
   imageUrl: string;
-  hashtags: HashtagEntity[];
+  hashtags: string[];
 };
 
 type PostCreateAction =
   | { type: 'SET_TITLE'; title: string }
   | { type: 'SET_CONTENT'; content: string }
   | { type: 'SET_IMAGE_URL'; imageUrl: string }
-  | { type: 'SET_HASHTAGS'; hashtags: HashtagEntity[] }
+  | { type: 'SET_HASHTAGS'; hashtags: string[] }
   | { type: 'SET_CREDITTYPE'; creditType: CreditType }
   | { type: 'SET_SCHEDULES'; schedules: ScheduleEntity[] };
 
@@ -92,7 +92,7 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
   const setImageUrl = (imageUrl: string) => {
     dispatchPost({ type: 'SET_IMAGE_URL', imageUrl });
   };
-  const setHashtags = (hashtags: HashtagEntity[]) => {
+  const setHashtags = (hashtags: string[]) => {
     dispatchPost({ type: 'SET_HASHTAGS', hashtags });
   };
   const setCreditType = (creditType: CreditType) => {

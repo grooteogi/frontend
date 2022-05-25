@@ -1,9 +1,7 @@
-import Hashtag from '@components/common/Hashtag';
 import Image from '@components/common/Image';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
 import { useEffect, useRef, useState } from 'react';
-import { HashtagEntity } from 'types/entity';
 import Styled from './MentorProfile.styled';
 
 const MentorProfile = () => {
@@ -14,6 +12,7 @@ const MentorProfile = () => {
   }, []);
 
   const title = '저랑같이 공부해요!';
+  // TODO: need to resolve hashtag type error to na-yeon
   //   const hashtags: HashtagEntity[] = [
   //     { id: 1, hashtagType: 'PERSONALITY', tag: '대학생활', registered: '' },
   //     { id: 2, hashtagType: 'PERSONALITY', tag: '취업준비', registered: '' },
@@ -39,7 +38,7 @@ const MentorProfile = () => {
             })
           )} */}
         </Styled.hashRef>
-        <Typography size={'xs'} color={'dimgray'}>
+        <Typography size={'xs'} color={'gray700'}>
           더치페이
         </Typography>
       </Styled.infoContainer>

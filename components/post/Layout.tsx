@@ -8,9 +8,7 @@ const Styled = {
   container: styled.article`
     background-color: white;
   `,
-  content: styled.main`
-    margin: 25px auto 0;
-    padding: 0 5% 10% 5%;
+  content: styled.div`
     @media (min-width: 1060px) {
       display: grid;
       max-width: 1060px;

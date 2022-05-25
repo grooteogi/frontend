@@ -13,31 +13,17 @@ const Template: ComponentStory<typeof SearchButton> = args => (
     <SearchButton {...args} />
   </GlobalThemeProvider>
 );
-export const Clicked = (args: ComponentStory<typeof SearchButton>) => {
+export const Clicked = () => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template
-        fetchedTag={{
-          hashtagId: 0,
-          name: 'sample tag',
-        }}
-        clicked={true}
-        onClick={(tagValue: string) => undefined}
-      />
+      <Template hashtag={'sample tag'} clicked={true} onClick={(tagValue: string) => undefined} />
     </GlobalThemeProvider>
   );
 };
-export const NotClicked = (args: ComponentStory<typeof SearchButton>) => {
+export const NotClicked = () => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template
-        fetchedTag={{
-          hashtagId: 0,
-          name: 'sample tag',
-        }}
-        clicked={false}
-        onClick={(tagValue: string) => undefined}
-      />
+      <Template hashtag={'sample tag'} clicked={false} onClick={(tagValue: string) => undefined} />
     </GlobalThemeProvider>
   );
 };

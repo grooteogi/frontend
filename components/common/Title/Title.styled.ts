@@ -4,12 +4,18 @@ import theme from '@styles/theme';
 
 export interface STitleProps {
   size: 'h1' | 'h2' | 'h3' | 'h4';
-  color: keyof typeof theme.style.title.color;
+  color: keyof typeof theme.color;
   align?: 'left' | 'right' | 'center';
 }
 
+export const sizes = {
+  h4: { fontSize: theme.fontSize.xs, weight: theme.weight.medium },
+  h3: { fontSize: theme.fontSize.sm, weight: theme.weight.medium },
+  h2: { fontSize: theme.fontSize.lg, weight: theme.weight.medium },
+  h1: { fontSize: theme.fontSize.xl, weight: theme.weight.medium },
+};
+
 const getSize = ({ size }: STitleProps) => {
-  const sizes = theme.style.title.sizes;
   return css`
     font-size: ${sizes[size].fontSize};
     font-weight: ${sizes[size].weight};
@@ -18,7 +24,7 @@ const getSize = ({ size }: STitleProps) => {
 
 const getColor = ({ color }: STitleProps) => {
   return css`
-    color: ${theme.style.title.color[color]};
+    color: ${theme.color[color]};
   `;
 };
 
