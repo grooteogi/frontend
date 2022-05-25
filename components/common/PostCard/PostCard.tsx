@@ -4,32 +4,34 @@ import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
-import { HashtagEntity } from 'types/entity';
-
+import sampleImg from 'public/imgs/dev_sample.jpg';
+import { PostEntity } from 'types/entity';
 interface PostCardProps {
-  imageSrc: string;
-  hashtags: HashtagEntity[];
-  title: string;
-  content: string;
+  postEntity: PostEntity;
+  setClickedPostId: (id: number) => void;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ imageSrc, hashtags, title, content }) => {
+const PostCard: React.FC<PostCardProps> = ({ postEntity, setClickedPostId }) => {
   const hashtagRef = useRef<any>();
   const [ellipsisTags, setEllipsisTags] = useState<boolean>(false);
   useEffect(() => {
     setEllipsisTags(hashtagRef.current.offsetHeight > 30);
   }, []);
   return (
-    <Styled.container>
-      <Styled.image src={imageSrc} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
+    <Styled.container
+      onClick={() => {
+        setClickedPostId(postEntity.postId);
+      }}
+    >
+      <Styled.image src={sampleImg} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
       <Styled.hashRef ref={hashtagRef}>
         {ellipsisTags ? (
           <>
-            <Hashtag key={hashtags[0].hashtagId} fetchedTag={hashtags[0]} />
+            <Hashtag key={postEntity.hashtags[0].hashtagId} fetchedTag={postEntity.hashtags[0]} />
             <Hashtag key={0} fetchedTag={{ hashtagId: 0, name: '...' }} />
           </>
         ) : (
-          hashtags.map(hash => {
+          postEntity.hashtags.map(hash => {
             return <Hashtag key={hash.hashtagId} fetchedTag={hash} />;
           })
         )}
@@ -37,12 +39,12 @@ const PostCard: React.FC<PostCardProps> = ({ imageSrc, hashtags, title, content 
       <Wrapper flexDirection="column" margin={{ marginTop: '12px' }} alignItems="flex-start" gap={{ rowGap: 6 }}>
         <Styled.title>
           <Title size={'h4'} color={'black'} align={'right'}>
-            {title}
+            {postEntity.title}
           </Title>
         </Styled.title>
         <Styled.content>
           <Typography size={'xs'} color={'dimgray'}>
-            {content}
+            {postEntity.content}
           </Typography>
         </Styled.content>
       </Wrapper>

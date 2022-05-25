@@ -10,6 +10,9 @@ export const Styled = {
     height: 300px;
     display: flex;
     flex-direction: column;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   image: styled(Image)`
     border-radius: 8px;

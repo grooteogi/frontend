@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
+import { useState } from 'react';
 import Dropdown from './index';
 
 export default {
@@ -45,11 +46,14 @@ export const DefaultLocale = (args: ComponentStory<typeof Dropdown>) => {
       '도봉구',
     ],
   };
-  return <Template {...defaultArgs} {...args}></Template>;
+  const [regionValue, setRegionValue] = useState<string>('강서구');
+
+  return <Template value={regionValue} onClick={setRegionValue} {...defaultArgs} {...args}></Template>;
 };
 export const NoLocale = (args: ComponentStory<typeof Dropdown>) => {
+  const [regionValue, setRegionValue] = useState<string>('');
   const defaultArgs = {
     list: [],
   };
-  return <Template {...defaultArgs} {...args}></Template>;
+  return <Template value={regionValue} onClick={setRegionValue} {...defaultArgs} {...args}></Template>;
 };
