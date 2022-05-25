@@ -4,7 +4,7 @@ import ScheduleEdit from '@components/post/ScheduleEdit/ScheduleEdit';
 import MeetingInfoEdit from '@components/post/MeetingInfoEdit/MeetingInfoEdit';
 import StickyBar from '@components/post/StickyBar/StickyBar';
 import { PostCreateProvider } from '@components/post/context';
-import Layout from '@components/post/Layout';
+import Layout from '@components/post/layout';
 import Link from 'next/link';
 
 const Create: NextPage = () => {
