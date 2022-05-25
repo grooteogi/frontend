@@ -11,7 +11,7 @@ import Hashtag from '@components/common/Hashtag';
 import { useRouter } from 'next/router';
 import post from '@lib/api/post';
 
-const MeetingInfo: React.FC<PostEntity> = ({
+const MeetingInfo: React.FC<Omit<PostEntity, 'hashtags'> & { hashtags: string[] }> = ({
   postId,
   imageUrl,
   title,

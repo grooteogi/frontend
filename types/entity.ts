@@ -50,7 +50,7 @@ export type PostEntity = {
   content: string;
   imageUrl: string;
   createAt: string;
-  hashtags: string[];
+  hashtags: HashtagEntity[];
   creditType: CreditType;
   likes: {
     count: number;
