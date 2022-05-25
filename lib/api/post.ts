@@ -9,6 +9,7 @@ export const post = {
   },
   createPost: async (post: any) => {
     const url = `/post`;
+    console.log(post);
     const status = await postData(url, post);
     return status;
   },

@@ -63,6 +63,10 @@ const SearchPage = () => {
         <SortingTab itemList={[{ value: '인기순' }, { value: '최신순' }, { value: '리뷰순' }]} />
         <Dropdown
           list={['강서구', '구로구', '금천구', '관악구', '동작구', '영등포구', '양천구', ' 마포구', '서대문구']}
+          value={''}
+          onClick={function (region: string): void {
+            throw new Error('Function not implemented.');
+          }}
         />
       </Wrapper>
       <Wrapper flexDirection={'row'} justifyContent="space-evenly" gap={{ gap: 20 }}>

@@ -37,10 +37,10 @@ const MeetingInfo: React.FC<PostEntity> = ({
     return rObj;
   });
   const deletePost = async () => {
-    const status = await post.deletePost({ postId });
-    if (status === 200) {
-      router.push('/search');
-    }
+    // const status = await post.deletePost({ postId });
+    // if (status === 200) {
+    //   router.push('/search');
+    // }
   };
   return (
     <Styled.container>

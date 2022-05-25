@@ -10,10 +10,12 @@ import { Field, Form, Formik } from 'formik';
 import schedules from './../detail.schedule.mock';
 import post from '@lib/api/post';
 import StickyBar from '../StickyBar/StickyBar';
+import { useRouter } from 'next/router';
 
 export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' | 'imageUrl' | 'hashtags'>>;
 
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
+  const router = useRouter();
   const { hashtags, creditType, schedules, imageUrl, setImageUrl } = usePostContext();
   const previewImageRef = useRef<any>();
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
@@ -54,6 +56,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
           console.log(sendData);
           const status = await post.createPost(sendData);
           console.log(status);
+          router.push('/');
         }}
       >
         <Form id="createPage">

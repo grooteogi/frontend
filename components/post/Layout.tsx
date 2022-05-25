@@ -27,12 +27,7 @@ const Styled = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
-  return (
-    <Styled.container>
-      <Header device={'md'}></Header>
-      <Styled.content>{children}</Styled.content>
-    </Styled.container>
-  );
+  return <Styled.content>{children}</Styled.content>;
 };
 
 export default Layout;
