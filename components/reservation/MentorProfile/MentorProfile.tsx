@@ -28,7 +28,7 @@ const MentorProfile = () => {
           {title}
         </Title>
         <Styled.hashRef ref={hashtagRef}>
-          {/* {ellipsisTags ? (
+          {/* {ellipsisTags ? (d
             <>
               <Hashtag key={hashtags[0].id} fetchedTag={hashtags[0]} />
               <Hashtag key={0} fetchedTag={{ id: 0, hashtagType: 'CONCERN', tag: '...', registered: '' }} />
