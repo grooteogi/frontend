@@ -56,6 +56,7 @@ export const ReservationProvider = ({ children }: { children: React.ReactNode })
         state: reservationState,
         dispatch: dispatchReservation,
         scheduleId: reservationState.scheduleId,
+        message: reservationState.message,
         setScheduleId,
         setPhoneNumber,
         setMessage,

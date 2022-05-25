@@ -1,14 +1,34 @@
 import Styled from './ReservationForm.styled';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, useFormikContext } from 'formik';
 import Input from '@components/common/Input';
 import Button from '@components/common/Button';
 import Timer from '@components/common/Timer/Timer';
 import Textarea from '@components/common/Textarea';
 import { useReservationContext } from '../context';
+import reservation from '@lib/api/reservation';
+
+type PhoneFormikType = {
+  agree: boolean;
+  phoneNumber: string;
+  code: string;
+};
 
 const PhoneVerifyForm = () => {
+  const { values } = useFormikContext<PhoneFormikType>();
+  const { phoneNumber, code } = values;
+
+  const handleSendMessage = async () => {
+    const state = await reservation.sendMessage(phoneNumber);
+    if (state === 200) console.log('Success sms');
+    else console.log('Fail sms');
+  };
+  const handleConfirmMessage = async () => {
+    const state = await reservation.confirmMessage({ phoneNumber, code });
+    if (state === 200) console.log('Success sms');
+    else console.log('Fail sms');
+  };
   return (
     <>
       <Title size={'h2'} color={'black'}>
@@ -26,8 +46,8 @@ const PhoneVerifyForm = () => {
           <Field
             type={'text'}
             placeholder={'휴대폰 번호를 - 없이 입력해주세요.'}
-            name={'phone'}
-            id={'phone'}
+            name={'phoneNumber'}
+            id={'phoneNumber'}
             component={Input}
           />
           <Button
@@ -37,7 +57,7 @@ const PhoneVerifyForm = () => {
             fontColor={'darkgray'}
             color={'white'}
             borderColor={'lightgray'}
-            onClick={() => console.log('sms')}
+            onClick={handleSendMessage}
           />
         </Styled.innerContainer>
       </Styled.inputContainer>
@@ -61,7 +81,7 @@ const PhoneVerifyForm = () => {
             fontColor={'darkgray'}
             color={'white'}
             borderColor={'lightgray'}
-            onClick={() => console.log('sms')}
+            onClick={handleConfirmMessage}
           />
         </Styled.innerContainer>
         <Timer isStart={false} limitMin={2} fontColor={'primary'} />
@@ -71,20 +91,27 @@ const PhoneVerifyForm = () => {
 };
 
 const ReservationForm = () => {
-  const { setMessage } = useReservationContext();
+  const { scheduleId, message, setMessage } = useReservationContext();
 
   return (
     <Formik
-      initialValues={{ agree: false, phone: '', code: '' }}
-      onSubmit={values => {
+      initialValues={{ agree: false, phoneNumber: '', code: '' }}
+      onSubmit={async values => {
         console.log('formData', values);
+        const requestDate = {
+          scheduleId,
+          message,
+        };
+        const state = await reservation.createReservation(requestDate);
+        if (state === 200) console.log('successsssss');
+        else console.log('fuckyou');
       }}
     >
       <Form>
         <Styled.container>
           <PhoneVerifyForm />
           <Title size={'h2'} color={'black'}>
-            선배에게 전하는 말!
+            멘토에게 전하는 말!
           </Title>
           <Textarea
             placeholder={'하고싶은 말이 있다면 적어주세요!'}
@@ -98,7 +125,7 @@ const ReservationForm = () => {
               제 3자(그루터기 나무)에게 내 전화번호를 제공하는 것을 동의합니다.
             </Typography>
           </Styled.checkboxContainer>
-          <Button name={'신청하기'} size={'lg'} color={'primary'} fontColor={'white'} />
+          <Button type={'submit'} name={'신청하기'} size={'lg'} color={'primary'} fontColor={'white'} />
         </Styled.container>
       </Form>
     </Formik>
