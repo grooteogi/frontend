@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useState } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 
 export type SearchStateType = {
   keyword: string;

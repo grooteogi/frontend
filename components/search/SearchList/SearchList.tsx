@@ -3,7 +3,7 @@ import Styled from './SearchList.styled';
 import PostCard from '@components/common/PostCard';
 import search from '@lib/api/search';
 import { useSearchContext } from '../context';
-import { useInfiniteQuery, useQueryClient } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import { CreditType } from 'types/enum';
 import { PostEntity } from 'types/entity';

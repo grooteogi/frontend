@@ -14,12 +14,12 @@ const Template: ComponentStory<typeof PostCard> = () => (
     <PostCard
       postEntity={{
         postId: 1,
-        title: '샘플 포스트 제목, mentor imageUrl 바꿔야함',
+        title: '샘플 포스트 제목 생략생략생략생략생략생략',
         content:
           '샘플 포스트 제목 아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말',
-        imageUrl: '',
+        imageUrl: '/imgs/SamplePost.jpeg',
         createAt: '',
-        hashtags: ['스토리북', '세팅하기', '귀찮아라'],
+        hashtags: ['스토리북세', '팅하기귀찮', '여긴네글'],
         creditType: CreditType.DIRECT,
         likes: {
           liked: true,
