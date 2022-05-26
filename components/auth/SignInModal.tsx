@@ -20,7 +20,7 @@ const SignInModal = () => {
     onSubmit: async values => {
       console.log(values);
       const status = await auth.signinUser(values);
-      if (status === 200) router.push('/');
+      if (status === 200) location.href = '/';
       else alert('로그인에 실패하였습니다!');
     },
   });

@@ -6,7 +6,7 @@ export type AuthEntity = {
 };
 
 export type UserEntity = {
-  id: number;
+  userId: number;
   nickname: string;
   imageUrl: string;
 };
