@@ -3,8 +3,9 @@ import styled from '@emotion/styled';
 const Styled = {
   container: styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 20px;
   `,
 };
 

@@ -1,17 +1,21 @@
 import styled from '@emotion/styled';
 
 const Layout = {
-  PageCarousel: styled.div`
-    display: flex;
-    align-items: center;
+  container: styled.main``,
+  carousel: styled.div`
     background-color: PaleVioletRed;
   `,
-  PageSearch: styled.section`
-    display: flex;
-    flex-direction: column;
+  search: styled.section`
+    padding-top: 50px;
   `,
-  PageMenu: styled.section``,
-  PagePosts: styled.article``,
+  menu: styled.section`
+    padding-top: 50px;
+    padding-bottom: 50px;
+  `,
+  filter: styled.section`
+    padding-bottom: 35px;
+  `,
+  posts: styled.article``,
 };
 
 export default Layout;
