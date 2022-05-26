@@ -21,13 +21,13 @@ const Detail: NextPage = () => {
   console.log('get Data : ', postData);
 
   return (
-    <Layout>
+    <Layout.container>
       <MeetingInfo {...postInfo} />
       <ShowSchedule schedules={schedule} />
       <ReviewList reviews={review} />
       <Link href="/post/create">Move to Create</Link>
       <StickyBar buttonName={'약속 신청하기'}></StickyBar>
-    </Layout>
+    </Layout.container>
   );
 };
 
