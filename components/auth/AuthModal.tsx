@@ -3,7 +3,6 @@ import Box from '@components/common/Box';
 import Button from '@components/common/Button';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
-import Wrapper from '@components/common/Wrapper';
 import { useRouter } from 'next/router';
 import Styled from './style';
 

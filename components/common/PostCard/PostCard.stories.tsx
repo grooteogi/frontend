@@ -9,7 +9,7 @@ export default {
   component: PostCard,
 } as ComponentMeta<typeof PostCard>;
 
-const Template: ComponentStory<typeof PostCard> = args => (
+const Template: ComponentStory<typeof PostCard> = () => (
   <GlobalThemeProvider theme={theme}>
     <PostCard
       postEntity={{
@@ -31,7 +31,7 @@ const Template: ComponentStory<typeof PostCard> = args => (
           imageUrl: 'mentor imageUrl',
         },
       }}
-      setClickedPostId={(postId: number) => undefined}
+      setClickedPostId={() => undefined}
     />
   </GlobalThemeProvider>
 );
