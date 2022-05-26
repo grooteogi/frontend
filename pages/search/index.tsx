@@ -2,8 +2,8 @@ import Content from '@components/layout/Content';
 import { SearchProvider } from '@components/search/context';
 import Layout from '@components/search/layout';
 import PageCarousel from '@components/search/PageCarousel/PageCarousel';
-import PostList from '@components/search/PostList/PostList';
-import SearchInputs from '@components/search/SearchInputs/SearchInputs';
+import PostList from '@components/search/SearchList/SearchList';
+import SearchInputs from '@components/search/SearchInput/SearchInput';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
