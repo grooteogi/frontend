@@ -6,7 +6,7 @@ import Styled from './Header.styled';
 import Logo from './Logo';
 
 const Header = () => {
-  const scrollHref = useRef<any>(null);
+  const scrollHref = useRef<HTMLDivElement>(null);
   const [scrollDown, setScrollDown] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(false);
 
@@ -18,8 +18,7 @@ const Header = () => {
 
   useEffect(() => {
     function update() {
-      const rect = scrollHref.current.getBoundingClientRect();
-      console.log(rect['top']);
+      const rect = scrollHref.current ? scrollHref.current.getBoundingClientRect() : { top: 0 };
       if (rect['top'] !== 0) setScrollDown(true);
       else setScrollDown(false);
     }
