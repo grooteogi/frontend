@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { SortType } from 'types/enum';
 
 const search = {
   getHashtags: async () => {
@@ -16,7 +17,8 @@ const search = {
   },
   getPosts: async (params: { keyword: string; sort: string; region: string; pageParam: number }) => {
     const { keyword, sort, region, pageParam } = params;
-    console.log('params ', keyword, sort, region, pageParam);
+    const sortValue = SortType[sort as keyof typeof SortType];
+    console.log('params ', keyword, sortValue, region, pageParam);
     const status = axios
       .get(`https://6285b1c296bccbf32d66c1f2.mockapi.io/post${pageParam}`)
       .then(res => res.data)

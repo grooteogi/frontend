@@ -12,6 +12,12 @@ export enum CreditTypeKR {
   '사줄게요',
 }
 
+export enum SortType {
+  최신순 = 'LATEST',
+  인기순 = 'POPULAR',
+  조회순 = 'VIEWS',
+}
+
 export enum RegionList {
   '강서구',
   '구로구',
