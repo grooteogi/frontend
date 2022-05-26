@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import { PostEntity } from 'types/entity';
 
 export type SearchStateType = {
   keyword: string;
@@ -28,7 +27,6 @@ const searchReducer = (state: SearchStateType, action: SearchAction): SearchStat
 };
 
 export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
-  const [posts, setPosts] = useState<PostEntity[]>([]);
   const [searchState, dispatchSearch] = useReducer(searchReducer, {
     keyword: '',
     sort: '최신순',
