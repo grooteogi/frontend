@@ -9,7 +9,7 @@ import review from '@components/post/detail.review.mock';
 import StickyBar from '@components/post/StickyBar/StickyBar';
 import post from '@lib/api/post';
 import Link from 'next/link';
-import Layout from '@components/post/Layout';
+import Layout from '@components/post/layout';
 
 const Detail: NextPage = () => {
   const router = useRouter();
