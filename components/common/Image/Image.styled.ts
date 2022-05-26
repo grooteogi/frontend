@@ -1,5 +1,6 @@
 import theme from '@styles/theme';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export interface StyledImageProps {
   size: 'lg' | 'md' | 'sm';

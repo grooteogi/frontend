@@ -13,8 +13,7 @@ const SearchList = () => {
   const { searchState } = useSearchContext();
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
     ['posts', searchState],
-    ({ pageParam = 1 }) => search.getPosts({ ...searchState, pageParam }),
-    // ({ pageParam = 1 }) => post.search({ ...searchState, pageParam }),
+    ({ pageParam = 1 }) => post.search({ searchState, pageParam }),
     {
       getNextPageParam: (lastPage, pages) => {
         if (pages.length < 2) return pages.length + 1;
@@ -34,10 +33,12 @@ const SearchList = () => {
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
+      {console.log('what is data?, ', data)}
       {data?.pages.map((page, index) => {
         return (
           <React.Fragment key={index}>
-            {page.map((post: PostEntity) => (
+            {console.log('what is page?, ', page)}
+            {page.data.posts.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
                 postEntity={{
