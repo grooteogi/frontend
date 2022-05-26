@@ -4,7 +4,7 @@ export const globalStyle = (
   <Global
     styles={css`
       body {
-        font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
           'Open Sans', 'Helvetica Neue', sans-serif;
         padding: 0 !important;
         overflow-y: scroll;
@@ -160,6 +160,9 @@ export const globalStyle = (
       a {
         outline: none;
         text-decoration: none;
+      }
+      a:hover {
+        cursor: pointer;
       }
       a:visited,
       a:link {
