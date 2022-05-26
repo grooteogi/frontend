@@ -1,22 +1,28 @@
 import Layout from '@components/search/layout';
-import SearchInputs from '@components/search/SearchInputs/SearchInputs';
+import SearchInput from '@components/search/SearchInput/SearchInput';
 import PostList from '@components/search/PostList/PostList';
 import PageCarousel from '@components/search/PageCarousel/PageCarousel';
 import { SearchProvider } from '@components/search/context';
+import SearchMenu from '@components/search/SearchMenu';
 
 const SearchPage = () => {
   return (
-    <SearchProvider>
+    <>
       <Layout.PageCarousel>
         <PageCarousel />
       </Layout.PageCarousel>
-      <Layout.PageSearch>
-        <SearchInputs />
-      </Layout.PageSearch>
-      <Layout.PagePosts>
-        <PostList />
-      </Layout.PagePosts>
-    </SearchProvider>
+      <SearchProvider>
+        <Layout.PageSearch>
+          <SearchInput />
+        </Layout.PageSearch>
+        <Layout.PageMenu>
+          <SearchMenu />
+        </Layout.PageMenu>
+        <Layout.PagePosts>
+          <PostList />
+        </Layout.PagePosts>
+      </SearchProvider>
+    </>
   );
 };
 

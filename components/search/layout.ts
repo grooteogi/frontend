@@ -10,6 +10,7 @@ const Layout = {
     display: flex;
     flex-direction: column;
   `,
+  PageMenu: styled.section``,
   PagePosts: styled.article``,
 };
 
