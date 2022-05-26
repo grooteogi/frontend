@@ -3,7 +3,7 @@ import HorizontalScroll from './HorizontalScroll';
 import Styled from './SearchMenu.styled';
 
 const SearchMenu = () => {
-  const { searchState, setKeyword, setSort, setRegion } = useSearchContext();
+  const { searchState, setKeyword } = useSearchContext();
   const data = [
     '학교생활',
     '대외활동',
