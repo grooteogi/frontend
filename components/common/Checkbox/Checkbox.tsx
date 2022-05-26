@@ -13,9 +13,6 @@ import {
 interface CheckBoxProps extends SCheckboxComponentBox, SCheckboxComponentText {
   field?: FieldInputProps<string>;
   label: string;
-  checked?: boolean;
-  defaultChecked?: boolean;
-  onClick?: () => void;
 }
 
 const Checkbox = ({
@@ -25,14 +22,13 @@ const Checkbox = ({
   width = '100%',
   height = '30px',
   paddingLeft,
-  onClick,
-  checked,
+  ...props
 }: React.InputHTMLAttributes<HTMLInputElement> & CheckBoxProps) => {
   const box = { width, height, paddingLeft };
   return (
     <StyledCheckbox {...box}>
       <EmptyDiv>
-        <StyledCheckboxInput type={'checkbox'} onClick={onClick} checked={checked} {...field} />
+        <StyledCheckboxInput type={'checkbox'} {...props} {...field} />
         <StyledCheckboxText>{label}</StyledCheckboxText>
       </EmptyDiv>
       {link && <StyledCheckboxDetail link={link}>보기</StyledCheckboxDetail>}
