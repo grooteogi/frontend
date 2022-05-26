@@ -18,11 +18,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Cache next cache files
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo '::set-output name=dir::$(yarn config get cacheFolder)'
+      - name: Cache Yarn & Next.js cache files
         uses: actions/cache@v3
         with:
           path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/.cache
           key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-
