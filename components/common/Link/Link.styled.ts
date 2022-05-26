@@ -1,29 +1,33 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import theme from '@styles/theme';
-import { FontWeight } from 'types/enum';
 
-const linkTheme = theme.style.link;
 export interface SLinkProps {
   size: 'xs' | 'sm' | 'md' | 'lg';
-  color: keyof typeof theme.style.link.color;
+  color: keyof typeof theme.color;
   align?: 'left' | 'right' | 'center';
-  weight?: keyof typeof FontWeight;
+  weight?: keyof typeof theme.weight;
 }
+const sizes = {
+  xs: { fontSize: theme.fontSize.xxs, weight: theme.weight.regular },
+  sm: { fontSize: theme.fontSize.xs, weight: theme.weight.regular },
+  md: { fontSize: theme.fontSize.sm, weight: theme.weight.regular },
+  lg: { fontSize: theme.fontSize.xl, weight: theme.weight.medium },
+};
 
 const getColor = ({ color: fontColor }: SLinkProps) => {
   return css`
     &:link,
     &:visited {
-      color: ${linkTheme.color[fontColor]};
+      color: ${theme.color[fontColor]};
     }
   `;
 };
 
 const getSize = ({ size }: SLinkProps) => {
   return css`
-    font-size: ${linkTheme.sizes[size].fontSize};
-    font-weight: ${linkTheme.sizes[size].weight};
+    font-size: ${sizes[size].fontSize};
+    font-weight: ${sizes[size].weight};
   `;
 };
 
@@ -32,7 +36,7 @@ const getOption = ({ align, weight }: SLinkProps) => {
     if (align) return `text-align: ${align}`;
   };
   const getWeight = () => {
-    if (weight) return `font-weight: ${FontWeight[weight]}`;
+    if (weight) return `font-weight: ${theme.weight[weight]}`;
   };
   return css`
     ${getAlign()};

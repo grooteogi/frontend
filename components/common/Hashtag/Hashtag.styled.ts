@@ -12,17 +12,15 @@ interface DefaultProps {
 type ClickableProps = Omit<DefaultProps, 'removable'>;
 type RemovableProps = Pick<DefaultProps, 'removable'>;
 
-const hashtagTheme = theme.style.hashtag;
-
 const getClickEffect = ({ clickable }: ClickableProps) => {
   if (clickable)
     return css`
       &:hover {
-        background: ${darken(0.01, `${hashtagTheme.color.white}`)};
+        background: ${darken(0.01, `${theme.color.white}`)};
         cursor: pointer;
       }
       &:active {
-        background: ${darken(0.05, `${hashtagTheme.color.white}`)};
+        background: ${darken(0.05, `${theme.color.white}`)};
         cursor: pointer;
       }
     `;
@@ -31,13 +29,13 @@ const getClickEffect = ({ clickable }: ClickableProps) => {
 const getColor = ({ clickable, clicked }: ClickableProps) => {
   if (clickable) {
     return css`
-      background-color: ${clicked ? hashtagTheme.color.white : hashtagTheme.color.bluegray};
-      border: 1px solid ${clicked ? hashtagTheme.borderColor.primary : hashtagTheme.borderColor.bluegray};
+      background-color: ${clicked ? theme.color.white : theme.color.gray100};
+      border: 1px solid ${clicked ? theme.color.primary : theme.color.gray100};
     `;
   } else {
     return css`
-      background-color: ${hashtagTheme.color.bluegray};
-      border: 1px solid ${hashtagTheme.borderColor.bluegray};
+      background-color: ${theme.color.gray100};
+      border: 1px solid ${theme.color.gray100};
     `;
   }
 };
@@ -53,12 +51,12 @@ export const Styled = {
   container: styled.div<ClickableProps>`
     ${getColor};
     ${getClickEffect};
-    color: ${hashtagTheme.fontColor.black};
+    color: ${theme.color.black};
     line-height: 25px;
     padding-left: 8px;
     padding-right: 8px;
     font-size: 12px;
-    border-radius: 4px;
+    border-radius: ${theme.borderRadius.sm};
     display: inline-block;
   `,
   removeButton: styled.span<RemovableProps>`
@@ -66,7 +64,7 @@ export const Styled = {
     &:hover {
       cursor: pointer;
     }
-    border-radius: 4px;
+    border-radius: ${theme.borderRadius.sm};
     padding: 2px;
   `,
 };

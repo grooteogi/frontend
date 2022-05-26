@@ -1,38 +1,35 @@
 import React, { useState } from 'react';
 import { Styled } from './Hashtag.styled';
 import Image from 'next/image';
-import { HashtagEntity } from 'types/entity';
+import { XOR } from 'types/common';
 
 interface SharedProps {
-  fetchedTag: HashtagEntity;
+  hashtag: string;
 }
 interface ClickableProps extends SharedProps {
-  onClick: (hashtag: HashtagEntity, clicked: boolean) => void;
+  onClick: (hashtag: string, clicked: boolean) => void;
   clickable: boolean;
 }
 
 interface RemovableProps extends SharedProps {
-  onRemove: (hashtag: HashtagEntity) => void;
+  onRemove: (hashtag: string) => void;
   removable: boolean;
 }
 
-type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
-type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
-
 type HashtagProp = XOR<SharedProps, XOR<ClickableProps, RemovableProps>>;
 
-const Hashtag: React.FC<HashtagProp> = ({ fetchedTag, clickable, removable, onClick, onRemove }) => {
+const Hashtag: React.FC<HashtagProp> = ({ hashtag, clickable, removable, onClick, onRemove }) => {
   const [clicked, setClicked] = useState<boolean>(false);
   return (
     <Styled.container
       clickable={clickable}
       onClick={() => {
-        onClick && onClick(fetchedTag, clicked);
+        onClick && onClick(hashtag, clicked);
         setClicked(!clicked);
       }}
       clicked={clicked}
     >
-      #{fetchedTag.name}
+      #{hashtag}
       <Styled.removeButton removable={removable}>
         <Image
           src={'/logos/x_button.png'}
@@ -41,7 +38,7 @@ const Hashtag: React.FC<HashtagProp> = ({ fetchedTag, clickable, removable, onCl
           height="8px"
           quality="100"
           onClick={() => {
-            onRemove && onRemove(fetchedTag);
+            onRemove && onRemove(hashtag);
           }}
         />
       </Styled.removeButton>

@@ -13,6 +13,7 @@ const SelectReservationItem: React.FC<
 
   return (
     <Styled.itemContainer style={style ? style : {}}>
+      {/* TODO: radio align to 나연 */}
       <input type={'radio'} name={radioGroupName} value={region} {...rest} />
       <ScheduleItem
         date={date}

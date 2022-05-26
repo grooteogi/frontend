@@ -1,11 +1,11 @@
 import { AuthEntity } from 'types/entity';
 import { storage } from '../storage';
-import { postData, GAxios } from './restApi';
+import client, { GAxios } from './client';
 
 const auth = {
   signupUser: async (userInfo: any) => {
     const url = '/auth/register';
-    const status = await postData(url, userInfo);
+    const status = await client.post(url, userInfo);
     return status;
   },
   signinUser: async (userInfo: AuthEntity) => {
@@ -28,17 +28,17 @@ const auth = {
   },
   sendEmail: async (email: string) => {
     const url = '/user/email-verification/create';
-    const status = await postData(url, { email });
+    const status = await client.post(url, { email });
     return status;
   },
   confirmEmail: async (validForm: { email: string; code: string }) => {
     const url = '/user/email-verification/confirm';
-    const status = await postData(url, validForm);
+    const status = await client.post(url, validForm);
     return status;
   },
   resendEmail: async (email: string) => {
     const url = '/user/email-verification/create';
-    const status = await postData(url, { email });
+    const status = await client.post(url, { email });
     return status;
   },
 };

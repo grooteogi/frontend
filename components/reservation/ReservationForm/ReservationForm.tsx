@@ -34,7 +34,7 @@ const PhoneVerifyForm = () => {
       <Title size={'h2'} color={'black'}>
         연락받을 전화번호
       </Title>
-      <Typography size={'xs'} color={'lightgray'}>
+      <Typography size={'xs'} color={'gray200'}>
         전화번호 제공은 필수사항입니다.
       </Typography>
 
@@ -56,7 +56,7 @@ const PhoneVerifyForm = () => {
             name={'SMS 전송'}
             fontColor={'darkgray'}
             color={'white'}
-            borderColor={'lightgray'}
+            borderColor={'gray400'}
             onClick={handleSendMessage}
           />
         </Styled.innerContainer>
@@ -80,7 +80,7 @@ const PhoneVerifyForm = () => {
             name={'인증하기'}
             fontColor={'darkgray'}
             color={'white'}
-            borderColor={'lightgray'}
+            borderColor={'gray400'}
             onClick={handleConfirmMessage}
           />
         </Styled.innerContainer>
@@ -103,8 +103,8 @@ const ReservationForm = () => {
           message,
         };
         const state = await reservation.createReservation(requestDate);
-        if (state === 200) console.log('successsssss');
-        else console.log('fuckyou');
+        if (state === 200) console.log('success');
+        else console.log('fail');
       }}
     >
       <Form>
@@ -121,7 +121,7 @@ const ReservationForm = () => {
           />
           <Styled.checkboxContainer>
             <Field type={'checkbox'} name={'agree'} id={'agree'} style={{}} />
-            <Typography size={'xs'} color={'lightgray'}>
+            <Typography size={'xs'} color={'gray200'}>
               제 3자(그루터기 나무)에게 내 전화번호를 제공하는 것을 동의합니다.
             </Typography>
           </Styled.checkboxContainer>

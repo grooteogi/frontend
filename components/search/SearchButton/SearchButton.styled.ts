@@ -6,11 +6,10 @@ import theme from '@styles/theme';
 export interface ButtonProps {
   clicked?: boolean;
 }
-const hashtagTheme = theme.style.hashtag;
 const getColor = ({ clicked }: ButtonProps) => {
   return css`
-    background-color: ${clicked ? hashtagTheme.color.white : hashtagTheme.color.bluegray};
-    border: 2px solid ${clicked ? hashtagTheme.borderColor.primary : hashtagTheme.borderColor.bluegray};
+    background-color: ${clicked ? theme.color.white : theme.color.gray100};
+    border: 2px solid ${clicked ? theme.color.primary : theme.color.gray100};
   `;
 };
 
@@ -21,24 +20,24 @@ export const Styled = {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    border-radius: 8px;
+    border-radius: ${theme.borderRadius.md};
     &:hover {
-      background: ${darken(0.01, `${hashtagTheme.color.white}`)};
+      background: ${darken(0.01, `${theme.color.white}`)};
       cursor: pointer;
     }
     &:active {
-      background: ${darken(0.05, `${hashtagTheme.color.white}`)};
+      background: ${darken(0.05, `${theme.color.white}`)};
       cursor: pointer;
     }
-    @media (min-width: 1060px) {
+    ${theme.responsive.pc} {
       width: 160px;
       height: 45px;
     }
-    @media (min-width: 768px) and (max-width: 1059px) {
+    ${theme.responsive.tablet} {
       width: 120px;
       height: 40px;
     }
-    @media (max-width: 767px) {
+    ${theme.responsive.mobile} {
       width: 90px;
       height: 40px;
     }

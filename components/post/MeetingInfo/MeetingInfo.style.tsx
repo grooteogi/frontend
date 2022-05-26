@@ -27,7 +27,7 @@ export const Styled = {
   thumbnailWrappper: styled.div`
     width: 100%;
     background-color: white;
-    border-radius: 8px;
+    border-radius: ${theme.borderRadius.md};
   `,
   thumbnail: styled.div`
     position: relative;
@@ -79,10 +79,10 @@ export const Styled = {
     gap: 7px;
   `,
   bottomButton: styled.button`
-    background-color: ${theme.style.button.color.lightgray};
+    background-color: ${theme.color.gray200};
     width: fit-content;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: ${theme.borderRadius.sm};
     &:hover {
       opacity: 0.8;
     }

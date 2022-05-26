@@ -1,6 +1,5 @@
-import { StyledLink } from '@components/common/Link/Link.styled';
-import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 interface SizeProps {
   isWidthBigger: boolean;
@@ -46,7 +45,7 @@ export const Styled = {
   thumbnailWrappper: styled.div`
     width: 100%;
     background-color: lightgray;
-    border-radius: 8px;
+    border-radius: ${theme.borderRadius.md};
   `,
   thumbnail: styled.div`
     position: relative;

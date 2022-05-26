@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 export interface SCheckboxComponentBox {
   width?: string;
@@ -24,8 +25,8 @@ const getCheckboxText = ({ link }: SCheckboxComponentText) => {
   const isFloatRight = () => (link ? 'margin-left: auto;' : '');
   return `
       ${isFloatRight}
-      font-size: 0.875rem;
-      color: #4E4E4E;
+      font-size: ${theme.fontSize.xs};
+      color: ${theme.color.darkgray};
   `;
 };
 
@@ -39,14 +40,14 @@ export const EmptyDiv = styled.div`
 export const StyledCheckboxInput = styled.input`
   width: 16px;
   height: 16px;
-  border-radius: 4px;
-  border-color: #bfbfbf;
-  accent-color: #4e4e4e;
+  border-radius: ${theme.borderRadius.sm};
+  border-color: ${theme.color.darkgray};
+  accent-color: ${theme.color.darkgray};
 `;
 export const StyledCheckboxText = styled.div`
   padding-left: 0.5rem;
   font-size: 0.875rem;
-  color: #4e4e4e;
+  color: ${theme.color.darkgray};
 `;
 export const StyledCheckboxDetail = styled.div<SCheckboxComponentText>`
   margin-left: auto;

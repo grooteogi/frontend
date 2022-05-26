@@ -9,7 +9,7 @@ const Timer = ({
 }: {
   isStart: boolean;
   limitMin: number;
-  fontColor: keyof typeof theme.style.typo.color;
+  fontColor: keyof typeof theme.color;
 }) => {
   const [minutes, setMinutes] = useState(limitMin);
   const [seconds, setSeconds] = useState(0);

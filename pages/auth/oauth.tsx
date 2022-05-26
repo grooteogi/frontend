@@ -1,5 +1,4 @@
 import { NextRouter, withRouter } from 'next/router';
-import { useEffect } from 'react';
 
 interface WithRouterProps {
   router: NextRouter;

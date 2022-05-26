@@ -24,10 +24,10 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
       {schedules?.map(({ scheduleId, date, startTime, endTime, region, place }: ScheduleEntity) => (
         <Styled.itemBox ref={callbackRef} key={scheduleId}>
           <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
-            <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
+            <Typography size={'sm'} color={'black'} weight={'medium'}>
               {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', startTime)}~{dateFormater('HH:mm', endTime)}
             </Typography>
-            <Typography size={'sm'} color={'black'} weight={'MEDIUM'}>
+            <Typography size={'sm'} color={'black'} weight={'medium'}>
               {region}
             </Typography>
           </Wrapper>
@@ -132,17 +132,17 @@ const ScheduleEdit: React.FC = () => {
 
   return (
     <Styled.container>
-      <Styled.title weight="BOLD" size={'md'} color={'black'}>
+      <Styled.title weight={'bold'} size={'md'} color={'black'}>
         약속 일정
       </Styled.title>
       <Styled.row>
-        <Typography size={'md'} color={'black'} weight={'BOLD'}>
+        <Typography size={'md'} color={'black'} weight={'bold'}>
           결제 방식
         </Typography>
         <Dropdown zIndex={2} list={enumToArray(CreditTypeKR)} value={creditTypeInput} onClick={setCreditTypeFunc} />
       </Styled.row>
       <ScheduleItems schedules={schedules} />
-      <Typography size={'md'} color={'black'} weight={'BOLD'}>
+      <Typography size={'md'} color={'black'} weight={'bold'}>
         약속 추가
       </Typography>
       <ScheduleCreateForm onCreateSchedule={handleCreateSchedule} />

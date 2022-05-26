@@ -1,16 +1,8 @@
 import styled from '@emotion/styled';
 
-interface LayoutProps {
-  children: JSX.Element | JSX.Element[];
-}
-
-const Styled = {
-  container: styled.article`
-    background-color: white;
-  `,
-  content: styled.main`
+const Layout = {
+  container: styled.div`
     margin: 25px auto 0;
-    padding: 0 5% 10% 5%;
     @media (min-width: 1060px) {
       display: grid;
       max-width: 1060px;
@@ -23,10 +15,6 @@ const Styled = {
       row-gap: 50px;
     }
   `,
-};
-
-const Layout = ({ children }: LayoutProps) => {
-  return <Styled.content>{children}</Styled.content>;
 };
 
 export default Layout;
