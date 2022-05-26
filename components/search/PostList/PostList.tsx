@@ -7,15 +7,16 @@ import { useInfiniteQuery, useQueryClient } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import { CreditType } from 'types/enum';
 import { PostEntity } from 'types/entity';
+import post from '@lib/api/post';
 
 const PostList = () => {
   const { searchState } = useSearchContext();
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
     ['posts', searchState],
-    ({ pageParam = 1 }) => search.getPosts({ ...searchState, pageParam }),
+    ({ pageParam = 1 }) => post.search({ ...searchState, pageParam }),
     {
       getNextPageParam: (lastPage, pages) => {
-        if (pages.length < 2) return pages.length + 1;
+        if (pages.length < 3) return pages.length + 1;
         else return undefined;
       },
     },
