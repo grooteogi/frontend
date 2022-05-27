@@ -16,6 +16,10 @@ export const Styled = {
   `,
   title: styled.div`
     padding-bottom: 8px;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   `,
   hash: styled.div`
     display: flex;

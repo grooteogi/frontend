@@ -19,7 +19,7 @@ const MyPageCard: React.FC<MyPageCardProps> = ({ reservationEntity }) => {
       </Styled.image>
       <Styled.title>
         <Title size={'h3'} color={'black'} align={'right'}>
-          {'저랑 밥 먹으면서 진로 이야기 해요~'}
+          {'저랑 밥 먹으면서 진로 이야기 해요~ 이후 텍스트 생략'}
         </Title>
       </Styled.title>
       <Styled.hash>

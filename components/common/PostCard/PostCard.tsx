@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Hashtag from '@components/common/Hashtag';
 import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
