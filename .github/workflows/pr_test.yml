@@ -34,12 +34,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-Node-v${{ matrix.node-version }}-Yarn-
 
+      - name: Cache Eslint cache files
+        uses: actions/cache@v3
+        id: eslint-cache
+        with:
+          path: |
+            ${{ github.workspace }}/
+          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Eslint-${{ hashFiles('**/.eslintcache') }}
+          restore-keys: |
+            ${{ runner.os }}-Node-v${{ matrix.node-version }}-Eslint-
+
       - name: Install dependencies
         if: |
           steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
       - name: Lint
+        if: |
+          steps.eslint-cache.outputs.cache-hit != 'true'
         run: yarn lint
 
       - name: Format
