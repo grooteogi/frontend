@@ -18,10 +18,10 @@ npm-debug.log*
 .pnpm-debug.log*
 
 # Local env files
+.env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
+.env.production
 
 # vercel
 .vercel
@@ -60,8 +60,5 @@ yarn-error.log*
 # Storybook
 build-storybook.log
 
-#env
-.env
-.env.local
-.env.development
-.env.production
+# Eslint
+.eslintcache
