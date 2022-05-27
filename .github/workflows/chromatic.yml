@@ -19,21 +19,27 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Get Yarn cache directory path
         id: yarn-cache-dir-path
         run: echo '::set-output name=dir::$(yarn config get cacheFolder)'
+
       - name: Cache Yarn cache files
         uses: actions/cache@v3
+        id: yarn-cache
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             ${{ github.workspace }}/node_modules
-            ${{ github.workspace }}/.cache
-          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-Node-v${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-Node-v${{ matrix.node-version }}-Yarn-
+
       - name: Install dependencies
+        if: |
+          steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
+
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
