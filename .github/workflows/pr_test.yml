@@ -21,18 +21,17 @@ jobs:
       - name: Get Yarn cache directory path
         id: yarn-cache-dir-path
         run: echo '::set-output name=dir::$(yarn config get cacheFolder)'
-      - name: Cache Yarn & Next.js cache files
+      - name: Cache Yarn cache files
         uses: actions/cache@v3
+        id: yarn-cache
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            ${{ github.workspace }}/node_modules
-            ${{ github.workspace }}/.next/cache
-            ${{ github.workspace }}/.cache
-          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-Node-v${{ matrix.node-version }}-Yarn-
       - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
       - name: Lint
         run: yarn lint
