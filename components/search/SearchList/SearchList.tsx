@@ -8,12 +8,15 @@ import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import { CreditType } from 'types/enum';
 import { PostEntity } from 'types/entity';
 import post from '@lib/api/post';
+import PostSkeleton from '@components/common/PostCard/PostSkeleton';
+import { Grid } from '@mui/material';
 
 const SearchList = () => {
-  const { searchState } = useSearchContext();
+  const searchState = useSearchContext();
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
     ['posts', searchState],
-    ({ pageParam = 1 }) => post.search({ searchState, pageParam }),
+    ({ pageParam = 1 }) => search.getPosts({ searchState, pageParam }),
+    // ({ pageParam = 1 }) => post.search({ searchState, pageParam }),
     {
       getNextPageParam: (lastPage, pages) => {
         if (pages.length < 2) return pages.length + 1;
@@ -21,14 +24,18 @@ const SearchList = () => {
       },
     },
   );
-  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
+  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) =>
     hasNextPage && isIntersecting && !isFetchingNextPage ? fetchNextPage() : null;
-  };
 
   const { setTarget } = useIntersectionObserver({ onIntersect });
 
   return status === 'loading' ? (
-    <p>Loading...</p>
+    // <p>Loading...</p>
+    <Styled.container>
+      {Array.from(new Array(12)).map(() => (
+        <PostSkeleton />
+      ))}
+    </Styled.container>
   ) : status === 'error' ? (
     <p>Error: {error}</p>
   ) : (
@@ -38,7 +45,8 @@ const SearchList = () => {
         return (
           <React.Fragment key={index}>
             {console.log('what is page?, ', page)}
-            {page.data.posts.map((post: PostEntity) => (
+            {page.map((post: PostEntity) => (
+              // {page.data.posts.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
                 postEntity={{

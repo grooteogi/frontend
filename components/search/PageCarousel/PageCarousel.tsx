@@ -1,4 +1,5 @@
 import Carousel from '@components/common/Carousel';
+import Image from '@components/common/Image';
 
 const imgLists = [
   {
@@ -13,6 +14,6 @@ const imgLists = [
   },
 ];
 const PageCarousel = () => {
-  return <Carousel imgLists={imgLists} />;
+  return <Image src={'/imgs/Carousel1.png'} size={'lg'} />;
 };
 export default PageCarousel;

@@ -6,7 +6,7 @@ import SearchMenu from '@components/search/SearchMenu';
 import PageCarousel from '@components/search/PageCarousel/PageCarousel';
 import SearchFiltering from '@components/search/SearchFiltering/SearchFiltering';
 
-const Search = () => {
+const SearchPage = () => {
   return (
     <Layout.container>
       <Layout.carousel>
@@ -30,4 +30,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchPage;

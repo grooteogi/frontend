@@ -1,7 +1,7 @@
 import ResultPage from '@components/search/ResultPage';
 
-const Search = () => {
+const Result = () => {
   return <ResultPage />;
 };
 
-export default Search;
+export default Result;
