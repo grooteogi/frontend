@@ -3,30 +3,37 @@ import Typography from '../../common/Typography';
 import React from 'react';
 import Styled from './ReviewList.style';
 import { ReviewEntity } from 'types/entity';
+import { Rate } from 'antd';
+import 'antd/dist/antd.css';
 
 const ReviewItems: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
   if (reviews.length > 0) {
     return (
       <Styled.itemBox>
-        {reviews.map(({ reviewId, imageUrl, nickname, createAt, text }: ReviewEntity) => (
-          <Wrapper key={reviewId} flexDirection={'column'}>
-            <Wrapper flexDirection={'row'} gap={{ gap: 12 }} justifyContent={'flex-start'} alignItems={'flex-start'}>
-              <Styled.profileImg src={imageUrl} />
-              <Styled.userTimeBox>
-                <Typography size={'sm'} color={'black'} weight={'bold'}>
-                  {nickname}
-                </Typography>
+        {reviews.map(({ reviewId, imageUrl, nickname, createAt, score, text }: ReviewEntity) => (
+          <Styled.reviewItem key={reviewId}>
+            <Styled.reviewInfoHeader>
+              <Styled.reviewInfoHeaderLeft>
+                <Styled.profileImg src={imageUrl} />
+                <Styled.reviewInfo>
+                  <Typography size={'sm'} color={'black'} weight={'bold'}>
+                    {nickname}
+                  </Typography>
+                  <Rate disabled allowHalf defaultValue={score} />
+                </Styled.reviewInfo>
+              </Styled.reviewInfoHeaderLeft>
+              <Styled.reviewInfoHeaderRight>
                 <Typography size={'xs'} color={'black'}>
                   {createAt}
                 </Typography>
-              </Styled.userTimeBox>
-            </Wrapper>
-            <Wrapper flexDirection={'column'} margin={{ marginTop: '14px' }}>
-              <Styled.text size={'md'} color={'black'}>
+              </Styled.reviewInfoHeaderRight>
+            </Styled.reviewInfoHeader>
+            <Styled.contentTextBox>
+              <Typography size={'sm'} color={'black'}>
                 {text}
-              </Styled.text>
-            </Wrapper>
-          </Wrapper>
+              </Typography>
+            </Styled.contentTextBox>
+          </Styled.reviewItem>
         ))}
       </Styled.itemBox>
     );
