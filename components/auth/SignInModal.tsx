@@ -6,12 +6,12 @@ import Input from '@components/common/Input';
 import Typography from '@components/common/Typography';
 import Styled from './style';
 import Title from '@components/common/Title';
-import { useFormik } from 'formik';
 import auth from '@lib/api/auth';
-import { useRouter } from 'next/router';
+import { useFormik } from 'formik';
+import { useState } from 'react';
 
 const SignInModal = () => {
-  const router = useRouter();
+  const [agree, setAgree] = useState(true);
   const loginFormik = useFormik({
     initialValues: {
       email: '',
@@ -57,7 +57,7 @@ const SignInModal = () => {
             value={loginFormik.values.password}
             placeholder={'비밀번호'}
           />
-          <Checkbox label={'로그인 유지'} checked={true} />
+          <Checkbox label={'로그인 유지'} checked={agree} onChange={() => setAgree(!agree)} />
           <Button
             type={'submit'}
             color={'primary'}
