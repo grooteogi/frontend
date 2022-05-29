@@ -10,6 +10,15 @@ const getOptionListStyle = ({ active = true, zIndex = 1 }) => {
 };
 
 const Styled = {
+  selectbox: styled.div`
+    position: relative;
+    width: 8rem;
+    border-radius: ${theme.borderRadius.md};
+    cursor: pointer;
+    &&& {
+      font-family: inherit !important;
+    }
+  `,
   selectedLabel: styled.button`
     box-sizing: border-box;
     display: flex;
@@ -58,12 +67,6 @@ const Styled = {
       width: 0;
       height: 0;
     }
-  `,
-  selectbox: styled.div`
-    position: relative;
-    width: 8rem;
-    border-radius: ${theme.borderRadius.md};
-    cursor: pointer;
   `,
 };
 
