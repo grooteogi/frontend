@@ -9,13 +9,13 @@ interface DropdownProps {
 }
 
 function Dropdown({ list, zIndex, value, onClick }: DropdownProps) {
-  const [acitve, setActive] = useState(false);
+  const [active, setActive] = useState(false);
   return (
     <StyledSelectbox>
-      <StyledSelectedLabel value={value} onClick={() => setActive(!acitve)} type={'button'}>
+      <StyledSelectedLabel value={value} onClick={() => setActive(!active)} type={'button'}>
         {value}
       </StyledSelectedLabel>
-      <StyledOptionList active={acitve} zIndex={zIndex}>
+      <StyledOptionList active={active} zIndex={zIndex}>
         {list.length === 0 ? (
           <StyledOptionItem onClick={() => setActive(false)}>-</StyledOptionItem>
         ) : (

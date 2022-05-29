@@ -5,8 +5,8 @@ const Styled = {
   footer: styled.footer`
     width: 100vw;
     position: absolute;
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     background: ${theme.color.deepdarkgray};
   `,
   paragraph: styled.div`

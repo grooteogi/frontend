@@ -9,7 +9,7 @@ export const dateFormater = (format: string, date: DateType = Date.now()): strin
 };
 
 // Helper
-export const stringIsNumber = (value: any) => isNaN(Number(value)) === false;
+export const stringIsNumber = (value: any) => !isNaN(Number(value));
 
 // Turn enum into array
 export function enumToArray(enumme: any) {
