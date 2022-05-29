@@ -1,9 +1,16 @@
-import { useSearchContext } from '../context';
+import React from 'react';
+import { useSearchContext, useSearchDispatch } from '../context';
 import HorizontalScroll from './HorizontalScroll';
 import Styled from './SearchMenu.styled';
 
 const SearchMenu = () => {
-  const { searchState, setKeyword } = useSearchContext();
+  const searchState = useSearchContext();
+  const searchDispatch = useSearchDispatch();
+
+  const setKeyword = React.useCallback((keyword: string) => {
+    searchDispatch({ type: 'SET_KEYWORD', keyword });
+  }, []);
+
   const data = [
     '학교생활',
     '대외활동',
@@ -24,4 +31,4 @@ const SearchMenu = () => {
   );
 };
 
-export default SearchMenu;
+export default React.memo(SearchMenu);
