@@ -1,3 +1,4 @@
+import { SearchStateType } from '@components/search/context';
 import { SortType } from 'types/enum';
 import client from './client';
 
@@ -40,10 +41,12 @@ export const post = {
     const url = `post/${postId}/hashtags`;
     return await client.get(url);
   },
-  search: async (params: { keyword: string; sort: string; region: string; pageParam: number }) => {
-    const { keyword, pageParam, sort, region } = params;
+  search: async (params: { searchState: SearchStateType; pageParam: number }) => {
+    const { searchState, pageParam } = params;
+    const { keyword, sort, region } = searchState;
     const sortValue = SortType[sort as keyof typeof SortType];
     const url = `/post/search?keyword=${keyword}&page=${pageParam}&filter=${sortValue}&region=${region}`;
+    console.log(url);
     return await client.get(url);
   },
 };

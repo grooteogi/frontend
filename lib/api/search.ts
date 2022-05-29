@@ -1,3 +1,4 @@
+import { SearchStateType } from '@components/search/context';
 import axios from 'axios';
 import { SortType } from 'types/enum';
 
@@ -14,8 +15,10 @@ const search = {
         }
       });
   },
-  getPosts: async (params: { keyword: string; sort: string; region: string; pageParam: number }) => {
-    const { keyword, sort, region, pageParam } = params;
+
+  getPosts: async (params: { searchState: SearchStateType; pageParam: number }) => {
+    const { searchState, pageParam } = params;
+    const { keyword, sort, region } = searchState;
     const sortValue = SortType[sort as keyof typeof SortType];
     console.log('params ', keyword, sortValue, region, pageParam);
     return axios

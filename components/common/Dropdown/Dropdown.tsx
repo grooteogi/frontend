@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyledSelectbox, StyledSelectedLabel, StyledOptionList, StyledOptionItem } from './Dropdown.styled';
+import Styled from './Dropdown.styled';
 
 interface DropdownProps {
   list: string[];
@@ -17,12 +17,12 @@ function Dropdown({ list, zIndex, value, onClick }: DropdownProps) {
       </StyledSelectedLabel>
       <StyledOptionList active={active} zIndex={zIndex}>
         {list.length === 0 ? (
-          <StyledOptionItem onClick={() => setActive(false)}>-</StyledOptionItem>
+          <Styled.optionItem onClick={() => setActive(false)}>-</Styled.optionItem>
         ) : (
           list
             .filter(element => element !== value)
             .map(element => (
-              <StyledOptionItem
+              <Styled.optionItem
                 key={element}
                 onClick={() => {
                   setActive(false);
@@ -30,11 +30,11 @@ function Dropdown({ list, zIndex, value, onClick }: DropdownProps) {
                 }}
               >
                 {element}
-              </StyledOptionItem>
+              </Styled.optionItem>
             ))
         )}
-      </StyledOptionList>
-    </StyledSelectbox>
+      </Styled.selectOptionList>
+    </Styled.selectbox>
   );
 }
 

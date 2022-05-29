@@ -2,9 +2,7 @@ import styled from '@emotion/styled';
 
 const Layout = {
   container: styled.main``,
-  carousel: styled.div`
-    background-color: PaleVioletRed;
-  `,
+  carousel: styled.div``,
   search: styled.section`
     padding-top: 50px;
   `,
