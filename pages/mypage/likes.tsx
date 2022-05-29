@@ -1,6 +1,11 @@
 import Title from '@components/common/Title';
 import Layout from '@components/mypage/layout';
-import SideBar from './../../components/mypage/SideBar/SideBar';
+import MyPageCard from '@components/mypage/MyPageCard';
+import SideBar from '../../components/mypage/SideBar/SideBar';
+import postList from '../../components/mypage/post.mock.json';
+import { nanoid } from 'nanoid';
+import Button from '@components/common/Button';
+import MyPagePostCard from '@components/mypage/MyPagePostCard';
 
 const ReservationPage = () => {
   return (
@@ -12,9 +17,16 @@ const ReservationPage = () => {
         <Layout.SectionRight>
           <Layout.PageTitle>
             <Title size={'h1'} color={'black'}>
-              찜한 약속
+              찜한 포스트
             </Title>
           </Layout.PageTitle>
+          <Layout.listWrapper>
+            {postList.map(post => (
+              <Layout.myPageItem key={nanoid()}>
+                <MyPagePostCard key={nanoid()} post={post} />
+              </Layout.myPageItem>
+            ))}
+          </Layout.listWrapper>
         </Layout.SectionRight>
       </Layout.PageContent>
     </>
