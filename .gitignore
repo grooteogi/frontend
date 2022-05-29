@@ -18,10 +18,10 @@ npm-debug.log*
 .pnpm-debug.log*
 
 # Local env files
+.env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
+.env.production
 
 # vercel
 .vercel
@@ -30,8 +30,7 @@ npm-debug.log*
 *.tsbuildinfo
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode/
 .idea
 .DS_Store
 *.suo
@@ -57,3 +56,9 @@ yarn-error.log*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Storybook
+build-storybook.log
+
+# Eslint
+.eslintcache

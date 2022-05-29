@@ -13,8 +13,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "jsxImportSource": "@emotion/react",
+    "incremental": true,
+    "paths": {
+      "@lib/*": ["./lib/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@styles/*": ["./styles/*"],
+      "types/*": ["./types/*"],
+      "@components/*": ["./components/*"],
+      "@containers/*": ["./containers/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/asset/*"],
   "exclude": ["node_modules"]
 }
