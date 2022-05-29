@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Styled } from './SortingTab.styled';
 
 export interface SortingTabProps {

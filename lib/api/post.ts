@@ -49,11 +49,9 @@ export const post = {
     return res;
   },
   search: async (params: { keyword: string; sort: string; region: string; pageParam: number }) => {
-    const { keyword, pageParam, sort } = params;
+    const { keyword, pageParam, sort, region } = params;
     const sortValue = SortType[sort as keyof typeof SortType];
-    // const url = `/post?keyword=${keyword}&page=${pageParam}&filter=${sortValue}`;
-    const url = `/post?keyword=${'ti'}&page=${pageParam}&filter=${sortValue}`;
-    console.log(url);
+    const url = `/post/search?keyword=${keyword}&page=${pageParam}&filter=${sortValue}&region=${region}`;
     const res = await client.get(url);
     return res;
   },

@@ -10,15 +10,13 @@ export default {
 
 const Template: ComponentStory<typeof Image> = ({ ...args }) => (
   <GlobalThemeProvider theme={theme}>
-    <div style={{ width: '500px', height: '500px', backgroundColor: '#eeeeee' }}>
-      <Image {...args} />
-    </div>
+    <Image {...args} />
   </GlobalThemeProvider>
 );
 
 export const LargeWidthImage = Template.bind({});
 LargeWidthImage.args = {
-  src: '/imgs/Carousel2.png',
+  src: '/imgs/Carousel3.png',
   alt: 'not found',
   size: 'lg',
 };
