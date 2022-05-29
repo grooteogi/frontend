@@ -21,6 +21,17 @@ const Layout = {
     border-bottom: 1px solid ${theme.color.gray700};
     margin-bottom: 2rem;
   `,
+  listWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  `,
+  myPageItem: styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  `,
 };
 
 export default Layout;
