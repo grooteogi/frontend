@@ -13,6 +13,7 @@ export const Styled = {
     position: fixed;
     bottom: 0px;
     left: 0px;
+    z-index: 5;
     padding: 0 10%;
     @media screen and (min-width: 768px) {
       padding: 0 20%;
