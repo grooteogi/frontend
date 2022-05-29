@@ -1,31 +1,33 @@
-import Content from '@components/layout/Content';
-import { SearchProvider } from '@components/search/context';
 import Layout from '@components/search/layout';
+import SearchInput from '@components/search/SearchInput/SearchInput';
+import SearchList from '@components/search/SearchList/SearchList';
+import { SearchProvider } from '@components/search/context';
+import SearchMenu from '@components/search/SearchMenu';
 import PageCarousel from '@components/search/PageCarousel/PageCarousel';
-import PostList from '@components/search/PostList/PostList';
-import SearchInputs from '@components/search/SearchInputs/SearchInputs';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import SearchFiltering from '@components/search/SearchFiltering/SearchFiltering';
 
-const queryClient = new QueryClient();
-
-const SearchPage = () => {
+const Search = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <Layout.container>
+      <Layout.carousel>
+        <PageCarousel />
+      </Layout.carousel>
       <SearchProvider>
-        <Content>
-          <Layout.PageCarousel>
-            <PageCarousel />
-          </Layout.PageCarousel>
-          <Layout.PageSearch>
-            <SearchInputs />
-          </Layout.PageSearch>
-          <Layout.PagePosts>
-            <PostList />
-          </Layout.PagePosts>
-        </Content>
+        <Layout.search>
+          <SearchInput />
+        </Layout.search>
+        <Layout.menu>
+          <SearchMenu />
+        </Layout.menu>
+        <Layout.filter>
+          <SearchFiltering />
+        </Layout.filter>
+        <Layout.posts>
+          <SearchList />
+        </Layout.posts>
       </SearchProvider>
-    </QueryClientProvider>
+    </Layout.container>
   );
 };
 
-export default SearchPage;
+export default Search;

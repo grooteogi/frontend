@@ -3,16 +3,10 @@ import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
 const getFont = ({ active = false }) => {
-  if (active)
-    return css`
-      font-weight: ${theme.weight.medium};
-      color: ${theme.color.black};
-    `;
-  else
-    return css`
-      font-weight: ${theme.weight.regular};
-      color: ${theme.color.gray200};
-    `;
+  return css`
+    font-weight: ${active ? theme.weight.medium : theme.weight.regular};
+    color: ${active ? theme.color.black : theme.color.gray700};
+  `;
 };
 
 export const Styled = {

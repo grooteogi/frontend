@@ -9,6 +9,7 @@ const color = {
   gray600: '#A7A7A7',
   gray700: '#979797',
   darkgray: '#4E4E4E',
+  deepdarkgray: '#3C424B',
   white: '#FFFFFF',
   black: '#000000',
   kakao: '#FEE500',

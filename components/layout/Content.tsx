@@ -7,8 +7,7 @@ interface LayoutProps {
 
 const Styled = {
   content: styled.main`
-    margin: 60px auto 0;
-    /* padding: 0 5%; */
+    margin: 0 auto 0;
     @media (min-width: 1060px) {
       width: 1060px;
     }

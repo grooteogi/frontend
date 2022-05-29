@@ -1,3 +1,4 @@
+import { SortType } from 'types/enum';
 import client from './client';
 
 export const post = {
@@ -44,6 +45,15 @@ export const post = {
   // },
   detailHashtags: async (postId: number) => {
     const url = `post/${postId}/hashtags`;
+    const res = await client.get(url);
+    return res;
+  },
+  search: async (params: { keyword: string; sort: string; region: string; pageParam: number }) => {
+    const { keyword, pageParam, sort } = params;
+    const sortValue = SortType[sort as keyof typeof SortType];
+    // const url = `/post?keyword=${keyword}&page=${pageParam}&filter=${sortValue}`;
+    const url = `/post?keyword=${'ti'}&page=${pageParam}&filter=${sortValue}`;
+    console.log(url);
     const res = await client.get(url);
     return res;
   },

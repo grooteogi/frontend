@@ -4,7 +4,7 @@ const Styled = {
   container: styled.div`
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     gap: 20px;
   `,
 };

@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
 
-const Layout = {
+const Styled = {
   container: styled.div`
     display: flex;
+    flex-direction: row;
     justify-content: center;
-
-    margin-top: 5rem;
   `,
 };
 
-export default Layout;
+export default Styled;

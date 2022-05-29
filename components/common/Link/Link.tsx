@@ -7,7 +7,7 @@ interface LinkProps extends SLinkProps {
   children: string;
 }
 
-const Link = ({ children, href, ...props }: LinkProps) => {
+const Link = ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & LinkProps) => {
   return (
     <NextLink href={href} passHref={true}>
       <StyledLink {...props}>{children}</StyledLink>
