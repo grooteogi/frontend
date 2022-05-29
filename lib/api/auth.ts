@@ -3,7 +3,7 @@ import { storage } from '../storage';
 import client, { GAxios } from './client';
 
 const auth = {
-  signupUser: async (userInfo: any) => {
+  signupUser: async (userInfo: AuthEntity) => {
     const url = '/auth/register';
     const status = await client.post(url, userInfo);
     return status;
@@ -27,17 +27,17 @@ const auth = {
     return user;
   },
   sendEmail: async (email: string) => {
-    const url = '/user/email-verification/create';
+    const url = '/auth/email/send';
     const status = await client.post(url, { email });
     return status;
   },
   confirmEmail: async (validForm: { email: string; code: string }) => {
-    const url = '/user/email-verification/confirm';
+    const url = '/auth/email/check';
     const status = await client.post(url, validForm);
     return status;
   },
   resendEmail: async (email: string) => {
-    const url = '/user/email-verification/create';
+    const url = '/auth/email/send';
     const status = await client.post(url, { email });
     return status;
   },
