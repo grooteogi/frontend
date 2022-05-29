@@ -49,19 +49,12 @@ export const post = {
     const res = await client.get(url);
     return res;
   },
-<<<<<<< HEAD
-  search: async (params: { keyword: string; sort: string; region: string; pageParam: number }) => {
-    const { keyword, pageParam, sort, region } = params;
-    const sortValue = SortType[sort as keyof typeof SortType];
-    const url = `/post/search?keyword=${keyword}&page=${pageParam}&filter=${sortValue}&region=${region}`;
-=======
   search: async (params: { searchState: SearchStateType; pageParam: number }) => {
     const { searchState, pageParam } = params;
     const { keyword, sort, region } = searchState;
     const sortValue = SortType[sort as keyof typeof SortType];
     const url = `/post/search?keyword=${keyword}&page=${pageParam}&filter=${sortValue}&region=${region}`;
     console.log(url);
->>>>>>> 9ab38d5 (temp)
     const res = await client.get(url);
     return res;
   },

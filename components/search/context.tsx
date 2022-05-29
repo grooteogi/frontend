@@ -39,10 +39,6 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchState, dispatchSearch] = useReducer(searchReducer, initialState);
   const values = React.useMemo(() => searchState, [searchState]);
 
-  const setKeyword = (keyword: string) => dispatchSearch({ type: 'SET_KEYWORD', keyword });
-  const setSort = (sort: string) => dispatchSearch({ type: 'SET_SORT', sort });
-  const setRegion = (region: string) => dispatchSearch({ type: 'SET_REGION', region });
-
   return (
     <SearchContext.Provider value={values}>
       <SearchDispatchContext.Provider value={dispatchSearch}>{children}</SearchDispatchContext.Provider>

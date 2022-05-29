@@ -29,6 +29,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@types/react-slick": "^0.23.8",
+    "antd": "^4.20.6",
     "axios": "^0.26.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "formik": "^2.2.9",
