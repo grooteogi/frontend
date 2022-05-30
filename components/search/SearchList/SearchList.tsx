@@ -1,18 +1,26 @@
 import React from 'react';
 import Styled from './SearchList.styled';
-import PostCard from '@components/common/PostCard';
 import { useSearchContext } from '../context';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import { CreditType } from 'types/enum';
-import { PostEntity } from 'types/entity';
+import post from '@lib/api/post';
 import PostSkeleton from '@components/common/PostCard/PostSkeleton';
-import search from '@lib/api/search';
+import { CreditType } from 'types/enum';
+import PostCard from '@components/common/PostCard';
+import { PostEntity } from 'types/entity';
+import { useInfiniteQuery } from 'react-query';
 
 const SearchList = () => {
   const searchState = useSearchContext();
-
-  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } =
-    search.useInfinitePost(searchState);
+  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
+    ['posts', searchState],
+    async ({ pageParam = 1 }) => (await post.search({ searchState, pageParam })).data,
+    {
+      getNextPageParam: (lastPage, pages) => {
+        if (pages.length < 1) return pages.length + 1;
+        else return undefined;
+      },
+    },
+  );
 
   const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) =>
     hasNextPage && isIntersecting && !isFetchingNextPage ? fetchNextPage() : null;
@@ -27,11 +35,10 @@ const SearchList = () => {
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
-      {data?.pages.map((page, index) => {
+      {data?.pages.map((page: any, index: number) => {
         return (
           <React.Fragment key={index}>
-            {page?.data.posts.map((post: PostEntity) => (
-              // {page?.map((post: PostEntity) => (
+            {page?.data?.posts?.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
                 postEntity={{

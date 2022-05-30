@@ -39,6 +39,11 @@ const Styled = {
     display: flex;
     justify-content: space-between;
   `,
+  emailbuttonContainer: styled.div`
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 0.5rem;
+  `,
   checkboxContainer: styled.div`
     display: flex;
     flex-direction: column;

@@ -20,13 +20,13 @@ const PhoneVerifyForm = () => {
   const { phoneNumber, code } = values;
 
   const handleSendMessage = async () => {
-    const state = await reservation.sendMessage(phoneNumber);
-    if (state === 200) console.log('Success sms');
+    const response = await reservation.sendMessage(phoneNumber);
+    if (response.status === 200) console.log('Success sms');
     else console.log('Fail sms');
   };
   const handleConfirmMessage = async () => {
-    const state = await reservation.confirmMessage({ phoneNumber, code });
-    if (state === 200) console.log('Success sms');
+    const response = await reservation.confirmMessage({ phoneNumber, code });
+    if (response.status === 200) console.log('Success sms');
     else console.log('Fail sms');
   };
   return (
@@ -84,7 +84,7 @@ const PhoneVerifyForm = () => {
             onClick={handleConfirmMessage}
           />
         </Styled.innerContainer>
-        <Timer isStart={false} limitMin={2} fontColor={'primary'} resetStatus={false} />
+        <Timer isStart={false} limitMin={2} fontColor={'primary'} resetStatus={true} />
       </Styled.inputContainer>
     </>
   );
@@ -102,8 +102,8 @@ const ReservationForm = () => {
           scheduleId,
           message,
         };
-        const state = await reservation.createReservation(requestDate);
-        if (state === 200) console.log('success');
+        const response = await reservation.createReservation(requestDate);
+        if (response.status === 200) console.log('success');
         else console.log('fail');
       }}
     >

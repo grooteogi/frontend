@@ -41,22 +41,24 @@ const SignupForm = () => {
   }, [allAgree, setFieldValue]);
 
   const resendEmailClick = async () => {
-    const status = await auth.resendEmail(email);
-    if (status === 200) console.log('email verified');
+    const response = await auth.resendEmail(email);
+    if (response.status === 200) console.log('email verified');
     else console.log('email not verified');
 
     setIsReset(true);
     setIsReset(false);
   };
+
   const handleEmailClick = async () => {
     if (!emailClicked) {
-      setEmailClicked(true);
-      const status = await auth.sendEmail(email);
-      if (status === 200) console.log('email verified');
-      else console.log('email not verified');
+      const response = await auth.sendEmail(email);
+      if (response.status === 200) {
+        setEmailClicked(true);
+        console.log('email verified');
+      } else alert(response.message);
     } else {
-      const status = await auth.confirmEmail({ email, code });
-      if (status === 200) {
+      const response = await auth.confirmEmail({ email, code });
+      if (response.status === 200) {
         setEmailChecked(true);
         alert('이메일 인증이 완료되었습니다!');
         console.log('email verified confirmed');
@@ -69,9 +71,8 @@ const SignupForm = () => {
 
   const handleSignup = async () => {
     handleSubmit();
-    console.log('fuckcc');
-    const status = await auth.signupUser({ email, password });
-    if (status === 200) {
+    const response = await auth.signupUser({ email, password });
+    if (response.status === 200) {
       console.log('signup access');
     } else {
       alert('회원가입 실패!');
@@ -106,19 +107,37 @@ const SignupForm = () => {
             />
           )}
         {emailClicked && !emailChecked && (
+          <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
+        )}
+        {emailClicked && !emailChecked && (
           <Timer resetStatus={isReset} isStart={true} limitMin={3} fontColor={'black'} />
         )}
-        <Button
-          type={'button'}
-          name={'이메일 인증'}
-          size={'md'}
-          fontColor={'white'}
-          borderColor={'none'}
-          color={email && !errors.email ? 'black' : 'gray200'}
-          disabled={!(email && !errors.email)}
-          onClick={handleEmailClick}
-          style={{ alignSelf: 'flex-end' }}
-        />
+        <Styled.emailbuttonContainer>
+          {emailClicked && !emailChecked && (
+            <Button
+              type={'button'}
+              name={'재전송'}
+              size={'md'}
+              fontColor={'white'}
+              borderColor={'none'}
+              color={email && !errors.email ? 'black' : 'gray200'}
+              onClick={resendEmailClick}
+              style={{ alignSelf: 'flex-start' }}
+            />
+          )}
+          <Button
+            type={'button'}
+            name={'이메일 인증'}
+            size={'md'}
+            fontColor={'white'}
+            borderColor={'none'}
+            color={email && !errors.email ? 'black' : 'gray200'}
+            disabled={!(email && !errors.email)}
+            onClick={handleEmailClick}
+            style={{ alignSelf: 'flex-end' }}
+          />
+        </Styled.emailbuttonContainer>
+
         <Field
           type={'password'}
           placeholder={'비밀번호'}
@@ -182,7 +201,7 @@ const SignupForm = () => {
         name={'회원가입하기'}
         fontColor={'black'}
         size={'lg'}
-        disabled={errors.allAgree || errors.email || errors.password ? true : false}
+        disabled={errors.email || errors.password ? true : false}
       />
     </Form>
   );
@@ -208,21 +227,21 @@ const SignupModal = () => {
             ageAgree: false,
           }}
           validate={values => {
-            const errors: FormikErrors<{ email: string; password: string; allAgree: string }> = {
+            const errors: FormikErrors<{ email: string; password: string; all: string }> = {
               email: '',
               password: '',
-              allAgree: '',
+              all: '',
             };
             if (values.email && !validEmail(values.email)) errors.email = 'Email Fail';
             if (values.password && !validPassword(values.password)) errors.password = '유효하지 않은 비밀번호입니다.';
-            if (values.password !== values.passwordConfirm) errors.password = '비밀번호가 일치하지 않습니다.';
+            if (values.passwordConfirm && values.password !== values.passwordConfirm)
+              errors.password = '비밀번호가 일치하지 않습니다.';
 
             if (errors.email === '' && errors.password === '') {
-              if (values.email === '' || values.password === '')
-                errors.allAgree = '이메일과 비밀번호는 필수 입력값입니다.';
+              if (values.email === '' || values.password === '') errors.all = '이메일과 비밀번호는 필수 입력값입니다.';
               if (!values.serviceAgree || !values.privacyAgree || !values.ageAgree)
-                errors.allAgree = '필수 동의 항목입니다.';
-              if (values.allAgree) errors.allAgree = '';
+                errors.all = '필수 동의 항목입니다.';
+              if (values.allAgree) errors.all = '';
             }
 
             return errors;
