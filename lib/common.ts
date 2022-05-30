@@ -17,3 +17,7 @@ export function enumToArray(enumme: any) {
     .filter(stringIsNumber)
     .map(key => enumme[key]);
 }
+
+export function timeFormater(time: string) {
+  return time.concat(':00');
+}

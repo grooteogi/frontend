@@ -5,14 +5,15 @@ import theme from '@styles/theme';
 export interface STitleProps {
   size: 'h1' | 'h2' | 'h3' | 'h4';
   color: keyof typeof theme.color;
+  weight?: keyof typeof theme.weight;
   align?: 'left' | 'right' | 'center';
 }
 
 export const sizes = {
-  h4: { fontSize: theme.fontSize.xs, weight: theme.weight.medium },
-  h3: { fontSize: theme.fontSize.sm, weight: theme.weight.medium },
-  h2: { fontSize: theme.fontSize.lg, weight: theme.weight.medium },
-  h1: { fontSize: theme.fontSize.xl, weight: theme.weight.medium },
+  h4: { fontSize: theme.fontSize.xs, weight: theme.weight.bold },
+  h3: { fontSize: theme.fontSize.sm, weight: theme.weight.bold },
+  h2: { fontSize: theme.fontSize.lg, weight: theme.weight.bold },
+  h1: { fontSize: theme.fontSize.xl, weight: theme.weight.bold },
 };
 
 const getSize = ({ size }: STitleProps) => {
@@ -28,12 +29,16 @@ const getColor = ({ color }: STitleProps) => {
   `;
 };
 
-const getOption = ({ align }: STitleProps) => {
+const getOption = ({ align, weight }: STitleProps) => {
   const getAlign = () => {
     if (align) return `text-align: ${align}`;
   };
+  const getWeight = () => {
+    if (weight) return `font-weight: ${theme.weight[weight]}`;
+  };
   return css`
     ${getAlign()};
+    ${getWeight()};
   `;
 };
 

@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { darken } from 'polished';
 import { Field } from 'formik';
+import theme from '@styles/theme';
 
 interface SScorllProps {
   standardHeight: number;
@@ -19,13 +20,13 @@ export const Styled = {
   container: styled.div`
     @media (min-width: 1060px) {
       width: 325px;
-      padding: 2rem 1rem 1rem 1rem;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
     }
     @media (max-width: 1059px) {
       width: 100%;
       padding: 2rem;
     }
-    border: 1px solid lightgrey;
+    border: 1px solid ${theme.color.gray200};
     border-radius: 12px;
     background: white;
     display: flex;
@@ -50,10 +51,6 @@ export const Styled = {
   `,
   submitBtn: styled(Button)`
     height: 30px;
-  `,
-  hr: styled.hr`
-    color: lightgray;
-    width: 100%;
   `,
   scroll: styled.div`
     ${getStandardHeight};
@@ -90,7 +87,7 @@ export const Styled = {
   innerContainer: styled.div`
     width: 100%;
     padding: 1rem;
-    border: 1px solid lightgrey;
+    border: 1px solid ${theme.color.gray200};
     border-radius: 12px;
     background: white;
     display: flex;
