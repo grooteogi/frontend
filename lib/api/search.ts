@@ -4,7 +4,7 @@ import { SortType } from 'types/enum';
 
 const search = {
   getHashtags: async () => {
-    const status = axios
+    return axios
       .get(`https://6285b1c296bccbf32d66c1f2.mockapi.io/hashtags`)
       .then(res => res.data)
       .catch(err => {
@@ -14,7 +14,6 @@ const search = {
           throw err;
         }
       });
-    return status;
   },
 
   getPosts: async (params: { searchState: SearchStateType; pageParam: number }) => {
@@ -22,7 +21,7 @@ const search = {
     const { keyword, sort, region } = searchState;
     const sortValue = SortType[sort as keyof typeof SortType];
     console.log('params ', keyword, sortValue, region, pageParam);
-    const status = axios
+    return axios
       .get(`https://6285b1c296bccbf32d66c1f2.mockapi.io/post${pageParam}`)
       .then(res => res.data)
       .catch(err => {
@@ -32,7 +31,6 @@ const search = {
           throw err;
         }
       });
-    return status;
   },
 };
 

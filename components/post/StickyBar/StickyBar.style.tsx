@@ -11,8 +11,8 @@ export const Styled = {
     align-items: center;
     justify-content: center;
     position: fixed;
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     padding: 0 10%;
     @media screen and (min-width: 768px) {
       padding: 0 20%;

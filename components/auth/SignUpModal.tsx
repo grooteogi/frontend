@@ -28,7 +28,7 @@ const SignupForm = () => {
   const [emailChecked, setEmailChecked] = useState(false);
 
   useEffect(() => {
-    if (allAgree === true) {
+    if (allAgree) {
       setFieldValue('serviceAgree', true);
       setFieldValue('privacyAgree', true);
       setFieldValue('ageAgree', true);
@@ -88,7 +88,7 @@ const SignupForm = () => {
           fontColor={'white'}
           borderColor={'none'}
           color={email && !errors.email ? 'black' : 'gray200'}
-          disabled={email && !errors.email ? false : true}
+          disabled={!(email && !errors.email)}
           onClick={handleEmailClick}
           style={{ alignSelf: 'flex-end' }}
         />
@@ -181,7 +181,6 @@ const SignupModal = () => {
             return errors;
           }}
           onSubmit={values => {
-            console.log('fuckyou');
             console.log('formData', values);
           }}
         >
