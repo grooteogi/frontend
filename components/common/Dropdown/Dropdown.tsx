@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyledSelectbox, StyledSelectedLabel, StyledOptionList, StyledOptionItem } from './Dropdown.styled';
+import Styled from './Dropdown.styled';
 
 interface DropdownProps {
   list: string[];
@@ -9,20 +9,20 @@ interface DropdownProps {
 }
 
 function Dropdown({ list, zIndex, value, onClick }: DropdownProps) {
-  const [acitve, setActive] = useState(false);
+  const [active, setActive] = useState(false);
   return (
-    <StyledSelectbox>
-      <StyledSelectedLabel value={value} onClick={() => setActive(!acitve)} type={'button'}>
+    <Styled.selectbox>
+      <Styled.selectedLabel value={value} onClick={() => setActive(!active)} type={'button'}>
         {value}
-      </StyledSelectedLabel>
-      <StyledOptionList active={acitve} zIndex={zIndex}>
+      </Styled.selectedLabel>
+      <Styled.selectOptionList active={active} zIndex={zIndex}>
         {list.length === 0 ? (
-          <StyledOptionItem onClick={() => setActive(false)}>-</StyledOptionItem>
+          <Styled.optionItem onClick={() => setActive(false)}>-</Styled.optionItem>
         ) : (
           list
             .filter(element => element !== value)
             .map(element => (
-              <StyledOptionItem
+              <Styled.optionItem
                 key={element}
                 onClick={() => {
                   setActive(false);
@@ -30,11 +30,11 @@ function Dropdown({ list, zIndex, value, onClick }: DropdownProps) {
                 }}
               >
                 {element}
-              </StyledOptionItem>
+              </Styled.optionItem>
             ))
         )}
-      </StyledOptionList>
-    </StyledSelectbox>
+      </Styled.selectOptionList>
+    </Styled.selectbox>
   );
 }
 

@@ -37,10 +37,11 @@ jobs:
         id: next-js-cache
         with:
           path: |
+            ~/.npm
             ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-
+            ${{ runner.os }}-Node-v${{ matrix.node-version }}-Next-js-${{ hashFiles('**/yarn.lock') }}-
 
       - name: Install dependencies
         if: |
@@ -48,8 +49,6 @@ jobs:
         run: yarn install
 
       - name: Build
-        if: |
-          steps.next-js-cache.outputs.cache-hit != 'true'
         run: yarn build
         env:
           SERVER_URL: ${{ secrets.SERVER_URL }}

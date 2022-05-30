@@ -15,7 +15,7 @@ export const GAxios = axios.create({
 
 const client = {
   get: async (url: string) => {
-    const res = await GAxios({
+    return await GAxios({
       method: 'get',
       url: url,
     })
@@ -27,10 +27,9 @@ const client = {
           throw err;
         }
       });
-    return res;
   },
   post: async (url: string, data: any) => {
-    const res = await GAxios({
+    return await GAxios({
       headers: { Authorization: `Bearer ${storage.getToken()}` },
       method: 'post',
       data: data,
@@ -44,10 +43,9 @@ const client = {
           throw err;
         }
       });
-    return res;
   },
   put: async (url: string, data: ResponseData) => {
-    const res = await GAxios({
+    return await GAxios({
       method: 'put',
       data: data,
       url: url,
@@ -60,10 +58,9 @@ const client = {
           throw err;
         }
       });
-    return res;
   },
   delete: async (url: string, data: ResponseData) => {
-    const res = await GAxios({
+    return await GAxios({
       method: 'delete',
       data: data,
       url: url,
@@ -76,7 +73,6 @@ const client = {
           throw err;
         }
       });
-    return res;
   },
 };
 

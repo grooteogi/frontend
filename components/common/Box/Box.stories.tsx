@@ -14,8 +14,8 @@ const Template: ComponentStory<typeof Box> = args => (
   </GlobalThemeProvider>
 );
 
-export const FixedDimentionBox = Template.bind({});
-FixedDimentionBox.args = {
+export const FixedDimensionBox = Template.bind({});
+FixedDimensionBox.args = {
   width: 450,
   height: 500,
 };

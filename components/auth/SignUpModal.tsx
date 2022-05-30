@@ -26,15 +26,28 @@ const SignupForm = () => {
   const { email, password, passwordConfirm, code, allAgree } = values;
   const [emailClicked, setEmailClicked] = useState(false);
   const [emailChecked, setEmailChecked] = useState(false);
+  const [isReset, setIsReset] = useState(false);
 
   useEffect(() => {
-    if (allAgree === true) {
+    if (allAgree) {
       setFieldValue('serviceAgree', true);
       setFieldValue('privacyAgree', true);
       setFieldValue('ageAgree', true);
+    } else {
+      setFieldValue('serviceAgree', false);
+      setFieldValue('privacyAgree', false);
+      setFieldValue('ageAgree', false);
     }
   }, [allAgree, setFieldValue]);
 
+  const resendEmailClick = async () => {
+    const status = await auth.resendEmail(email);
+    if (status === 200) console.log('email verified');
+    else console.log('email not verified');
+
+    setIsReset(true);
+    setIsReset(false);
+  };
   const handleEmailClick = async () => {
     if (!emailClicked) {
       setEmailClicked(true);
@@ -77,10 +90,24 @@ const SignupForm = () => {
           borderColor={email && !errors.email ? 'primary' : 'gray200'}
           component={Input}
         />
+        {emailClicked &&
+          !emailChecked && (
+            <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
+          ) && (
+            <Button
+              type={'button'}
+              name={'재전송'}
+              size={'md'}
+              fontColor={'white'}
+              borderColor={'none'}
+              color={email && !errors.email ? 'black' : 'gray200'}
+              onClick={resendEmailClick}
+              style={{ alignSelf: 'flex-start' }}
+            />
+          )}
         {emailClicked && !emailChecked && (
-          <Field type={'password'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
+          <Timer resetStatus={isReset} isStart={true} limitMin={3} fontColor={'black'} />
         )}
-        {emailClicked && !emailChecked && <Timer isStart={true} limitMin={3} fontColor={'black'} />}
         <Button
           type={'button'}
           name={'이메일 인증'}
@@ -88,7 +115,7 @@ const SignupForm = () => {
           fontColor={'white'}
           borderColor={'none'}
           color={email && !errors.email ? 'black' : 'gray200'}
-          disabled={email && !errors.email ? false : true}
+          disabled={!(email && !errors.email)}
           onClick={handleEmailClick}
           style={{ alignSelf: 'flex-end' }}
         />
@@ -110,6 +137,11 @@ const SignupForm = () => {
           borderColor={passwordConfirm && passwordConfirm === password ? 'primary' : 'gray200'}
           component={Input}
         />
+        {errors.password && (
+          <Title size="h4" color={'danger'} align="right">
+            {errors.password}
+          </Title>
+        )}
       </Styled.inputContainer>
 
       <Styled.checkboxContainer>
@@ -150,6 +182,7 @@ const SignupForm = () => {
         name={'회원가입하기'}
         fontColor={'black'}
         size={'lg'}
+        disabled={errors.all || errors.email || errors.password ? true : false}
       />
     </Form>
   );
@@ -175,13 +208,25 @@ const SignupModal = () => {
             ageAgree: false,
           }}
           validate={values => {
-            const errors: FormikErrors<{ email: string; password: string }> = { email: '', password: '' };
+            const errors: FormikErrors<{ email: string; password: string; all: string }> = {
+              email: '',
+              password: '',
+              all: '',
+            };
             if (values.email && !validEmail(values.email)) errors.email = 'Email Fail';
-            if (values.password && !validPassword(values.password)) errors.password = 'Password Fail';
+            if (values.password && !validPassword(values.password)) errors.password = '유효하지 않은 비밀번호입니다.';
+            if (values.password !== values.passwordConfirm) errors.password = '비밀번호가 일치하지 않습니다.';
+
+            if (errors.email === '' && errors.password === '') {
+              if (values.email === '' || values.password === '') errors.all = '이메일과 비밀번호는 필수 입력값입니다.';
+              if (!values.serviceAgree || !values.privacyAgree || !values.ageAgree)
+                errors.all = '필수 동의 항목입니다.';
+              if (values.allAgree) errors.all = '';
+            }
+
             return errors;
           }}
           onSubmit={values => {
-            console.log('fuckyou');
             console.log('formData', values);
           }}
         >

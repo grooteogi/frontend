@@ -3,7 +3,6 @@ import React from 'react';
 import { SButtonProps, StyledButton } from './Button.styled';
 
 interface ButtonProps extends SButtonProps {
-  onClick?: (e: React.MouseEvent) => void;
   icon?: string | StaticImageData;
   alt?: string;
   name?: string;

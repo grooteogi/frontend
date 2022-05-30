@@ -43,7 +43,7 @@ const Header = () => {
           </NextLink>
           {auth ? (
             <Styled.menuContainer>
-              <Link href={'/auth'} size={'xs'} color={'primary'}>
+              <Link href={'/post/create'} size={'xs'} color={'primary'}>
                 약속생성
               </Link>
               <Link href={'/auth'} size={'xs'} color={'black'}>

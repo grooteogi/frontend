@@ -37,9 +37,9 @@ const getSize = ({ size }: StyledImageProps) => {
 };
 export const Styled = {
   image: styled.img<StyledImageProps>`
-    ${getSize}
     object-fit: cover;
     object-position: 50% 50%;
     border-radius: 8px;
+    ${getSize}
   `,
 };

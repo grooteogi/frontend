@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "eslint --cache \"**/*.{js,ts,jsx,tsx}\"",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
@@ -15,7 +15,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "eslint --cache",
+      "eslint --cache --fix",
       "prettier --write"
     ],
     "*.{html,css,less,ejs,json}": [
@@ -43,8 +43,7 @@
     "react-dom": "17.0.2",
     "react-query": "^3.34.19",
     "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1",
-    "svgr": "^2.0.0"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

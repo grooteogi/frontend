@@ -12,17 +12,39 @@ export const Styled = {
     flex-direction: column;
     row-gap: 20px;
   `,
+  reviewItem: styled.div`
+    display: flex;
+    flex-direction: column;
+  `,
   profileImg: styled.img`
     width: 47px;
     height: 47px;
     border-radius: 50%;
     object-fit: none;
   `,
-  userTimeBox: styled.div`
+  reviewInfoHeader: styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  `,
+  reviewInfoHeaderLeft: styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  `,
+  reviewInfo: styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     height: 47px;
+  `,
+  reviewInfoHeaderRight: styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
   `,
   title: styled(Typography)`
     font-size: 1.2rem;
@@ -34,8 +56,10 @@ export const Styled = {
     margin-top: 15px;
     margin-bottom: 15px;
   `,
-  text: styled(Typography)`
-    line-height: 1.4;
+  contentTextBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 14px 0;
   `,
 };
 

@@ -15,7 +15,7 @@ const Styled = {
       width: 767px;
     }
     @media (max-width: 767px) {
-      width: 390px;
+      width: 100%;
     }
   `,
 };

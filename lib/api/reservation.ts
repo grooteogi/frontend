@@ -5,23 +5,19 @@ import client from './client';
 const reservation = {
   createReservation: async (data: ReservationCreateRequestDto) => {
     const url = '/reservation';
-    const status = await client.post(url, data);
-    return status;
+    return await client.post(url, data);
   },
   sendMessage: async (phoneNumber: string) => {
     const url = `/reservation/sms/send?phoneNumber=${phoneNumber}`;
-    const status = await client.post(url, {});
-    return status;
+    return await client.post(url, {});
   },
   confirmMessage: async (data: { phoneNumber: string; code: string }) => {
     const url = '/reservation/sms/check';
-    const status = await client.post(url, data);
-    return status;
+    return await client.post(url, data);
   },
   resendMessage: async (reservation: ReservationEntity) => {
     const url = '/reservation/send-sms';
-    const status = await client.post(url, reservation);
-    return status;
+    return await client.post(url, reservation);
   },
 };
 
