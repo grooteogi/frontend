@@ -2,25 +2,18 @@ import React from 'react';
 import Styled from './SearchList.styled';
 import PostCard from '@components/common/PostCard';
 import { useSearchContext } from '../context';
-import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import { CreditType } from 'types/enum';
 import { PostEntity } from 'types/entity';
-import post from '@lib/api/post';
 import PostSkeleton from '@components/common/PostCard/PostSkeleton';
+import search from '@lib/api/search';
 
 const SearchList = () => {
   const searchState = useSearchContext();
-  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
-    ['posts', searchState],
-    ({ pageParam = 1 }) => post.search({ searchState, pageParam }),
-    {
-      getNextPageParam: (lastPage, pages) => {
-        if (pages.length < 1) return pages.length + 1;
-        else return undefined;
-      },
-    },
-  );
+
+  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } =
+    search.useInfinitePost(searchState);
+
   const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) =>
     hasNextPage && isIntersecting && !isFetchingNextPage ? fetchNextPage() : null;
 
@@ -38,6 +31,7 @@ const SearchList = () => {
         return (
           <React.Fragment key={index}>
             {page?.data.posts.map((post: PostEntity) => (
+              // {page?.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
                 postEntity={{
