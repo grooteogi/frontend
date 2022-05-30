@@ -1,7 +1,6 @@
 import React from 'react';
 import Styled from './SearchList.styled';
 import { useSearchContext } from '../context';
-import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import post from '@lib/api/post';
 import PostSkeleton from '@components/common/PostCard/PostSkeleton';
@@ -21,6 +20,7 @@ const SearchList = () => {
       },
     },
   );
+
   const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) =>
     hasNextPage && isIntersecting && !isFetchingNextPage ? fetchNextPage() : null;
 

@@ -91,6 +91,21 @@ const SignupForm = () => {
           borderColor={email && !errors.email ? 'primary' : 'gray200'}
           component={Input}
         />
+        {emailClicked &&
+          !emailChecked && (
+            <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
+          ) && (
+            <Button
+              type={'button'}
+              name={'재전송'}
+              size={'md'}
+              fontColor={'white'}
+              borderColor={'none'}
+              color={email && !errors.email ? 'black' : 'gray200'}
+              onClick={resendEmailClick}
+              style={{ alignSelf: 'flex-start' }}
+            />
+          )}
         {emailClicked && !emailChecked && (
           <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
         )}

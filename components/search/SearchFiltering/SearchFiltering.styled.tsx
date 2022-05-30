@@ -6,6 +6,7 @@ const Styled = {
     flex-flow: row wrap;
     justify-content: space-between;
     gap: 20px;
+    padding: 30px 30px;
   `,
 };
 

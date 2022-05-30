@@ -15,7 +15,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "eslint --cache",
+      "eslint --cache --fix",
       "prettier --write"
     ],
     "*.{html,css,less,ejs,json}": [
@@ -41,7 +41,9 @@
     "polished": "^4.1.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-query": "^3.34.19"
+    "react-query": "^3.34.19",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
