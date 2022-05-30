@@ -31,7 +31,12 @@ const AddHashtagBar: React.FC = () => {
     <>
       <Styled.container>
         <Styled.section>
-          <Styled.input ref={inputRef} type={'text'} onKeyDown={handleCheckEnter} />
+          <Styled.input
+            ref={inputRef}
+            type={'text'}
+            placeholder={'해시태그를 입력하고 스페이스바를 눌러주세요!'}
+            onKeyDown={handleCheckEnter}
+          />
           <Image src={'/logos/search.png'} alt={'search icon not found'} width={'16px'} height={'16px'} />
         </Styled.section>
       </Styled.container>

@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import Styled from './UploadImage.styled';
 import Camera from './camera.svg';
 import Typography from '@components/common/Typography';
@@ -7,7 +7,8 @@ import theme from '@styles/theme';
 import image from '@lib/api/image';
 
 const UploadImage = () => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
+  const { imageUrl } = values;
   const dragRef = useRef<HTMLInputElement | null>(null);
 
   const handleDragIn = useCallback((e: DragEvent): void => {
@@ -37,11 +38,14 @@ const UploadImage = () => {
 
   const onChangeFiles = useCallback(async (e: ChangeEvent<HTMLInputElement> | any): void => {
     if (e.type === 'drop') {
-      const selectedFile = e.dataTransfer.files[0];
+      const file = e.dataTransfer.files[0];
       const data = new FormData();
-      data.append('selectedFile', selectedFile);
+      data.append('multipartFile', file);
+
       const res = await image.upload(data);
       console.log('res', res);
+      if (res.status === 200 || res.status === 202) setFieldValue('imageUrl', res.data);
+      else alert('업로드 실패');
     }
   }, []);
 
@@ -84,14 +88,27 @@ const UploadImage = () => {
     return () => resetDragEvents();
   }, [initDragEvents, resetDragEvents]);
 
+  useEffect(() => {
+    if (dragRef.current && imageUrl) {
+      dragRef.current.style.border = `none`;
+      dragRef.current.style.background = `${theme.color.gray200}`;
+    }
+  }, [imageUrl]);
+
   return (
     <Styled.container ref={dragRef}>
       <input id={'imageUrl'} name={'imageUrl'} type={'file'} hidden />
       <Styled.labelContainer htmlFor={'imageUrl'}>
-        <Camera />
-        <Typography size={'sm'} color={'darkgray'}>
-          원하는 사진을 드래그 앤 드롭해주세요!
-        </Typography>
+        {imageUrl ? (
+          <Styled.img src={imageUrl} />
+        ) : (
+          <React.Fragment>
+            <Camera />
+            <Typography size={'sm'} color={'darkgray'}>
+              원하는 사진을 드래그 앤 드롭해주세요!
+            </Typography>
+          </React.Fragment>
+        )}
       </Styled.labelContainer>
     </Styled.container>
   );

@@ -17,8 +17,7 @@ export type MeetingInfoEditProps = Partial<Pick<PostEntity, 'title' | 'content' 
 
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
   const router = useRouter();
-  const previewImageRef = useRef<any>();
-  const { hashtags, creditType, schedules, imageUrl, setImageUrl } = usePostContext();
+  const { hashtags, creditType, schedules } = usePostContext();
 
   return (
     <Styled.container>
@@ -29,7 +28,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
           imageUrl: '',
         }}
         onSubmit={async (values: PostFormData) => {
-          const sendData = { ...values, imageUrl, hashtags, creditType, schedules };
+          const sendData = { ...values, hashtags, creditType, schedules };
           schedules.forEach(({ startTime, endTime }: { startTime: string; endTime: string }, index: number) => {
             schedules[index].startTime = timeFormater(startTime);
             schedules[index].endTime = timeFormater(endTime);
@@ -37,8 +36,8 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
           //   console.log(sendData);
           const status = await post.createPost(sendData);
           console.log(status);
-          if (status === 200) router.push('/');
-          else alert('포스트생성 실패!');
+          //   if (status === 200) router.push('/');
+          //   else alert('포스트생성 실패!');
         }}
       >
         <Form id="createPage">
