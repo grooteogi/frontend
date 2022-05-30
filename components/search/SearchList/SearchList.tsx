@@ -34,7 +34,7 @@ const SearchList = () => {
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
-      {data?.pages.map((page, index) => {
+      {data?.pages.map((page: any, index) => {
         return (
           <React.Fragment key={index}>
             {page?.data?.posts?.map((post: PostEntity) => (
