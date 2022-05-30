@@ -1,7 +1,8 @@
 import { storage } from '@lib/storage';
-import axios from 'axios';
+import axios, { AxiosResponseHeaders } from 'axios';
 
 interface ResponseData {
+  headers?: AxiosResponseHeaders;
   status: number;
   message?: string;
   data?: JSON;
@@ -9,79 +10,72 @@ interface ResponseData {
 
 export const GAxios = axios.create({
   baseURL: '/api',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { Authorization: `Bearer ${storage.getToken()}`, 'Content-Type': 'application/json' },
   withCredentials: true,
 });
 
+const handleResponse: any = (response: ResponseData, callback: any, url: string) => {
+  const { status, message } = response;
+
+  console.log(`${status}: ${message}`);
+
+  switch (status) {
+    case 200:
+      return response;
+    case 202:
+      if (response.headers) storage.setToken(response.headers['x-auth-token']);
+      return callback(url);
+  }
+};
+
+const handleError = (error: any) => {
+  const response = error.response.data;
+  const { status, message } = response;
+  if (!error.status) {
+    console.error(`${status}: ${message}`);
+    return response;
+  } else {
+    console.error(error);
+    return response;
+  }
+};
+
 const client = {
-  get: async (url: string) => {
+  get: async function (url: string): Promise<ResponseData> {
     return await GAxios({
       method: 'get',
       url: url,
     })
-      .then(res => res.data)
-      .catch(err => {
-        if (!err.status) console.log('Unknown Network Error in axios');
-        else {
-          console.error(err);
-          throw err;
-        }
-      });
+      .then(res => handleResponse(res, this.get, url))
+      .catch(handleError);
   },
-  post: async (url: string, data: any) => {
+  post: async function (url: string, data: any): Promise<ResponseData> {
     return await GAxios({
-      headers: { Authorization: `Bearer ${storage.getToken()}` },
       method: 'post',
       data: data,
       url: url,
     })
-      .then(res => res.status)
-      .catch(err => {
-        if (!err.status) console.log('Unknown Network Error in axios');
-        else {
-          console.error(err);
-          throw err;
-        }
-      });
+      .then(res => handleResponse(res, this.post, url))
+      .catch(handleError);
   },
-  put: async (url: string, data: ResponseData) => {
+  put: async function (url: string, data: ResponseData): Promise<ResponseData> {
     return await GAxios({
       method: 'put',
       data: data,
       url: url,
     })
-      .then(res => res.status)
-      .catch(err => {
-        if (!err.status) console.log('Unknown Network Error in axios');
-        else {
-          console.error(err);
-          throw err;
-        }
-      });
+      .then(res => handleResponse(res, this.put, url))
+      .catch(handleError);
   },
-  delete: async (url: string, data: ResponseData) => {
+  delete: async function (url: string, data: ResponseData): Promise<ResponseData> {
     return await GAxios({
       method: 'delete',
       data: data,
       url: url,
     })
-      .then(res => res.status)
-      .catch(err => {
-        if (!err.status) console.log('Unknown Network Error in axios');
-        else {
-          console.error(err);
-          throw err;
-        }
-      });
+      .then(res => handleResponse(res, this.delete, url))
+      .catch(handleError);
   },
 };
 
 export default client;
-
-// export const client.get =
-
-// export const client.post = ;
-
-// export const client.put = ;
-
-// export const client.delete = ;

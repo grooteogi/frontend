@@ -19,7 +19,6 @@ const auth = {
       .catch(err => {
         if (!err.status) console.log('Unknown Network Error in axios');
         else {
-          //   console.error(err);
           return err.status;
         }
       });
