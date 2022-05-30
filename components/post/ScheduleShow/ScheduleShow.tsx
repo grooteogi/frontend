@@ -4,6 +4,7 @@ import React, { useCallback, useState } from 'react';
 import Styled from './ScheduleShow.style';
 import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
+import ScheduleItem from '@components/common/ScheduleItem';
 
 export interface ScheduleProps {
   schedules: ScheduleEntity[];
@@ -21,20 +22,14 @@ const ScheduleItems: React.FC<ScheduleProps> = ({ schedules }) => {
     <Styled.scroll standardHeight={scrollHeight * 3}>
       {schedules?.map(({ scheduleId, date, startTime, endTime, region, place }: ScheduleEntity) => (
         <Styled.itemBox ref={callbackRef} key={scheduleId}>
-          <Wrapper flexDirection={'row'} justifyContent={'space-between'}>
-            <Typography size={'sm'} color={'black'} weight={'medium'}>
-              {dateFormater('MM월 DD일 (w)', date)} {dateFormater('HH:mm', date + ` ` + startTime)}~
-              {dateFormater('HH:mm', date + ' ' + endTime)}
-            </Typography>
-            <Typography size={'sm'} color={'black'} weight={'medium'}>
-              {region}
-            </Typography>
-          </Wrapper>
-          <Wrapper flexDirection={'column'}>
-            <Typography size={'xs'} color={'black'}>
-              {place}
-            </Typography>
-          </Wrapper>
+          <ScheduleItem
+            scheduleId={scheduleId}
+            date={date}
+            startTime={startTime}
+            endTime={endTime}
+            region={region}
+            place={place}
+          />
           <Styled.hr />
         </Styled.itemBox>
       ))}
