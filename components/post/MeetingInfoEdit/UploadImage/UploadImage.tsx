@@ -6,8 +6,12 @@ import Typography from '@components/common/Typography';
 import theme from '@styles/theme';
 import image from '@lib/api/image';
 
+type ImageFormType = {
+  imageUrl: string;
+};
+
 const UploadImage = () => {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext<ImageFormType>();
   const { imageUrl } = values;
   const dragRef = useRef<HTMLInputElement | null>(null);
 
