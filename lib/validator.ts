@@ -6,7 +6,7 @@ const validEmail = (email: string) => {
 };
 
 const validPassword = (password: string) => {
-  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const regexPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*\W)(?=\S+$).{8,}$/;
   if (password.match(regexPassword)) return true;
   else return false;
 };

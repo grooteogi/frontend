@@ -4,10 +4,12 @@ import theme from '@styles/theme';
 
 const Timer = ({
   isStart = false,
+  resetStatus = false,
   limitMin,
   fontColor,
 }: {
   isStart: boolean;
+  resetStatus: boolean;
   limitMin: number;
   fontColor: keyof typeof theme.color;
 }) => {
@@ -15,6 +17,11 @@ const Timer = ({
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
+    if (resetStatus) {
+      setMinutes(3);
+      setSeconds(0);
+    }
+
     if (isStart) {
       const countdown = setInterval(() => {
         if (seconds > 0) {
@@ -31,7 +38,7 @@ const Timer = ({
       }, 1000);
       return () => clearInterval(countdown);
     }
-  }, [minutes, seconds, isStart]);
+  }, [minutes, seconds, isStart, resetStatus]);
 
   return (
     <Typography size={'sm'} color={fontColor}>
