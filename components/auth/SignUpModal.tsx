@@ -182,7 +182,7 @@ const SignupForm = () => {
         name={'회원가입하기'}
         fontColor={'black'}
         size={'lg'}
-        disabled={errors.all || errors.email || errors.password ? true : false}
+        disabled={errors.allAgree || errors.email || errors.password ? true : false}
       />
     </Form>
   );
@@ -208,20 +208,21 @@ const SignupModal = () => {
             ageAgree: false,
           }}
           validate={values => {
-            const errors: FormikErrors<{ email: string; password: string; all: string }> = {
+            const errors: FormikErrors<{ email: string; password: string; allAgree: string }> = {
               email: '',
               password: '',
-              all: '',
+              allAgree: '',
             };
             if (values.email && !validEmail(values.email)) errors.email = 'Email Fail';
             if (values.password && !validPassword(values.password)) errors.password = '유효하지 않은 비밀번호입니다.';
             if (values.password !== values.passwordConfirm) errors.password = '비밀번호가 일치하지 않습니다.';
 
             if (errors.email === '' && errors.password === '') {
-              if (values.email === '' || values.password === '') errors.all = '이메일과 비밀번호는 필수 입력값입니다.';
+              if (values.email === '' || values.password === '')
+                errors.allAgree = '이메일과 비밀번호는 필수 입력값입니다.';
               if (!values.serviceAgree || !values.privacyAgree || !values.ageAgree)
-                errors.all = '필수 동의 항목입니다.';
-              if (values.allAgree) errors.all = '';
+                errors.allAgree = '필수 동의 항목입니다.';
+              if (values.allAgree) errors.allAgree = '';
             }
 
             return errors;

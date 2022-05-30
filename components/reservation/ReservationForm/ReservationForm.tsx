@@ -84,7 +84,7 @@ const PhoneVerifyForm = () => {
             onClick={handleConfirmMessage}
           />
         </Styled.innerContainer>
-        <Timer isStart={false} limitMin={2} fontColor={'primary'} />
+        <Timer isStart={false} limitMin={2} fontColor={'primary'} resetStatus={false} />
       </Styled.inputContainer>
     </>
   );
