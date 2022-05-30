@@ -40,7 +40,7 @@ const UploadImage = () => {
     }
   }, []);
 
-  const onChangeFiles = useCallback(async (e: ChangeEvent<HTMLInputElement> | any): void => {
+  const onChangeFiles = useCallback(async (e: ChangeEvent<HTMLInputElement> | any) => {
     if (e.type === 'drop') {
       const file = e.dataTransfer.files[0];
       const data = new FormData();
