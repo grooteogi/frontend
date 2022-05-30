@@ -16,7 +16,7 @@ export const post = {
     const url = `/post/${post.postId}`;
     return await client.put(url, post);
   },
-  detailPost: async (postId: number) => {
+  getPost: async (postId: number) => {
     const url = `/post/${postId}`;
     return await client.get(url);
   },
@@ -24,20 +24,20 @@ export const post = {
     const url = `/s3/image`;
     return await client.post(url, formData);
   },
-  detailSchedules: async (postId: number) => {
+  getSchedules: async (postId: number) => {
     const url = `post/${postId}/schedules`;
     return await client.get(url);
   },
-  detailReviews: async (postId: number) => {
+  getReviews: async (postId: number) => {
     const url = `post/${postId}/reviews`;
     return await client.get(url);
   },
-  // detailLikes :async (postId: number) => {
+  //   detailLikes: async (postId: number) => {
   //     const url = `post/${postId}/like`;
   //     const res = await getData(url);
   //     return res;
-  // },
-  detailHashtags: async (postId: number) => {
+  //   },
+  getHashtags: async (postId: number) => {
     const url = `post/${postId}/hashtags`;
     return await client.get(url);
   },
