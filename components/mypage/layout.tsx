@@ -32,6 +32,22 @@ const Layout = {
     justify-content: space-between;
     align-items: flex-end;
   `,
+  inputListBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 30px 0;
+  `,
+  inputListItem: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  `,
+  heatBox: styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  `,
 };
 
 export default Layout;
