@@ -24,3 +24,29 @@ export type AuthSigninResponseDto = {
 export type ReviewsResponseDto = {
   reviews: ReviewEntity[];
 };
+
+export type ReservationListResponseDto = {
+  postId: number;
+  imageUrl: string;
+  title: string;
+  hashtags: string[];
+  reservationId: number;
+  date: string;
+  startTime: string;
+  endTime: string;
+  region: string;
+  place: string;
+  applyNickname: string;
+  text: string;
+  score: number;
+  review: string;
+  hostPhone: string;
+  applyPhone: string;
+};
+
+export type PostListResponseDto = {
+  postId: number;
+  imageUrl: string;
+  title: string;
+  hashtags: string[];
+};
