@@ -7,6 +7,7 @@ import PostSkeleton from '@components/common/PostCard/PostSkeleton';
 import { CreditType } from 'types/enum';
 import PostCard from '@components/common/PostCard';
 import { PostEntity } from 'types/entity';
+import { useInfiniteQuery } from 'react-query';
 
 const SearchList = () => {
   const searchState = useSearchContext();
@@ -34,7 +35,7 @@ const SearchList = () => {
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
-      {data?.pages.map((page: any, index) => {
+      {data?.pages.map((page: any, index: number) => {
         return (
           <React.Fragment key={index}>
             {page?.data?.posts?.map((post: PostEntity) => (
