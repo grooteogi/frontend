@@ -11,7 +11,7 @@ import { PostEntity } from 'types/entity';
 
 const SearchList = () => {
   const searchState = useSearchContext();
-  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery<any>(
+  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
     ['posts', searchState],
     async ({ pageParam = 1 }) => (await post.search({ searchState, pageParam })).data,
     {
