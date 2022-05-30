@@ -1,5 +1,6 @@
 import React from 'react';
 import Styled from './Carousel.style';
+import 'antd/dist/antd.css';
 
 export type ImgItem = {
   src: string;
@@ -12,31 +13,10 @@ export interface CarouselProps {
   ondbClick?: (e: React.MouseEvent) => void;
 }
 
-const settings = {
-  infinite: true,
-  speed: 1000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  centerMode: true,
-  centerPadding: '-3px',
-  autoplay: true,
-  autoplaySpeed: 2500,
-  dots: true,
-  arrows: false,
-  responsive: [
-    {
-      breakpoint: 600,
-      settings: {
-        dots: false,
-      },
-    },
-  ],
-};
-
 const Carousel: React.FC<CarouselProps> = ({ ondbClick, imgLists }) => {
   let idx = 0;
   return (
-    <Styled.container {...settings}>
+    <Styled.carousel autoplay dotPosition={'bottom'}>
       {imgLists.map(({ src, alt = '', link }: ImgItem) => (
         <div key={idx++}>
           <a href={link && link}>
@@ -44,7 +24,7 @@ const Carousel: React.FC<CarouselProps> = ({ ondbClick, imgLists }) => {
           </a>
         </div>
       ))}
-    </Styled.container>
+    </Styled.carousel>
   );
 };
 

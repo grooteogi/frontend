@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 const Layout = {
   container: styled.div`
     margin: 25px auto 0;
+    padding-bottom: 100px;
     @media (min-width: 1060px) {
       display: grid;
       max-width: 1060px;

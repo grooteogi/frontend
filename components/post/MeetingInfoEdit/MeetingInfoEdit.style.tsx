@@ -29,9 +29,8 @@ export const Styled = {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
     row-gap: 50px;
-    padding-bottom: 50px;
+    padding: 0 0 50px;
   `,
   likedBtn: styled.button`
     width: 30px;
@@ -42,7 +41,7 @@ export const Styled = {
     flex-direction: column;
     align-items: center;
   `,
-  thumbnailWrappper: styled.div`
+  thumbnailWrapper: styled.div`
     width: 100%;
     background-color: lightgray;
     border-radius: ${theme.borderRadius.md};
