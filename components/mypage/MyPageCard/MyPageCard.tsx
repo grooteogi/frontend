@@ -10,7 +10,7 @@ import { ReservationListResponseDto } from 'types/response';
 const MyPageCard: React.FC<{ reservation: ReservationListResponseDto }> = ({ reservation }) => {
   const reservationDate = new Date(reservation.date);
   const todayDate = new Date();
-  const remainDate = Math.floor(Math.abs((reservationDate.getTime() - todayDate.getTime()) / (1000 * 3600 * 24)));
+  const remainDate = Math.floor((reservationDate.getTime() - todayDate.getTime()) / (1000 * 3600 * 24));
 
   return (
     <Styled.container>
@@ -38,9 +38,15 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto }> = ({ res
         </Typography>
       </Styled.detail>
       <Styled.detail>
-        <Typography size={'xxs'} color={'danger'}>
-          {`${remainDate}일 전`}
-        </Typography>
+        {remainDate > 0 ? (
+          <Typography size={'xxs'} color={'danger'}>
+            {`${remainDate}일 전`}
+          </Typography>
+        ) : (
+          <Typography size={'xxs'} color={'darkgray'}>
+            {`${-1 * remainDate}일 후`}
+          </Typography>
+        )}
       </Styled.detail>
     </Styled.container>
   );
