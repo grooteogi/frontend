@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Hashtag from '@components/common/Hashtag';
 import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
-import sampleImg from 'public/imgs/dev_sample.jpg';
+import Image from '@components/common/Image';
 import { PostEntity } from 'types/entity';
 import { nanoid } from 'nanoid';
+
 interface PostCardProps {
   postEntity: PostEntity;
   setClickedPostId: (id: number) => void;
@@ -14,28 +15,14 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ postEntity, setClickedPostId }) => {
   const hashtagRef = useRef<any>();
-  const [ellipsisTags, setEllipsisTags] = useState<boolean>(false);
-  useEffect(() => {
-    setEllipsisTags(hashtagRef.current.offsetHeight > 30);
-  }, []);
   return (
     <Styled.container
       onClick={() => {
         setClickedPostId(postEntity.postId);
       }}
     >
-      <Styled.image src={sampleImg} alt={'not found'} width="235px" height="200px" objectFit="cover" quality="100" />
+      <Image src={postEntity.imageUrl} alt={'post img not found'} size={'lg'} />
       <Styled.hashRef ref={hashtagRef}>
-        {/* {ellipsisTags ? (
-          <>
-            <Hashtag hashtag={postEntity.hashtags[0]} />
-            <Hashtag hashtag={'...'} />
-          </>
-        ) : (
-          postEntity.hashtags.map(hash => {
-            return <Hashtag key={nanoid()} hashtag={hash} />;
-          })
-        )} */}
         {postEntity.hashtags.map(hash => (
           <Hashtag key={nanoid()} hashtag={hash} />
         ))}

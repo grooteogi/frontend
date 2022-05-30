@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Styled } from './SearchBar.styled';
 import Typography from '@components/common/Typography';
+import { useRouter } from 'next/router';
 
 const fetchedData = [
   { keyword: '대외활동' },
@@ -24,6 +25,7 @@ interface InputProps {
 }
 
 const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
+  const router = useRouter();
   const [filteredData, setFilteredData] = useState<fetchedDataType[]>([]);
   const [keyword, setKeyword] = useState<string>('');
 
@@ -47,6 +49,7 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
           height={'16px'}
           onClick={() => {
             onSearchClick(keyword);
+            router.push('/search/result');
           }}
         />
       </Styled.section>

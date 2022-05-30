@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
 const sizes = {
+  xxs: { fontSize: theme.fontSize.xxs, weight: theme.weight.light },
   xs: { fontSize: theme.fontSize.xs, weight: theme.weight.regular },
   sm: { fontSize: theme.fontSize.sm, weight: theme.weight.regular },
   md: { fontSize: theme.fontSize.lg, weight: theme.weight.regular },
@@ -10,7 +11,7 @@ const sizes = {
 };
 
 export interface STypoProps {
-  size: 'xs' | 'sm' | 'md' | 'lg';
+  size: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   color: keyof typeof theme.color;
   align?: 'left' | 'right' | 'center';
   weight?: keyof typeof theme.weight;

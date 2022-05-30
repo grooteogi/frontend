@@ -41,7 +41,7 @@ const SignInModal = () => {
             icon={'/logos/google_logo.png'}
             color={'white'}
             fontColor={'black'}
-            borderColor={'gray200'}
+            borderColor={'gray500'}
             name={'구글계정으로 시작하기'}
             size={'lg'}
             onClick={() => {

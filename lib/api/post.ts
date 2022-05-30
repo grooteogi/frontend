@@ -1,42 +1,36 @@
+import { SearchStateType } from '@components/search/context';
 import { SortType } from 'types/enum';
 import client from './client';
 
 export const post = {
   deletePost: async (postId: number) => {
     const url = `/post/${postId}`;
-    const status = await client.delete(url, { status: 200 });
-    return status;
+    return await client.delete(url, { status: 200 });
   },
   createPost: async (post: any) => {
     const url = `/post`;
     console.log(post);
-    const status = await client.post(url, post);
-    return status;
+    return await client.post(url, post);
   },
   modifyPost: async (post: any) => {
     const url = `/post/${post.postId}`;
-    const res = await client.put(url, post);
-    return res;
+    return await client.put(url, post);
   },
   detailPost: async (postId: number) => {
     const url = `/post/${postId}`;
-    const res = await client.get(url);
-    return res;
+    return await client.get(url);
   },
   updatePostImg: async (formData: FormData) => {
     const url = `/s3/image`;
-    const res = await client.post(url, formData);
-    return res;
+    return await client.post(url, formData);
   },
   detailSchedules: async (postId: number) => {
     const url = `post/${postId}/schedules`;
-    const res = await client.get(url);
-    return res;
+    return await client.get(url);
   },
   detailReviews: async (postId: number) => {
     const url = `post/${postId}/reviews`;
-    const res = await client.get(url);
-    return res;
+    return await client.get(url);
   },
   // detailLikes :async (postId: number) => {
   //     const url = `post/${postId}/like`;
@@ -45,17 +39,15 @@ export const post = {
   // },
   detailHashtags: async (postId: number) => {
     const url = `post/${postId}/hashtags`;
-    const res = await client.get(url);
-    return res;
+    return await client.get(url);
   },
-  search: async (params: { keyword: string; sort: string; region: string; pageParam: number }) => {
-    const { keyword, pageParam, sort } = params;
+  search: async (params: { searchState: SearchStateType; pageParam: number }) => {
+    const { searchState, pageParam } = params;
+    const { keyword, sort, region } = searchState;
     const sortValue = SortType[sort as keyof typeof SortType];
-    // const url = `/post?keyword=${keyword}&page=${pageParam}&filter=${sortValue}`;
-    const url = `/post?keyword=${'ti'}&page=${pageParam}&filter=${sortValue}`;
+    const url = `/post/search?keyword=${keyword}&page=${pageParam}&filter=${sortValue}&region=${region}`;
     console.log(url);
-    const res = await client.get(url);
-    return res;
+    return await client.get(url);
   },
 };
 

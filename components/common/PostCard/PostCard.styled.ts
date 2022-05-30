@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-import Image from 'next/image';
 
 export const Styled = {
   container: styled.div`
     ${theme.responsive.mobile} {
       width: 180px;
     }
-    //todo: 이미지 크기 조정
     width: 235px;
     height: 300px;
     display: flex;
@@ -16,9 +14,12 @@ export const Styled = {
       cursor: pointer;
     }
   `,
-  image: styled(Image)`
-    border-radius: ${theme.borderRadius.md};
-    overflow: hidden;
+  skeletonImage: styled.div`
+    ${theme.responsive.mobile} {
+      width: 180px;
+    }
+    width: 235px;
+    height: 210px;
   `,
   hashRef: styled.div`
     display: flex;

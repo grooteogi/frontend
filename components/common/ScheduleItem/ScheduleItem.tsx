@@ -3,6 +3,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { ScheduleEntity } from 'types/entity';
 import Styled from './ScheduleItem.styled';
+import React from 'react';
 
 const ScheduleItem: React.FC<ScheduleEntity> = ({ date, startTime, endTime, place, region }) => {
   return (

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "eslint --cache \"**/*.{js,ts,jsx,tsx}\"",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
@@ -29,6 +29,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@types/react-slick": "^0.23.8",
+    "antd": "^4.20.6",
     "axios": "^0.26.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "formik": "^2.2.9",
@@ -40,9 +41,7 @@
     "polished": "^4.1.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-query": "^3.34.19",
-    "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1"
+    "react-query": "^3.34.19"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

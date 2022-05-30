@@ -1,7 +1,6 @@
 import React from 'react';
 import Styled from './StickyBar.style';
 import Button from '@components/common/Button';
-import { usePostContext } from '../context';
 
 interface StickyBarType {
   buttonName: string;

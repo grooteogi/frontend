@@ -73,7 +73,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
               <Typography size={'md'} color={'black'} weight={'bold'}>
                 내 약속을 설명할 수 있는 사진을 올려봐요
               </Typography>
-              <Styled.thumbnailWrappper>
+              <Styled.thumbnailWrapper>
                 <Styled.thumbnail>
                   <input
                     name={'imageUrl'}
@@ -87,7 +87,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
                     <Styled.postPic ref={previewImageRef} isWidthBigger={isWidthBigger} />
                   </Styled.postPicWrapper>
                 </Styled.thumbnail>
-              </Styled.thumbnailWrappper>
+              </Styled.thumbnailWrapper>
             </Styled.postInfoElementBox>
             <Styled.postInfoElementBox>
               <Typography size={'md'} color={'black'} weight={'bold'}>

@@ -33,11 +33,11 @@ const getGap = ({ gap }: ContainerProps) => {
   }
 };
 
-const getjustifyContent = ({ justifyContent }: ContainerProps) => {
+const getJustifyContent = ({ justifyContent }: ContainerProps) => {
   if (justifyContent) return `justify-content: ${justifyContent};`;
 };
 
-const getalignItems = ({ alignItems }: ContainerProps) => {
+const getAlignItems = ({ alignItems }: ContainerProps) => {
   if (alignItems) return `align-items: ${alignItems};`;
 };
 
@@ -61,8 +61,8 @@ export const Styled = {
     display: flex;
     ${getFlexDirection}
     ${getGap}
-    ${getjustifyContent}
-    ${getalignItems}
+    ${getJustifyContent}
+    ${getAlignItems}
     ${getPadding}
     ${getMargin}
   `,
