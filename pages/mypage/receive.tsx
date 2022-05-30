@@ -2,10 +2,9 @@ import Title from '@components/common/Title';
 import Layout from '@components/mypage/layout';
 import MyPageCard from '@components/mypage/MyPageCard';
 import SideBar from '../../components/mypage/SideBar/SideBar';
-import reservationList from '../../components/mypage/likes.mock.json';
+import reservationList from '../../components/mypage/receive.mock.json';
 import { nanoid } from 'nanoid';
 import Button from '@components/common/Button';
-import Styled from '@components/auth/style';
 
 const ReservationPage = () => {
   const now = new Date();
