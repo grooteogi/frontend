@@ -1,9 +1,7 @@
-import Profile from './mypage/profile';
 import Search from './search';
 
 const Home = () => {
-  // return <Search />;
-  return <Profile />;
+  return <Search />;
 };
 
 export default Home;
