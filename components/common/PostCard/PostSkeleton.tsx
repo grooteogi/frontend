@@ -6,7 +6,7 @@ import { Skeleton } from 'antd';
 const PostSkeleton: React.FC = () => {
   return (
     <>
-      {Array.from(new Array(12)).map(index => (
+      {Array.from(new Array(12)).map((key, index) => (
         <Styled.container key={index}>
           <Styled.skeletonImage>
             <Skeleton.Avatar size={'large'} />
