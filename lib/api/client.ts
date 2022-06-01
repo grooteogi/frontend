@@ -36,7 +36,6 @@ const handleError = (error: any) => {
     console.error(`${status}: ${message}`);
     return response;
   } else {
-    console.error(error);
     return response;
   }
 };

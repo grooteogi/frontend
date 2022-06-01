@@ -9,6 +9,7 @@ import Input from '@components/common/Input';
 import Styled from './style';
 import Title from '@components/common/Title';
 import Timer from '@components/common/Timer/Timer';
+import { useRouter } from 'next/router';
 
 interface LoginFormikValues {
   email: string;
@@ -27,6 +28,7 @@ const SignupForm = () => {
   const [emailClicked, setEmailClicked] = useState(false);
   const [emailChecked, setEmailChecked] = useState(false);
   const [isReset, setIsReset] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (allAgree) {
@@ -72,6 +74,7 @@ const SignupForm = () => {
     handleSubmit();
     const response = await auth.signupUser({ email, password });
     if (response.status === 200) {
+      router.push('auth/signin');
       console.log('signup access');
     } else {
       alert('회원가입 실패!');
