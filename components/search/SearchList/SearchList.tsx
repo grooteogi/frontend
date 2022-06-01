@@ -15,9 +15,9 @@ const SearchList = () => {
     ['posts', searchState],
     async ({ pageParam = 1 }) => (await post.search({ searchState, pageParam })).data,
     {
-      getNextPageParam: (lastPage, pages) => {
-        if (pages.length < 1) return pages.length + 1;
-        else return undefined;
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage === undefined) return undefined;
+        else return allPages.length < lastPage?.data?.pageCount && allPages.length + 1;
       },
     },
   );
