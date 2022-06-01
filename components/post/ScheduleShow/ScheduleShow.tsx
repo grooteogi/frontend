@@ -1,13 +1,11 @@
 import Wrapper from '@components/common/Wrapper';
-import Typography from '@components/common/Typography';
 import React, { useCallback, useState } from 'react';
 import Styled from './ScheduleShow.style';
-import { dateFormater } from '@lib/common';
 import { ScheduleEntity } from 'types/entity';
 import ScheduleItem from '@components/common/ScheduleItem';
 
 export interface ScheduleProps {
-  schedules: ScheduleEntity[];
+  schedules: ScheduleEntity[] | undefined;
 }
 
 const ScheduleItems: React.FC<ScheduleProps> = ({ schedules }) => {
@@ -18,6 +16,7 @@ const ScheduleItems: React.FC<ScheduleProps> = ({ schedules }) => {
     }
   }, []);
 
+  if (schedules === undefined) return <div>fuck</div>;
   return (
     <Styled.scroll standardHeight={scrollHeight * 3}>
       {schedules?.map(({ scheduleId, date, startTime, endTime, region, place }: ScheduleEntity) => (
