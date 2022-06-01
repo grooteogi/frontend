@@ -5,7 +5,7 @@ interface ResponseData {
   headers?: AxiosResponseHeaders;
   status: number;
   message?: string;
-  data?: JSON;
+  data?: any;
 }
 
 export const GAxios = axios.create({
