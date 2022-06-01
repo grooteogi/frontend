@@ -7,8 +7,10 @@ import PostSkeleton from '@components/common/PostCard/PostSkeleton';
 import PostCard from '@components/common/PostCard';
 import { PostEntity } from 'types/entity';
 import { useInfiniteQuery } from 'react-query';
+import { useRouter } from 'next/router';
 
 const SearchList = () => {
+  const router = useRouter();
   const searchState = useSearchContext();
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
     ['posts', searchState],
@@ -34,17 +36,17 @@ const SearchList = () => {
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
-      {data?.pages.map((page: any, index: number) => {
+      {data?.pages.map((page: { posts: PostEntity[] }, index: number) => {
         return (
           <React.Fragment key={index}>
             {page.posts.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
-                postEntity={{
+                post={{
                   ...post,
                   hashtags: ['개발자취업', '포트폴리오', '샘플태그'],
                 }}
-                setClickedPostId={() => undefined}
+                onClick={() => router.push({ pathname: '/post/[postId]', query: { postId: post.postId } })}
               />
             ))}
           </React.Fragment>

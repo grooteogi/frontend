@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import GlobalThemeProvider from '@styles/GlobalThemeProvider';
 import theme from '@styles/theme';
-import { CreditType } from 'types/enum';
 import PostCard from './index';
 
 export default {
@@ -12,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof PostCard> = () => (
   <GlobalThemeProvider theme={theme}>
     <PostCard
-      postEntity={{
+      post={{
         postId: 1,
         title: '샘플 포스트 제목 생략생략생략생략생략생략',
         content:
@@ -20,7 +19,7 @@ const Template: ComponentStory<typeof PostCard> = () => (
         imageUrl: '/imgs/SamplePost.jpeg',
         hashtags: ['스토리북세', '팅하기귀찮', '여긴네글'],
       }}
-      setClickedPostId={() => undefined}
+      onClick={() => undefined}
     />
   </GlobalThemeProvider>
 );

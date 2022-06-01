@@ -1,7 +1,7 @@
-import { PostCardEntity, PostEntity, ReviewEntity } from './entity';
+import { PostEntity, ReviewEntity } from './entity';
 
 export type PostSearchResponseDto = {
-  posts: PostCardEntity[];
+  posts: Pick<PostEntity, 'postId' | 'title' | 'content' | 'imageUrl' | 'hashtags'>[];
   pageCount: number;
 };
 
