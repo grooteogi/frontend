@@ -1,16 +1,10 @@
-import { PostEntity, ReviewEntity } from './entity';
+import { PostCardEntity, PostEntity, ReviewEntity } from './entity';
+
 export type PostSearchResponseDto = {
-  posts: [
-    {
-      postId: number;
-      title: string;
-      content: string;
-      imageUrl: string;
-      hashtags: string[]; // 최대 5개
-    },
-  ];
+  posts: PostCardEntity[];
   pageCount: number;
 };
+
 export type ReservationCreateResponseDto = {
   reservationId: number;
 };
@@ -49,4 +43,13 @@ export type PostListResponseDto = {
   imageUrl: string;
   title: string;
   hashtags: string[];
+};
+
+export type UserProfileResponseDto = {
+  nickname: string;
+  email: string;
+  name: string;
+  phone: string;
+  address: string;
+  imageUrl: string;
 };

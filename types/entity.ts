@@ -58,3 +58,4 @@ export type PostEntity = {
     imageUrl: string;
   };
 };
+export type PostCardEntity = { postId: number; title: string; content: string; imageUrl: string; hashtags: string[] };

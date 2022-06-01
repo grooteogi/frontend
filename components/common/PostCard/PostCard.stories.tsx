@@ -18,18 +18,7 @@ const Template: ComponentStory<typeof PostCard> = () => (
         content:
           '샘플 포스트 제목 아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말',
         imageUrl: '/imgs/SamplePost.jpeg',
-        createAt: '',
         hashtags: ['스토리북세', '팅하기귀찮', '여긴네글'],
-        creditType: CreditType.DIRECT,
-        likes: {
-          liked: true,
-          count: 10,
-        },
-        mentor: {
-          userId: 1,
-          nickname: 'mentor nickname',
-          imageUrl: 'mentor imageUrl',
-        },
       }}
       setClickedPostId={() => undefined}
     />
