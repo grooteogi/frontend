@@ -5,9 +5,7 @@ import ShowSchedule from '@components/post/ScheduleShow/ScheduleShow';
 import MeetingInfo from '@components/post/MeetingInfo/MeetingInfo';
 import StickyBar from '@components/post/StickyBar/StickyBar';
 import post from '@lib/api/post';
-import Link from 'next/link';
 import Layout from '@components/post/layout';
-import schedule from '@components/post/detail.schedule.mock';
 import review from '@components/post/detail.review.mock';
 
 import { dehydrate, QueryClient } from 'react-query';
@@ -25,8 +23,10 @@ const Detail: NextPage<any> = () => {
       <MeetingInfo post={postData} />
       <ShowSchedule schedules={schedulesData} />
       <ReviewList reviews={review} />
-      <Link href="/post/create">Move to Create</Link>
-      <StickyBar buttonName={'약속 신청하기'}></StickyBar>
+      <StickyBar
+        buttonName={'약속 신청하기'}
+        onClick={() => router.push({ pathname: '/reservation/[postId]', query: { postId } })}
+      />
     </Layout.container>
   );
 };

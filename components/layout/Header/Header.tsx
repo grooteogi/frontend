@@ -46,7 +46,7 @@ const Header = () => {
               <Link href={'/post/create'} size={'xs'} color={'primary'}>
                 약속생성
               </Link>
-              <Link href={'/auth'} size={'xs'} color={'black'}>
+              <Link href={'/mypage/apply'} size={'xs'} color={'black'}>
                 내정보
               </Link>
               <Link href={'/'} onClick={handleLogout} size={'xs'} color={'black'}>
