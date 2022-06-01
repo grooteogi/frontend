@@ -4,7 +4,6 @@ import { useSearchContext } from '../context';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import post from '@lib/api/post';
 import PostSkeleton from '@components/common/PostCard/PostSkeleton';
-import { CreditType } from 'types/enum';
 import PostCard from '@components/common/PostCard';
 import { PostEntity } from 'types/entity';
 import { useInfiniteQuery } from 'react-query';
@@ -38,19 +37,12 @@ const SearchList = () => {
       {data?.pages.map((page: any, index: number) => {
         return (
           <React.Fragment key={index}>
-            {page?.data?.posts?.map((post: PostEntity) => (
+            {page.posts.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
                 postEntity={{
                   ...post,
                   hashtags: ['개발자취업', '포트폴리오', '샘플태그'],
-                  createAt: '',
-                  creditType: CreditType.DIRECT,
-                  likes: {
-                    liked: true,
-                    count: 10,
-                  },
-                  mentor: { userId: 1, nickname: 'mentor nickname', imageUrl: '' },
                 }}
                 setClickedPostId={() => undefined}
               />
@@ -58,8 +50,8 @@ const SearchList = () => {
           </React.Fragment>
         );
       })}
-      {hasNextPage ? <div ref={setTarget}>load more...</div> : null}
-      {isFetching && !isFetchingNextPage ? <div>Fetching...</div> : null}
+      {hasNextPage ? <div ref={setTarget}>load more…</div> : null}
+      {isFetching && !isFetchingNextPage ? <div>Fetching…</div> : null}
     </Styled.container>
   );
 };

@@ -5,11 +5,11 @@ import { Styled } from './PostCard.styled';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
 import Image from '@components/common/Image';
-import { PostEntity } from 'types/entity';
+import { PostCardEntity } from 'types/entity';
 import { nanoid } from 'nanoid';
 
 interface PostCardProps {
-  postEntity: PostEntity;
+  postEntity: PostCardEntity;
   setClickedPostId: (id: number) => void;
 }
 
