@@ -6,7 +6,6 @@ import MeetingInfo from '@components/post/MeetingInfo/MeetingInfo';
 import StickyBar from '@components/post/StickyBar/StickyBar';
 import post from '@lib/api/post';
 import Layout from '@components/post/layout';
-import Link from '@components/common/Link';
 
 import { dehydrate, QueryClient } from 'react-query';
 import useSchedules from '@components/post/useSchedules';
