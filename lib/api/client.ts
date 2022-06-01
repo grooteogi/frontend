@@ -70,14 +70,30 @@ const client = {
       .then(res => handleResponse(res, this.put, url))
       .catch(handleError);
   },
-  delete: async function (url: string, data: any): Promise<ResponseData> {
+  patch: async function (url: string, data: any): Promise<ResponseData> {
     return await GAxios({
+      method: 'patch',
+      data: data,
+      url: url,
+    })
+      .then(res => handleResponse(res, this.patch, url))
+      .catch(handleError);
+  },
+  delete: async (url: string, data: ResponseData) => {
+    const res = await GAxios({
       method: 'delete',
       data: data,
       url: url,
     })
-      .then(res => handleResponse(res, this.delete, url))
-      .catch(handleError);
+      .then(res => res.status)
+      .catch(err => {
+        if (!err.status) console.log('Unknown Network Error in axios');
+        else {
+          console.error(err);
+          throw err;
+        }
+      });
+    return res;
   },
 };
 
