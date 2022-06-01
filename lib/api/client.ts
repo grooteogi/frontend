@@ -5,7 +5,7 @@ interface ResponseData {
   headers?: AxiosResponseHeaders;
   status: number;
   message?: string;
-  data?: JSON;
+  data?: any;
 }
 
 export const GAxios = axios.create({
@@ -15,13 +15,13 @@ export const GAxios = axios.create({
 });
 
 const handleResponse: any = (response: ResponseData, callback: any, url: string) => {
-  const { status, message } = response;
+  const { status, message } = response.data;
 
   console.log(`${status}: ${message}`);
 
   switch (status) {
     case 200:
-      return response;
+      return response.data;
     case 202:
       if (response.headers) storage.setToken(response.headers['x-auth-token']);
       return callback(url);
@@ -29,9 +29,10 @@ const handleResponse: any = (response: ResponseData, callback: any, url: string)
 };
 
 const handleError = (error: any) => {
-  const response = error.response.data;
-  const { status, message } = response;
-  if (!error.status) {
+  const response = error.response?.data;
+
+  if (error.response?.data) {
+    const { status, message } = response;
     console.error(`${status}: ${message}`);
     return response;
   } else {

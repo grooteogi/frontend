@@ -16,27 +16,26 @@ export const post = {
     const url = `/post/${post.postId}`;
     return await client.put(url, post);
   },
-  getPost: async (postId: number) => {
-    const url = `/post/${postId}`;
+  getPost: async (postId: string) => {
+    const url = `/post/detail/${postId}`;
     return await client.get(url);
   },
   updatePostImg: async (formData: FormData) => {
     const url = `/s3/image`;
     return await client.post(url, formData);
   },
-  getSchedules: async (postId: number) => {
+  getSchedules: async (postId: string) => {
     const url = `post/${postId}/schedules`;
     return await client.get(url);
   },
-  getReviews: async (postId: number) => {
+  getReviews: async (postId: string) => {
     const url = `post/${postId}/reviews`;
     return await client.get(url);
   },
-  //   detailLikes: async (postId: number) => {
-  //     const url = `post/${postId}/like`;
-  //     const res = await getData(url);
-  //     return res;
-  //   },
+  updateLike: async (postId: string, isLike: boolean) => {
+    const url = `/post/${postId}/like`;
+    return await client.post(url, { postId, isLike });
+  },
   getHashtags: async (postId: number) => {
     const url = `post/${postId}/hashtags`;
     return await client.get(url);
