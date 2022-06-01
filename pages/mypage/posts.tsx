@@ -1,10 +1,8 @@
 import Title from '@components/common/Title';
 import Layout from '@components/mypage/layout';
-import MyPageCard from '@components/mypage/MyPageCard';
 import SideBar from './../../components/mypage/SideBar/SideBar';
 import postList from '../../components/mypage/posts.mock.json';
 import { nanoid } from 'nanoid';
-import Button from '@components/common/Button';
 import MyPagePostCard from '@components/mypage/MyPagePostCard';
 
 const ReservationPage = () => {

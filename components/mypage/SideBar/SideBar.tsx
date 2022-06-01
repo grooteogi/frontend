@@ -8,8 +8,7 @@ const SideBar = () => {
     '신청받은 약속': '/mypage/receive',
     '찜한 포스트': `/mypage/likes`,
     '작성한 포스트': `/mypage/posts`,
-    '회원 정보 수정': ``,
-    // '회원 정보 수정': `/mypage/profile`,
+    '회원 정보 수정': `/mypage/profile`,
   };
   return (
     <Styled.aside>

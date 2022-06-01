@@ -48,7 +48,6 @@ const SignupForm = () => {
     setIsReset(true);
     setIsReset(false);
   };
-
   const handleEmailClick = async () => {
     if (!emailClicked) {
       const response = await auth.sendEmail(email);
