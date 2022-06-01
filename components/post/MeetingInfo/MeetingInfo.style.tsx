@@ -32,6 +32,7 @@ export const Styled = {
     position: relative;
     padding-top: 100%;
     overflow: hidden;
+    border-radius: ${theme.borderRadius.md};
   `,
   likedBtn: styled.button`
     width: 30px;
@@ -48,6 +49,7 @@ export const Styled = {
     left: 0;
     right: 0;
     bottom: 0;
+    border-radius: ${theme.borderRadius.md};
     -webkit-transform: translate(50%, 50%);
     -ms-transform: translate(50%, 50%);
     transform: translate(50%, 50%);
@@ -57,6 +59,7 @@ export const Styled = {
     top: 0;
     left: 0;
     ${getSize};
+    border-radius: ${theme.borderRadius.md};
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
