@@ -1,43 +1,44 @@
 import React from 'react';
 import Styled from './SearchList.styled';
-import PostCard from '@components/common/PostCard';
-import search from '@lib/api/search';
 import { useSearchContext } from '../context';
-import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import { CreditType } from 'types/enum';
-import { PostEntity } from 'types/entity';
 import post from '@lib/api/post';
+import PostSkeleton from '@components/common/PostCard/PostSkeleton';
+import { CreditType } from 'types/enum';
+import PostCard from '@components/common/PostCard';
+import { PostEntity } from 'types/entity';
+import { useInfiniteQuery } from 'react-query';
 
 const SearchList = () => {
-  const { searchState } = useSearchContext();
+  const searchState = useSearchContext();
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
     ['posts', searchState],
-    ({ pageParam = 1 }) => search.getPosts({ ...searchState, pageParam }),
-    // ({ pageParam = 1 }) => post.search({ ...searchState, pageParam }),
+    async ({ pageParam = 1 }) => (await post.search({ searchState, pageParam })).data,
     {
-      getNextPageParam: (lastPage, pages) => {
-        if (pages.length < 2) return pages.length + 1;
-        else return undefined;
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage === undefined) return undefined;
+        else return allPages.length < lastPage?.data?.pageCount && allPages.length + 1;
       },
     },
   );
-  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
+
+  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) =>
     hasNextPage && isIntersecting && !isFetchingNextPage ? fetchNextPage() : null;
-  };
 
   const { setTarget } = useIntersectionObserver({ onIntersect });
 
   return status === 'loading' ? (
-    <p>Loading...</p>
+    <Styled.container>
+      <PostSkeleton />
+    </Styled.container>
   ) : status === 'error' ? (
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
-      {data?.pages.map((page, index) => {
+      {data?.pages.map((page: any, index: number) => {
         return (
           <React.Fragment key={index}>
-            {page.map((post: PostEntity) => (
+            {page?.data?.posts?.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
                 postEntity={{

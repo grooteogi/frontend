@@ -9,11 +9,15 @@ export const dateFormater = (format: string, date: DateType = Date.now()): strin
 };
 
 // Helper
-export const stringIsNumber = (value: any) => isNaN(Number(value)) === false;
+export const stringIsNumber = (value: any) => !isNaN(Number(value));
 
 // Turn enum into array
 export function enumToArray(enumme: any) {
   return Object.keys(enumme)
     .filter(stringIsNumber)
     .map(key => enumme[key]);
+}
+
+export function timeFormater(time: string) {
+  return time.concat(':00');
 }

@@ -14,6 +14,13 @@ export const Styled = {
       cursor: pointer;
     }
   `,
+  skeletonImage: styled.div`
+    ${theme.responsive.mobile} {
+      width: 180px;
+    }
+    width: 235px;
+    height: 210px;
+  `,
   hashRef: styled.div`
     display: flex;
     flex-wrap: wrap;

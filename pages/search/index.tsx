@@ -1,18 +1,18 @@
 import Layout from '@components/search/layout';
-import SearchInput from '@components/search/SearchInput/SearchInput';
-import SearchList from '@components/search/SearchList/SearchList';
+import SearchInput from '@components/search/SearchInput';
+import SearchList from '@components/search/SearchList';
 import { SearchProvider } from '@components/search/context';
 import SearchMenu from '@components/search/SearchMenu';
-import PageCarousel from '@components/search/PageCarousel/PageCarousel';
-import SearchFiltering from '@components/search/SearchFiltering/SearchFiltering';
+import PageCarousel from '@components/search/PageCarousel';
+import SearchFiltering from '@components/search/SearchFiltering';
 
 const Search = () => {
   return (
-    <Layout.container>
-      <Layout.carousel>
-        <PageCarousel />
-      </Layout.carousel>
-      <SearchProvider>
+    <SearchProvider>
+      <Layout.container>
+        <Layout.carousel>
+          <PageCarousel />
+        </Layout.carousel>
         <Layout.search>
           <SearchInput />
         </Layout.search>
@@ -25,8 +25,8 @@ const Search = () => {
         <Layout.posts>
           <SearchList />
         </Layout.posts>
-      </SearchProvider>
-    </Layout.container>
+      </Layout.container>
+    </SearchProvider>
   );
 };
 

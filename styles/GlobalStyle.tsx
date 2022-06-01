@@ -1,9 +1,11 @@
 import { Global, css } from '@emotion/react';
+import theme from './theme';
 
 export const globalStyle = (
   <Global
     styles={css`
       body {
+        accent-color: ${theme.color.darkgray};
         font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
           'Open Sans', 'Helvetica Neue', sans-serif;
         padding: 0 !important;

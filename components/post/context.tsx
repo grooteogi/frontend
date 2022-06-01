@@ -9,14 +9,13 @@ export type PostCreateStateType = {
   imageUrl: string;
   hashtags: string[];
   creditType: CreditType;
-  schedules: ScheduleEntity[];
+  schedules: Omit<ScheduleEntity, 'scheduleId'>[];
 };
 
 export type PostFormData = {
   title: string;
   content: string;
   imageUrl: string;
-  hashtags: string[];
 };
 
 type PostCreateAction =
@@ -25,7 +24,7 @@ type PostCreateAction =
   | { type: 'SET_IMAGE_URL'; imageUrl: string }
   | { type: 'SET_HASHTAGS'; hashtags: string[] }
   | { type: 'SET_CREDITTYPE'; creditType: CreditType }
-  | { type: 'SET_SCHEDULES'; schedules: ScheduleEntity[] };
+  | { type: 'SET_SCHEDULES'; schedules: Omit<ScheduleEntity, 'scheduleId'>[] };
 
 const PostCreateContext = createContext<any>(null);
 
@@ -78,7 +77,6 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
       title: '',
       content: '',
       imageUrl: '',
-      hashtags: [],
     },
   };
   const [postState, dispatchPost] = useReducer(PostCreateReducer, initialPost);
@@ -98,7 +96,7 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
   const setCreditType = (creditType: CreditType) => {
     dispatchPost({ type: 'SET_CREDITTYPE', creditType });
   };
-  const setSchedules = (schedules: ScheduleEntity[]) => {
+  const setSchedules = (schedules: Omit<ScheduleEntity, 'scheduleId'>[]) => {
     dispatchPost({ type: 'SET_SCHEDULES', schedules });
   };
   return (

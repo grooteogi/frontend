@@ -21,7 +21,11 @@ const PostCard: React.FC<PostCardProps> = ({ postEntity, setClickedPostId }) => 
         setClickedPostId(postEntity.postId);
       }}
     >
-      <Image src={postEntity.imageUrl} alt={'post img not found'} size={'lg'} />
+      <Image
+        src={postEntity.imageUrl ? postEntity.imageUrl : '/imgs/SamplePost.jpeg'}
+        alt={'post img not found'}
+        size={'lg'}
+      />
       <Styled.hashRef ref={hashtagRef}>
         {postEntity.hashtags.map(hash => (
           <Hashtag key={nanoid()} hashtag={hash} />

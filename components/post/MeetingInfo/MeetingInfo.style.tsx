@@ -20,9 +20,8 @@ export const Styled = {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
     gap: 1rem;
-    padding-bottom: 50px;
+    padding: 0 0 50px;
   `,
   thumbnailWrappper: styled.div`
     width: 100%;

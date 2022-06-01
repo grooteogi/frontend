@@ -18,7 +18,7 @@ type fetchedDataType = {
   keyword: string;
 };
 
-interface InputProps {
+export interface InputProps {
   onSearchClick: (keyword: string) => void;
   placeholder?: string;
 }
@@ -26,6 +26,8 @@ interface InputProps {
 const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
   const [filteredData, setFilteredData] = useState<fetchedDataType[]>([]);
   const [keyword, setKeyword] = useState<string>('');
+
+  const [focus, setFocus] = useState<boolean>(false);
 
   const handleFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchWord = event.target.value;
@@ -39,7 +41,14 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
   return (
     <Styled.container>
       <Styled.section>
-        <Styled.input type={'text'} value={keyword} onChange={handleFilter} placeholder={placeholder} />
+        <Styled.input
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          type={'text'}
+          value={keyword}
+          onChange={handleFilter}
+          placeholder={placeholder}
+        />
         <Image
           src={'/logos/search.png'}
           alt={'search icon not found'}
@@ -50,27 +59,25 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
           }}
         />
       </Styled.section>
-      {filteredData.length !== 0 && (
+      {focus && filteredData.length !== 0 && (
         <Styled.ul>
-          {filteredData.map(item => {
-            return (
-              <Styled.li key={item.keyword}>
-                <Typography size={'sm'} color={'black'}>
-                  {item.keyword}
-                </Typography>
-                <Image
-                  src="/logos/arrow-up.png"
-                  alt="arrow icon not found"
-                  width={'12x'}
-                  height={'12px'}
-                  onClick={() => {
-                    setKeyword(item.keyword);
-                    setFilteredData([]);
-                  }}
-                />
-              </Styled.li>
-            );
-          })}
+          {filteredData.map(item => (
+            <Styled.li key={item.keyword}>
+              <Typography size={'sm'} color={'black'}>
+                {item.keyword}
+              </Typography>
+              <Image
+                src="/logos/arrow-up.png"
+                alt="arrow icon not found"
+                width={'12x'}
+                height={'12px'}
+                onClick={() => {
+                  setKeyword(item.keyword);
+                  setFilteredData([]);
+                }}
+              />
+            </Styled.li>
+          ))}
         </Styled.ul>
       )}
     </Styled.container>

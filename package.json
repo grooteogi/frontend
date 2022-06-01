@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "eslint --cache \"**/*.{js,ts,jsx,tsx}\"",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
@@ -15,7 +15,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "eslint --cache",
+      "eslint --cache --fix",
       "prettier --write"
     ],
     "*.{html,css,less,ejs,json}": [
@@ -29,6 +29,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@types/react-slick": "^0.23.8",
+    "antd": "^4.20.6",
     "axios": "^0.26.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "formik": "^2.2.9",

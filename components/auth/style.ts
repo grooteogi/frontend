@@ -29,6 +29,27 @@ const Styled = {
     align-items: center;
     column-gap: 0.5rem;
   `,
+  inputContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin-top: 2rem;
+  `,
+  emailContainer: styled.div`
+    display: flex;
+    justify-content: space-between;
+  `,
+  emailbuttonContainer: styled.div`
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 0.5rem;
+  `,
+  checkboxContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.2rem;
+    margin: 1rem 0;
+  `,
 };
 
 export default Styled;

@@ -5,6 +5,7 @@ const Styled = {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding: 30px; 30px;
   `,
 };
 

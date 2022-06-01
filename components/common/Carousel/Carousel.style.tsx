@@ -1,65 +1,14 @@
 import styled from '@emotion/styled';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
-import theme from '@styles/theme';
+import { Carousel } from 'antd';
 
 export const Styled = {
-  container: styled(Slider)`
-    .slick-list {
-      width: 100vw;
-      height: 30vh;
-      height: fit-content;
-      border-radius: ${theme.borderRadius.md};
-    }
-    ${theme.responsive.mobile} {
-      .slick-list {
-        width: 85vw;
-        border-radius: ${theme.borderRadius.md};
-      }
-    }
-    ${theme.responsive.pc} {
-      .slick-list {
-        width: 60vw;
-      }
-    }
-    .slick-slide {
-      margin: 0 auto;
-    }
-    .slick-track {
-      overflow-x: hidden;
-    }
-    .slick-dots {
-      bottom: 10px;
-      padding: 0;
-    }
-    .slick-dots li button,
-    .slick-dots li button:before,
-    .slick-dots li button:focus:before,
-    .slick-dots li button:hover:before {
-      color: ${theme.color.gray400};
-      opacity: 0.5;
-    }
-    .slick-dots li button:hover,
-    .slick-dots li.slick-active button:hover {
-      opacity: 1;
-    }
-    .slick-dots li.slick-active button,
-    .slick-dots li.slick-active button:focus,
-    .slick-dots li.slick-active button:before {
-      opacity: 0.75;
-    }
-  `,
+  carousel: styled(Carousel)``,
   item: styled.img`
+    border-radius: 8px;
     cursor: pointer;
-    width: 100vw;
+    width: 100%;
     height: 30vh;
     object-fit: none;
-    ${theme.responsive.mobile} {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
   `,
 };
 
