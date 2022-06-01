@@ -6,6 +6,10 @@ import { ReviewEntity } from 'types/entity';
 import { Rate } from 'antd';
 import 'antd/dist/antd.css';
 
+interface ReviewListProps {
+  reviews: ReviewEntity[] | undefined;
+}
+
 const ReviewItems: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
   if (reviews.length > 0) {
     return (
@@ -48,7 +52,8 @@ const ReviewItems: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
   }
 };
 
-const ReviewList: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
+const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
+  if (reviews === undefined) return <div>reviews</div>;
   return (
     <Styled.container>
       <Styled.title weight="bold" size={'md'} color={'black'}>
