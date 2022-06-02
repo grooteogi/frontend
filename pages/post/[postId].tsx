@@ -23,7 +23,7 @@ const Detail: NextPage = () => {
     <Layout.container>
       <MeetingInfo post={postData} />
       <ShowSchedule schedules={schedulesData} />
-      <ReviewList reviews={review} />
+      <ReviewList reviews={reviewsData} />
       <StickyBar
         buttonName={'약속 신청하기'}
         onClick={() => router.push({ pathname: '/reservation/[postId]', query: { postId } })}
@@ -38,6 +38,7 @@ export async function getServerSideProps(ctx: { params: { postId: string } }) {
 
   await queryClient.prefetchQuery(['post', postId], async () => (await post.getPost(postId)).data);
   await queryClient.prefetchQuery(['schedules', postId], async () => (await post.getSchedules(postId)).data);
+  await queryClient.prefetchQuery(['reviews', postId], async () => (await post.getReviews(postId)).data);
 
   return { props: { dehydratedState: dehydrate(queryClient) } };
 }

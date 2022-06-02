@@ -43,6 +43,11 @@ export const Styled = {
     flex-direction: column;
     align-items: center;
   `,
+  likedPanel: styled.div`
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+  `,
   postPicWrapper: styled.div`
     position: absolute;
     top: 0;
@@ -85,6 +90,7 @@ export const Styled = {
     border-radius: ${theme.borderRadius.sm};
     &:hover {
       opacity: 0.8;
+      cursor: pointer;
     }
   `,
 };
