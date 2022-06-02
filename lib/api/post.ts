@@ -1,13 +1,14 @@
+import { PostCreateRequestDto } from 'types/request';
 import { SearchStateType } from '@components/search/context';
 import { SortType } from 'types/enum';
 import client from './client';
 
 export const post = {
-  deletePost: async (postId: number) => {
+  deletePost: async (postId: string) => {
     const url = `/post/${postId}`;
-    return await client.delete(url, { status: 200 });
+    return await client.delete(url, {});
   },
-  createPost: async (post: any) => {
+  createPost: async (post: PostCreateRequestDto) => {
     const url = `/post`;
     console.log(post);
     return await client.post(url, post);
@@ -32,9 +33,9 @@ export const post = {
     const url = `post/${postId}/reviews`;
     return await client.get(url);
   },
-  updateLike: async (postId: string, isLike: boolean) => {
+  updateLike: async (postId: string) => {
     const url = `/post/${postId}/like`;
-    return await client.post(url, { postId, isLike });
+    return await client.get(url);
   },
   getHashtags: async (postId: number) => {
     const url = `post/${postId}/hashtags`;

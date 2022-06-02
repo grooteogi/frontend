@@ -23,7 +23,10 @@ const handleResponse: any = (response: ResponseData, callback: any, url: string)
     case 200:
       return response.data;
     case 202:
-      if (response.headers) storage.setToken(response.headers['x-auth-token']);
+      if (response.headers) {
+        console.log('fucktoekn', response.headers['x-auth-token']);
+        storage.setToken(response.headers['x-auth-token']);
+      }
       return callback(url);
   }
 };
@@ -67,7 +70,7 @@ const client = {
       .then(res => handleResponse(res, this.put, url))
       .catch(handleError);
   },
-  delete: async function (url: string, data: ResponseData): Promise<ResponseData> {
+  delete: async function (url: string, data: any): Promise<ResponseData> {
     return await GAxios({
       method: 'delete',
       data: data,
