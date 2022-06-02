@@ -41,8 +41,9 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => hiddenFileInput.current?.click();
-  const handleChange = async (event: React.ChangeEvent<HTMLInputElement> | any) => {
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement> | any) => {
     const file = event.target.files[0];
+    console.log('file pick event', file);
     const data = new FormData();
     data.append('multipartFile', file);
 
@@ -62,7 +63,7 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
       <>
         <Image src={modifyFormik.values.imageUrl} alt={'profile img not found'} size={'md'} />
         <Wrapper flexDirection={'row'} padding={{ paddingTop: '15px' }} gap={{ columnGap: 2 }}>
-          <input id="imageUrl" name="imageUrl" type={'file'} ref={hiddenFileInput} onChange={handleChange} hidden />
+          <input id="imageUrl" name="imageUrl" type={'file'} ref={hiddenFileInput} onChange={handleFileChange} hidden />
           <Button color={'primary'} fontColor={'white'} name={'프로필 변경'} size={'sm'} type={'button'} onClick={handleClick}/>
           <Button color={'gray200'} fontColor={'gray500'} name={'이미지 제거'} size={'sm'} type={'button'} onClick={() => modifyFormik.setFieldValue('imageUrl', '/imgs/default_profile.png')}/>
         </Wrapper>
