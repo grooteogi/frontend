@@ -18,7 +18,7 @@ const SearchList = () => {
     {
       getNextPageParam: (lastPage, allPages) => {
         if (lastPage === undefined) return undefined;
-        else return allPages.length < lastPage?.data?.pageCount && allPages.length + 1;
+        else return allPages.length < lastPage.pageCount && allPages.length + 1;
       },
     },
   );
