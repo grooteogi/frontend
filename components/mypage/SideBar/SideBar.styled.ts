@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-import { darken } from 'polished';
 
 const Styled = {
   aside: styled.aside`

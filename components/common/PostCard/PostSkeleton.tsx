@@ -8,9 +8,9 @@ const PostSkeleton: React.FC = () => {
     <>
       {Array.from(new Array(12)).map((key, index) => (
         <Styled.container key={index}>
-          <Styled.skeletonImage>
+          <Styled.image>
             <Skeleton.Avatar size={'large'} />
-          </Styled.skeletonImage>
+          </Styled.image>
           <Skeleton active={true} title={true} paragraph={{ rows: 3 }} round={true} />
         </Styled.container>
       ))}

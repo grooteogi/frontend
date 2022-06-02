@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useRef } from 'react';
 import Styled from './UploadImage.styled';
 import Camera from './camera.svg';
 import Typography from '@components/common/Typography';

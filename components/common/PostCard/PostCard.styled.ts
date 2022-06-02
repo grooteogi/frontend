@@ -5,6 +5,7 @@ export const Styled = {
   container: styled.div`
     ${theme.responsive.mobile} {
       width: 180px;
+      height: 250px;
     }
     width: 235px;
     height: 300px;
@@ -14,12 +15,13 @@ export const Styled = {
       cursor: pointer;
     }
   `,
-  skeletonImage: styled.div`
+  image: styled.div`
     ${theme.responsive.mobile} {
       width: 180px;
+      height: 150px;
     }
     width: 235px;
-    height: 210px;
+    height: 200px;
   `,
   hashRef: styled.div`
     display: flex;

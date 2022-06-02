@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Hashtag from '@components/common/Hashtag';
 import Wrapper from '@components/common/Wrapper';
 import { Styled } from './PostCard.styled';
@@ -14,12 +14,22 @@ interface PostCardProps {
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post, onClick }) => {
-  const hashtagRef = useRef<HTMLDivElement>(null);
+  const [mobile, setMobile] = useState<boolean>(false);
+  const handleWindowSizeChange = () => (window.innerWidth < 768 ? setMobile(true) : setMobile(false));
+
+  useEffect(() => {
+    handleWindowSizeChange();
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => window.removeEventListener('resize', handleWindowSizeChange);
+  }, []);
+
   return (
     <Styled.container onClick={onClick}>
-      <Image src={post.imageUrl ? post.imageUrl : '/imgs/SamplePost.jpeg'} alt={'post img not found'} size={'lg'} />
-      <Styled.hashRef ref={hashtagRef}>
-        {post.hashtags.map((hash: string) => (
+      <Styled.image>
+        <Image src={post.imageUrl ? post.imageUrl : '/imgs/SamplePost.jpeg'} alt={'post img not found'} size={'lg'} />
+      </Styled.image>
+      <Styled.hashRef>
+        {post.hashtags.slice(0, mobile ? 2 : 3).map((hash: string) => (
           <Hashtag key={nanoid()} hashtag={hash} />
         ))}
       </Styled.hashRef>

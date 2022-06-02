@@ -9,6 +9,20 @@ const getFont = ({ active = false }) => {
   `;
 };
 
+const getPadding = () => {
+  return css`
+    ${theme.responsive.pc} {
+      padding: 0 16px;
+    }
+    ${theme.responsive.tablet} {
+      padding: 0 16px;
+    }
+    ${theme.responsive.mobile} {
+      padding: 0 8px;
+    }
+  `;
+};
+
 export const Styled = {
   container: styled.div`
     display: flex;
@@ -19,8 +33,8 @@ export const Styled = {
   `,
   item: styled.span`
     ${getFont};
+    ${getPadding};
     font-size: 1rem;
-    padding: 0 1rem;
     border-right: 1px solid ${theme.color.gray200};
     &:hover {
       cursor: pointer;

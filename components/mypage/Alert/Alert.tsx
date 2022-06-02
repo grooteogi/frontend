@@ -13,7 +13,7 @@ export type AlertProps = {
   onclose: (e: React.MouseEvent) => void;
 };
 
-const Alert: React.FC<AlertProps> = ({ title, content, score, onclose }) => {
+const Alert: React.FC<AlertProps> = ({ title, content, score }) => {
   console.log('Alert');
   return (
     <Styled.container>

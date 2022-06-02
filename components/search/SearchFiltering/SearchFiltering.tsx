@@ -22,7 +22,7 @@ const SearchFiltering = () => {
       <SortingTab
         value={searchState.sort}
         onClick={setSort}
-        itemList={Object.entries(SortType).map(([key, value]) => key as string)}
+        itemList={Object.entries(SortType).map(([key]) => key as string)}
       />
       <Dropdown
         value={searchState.region}
