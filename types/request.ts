@@ -1,3 +1,4 @@
+import { ScheduleEntity } from 'types/entity';
 import { CreditType } from './enum';
 
 export type UserRegister = {
@@ -24,14 +25,8 @@ export type PostCreateRequestDto = {
   content: string;
   imageUrl: string;
   hashtags: string[]; // 최대 5개
-  creditType: CreditType;
-  schedules: {
-    date: string;
-    startTime: string;
-    endTime: string;
-    region: string;
-    place: string;
-  }[];
+  creditType: typeof CreditType | string | undefined;
+  schedules: Omit<ScheduleEntity, 'scheduleId'>[];
 };
 
 export type ReservationCreateRequestDto = {

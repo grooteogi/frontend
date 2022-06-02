@@ -1,4 +1,5 @@
 import { PostEntity, ReviewEntity } from './entity';
+import { CreditType } from './enum';
 
 export type PostSearchResponseDto = {
   posts: Pick<PostEntity, 'postId' | 'title' | 'content' | 'imageUrl' | 'hashtags'>[];
@@ -8,9 +9,7 @@ export type PostSearchResponseDto = {
 export type ReservationCreateResponseDto = {
   reservationId: number;
 };
-export type PostDetailResponseDto = {
-  post: PostEntity[];
-};
+
 export type AuthSigninResponseDto = {
   nickname: string;
   imageUrl: string;
@@ -44,6 +43,8 @@ export type PostListResponseDto = {
   title: string;
   hashtags: string[];
 };
+
+export type PostDetailResponseDto = PostEntity & { isAuthor: boolean };
 
 export type UserProfileResponseDto = {
   nickname: string;
