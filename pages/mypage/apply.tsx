@@ -12,7 +12,6 @@ import Link from 'next/link';
 const idx = 0;
 const ReservationPage = () => {
   const now = new Date();
-  const openModalList = Array(reservationList.length).fill(false);
   const [openModal, setOpenModal] = useState(false);
   const onDeleteReview = (idx: number) => {
     console.log(`${idx}번째 아이템 삭제`);

@@ -7,7 +7,6 @@ import { nanoid } from 'nanoid';
 import Button from '@components/common/Button';
 
 const ReservationPage = () => {
-  const now = new Date();
   return (
     <>
       <Layout.PageContent>

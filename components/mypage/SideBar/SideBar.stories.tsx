@@ -8,7 +8,7 @@ export default {
   component: SideBar,
 } as ComponentMeta<typeof SideBar>;
 
-const Template: ComponentStory<typeof SideBar> = args => (
+const Template: ComponentStory<typeof SideBar> = () => (
   <GlobalThemeProvider theme={theme}>
     <SideBar />
   </GlobalThemeProvider>

@@ -16,14 +16,14 @@ const Template: ComponentStory<typeof SearchButton> = args => (
 export const Clicked = () => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template hashtag={'sample tag'} clicked={true} onClick={(tagValue: string) => undefined} />
+      <Template hashtag={'sample tag'} clicked={true} onClick={() => undefined} />
     </GlobalThemeProvider>
   );
 };
 export const NotClicked = () => {
   return (
     <GlobalThemeProvider theme={theme}>
-      <Template hashtag={'sample tag'} clicked={false} onClick={(tagValue: string) => undefined} />
+      <Template hashtag={'sample tag'} clicked={false} onClick={() => undefined} />
     </GlobalThemeProvider>
   );
 };

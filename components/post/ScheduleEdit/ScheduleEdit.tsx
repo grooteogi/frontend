@@ -128,7 +128,7 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: ScheduleEnt
 
 const ScheduleEdit: React.FC = () => {
   const [creditTypeInput, setCreditTypeInput] = useState(enumToArray(CreditTypeKR)[0]);
-  const { schedules, setSchedules, creditType, setCreditType } = usePostContext();
+  const { schedules, setSchedules, setCreditType } = usePostContext();
 
   const setCreditTypeFunc = (element: string) => {
     setCreditTypeInput(element);
