@@ -2,17 +2,10 @@ import Title from '@components/common/Title';
 import Layout from '@components/mypage/layout';
 import SideBar from '@components/mypage/SideBar';
 import Modify from '@components/mypage/Modify';
-import { UserProfileResponseDto } from 'types/response';
+import useProfile from '@components/mypage/useProfile';
 
 const Profile = () => {
-  const sampleUser: UserProfileResponseDto = {
-    nickname: '임시 닉네임',
-    email: 'sample123@sample.com',
-    name: '임시 이름',
-    phone: '010-0000-0000',
-    address: '서울시 용산구',
-    imageUrl: '/imgs/profile.png',
-  };
+  const { profile } = useProfile();
   return (
     <Layout.PageContent>
       <Layout.SectionLeft>
@@ -24,7 +17,7 @@ const Profile = () => {
             회원 정보 수정
           </Title>
         </Layout.PageTitle>
-        <Modify {...sampleUser} />
+        {profile !== undefined && <Modify profile={profile} />}
       </Layout.SectionRight>
     </Layout.PageContent>
   );

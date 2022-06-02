@@ -7,11 +7,14 @@ const user = {
   //     const status = await postData(url, { hashtag });
   //     return status;
   //   },
+  getProfile: async () => {
+    const url = '/user/profile';
+    return await client.get(url);
+  },
   modifyProfile: async (profile: ModifyUserProfileRequestDto) => {
     const url = '/user/profile';
-    /user/efilopr;
-    const status = await client.patch(url, { profile });
-    return status;
+    console.log('수정할 프로파일', profile);
+    return await client.patch(url, profile);
   },
 };
 

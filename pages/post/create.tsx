@@ -1,4 +1,4 @@
-import { Router, useRouter, withRouter } from 'next/router';
+import { useRouter, withRouter } from 'next/router';
 import type { NextPage } from 'next';
 import ScheduleEdit from '@components/post/ScheduleEdit/ScheduleEdit';
 import MeetingInfoEdit from '@components/post/MeetingInfoEdit/MeetingInfoEdit';

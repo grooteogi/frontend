@@ -36,9 +36,8 @@ export type ReservationCreateRequestDto = {
 
 export type ModifyUserProfileRequestDto = {
   nickname: string;
-  email: string;
   name: string;
-  phone: string;
   address: string;
   imageUrl: string;
+  phone: string;
 };

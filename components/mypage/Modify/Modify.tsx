@@ -10,23 +10,34 @@ import 'antd/dist/antd.css';
 import { UserProfileResponseDto } from 'types/response';
 import React, { useRef } from 'react';
 import image from '@lib/api/image';
+import user from '@lib/api/user';
+import auth from '@lib/api/auth';
+import { ModifyUserProfileRequestDto } from 'types/request';
 
-const Modify = (sampleUser: UserProfileResponseDto) => {
-  const modifyFormik = useFormik({
+interface ModifyProps {
+  profile: UserProfileResponseDto;
+}
+
+const Modify: React.FC<ModifyProps> = ({ profile }) => {
+  const modifyFormik = useFormik<ModifyUserProfileRequestDto>({
     initialValues: {
-      nickname: sampleUser.nickname,
-      imageUrl: sampleUser.imageUrl,
-      name: sampleUser.name,
-      address: sampleUser.address,
-      phone: sampleUser.phone,
+      nickname: profile.nickname,
+      imageUrl: profile.imageUrl,
+      name: profile.name,
+      address: profile.address,
+      phone: profile.phone,
     },
     onSubmit: async values => {
-      console.log(values);
-      const status = await auth.signinUser(values);
-      if (status === 200) location.href = '/';
+      const response = await user.modifyProfile(values);
+      if (response.status === 200) alert(response.message);
       else alert('회원정보 수정에 실패하였습니다.');
     },
   });
+  const handleWithDrawal = async () => {
+    const status = await auth.withDrawal();
+    if (status === 200) location.href = '/';
+    else alert('회원탈퇴에 실패하였습니다.');
+  };
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => hiddenFileInput.current?.click();
@@ -45,7 +56,7 @@ const Modify = (sampleUser: UserProfileResponseDto) => {
   const formData = {
     이름: (<Input id="name" name={'name'} type={'text'} onChange={modifyFormik.handleChange} value={modifyFormik.values.name} placeholder={modifyFormik.initialValues.name}/>),
     닉네임: (<Input id="nickname" name={'nickname'} type={'text'} onChange={modifyFormik.handleChange} value={modifyFormik.values.nickname} placeholder={modifyFormik.initialValues.nickname}/>),
-    이메일: (<Typography size={'xs'} color={'gray700'}>{sampleUser.email}</Typography>),
+    이메일: (<Typography size={'xs'} color={'gray700'}>{profile.email}</Typography>),
     비밀번호: (<Button color={'primary'} fontColor={'white'} name={'변경하기'} size={'sm'} type={'button'} onClick={() => alert('password button clicked')}/>),
     '프로필 사진': (
       <>
@@ -84,7 +95,14 @@ const Modify = (sampleUser: UserProfileResponseDto) => {
             회원 탈퇴 시 포인트와 결제내역 및 모든 기록이 삭제됩니다.
           </Typography>
         </Wrapper>
-        <Button name="회원 탈퇴" color={'gray200'} fontColor={'white'} size={'md'} />
+        <Button
+          name="회원 탈퇴"
+          color={'gray200'}
+          fontColor={'white'}
+          size={'md'}
+          type={'button'}
+          onClick={handleWithDrawal}
+        />
       </Layout.footer>
     </Layout.container>
   );
