@@ -3,17 +3,18 @@ import React, { useState, useCallback } from 'react';
 import Styled from './ScheduleEdit.style';
 import Dropdown from '@components/common/Dropdown';
 import { ScheduleEntity } from 'types/entity';
-import { RegionList, CreditTypeKR } from 'types/enum';
-import { usePostContext } from '../context';
-import { useFormik } from 'formik';
+import { RegionList, CreditType } from 'types/enum';
+import { useFormik, useFormikContext } from 'formik';
 import { enumToArray } from '@lib/common';
 import { nanoid } from 'nanoid';
 import Title from '@components/common/Title';
 import Button from '@components/common/Button';
 import ScheduleItem from '@components/common/ScheduleItem';
+import { PostCreateRequestDto } from 'types/request';
+import moment from 'moment';
 
 export interface CreateScheduleProps {
-  schedules?: ScheduleEntity[];
+  schedules?: Omit<ScheduleEntity, 'scheduleId'>[];
 }
 
 const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
@@ -28,8 +29,8 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
         <Styled.itemBox ref={callbackRef} key={nanoid()}>
           <ScheduleItem
             date={date}
-            startTime={startTime}
-            endTime={endTime}
+            startTime={moment(startTime, 'HH:mm:ss').format('HH:mm')}
+            endTime={moment(endTime, 'HH:mm:ss').format('HH:mm')}
             region={region}
             place={place}
             scheduleId={''}
@@ -40,7 +41,7 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   );
 };
 
-const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: ScheduleEntity) => void }> = ({
+const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: Omit<ScheduleEntity, 'scheduleId'>) => void }> = ({
   onCreateSchedule,
 }) => {
   const [regionInput, setRegionInput] = useState(enumToArray(RegionList)[0]);
@@ -53,7 +54,6 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: ScheduleEnt
     },
     onSubmit: values => {
       const newSchedule = {
-        scheduleId: nanoid(),
         region: regionInput,
         ...values,
       };
@@ -127,16 +127,15 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: ScheduleEnt
 };
 
 const ScheduleEdit: React.FC = () => {
-  const [creditTypeInput, setCreditTypeInput] = useState(enumToArray(CreditTypeKR)[0]);
-  const { schedules, setSchedules, setCreditType } = usePostContext();
+  const { setFieldValue, values } = useFormikContext<PostCreateRequestDto>();
+  const { creditType, schedules } = values;
 
-  const setCreditTypeFunc = (element: string) => {
-    setCreditTypeInput(element);
-    setCreditType(element);
+  const handleSetCreditType = (newCreditType: string) => {
+    setFieldValue('creditType', newCreditType);
   };
 
-  const handleCreateSchedule = (newSchedule: ScheduleEntity) => {
-    setSchedules([...schedules, newSchedule]);
+  const handleCreateSchedule = (newSchedule: Omit<ScheduleEntity, 'scheduleId'>) => {
+    setFieldValue('schedules', [...values.schedules, newSchedule]);
   };
 
   return (
@@ -148,7 +147,7 @@ const ScheduleEdit: React.FC = () => {
         <Title size={'h3'} color={'deepdarkgray'}>
           결제방식
         </Title>
-        <Dropdown zIndex={2} list={enumToArray(CreditTypeKR)} value={creditTypeInput} onClick={setCreditTypeFunc} />
+        <Dropdown zIndex={2} list={Object.values(CreditType)} value={creditType} onClick={handleSetCreditType} />
       </Styled.row>
       <ScheduleItems schedules={schedules} />
       <Title size={'h3'} color={'deepdarkgray'}>

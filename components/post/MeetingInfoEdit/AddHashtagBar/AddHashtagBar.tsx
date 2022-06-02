@@ -2,33 +2,39 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Styled } from './AddHashtagBar.styled';
 import Hashtag from '@components/common/Hashtag';
-import { usePostContext } from '@components/post/context';
 import { nanoid } from 'nanoid';
+import { useFormikContext } from 'formik';
+import { PostCreateRequestDto } from 'types/request';
 
 const AddHashtagBar: React.FC = () => {
-  const { hashtags, setHashtags } = usePostContext();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { setFieldValue, values } = useFormikContext<PostCreateRequestDto>();
+  const { hashtags } = values;
 
   const handleUpdateHashtag = (value: string) => {
-    // TODO: 중복된 해시태그 체크
-    setHashtags([...hashtags, value]);
+    setFieldValue('hashtags', [...hashtags, value]);
   };
 
   const handleRemoveHashtag = async (hashtag: string) => {
-    setHashtags(hashtags.filter((targetHashtag: string) => targetHashtag !== hashtag));
+    setFieldValue(
+      'hashtags',
+      hashtags.filter((targetHashtag: string) => targetHashtag !== hashtag),
+    );
   };
 
   const handleCheckEnter = async (e: React.KeyboardEvent) => {
-    if (e.key === ' ') {
+    if (e.key === ' ' || e.key === 'Enter') {
       if (inputRef.current) {
         handleUpdateHashtag(inputRef.current.value);
         inputRef.current.value = '';
       }
     }
+    // e.preventDefault();
+    e.stopPropagation();
   };
 
   return (
-    <>
+    <React.Fragment>
       <Styled.container>
         <Styled.section>
           <Styled.input
@@ -45,7 +51,7 @@ const AddHashtagBar: React.FC = () => {
           <Hashtag key={nanoid()} hashtag={hash} removable onRemove={() => handleRemoveHashtag(hash)} />
         ))}
       </Styled.hashtagBox>
-    </>
+    </React.Fragment>
   );
 };
 

@@ -3,82 +3,102 @@ import FullHeartIcon from '@components/asset/FullHeartIcon';
 import Typography from '@components/common/Typography';
 import Wrapper from '@components/common/Wrapper';
 import React, { useEffect, useRef, useState } from 'react';
-import { PostEntity } from 'types/entity';
 import Styled from './MeetingInfo.style';
-import Link from 'next/link';
-import { CreditTypeKR } from 'types/enum';
+import { CreditType } from 'types/enum';
 import Hashtag from '@components/common/Hashtag';
 import { nanoid } from 'nanoid';
+import { useRouter } from 'next/router';
+import post from '@lib/api/post';
+import { PostDetailResponseDto } from 'types/response';
+import useLikeMutate from '../useLikeMutate';
+
+const AuthButtonPanel = ({ postId }: { postId: string }) => {
+  const router = useRouter();
+
+  const handlEditPost = () => {
+    router.push(`/post/edit/${postId}`);
+  };
+  const handleDeletePost = async () => {
+    const response = await post.deletePost(postId);
+    if (response.status === 200) {
+      alert('삭제에 성공했습니다.');
+      router.push('/search');
+    }
+  };
+
+  return (
+    <Styled.bottomButtonBox>
+      <Styled.bottomButton onClick={handlEditPost}>수정하기</Styled.bottomButton>
+      <Styled.bottomButton onClick={handleDeletePost}>삭제하기</Styled.bottomButton>
+    </Styled.bottomButtonBox>
+  );
+};
 
 interface MeetingInfoProps {
-  post: PostEntity | undefined;
+  post: PostDetailResponseDto | undefined;
 }
 
-const MeetingInfo: React.FC<MeetingInfoProps> = ({ post }) => {
+const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData }) => {
   const postImg = useRef<HTMLImageElement>(null);
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
-  const [liked, setLiked] = useState<boolean>(post ? post.likes.liked : false);
+  const [liked, setLiked] = useState<boolean>(postData ? postData.likes.liked : false);
+  const { mutate } = useLikeMutate();
 
   useEffect(() => {
     if (postImg.current) setIsWidthBigger(postImg.current.width > postImg.current.height);
   }, []);
 
-  const deletePost = async () => {
-    // const status = await post.deletePost({ postId });
-    // if (status === 200) {
-    //   router.push('/search');
-    // }
-  };
-
-  if (post === undefined) return <div>postInfo</div>;
+  if (postData === undefined) return <div>postInfo</div>;
   return (
     <Styled.container>
       <Styled.thumbnailWrappper>
         <Styled.thumbnail>
           <Styled.postPicWrapper>
-            <Styled.postPic ref={postImg} src={post.imageUrl} isWidthBigger={isWidthBigger} />
+            <Styled.postPic ref={postImg} src={postData.imageUrl} isWidthBigger={isWidthBigger} />
           </Styled.postPicWrapper>
         </Styled.thumbnail>
       </Styled.thumbnailWrappper>
       <Wrapper flexDirection={'row'}>
         <Typography size={'lg'} color={'black'} weight={'bold'}>
-          {post.title}
+          {postData.title}
         </Typography>
       </Wrapper>
       <Wrapper flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Wrapper flexDirection={'row'} gap={{ gap: 15 }} alignItems={'center'}>
           <Wrapper flexDirection={'row'} gap={{ gap: 10 }} alignItems={'center'}>
-            <Styled.userPic src={post.mentor.imageUrl} />
+            <Styled.userPic src={postData.mentor.imageUrl} />
             <Typography size={'sm'} color={'black'}>
-              {post.mentor.nickname}
+              {postData.mentor.nickname}
             </Typography>
           </Wrapper>
           <Styled.creditText size={'xs'} color={'darkgray'}>
-            {CreditTypeKR[post.creditType]}
+            {CreditType[postData.creditType as keyof typeof CreditType]}
           </Styled.creditText>
         </Wrapper>
-        <Styled.likedBtn
-          onClick={() => {
-            setLiked(!liked);
-          }}
-        >
-          {liked ? <FullHeartIcon /> : <EmptyHeartIcon />}
-        </Styled.likedBtn>
+        <Styled.likedPanel>
+          <Styled.likedBtn
+            onClick={() => {
+              // TODO: mutate 부분 수정하기
+              mutate(postData.postId);
+              setLiked(!liked);
+            }}
+          >
+            {liked ? <FullHeartIcon /> : <EmptyHeartIcon />}
+          </Styled.likedBtn>
+          <Typography size={'xs'} color={'black'}>
+            {postData.likes.count}
+          </Typography>
+        </Styled.likedPanel>
       </Wrapper>
       <Wrapper flexDirection={'row'} gap={{ gap: 5 }}>
-        {post.hashtags.map((hashtag: string) => (
+        {postData.hashtags.map((hashtag: string) => (
           <Hashtag key={nanoid()} hashtag={hashtag} />
         ))}
       </Wrapper>
       <Typography size={'md'} color={'darkgray'}>
-        {post.content}
+        {postData.content}
       </Typography>
-      <Styled.bottomButtonBox>
-        <Link href={`/post/create`} passHref>
-          <Styled.bottomButton>수정하기</Styled.bottomButton>
-        </Link>
-        <Styled.bottomButton onClick={() => deletePost()}>삭제하기</Styled.bottomButton>
-      </Styled.bottomButtonBox>
+      {postData.isAuthor && <AuthButtonPanel postId={postData.postId} />}
     </Styled.container>
   );
 };

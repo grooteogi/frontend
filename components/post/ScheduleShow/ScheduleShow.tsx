@@ -16,7 +16,7 @@ const ScheduleItems: React.FC<ScheduleProps> = ({ schedules }) => {
     }
   }, []);
 
-  if (schedules === undefined) return <div>fuck</div>;
+  if (schedules === undefined) return <div>schedules</div>;
   return (
     <Styled.scroll standardHeight={scrollHeight * 3}>
       {schedules?.map(({ scheduleId, date, startTime, endTime, region, place }: ScheduleEntity) => (

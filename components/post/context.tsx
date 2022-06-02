@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import { ScheduleEntity } from 'types/entity';
 import { CreditType } from 'types/enum';
 
-export type PostCreateStateType = {
+export type PostStateType = {
   post: PostFormData;
   title: string;
   content: string;
@@ -18,7 +18,7 @@ export type PostFormData = {
   imageUrl: string;
 };
 
-type PostCreateAction =
+type PostAction =
   | { type: 'SET_TITLE'; title: string }
   | { type: 'SET_CONTENT'; content: string }
   | { type: 'SET_IMAGE_URL'; imageUrl: string }
@@ -26,9 +26,9 @@ type PostCreateAction =
   | { type: 'SET_CREDITTYPE'; creditType: CreditType }
   | { type: 'SET_SCHEDULES'; schedules: Omit<ScheduleEntity, 'scheduleId'>[] };
 
-const PostCreateContext = createContext<any>(null);
+const PostContext = createContext<any>(null);
 
-function PostCreateReducer(state: PostCreateStateType, action: PostCreateAction): PostCreateStateType {
+function PostReducer(state: PostStateType, action: PostAction): PostStateType {
   switch (action.type) {
     case 'SET_TITLE':
       return {
@@ -65,8 +65,8 @@ function PostCreateReducer(state: PostCreateStateType, action: PostCreateAction)
   }
 }
 
-export const PostCreateProvider = ({ children }: { children: React.ReactNode }) => {
-  const initialPost: PostCreateStateType = {
+export const PostProvider = ({ children }: { children: React.ReactNode }) => {
+  const initialPost: PostStateType = {
     title: '',
     content: '',
     imageUrl: '',
@@ -79,7 +79,7 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
       imageUrl: '',
     },
   };
-  const [postState, dispatchPost] = useReducer(PostCreateReducer, initialPost);
+  const [postState, dispatchPost] = useReducer(PostReducer, initialPost);
 
   const setTitle = (title: string) => {
     dispatchPost({ type: 'SET_TITLE', title });
@@ -100,7 +100,7 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
     dispatchPost({ type: 'SET_SCHEDULES', schedules });
   };
   return (
-    <PostCreateContext.Provider
+    <PostContext.Provider
       value={{
         state: postState,
         dispatch: dispatchPost,
@@ -125,12 +125,12 @@ export const PostCreateProvider = ({ children }: { children: React.ReactNode }) 
       }}
     >
       {children}
-    </PostCreateContext.Provider>
+    </PostContext.Provider>
   );
 };
 
 export const usePostContext = () => {
-  const context = React.useContext(PostCreateContext);
+  const context = React.useContext(PostContext);
   if (context === undefined) {
     throw new Error('usePostCreate must be used within a PostCreateProvider');
   }

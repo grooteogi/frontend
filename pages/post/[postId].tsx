@@ -6,23 +6,24 @@ import MeetingInfo from '@components/post/MeetingInfo/MeetingInfo';
 import StickyBar from '@components/post/StickyBar/StickyBar';
 import post from '@lib/api/post';
 import Layout from '@components/post/layout';
-import review from '@components/post/detail.review.mock';
 
 import { dehydrate, QueryClient } from 'react-query';
 import useSchedules from '@components/post/useSchedules';
 import usePost from '@components/post/usePost';
+import useReviews from '@components/post/useReviews';
 
-const Detail: NextPage<any> = () => {
+const Detail: NextPage = () => {
   const router = useRouter();
   const postId = router.query.postId as string;
   const { postData } = usePost(postId);
   const { schedulesData } = useSchedules(postId);
+  const { reviewsData } = useReviews(postId);
 
   return (
     <Layout.container>
       <MeetingInfo post={postData} />
       <ShowSchedule schedules={schedulesData} />
-      <ReviewList reviews={review} />
+      <ReviewList reviews={reviewsData} />
       <StickyBar
         buttonName={'약속 신청하기'}
         onClick={() => router.push({ pathname: '/reservation/[postId]', query: { postId } })}
@@ -37,6 +38,7 @@ export async function getServerSideProps(ctx: { params: { postId: string } }) {
 
   await queryClient.prefetchQuery(['post', postId], async () => (await post.getPost(postId)).data);
   await queryClient.prefetchQuery(['schedules', postId], async () => (await post.getSchedules(postId)).data);
+  await queryClient.prefetchQuery(['reviews', postId], async () => (await post.getReviews(postId)).data);
 
   return { props: { dehydratedState: dehydrate(queryClient) } };
 }

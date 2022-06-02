@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof PostCard> = () => (
   <GlobalThemeProvider theme={theme}>
     <PostCard
       post={{
-        postId: 1,
+        postId: '1',
         title: '샘플 포스트 제목 생략생략생략생략생략생략',
         content:
           '샘플 포스트 제목 아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말',
