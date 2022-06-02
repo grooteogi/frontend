@@ -25,7 +25,7 @@ export type PostCreateRequestDto = {
   content: string;
   imageUrl: string;
   hashtags: string[]; // 최대 5개
-  creditType: typeof CreditType | string | undefined;
+  creditType: keyof typeof CreditType | string;
   schedules: Omit<ScheduleEntity, 'scheduleId'>[];
 };
 

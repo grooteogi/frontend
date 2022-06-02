@@ -42,9 +42,9 @@ const Create: NextPage = () => {
           schedules[index].startTime = moment(startTime, 'HH:mm:ss').format('HH:mm:ss');
           schedules[index].endTime = moment(endTime, 'HH:mm:ss').format('HH:mm:ss');
         });
-        data.creditType = Object.keys(CreditType).find(
-          key => CreditType[key as keyof typeof CreditType] === creditType,
-        );
+        data.creditType =
+          Object.keys(CreditType).find(key => CreditType[key as keyof typeof CreditType] === creditType) ??
+          CreditType['DIRECT' as const];
         console.log(data);
         setSaved(true);
         handleSubmit(data);
