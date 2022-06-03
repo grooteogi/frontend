@@ -14,7 +14,7 @@ const getStyle = ({ width, height, fontColor, borderColor }: SInputProps) => {
     width: ${width};
     height: ${height};
     color: ${theme.color[fontColor ? fontColor : 'black']};
-    border-color: ${borderColor ? borderColor : theme.color.gray200};
+    border-color: ${theme.color[borderColor ? borderColor : 'gray200']};
   `;
 };
 

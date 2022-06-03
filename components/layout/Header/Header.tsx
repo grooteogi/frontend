@@ -1,11 +1,15 @@
 import Link from '@components/common/Link';
 import { storage } from '@lib/storage';
+import theme from '@styles/theme';
 import { default as NextLink } from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Styled from './Header.styled';
 import Logo from './Logo';
 
 const Header = () => {
+  const router = useRouter();
+  const isMain = useMemo(() => router.asPath === '/', [router.asPath]);
   const scrollHref = useRef<HTMLDivElement>(null);
   const [scrollDown, setScrollDown] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(false);
@@ -34,7 +38,12 @@ const Header = () => {
   return (
     <React.Fragment>
       <div ref={scrollHref} />
-      <Styled.header animate={{ height: scrollDown ? '50px' : '80px' }}>
+      <Styled.header
+        animate={{
+          height: scrollDown ? '50px' : '80px',
+          borderBottom: isMain ? 'none' : `1px solid ${theme.color.gray200}`,
+        }}
+      >
         <Styled.container>
           <NextLink href={'/'} passHref={true}>
             <a>
