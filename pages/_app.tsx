@@ -4,6 +4,7 @@ import GlobalThemeProvider from '../styles/GlobalThemeProvider';
 import Content from '@components/layout/Content';
 import theme from '../styles/theme';
 import Header from '@components/layout/Header/Header';
+import Footer from '@components/layout/Footer';
 
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Content>
           <Component {...pageProps} />
         </Content>
+        <Footer />
       </GlobalThemeProvider>
     </QueryClientProvider>
   );

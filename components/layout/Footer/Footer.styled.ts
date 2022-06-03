@@ -4,17 +4,20 @@ import theme from '@styles/theme';
 const Styled = {
   footer: styled.footer`
     width: 100vw;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    height: 10vh;
+    position: relative;
+    bottom: 0px;
     background: ${theme.color.deepdarkgray};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `,
   paragraph: styled.div`
     color: ${theme.color.white};
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin: 2rem auto;
+    margin: 2rem;
     @media (min-width: 1060px) {
       width: 1060px;
     }
