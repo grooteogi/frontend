@@ -11,8 +11,8 @@ const Header = () => {
   const [auth, setAuth] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = storage.getToken();
-    if (typeof token === 'string') setAuth(true);
+    const isValid = storage.validateToken();
+    if (isValid) setAuth(true);
     else setAuth(false);
   }, []);
 

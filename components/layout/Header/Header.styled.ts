@@ -14,7 +14,6 @@ const Styled = {
     z-index: 999;
 
     background-color: ${theme.color.white};
-    border-bottom: 1px solid ${theme.color.gray200};
   `,
   container: styled(motion.div)`
     width: 100%;
