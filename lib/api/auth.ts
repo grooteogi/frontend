@@ -12,7 +12,6 @@ const auth = {
     return await GAxios({ method: 'post', url, data: userInfo, withCredentials: true })
       .then(res => {
         const token = res.headers['x-auth-token'];
-        console.log('token', token);
         storage.setToken(token);
         return res.status;
       })

@@ -24,7 +24,6 @@ const handleResponse: any = (response: ResponseData, callback: any, url: string)
       return response.data;
     case 202:
       if (response.headers) {
-        console.log('fucktoekn', response.headers['x-auth-token']);
         storage.setToken(response.headers['x-auth-token']);
       }
       return callback(url);
