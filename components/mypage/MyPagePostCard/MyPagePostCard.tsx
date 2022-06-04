@@ -12,16 +12,18 @@ const MyPagePostCard: React.FC<{ post: PostListResponseDto }> = ({ post }) => {
       <Styled.image>
         <Image src={post.imageUrl} alt={'약속 사진'} size={'md'} />
       </Styled.image>
-      <Styled.title>
-        <Title size={'h3'} color={'black'} align={'right'}>
-          {post.title}
-        </Title>
-      </Styled.title>
-      <Styled.hash>
-        {post.hashtags.map(hash => (
-          <Hashtag key={nanoid()} hashtag={hash} />
-        ))}
-      </Styled.hash>
+      <Styled.info>
+        <Styled.title>
+          <Title size={'h3'} color={'black'} align={'left'}>
+            {post.title}
+          </Title>
+        </Styled.title>
+        <Styled.hash>
+          {post.hashtags.map(hash => (
+            <Hashtag key={nanoid()} hashtag={hash} />
+          ))}
+        </Styled.hash>
+      </Styled.info>
     </Styled.container>
   );
 };

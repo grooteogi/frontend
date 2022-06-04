@@ -4,7 +4,6 @@ import MyPageCard from '@components/mypage/MyPageCard';
 import SideBar from '../../components/mypage/SideBar/SideBar';
 import reservationList from '../../components/mypage/receive.mock.json';
 import { nanoid } from 'nanoid';
-import Button from '@components/common/Button';
 
 const ReservationPage = () => {
   return (
@@ -22,14 +21,7 @@ const ReservationPage = () => {
           <Layout.listWrapper>
             {reservationList.map(reservation => (
               <Layout.myPageItem key={nanoid()}>
-                <MyPageCard key={nanoid()} reservation={reservation} />
-                <Button
-                  name={'약속 메시지 확인하기'}
-                  color={'primary'}
-                  fontColor={'white'}
-                  size={'sm'}
-                  style={{ width: 'fit-content', padding: '0 0.3rem' }}
-                />
+                <MyPageCard reservation={reservation} cardType={'receive'} />
               </Layout.myPageItem>
             ))}
           </Layout.listWrapper>

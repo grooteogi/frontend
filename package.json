@@ -28,6 +28,7 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@types/react-modal": "^3.13.1",
     "@types/react-slick": "^0.23.8",
     "antd": "^4.20.6",
     "axios": "^0.26.1",
@@ -41,6 +42,7 @@
     "polished": "^4.1.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-modal": "^3.15.1",
     "react-query": "^3.34.19",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1"

@@ -6,15 +6,24 @@ const Layout = {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    margin-bottom: 40px;
   `,
   SectionLeft: styled.section`
-    flex-grow: 2;
+    width: 25%;
     min-width: 200px;
     display: flex;
     flex-direction: column;
   `,
   SectionRight: styled.section`
-    flex-grow: 7;
+    width: 75%;
+    ${theme.responsive.tablet} {
+      width: 100%;
+      padding: 0 2vw;
+    }
+    ${theme.responsive.mobile} {
+      padding: 0 3vw;
+      width: 100%;
+    }
   `,
   PageTitle: styled.div`
     padding: 30px 0;
@@ -24,7 +33,7 @@ const Layout = {
   listWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
   `,
   myPageItem: styled.div`
     display: flex;
