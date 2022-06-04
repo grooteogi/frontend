@@ -3,10 +3,10 @@ import theme from '@styles/theme';
 
 const Styled = {
   footer: styled.footer`
-    width: 100vw;
-    height: 10vh;
+    width: 100%;
+    height: auto;
     position: relative;
-    bottom: 0px;
+    bottom: 0;
     background: ${theme.color.deepdarkgray};
     display: flex;
     flex-direction: column;
@@ -17,15 +17,15 @@ const Styled = {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin: 2rem;
-    @media (min-width: 1060px) {
+    margin: 2rem auto;
+    ${theme.responsive.pc} {
       width: 1060px;
     }
-    @media (min-width: 768px) and (max-width: 1059px) {
-      width: 767px;
+    ${theme.responsive.tablet} {
+      width: 80%;
     }
-    @media (max-width: 767px) {
-      width: 390px;
+    ${theme.responsive.mobile} {
+      width: 90%;
     }
   `,
   textline: styled.p`

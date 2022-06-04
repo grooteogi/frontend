@@ -9049,6 +9049,7 @@ __metadata:
     eslint-plugin-storybook: ^0.5.7
     formik: ^2.2.9
     framer-motion: ^6.3.4
+    hamburger-react: ^2.5.0
     husky: ">=7"
     lint-staged: ">=10"
     moment: ^2.29.3
@@ -9464,6 +9465,15 @@ __metadata:
   version: 4.2.9
   resolution: "graceful-fs@npm:4.2.9"
   checksum: 68ea4e07ff2c041ada184f9278b830375f8e0b75154e3f080af6b70f66172fabb4108d19b3863a96b53fc068a310b9b6493d86d1291acc5f3861eb4b79d26ad6
+  languageName: node
+  linkType: hard
+
+"hamburger-react@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "hamburger-react@npm:2.5.0"
+  peerDependencies:
+    react: ^16.8 || ^17 || ^18
+  checksum: 5c3835a1b271fd50f5fcc600d55d0dc296cb05c2eed5ec4bf6386c3da6f5b33a370f6ff5b81ebe97f29beb41cc37f5f5d4c5ff958507435e6561a15c8f7e3562
   languageName: node
   linkType: hard
 
