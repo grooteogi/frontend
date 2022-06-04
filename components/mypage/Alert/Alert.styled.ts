@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
+import ReactModal from 'react-modal';
 
 export const Styled = {
-  container: styled.div`
+  container: styled(ReactModal)`
     border: 1px solid ${theme.color.gray200};
+    background-color: ${theme.color.white};
+    border-radius: 8px;
     position: fixed;
     right: 0;
     bottom: 0;
