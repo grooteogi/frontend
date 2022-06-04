@@ -4,6 +4,12 @@ import theme from '@styles/theme';
 const Styled = {
   aside: styled.aside`
     width: 200px;
+    ${theme.responsive.tablet} {
+      width: 100%;
+    }
+    ${theme.responsive.mobile} {
+      width: 100%;
+    }
   `,
   nav: styled.nav`
     width: 100%;

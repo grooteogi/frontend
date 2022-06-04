@@ -1,13 +1,12 @@
 import Input from '@components/common/Input';
-import Title from '@components/common/Title';
 import Image from '@components/common/Image';
 import Typography from '@components/common/Typography';
 import Layout from '@components/mypage/layout';
-import SideBar from '@components/mypage/SideBar';
 import { Divider } from 'antd';
 import 'antd/dist/antd.css';
 import Button from '@components/common/Button';
 import Wrapper from '@components/common/Wrapper';
+import Content from '@components/mypage/Content';
 
 const Profile = () => {
   const data = {
@@ -31,46 +30,35 @@ const Profile = () => {
   };
 
   return (
-    <Layout.PageContent>
-      <Layout.SectionLeft>
-        <SideBar />
-      </Layout.SectionLeft>
-      <Layout.SectionRight>
-        <Layout.PageTitle>
-          <Title size={'h2'} color={'black'}>
-            회원 정보 수정
-          </Title>
-        </Layout.PageTitle>
-
-        <Layout.container>
-          {Object.entries(data).map(([key, value]) => (
-            <>
-              <Layout.name>
-                <Typography size={'sm'} color={'gray700'}>
-                  {key}
-                </Typography>
-              </Layout.name>
-              <Layout.inputs>{value}</Layout.inputs>
-            </>
-          ))}
-          <Layout.complete>
-            <Button name="수정하기" color={'primary'} fontColor={'white'} size={'md'} />
-          </Layout.complete>
-          <Divider style={{ gridColumn: '1 / span 3' }} />
-          <Layout.footer>
-            <Wrapper flexDirection={'column'}>
-              <Typography size={'md'} color={'darkgray'}>
-                회원 탈퇴
+    <Content title={'회원 정보 수정'}>
+      <Layout.container>
+        {Object.entries(data).map(([key, value]) => (
+          <>
+            <Layout.name>
+              <Typography size={'sm'} color={'gray700'}>
+                {key}
               </Typography>
-              <Typography size={'xxs'} color={'gray500'}>
-                회원 탈퇴 시 포인트와 결제내역 및 모든 기록이 삭제됩니다.
-              </Typography>
-            </Wrapper>
-            <Button name="회원 탈퇴" color={'gray200'} fontColor={'white'} size={'md'} />
-          </Layout.footer>
-        </Layout.container>
-      </Layout.SectionRight>
-    </Layout.PageContent>
+            </Layout.name>
+            <Layout.inputs>{value}</Layout.inputs>
+          </>
+        ))}
+        <Layout.complete>
+          <Button name="수정하기" color={'primary'} fontColor={'white'} size={'md'} />
+        </Layout.complete>
+        <Divider style={{ gridColumn: '1 / span 3' }} />
+        <Layout.footer>
+          <Wrapper flexDirection={'column'}>
+            <Typography size={'md'} color={'darkgray'}>
+              회원 탈퇴
+            </Typography>
+            <Typography size={'xxs'} color={'gray500'}>
+              회원 탈퇴 시 포인트와 결제내역 및 모든 기록이 삭제됩니다.
+            </Typography>
+          </Wrapper>
+          <Button name="회원 탈퇴" color={'gray200'} fontColor={'white'} size={'md'} />
+        </Layout.footer>
+      </Layout.container>
+    </Content>
   );
 };
 

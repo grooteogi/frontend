@@ -1,33 +1,20 @@
-import Title from '@components/common/Title';
 import Layout from '@components/mypage/layout';
-import SideBar from '../../components/mypage/SideBar/SideBar';
 import postList from '../../components/mypage/likes.mock.json';
 import { nanoid } from 'nanoid';
 import MyPagePostCard from '@components/mypage/MyPagePostCard';
+import Content from '@components/mypage/Content';
 
 const ReservationPage = () => {
   return (
-    <>
-      <Layout.PageContent>
-        <Layout.SectionLeft>
-          <SideBar />
-        </Layout.SectionLeft>
-        <Layout.SectionRight>
-          <Layout.PageTitle>
-            <Title size={'h1'} color={'black'}>
-              찜한 포스트
-            </Title>
-          </Layout.PageTitle>
-          <Layout.listWrapper>
-            {postList.map(post => (
-              <Layout.myPageItem key={nanoid()}>
-                <MyPagePostCard key={nanoid()} post={post} />
-              </Layout.myPageItem>
-            ))}
-          </Layout.listWrapper>
-        </Layout.SectionRight>
-      </Layout.PageContent>
-    </>
+    <Content title={'찜한 포스트'}>
+      <Layout.listWrapper>
+        {postList.map(post => (
+          <Layout.myPageItem key={nanoid()}>
+            <MyPagePostCard key={nanoid()} post={post} />
+          </Layout.myPageItem>
+        ))}
+      </Layout.listWrapper>
+    </Content>
   );
 };
 
