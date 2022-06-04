@@ -22,6 +22,19 @@ const auth = {
         }
       });
   },
+  withDrawal: async () => {
+    const url = '/auth/withdrawal';
+    return await GAxios({ method: 'delete', url, withCredentials: true })
+      .then(res => {
+        const { status, message } = res.data;
+        console.log(`${status}: ${message}`);
+        return status;
+      })
+      .catch(err => {
+        if (!err.status) console.log('Unknown Network Error in axios');
+        else return err.status;
+      });
+  },
   sendEmail: async (email: string) => {
     const url = '/auth/email/send';
     return await client.post(url, { email });

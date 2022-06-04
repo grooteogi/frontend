@@ -1,5 +1,4 @@
 import { PostEntity, ReviewEntity } from './entity';
-import { CreditType } from './enum';
 
 export type PostSearchResponseDto = {
   posts: Pick<PostEntity, 'postId' | 'title' | 'content' | 'imageUrl' | 'hashtags'>[];
