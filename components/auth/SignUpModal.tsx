@@ -10,6 +10,7 @@ import Styled from './style';
 import Title from '@components/common/Title';
 import Timer from '@components/common/Timer/Timer';
 import { useRouter } from 'next/router';
+import Typography from '@components/common/Typography';
 
 interface LoginFormikValues {
   email: string;
@@ -50,31 +51,29 @@ const SignupForm = () => {
     setIsReset(true);
     setIsReset(false);
   };
-  const handleEmailClick = async () => {
-    if (!emailClicked) {
-      const response = await auth.sendEmail(email);
-      if (response.status === 200) {
-        setEmailClicked(true);
-        console.log('email verified');
-      } else alert(response.message);
+  const handleSendEmail = async () => {
+    const response = await auth.sendEmail(email);
+    if (response.status === 200) {
+      setEmailClicked(true);
+      console.log('email verified');
+    } else alert(response.message);
+  };
+  const handleCheckEmail = async () => {
+    const response = await auth.confirmEmail({ email, code });
+    if (response.status === 200) {
+      setEmailChecked(true);
+      alert('이메일 인증이 완료되었습니다!');
+      console.log('email verified confirmed');
     } else {
-      const response = await auth.confirmEmail({ email, code });
-      if (response.status === 200) {
-        setEmailChecked(true);
-        alert('이메일 인증이 완료되었습니다!');
-        console.log('email verified confirmed');
-      } else {
-        alert('이메일 인증번호가 일치하지 않습니다.');
-        console.log('email sending fail');
-      }
+      alert('이메일 인증번호가 일치하지 않습니다.');
+      console.log('email sending fail');
     }
   };
-
   const handleSignup = async () => {
     handleSubmit();
     const response = await auth.signupUser({ email, password });
     if (response.status === 200) {
-      router.push('auth/signin');
+      router.push('/auth/signin');
       console.log('signup access');
     } else {
       alert('회원가입 실패!');
@@ -90,32 +89,18 @@ const SignupForm = () => {
           name={'email'}
           id={'email'}
           fontColor={email && !errors.email ? 'black' : 'darkgray'}
-          borderColor={email && !errors.email ? 'primary' : 'gray200'}
+          borderColor={emailChecked && email && !errors.email ? 'primary' : 'gray200'}
           component={Input}
         />
-        {emailClicked &&
-          !emailChecked && (
-            <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
-          ) && (
-            <Button
-              type={'button'}
-              name={'재전송'}
-              size={'md'}
-              fontColor={'white'}
-              borderColor={'none'}
-              color={email && !errors.email ? 'black' : 'gray200'}
-              onClick={resendEmailClick}
-              style={{ alignSelf: 'flex-start' }}
-            />
-          )}
         {emailClicked && !emailChecked && (
           <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
         )}
         {emailClicked && !emailChecked && (
           <Timer resetStatus={isReset} isStart={true} limitMin={3} fontColor={'black'} />
         )}
-        <Styled.emailbuttonContainer>
-          {emailClicked && !emailChecked && (
+
+        {emailClicked && !emailChecked && (
+          <Styled.emailbuttonContainer>
             <Button
               type={'button'}
               name={'재전송'}
@@ -126,7 +111,19 @@ const SignupForm = () => {
               onClick={resendEmailClick}
               style={{ alignSelf: 'flex-start' }}
             />
-          )}
+            <Button
+              type={'button'}
+              name={'이메일 보내기'}
+              size={'md'}
+              fontColor={'white'}
+              borderColor={'none'}
+              color={'black'}
+              onClick={handleCheckEmail}
+              style={{ alignSelf: 'flex-end' }}
+            />
+          </Styled.emailbuttonContainer>
+        )}
+        {!emailClicked && (
           <Button
             type={'button'}
             name={'이메일 인증'}
@@ -135,10 +132,10 @@ const SignupForm = () => {
             borderColor={'none'}
             color={email && !errors.email ? 'black' : 'gray200'}
             disabled={!(email && !errors.email)}
-            onClick={handleEmailClick}
+            onClick={handleSendEmail}
             style={{ alignSelf: 'flex-end' }}
           />
-        </Styled.emailbuttonContainer>
+        )}
 
         <Field
           type={'password'}
@@ -146,7 +143,7 @@ const SignupForm = () => {
           name={'password'}
           id={'password'}
           fontColor={password && !errors.password ? 'black' : 'darkgray'}
-          borderColor={password && !errors.password ? 'primary' : 'gray200'}
+          borderColor={passwordConfirm && password && !errors.password ? 'primary' : 'gray200'}
           component={Input}
         />
         <Field
@@ -159,9 +156,9 @@ const SignupForm = () => {
           component={Input}
         />
         {errors.password && (
-          <Title size="h4" color={'danger'} align="right">
+          <Typography size={'xxs'} weight={'regular'} color={'danger'} align={'right'}>
             {errors.password}
-          </Title>
+          </Typography>
         )}
       </Styled.inputContainer>
 
@@ -203,7 +200,7 @@ const SignupForm = () => {
         name={'회원가입하기'}
         fontColor={'black'}
         size={'lg'}
-        disabled={errors.email || errors.password ? true : false}
+        disabled={!allAgree || !emailChecked || errors.password ? true : false}
       />
     </Form>
   );
