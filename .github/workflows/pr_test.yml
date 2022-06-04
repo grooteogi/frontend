@@ -39,7 +39,7 @@ jobs:
         id: eslint-cache
         with:
           path: |
-            ${{ github.workspace }}/
+            ${{ github.workspace }}/.eslintcache
           key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Eslint-${{ hashFiles('**/.eslintcache') }}
           restore-keys: |
             ${{ runner.os }}-Node-v${{ matrix.node-version }}-Eslint-
