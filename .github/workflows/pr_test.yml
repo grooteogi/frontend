@@ -39,7 +39,7 @@ jobs:
         id: eslint-cache
         with:
           path: |
-            ${{ github.workspace }}/
+            ${{ github.workspace }}/.eslintcache
           key: ${{ runner.os }}-Node-v${{ matrix.node-version }}-Eslint-${{ hashFiles('**/.eslintcache') }}
           restore-keys: |
             ${{ runner.os }}-Node-v${{ matrix.node-version }}-Eslint-
@@ -50,8 +50,6 @@ jobs:
         run: yarn install
 
       - name: Lint
-        if: |
-          steps.eslint-cache.outputs.cache-hit != 'true'
         run: yarn lint
 
       - name: Format

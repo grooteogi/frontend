@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build --no-lint",
     "start": "next start",
-    "lint": "eslint --cache \"**/*.{js,ts,jsx,tsx}\"",
+    "lint": "eslint --cache --cache-location .eslintcache \"**/*.{js,ts,jsx,tsx}\"",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "storybook": "start-storybook -p 6006 -s ./public",
