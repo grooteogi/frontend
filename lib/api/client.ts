@@ -10,23 +10,23 @@ interface ResponseData {
 
 export const GAxios = axios.create({
   baseURL: '/api',
-  headers: { Authorization: `Bearer ${storage.getToken()}`, 'Content-Type': 'application/json' },
+  headers: {
+    Authorization: storage.validateToken() ? `Bearer ${storage.getToken()}` : '',
+    'Content-Type': 'application/json',
+  },
   withCredentials: true,
 });
 
-const handleResponse: any = (response: ResponseData, callback: any, url: string) => {
+const handleResponse: any = async (response: ResponseData, callback: any, url: string) => {
   const { status, message } = response.data;
 
   console.log(`${status}: ${message}`);
 
-  switch (status) {
-    case 200:
-      return response.data;
-    case 202:
-      if (response.headers) {
-        storage.setToken(response.headers['x-auth-token']);
-      }
-      return callback(url);
+  if (status === 200) {
+    return response.data;
+  } else if (status === 202) {
+    if (response.headers && response.headers['x-auth-token']) storage.setToken(response.headers['x-auth-token']);
+    return (await callback(url)).data;
   }
 };
 
@@ -52,6 +52,7 @@ const client = {
       .catch(handleError);
   },
   post: async function (url: string, data: any): Promise<ResponseData> {
+    console.log('post');
     return await GAxios({
       method: 'post',
       data: data,
