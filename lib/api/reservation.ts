@@ -21,7 +21,7 @@ const reservation = {
     return await client.post(url, reservation);
   },
   getReservationList: async (isHost: boolean, filter: keyof typeof FilterType) => {
-    const url = `/reservation?${isHost}=true&filter=${filter}`;
+    const url = filter === 'ALL' ? `/reservation?isHost=${isHost}` : `/reservation?isHost=${isHost}&filter=${filter}`;
     return await client.get(url);
   },
 };

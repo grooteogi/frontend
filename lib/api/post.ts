@@ -49,6 +49,14 @@ export const post = {
     console.log(url);
     return await client.get(url);
   },
+  getMyPostList: async () => {
+    const url = `/post/writer`;
+    return await client.get(url);
+  },
+  getLikePostList: async () => {
+    const url = `post/likes`;
+    return await client.get(url);
+  },
 };
 
 export default post;

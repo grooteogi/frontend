@@ -15,7 +15,7 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ post, onClick }) => {
   const [mobile, setMobile] = useState<boolean>(false);
-  const handleWindowSizeChange = () => (window.innerWidth < 768 ? setMobile(true) : setMobile(false));
+  const handleWindowSizeChange = () => (window.innerWidth < 1060 ? setMobile(true) : setMobile(false));
 
   useEffect(() => {
     handleWindowSizeChange();

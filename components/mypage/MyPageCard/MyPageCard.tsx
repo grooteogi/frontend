@@ -34,7 +34,11 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
   return (
     <Styled.container>
       <Styled.image>
-        <Image src={reservation.imageUrl} alt={'약속 사진'} size={'md'} />
+        <Image
+          src={reservation.imageUrl === '' || reservation.imageUrl ? '/imgs/default_profile.png' : reservation.imageUrl}
+          alt={'약속 사진'}
+          size={'md'}
+        />
       </Styled.image>
       <Styled.info>
         <Styled.title>
