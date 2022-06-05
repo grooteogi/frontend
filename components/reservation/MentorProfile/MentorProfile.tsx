@@ -4,10 +4,11 @@ import Typography from '@components/common/Typography';
 import Styled from './MentorProfile.styled';
 import Hashtag from '@components/common/Hashtag';
 import { nanoid } from 'nanoid';
-import { PostEntity } from 'types/entity';
 import { CreditType } from 'types/enum';
+import { PostDetailResponseDto } from 'types/response';
 
-const MentorProfile = ({ post }: { post: PostEntity }) => {
+const MentorProfile = ({ post }: { post: PostDetailResponseDto | undefined }) => {
+  if (!post) return <div>Loading</div>;
   return (
     <Styled.container>
       <Styled.image>
