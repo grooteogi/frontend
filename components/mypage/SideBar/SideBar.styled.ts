@@ -28,7 +28,7 @@ const Styled = {
     padding: 1.5rem 0;
     border-bottom: 1px solid ${theme.color.gray400};
     cursor: pointer;
-    &:first-child {
+    &:first-of-type {
       font-weight: ${theme.weight.bold};
       border-bottom: 2.5px solid ${theme.color.gray400};
       line-height: 1.2;
