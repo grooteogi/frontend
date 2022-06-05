@@ -7,9 +7,9 @@ const Styled = {
     flex-flow: row wrap;
     justify-content: space-between;
     gap: 20px;
-    padding: 30px 0px;
+    padding: 30px 10px;
     ${theme.responsive.mobile} {
-      padding: 15px 15px;
+      padding: 15px 8px;
     }
   `,
 };
