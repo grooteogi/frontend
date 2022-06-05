@@ -6,7 +6,7 @@ const image = {
     const url = `/s3/image`;
     const res = await axios
       .post(url, formData, {
-        baseURL: '/api',
+        baseURL: '/groot/api',
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${storage.getToken()}` },
         withCredentials: true,
       })

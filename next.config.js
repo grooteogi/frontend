@@ -6,7 +6,7 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
+        source: '/groot/api/:path*',
         destination: `${process.env.SERVER_URL}/:path*`,
       },
     ];
