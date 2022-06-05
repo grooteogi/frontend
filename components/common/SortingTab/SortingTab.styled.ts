@@ -30,6 +30,12 @@ export const Styled = {
     & :last-child {
       border-right: 0px;
     }
+    & :first-of-type {
+      padding: 0 16px 0 8px;
+      ${theme.responsive.mobile} {
+        padding: 0 8px 0 0;
+      }
+    }
   `,
   item: styled.span`
     ${getFont};
