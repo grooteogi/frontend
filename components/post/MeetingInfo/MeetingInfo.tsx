@@ -66,11 +66,13 @@ const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData }) => {
       <Wrapper flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Wrapper flexDirection={'row'} gap={{ gap: 15 }} alignItems={'center'}>
           <Wrapper flexDirection={'row'} gap={{ gap: 10 }} alignItems={'center'}>
-            {postData.mentor.imageUrl === '' || postData.mentor.imageUrl ? (
-              <Styled.userPic src={'/imgs/default_profile.png'} />
-            ) : (
-              <Styled.userPic src={postData.mentor.imageUrl} />
-            )}
+            <Styled.userPic
+              src={
+                postData.mentor.imageUrl === '' || postData.mentor.imageUrl
+                  ? '/imgs/default_profile.png'
+                  : postData.mentor.imageUrl
+              }
+            />
             <Typography size={'sm'} color={'black'}>
               {postData.mentor.nickname}
             </Typography>
