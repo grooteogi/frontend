@@ -27,7 +27,7 @@ const SelectReservationItem: React.FC<
   );
 };
 
-const SelectReservationPanel = ({ schedules }: { schedules: ScheduleEntity[] }) => {
+const SelectReservationPanel = ({ schedules }: { schedules: ScheduleEntity[] | undefined }) => {
   const { scheduleId, setScheduleId } = useReservationContext();
 
   useEffect(() => {

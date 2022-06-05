@@ -9,7 +9,7 @@ const Timer = ({
   fontColor,
 }: {
   isStart: boolean;
-  resetStatus: boolean;
+  resetStatus?: boolean;
   limitMin: number;
   fontColor: keyof typeof theme.color;
 }) => {
@@ -41,7 +41,7 @@ const Timer = ({
   }, [minutes, seconds, isStart, resetStatus]);
 
   return (
-    <Typography size={'sm'} color={fontColor}>
+    <Typography size={'xs'} color={fontColor}>
       {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
     </Typography>
   );
