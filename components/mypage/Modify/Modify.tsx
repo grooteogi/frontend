@@ -8,17 +8,20 @@ import { useFormik } from 'formik';
 import { Divider } from 'antd';
 import 'antd/dist/antd.css';
 import { UserProfileResponseDto } from 'types/response';
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import image from '@lib/api/image';
 import user from '@lib/api/user';
 import auth from '@lib/api/auth';
 import { ModifyUserProfileRequestDto } from 'types/request';
+import PasswordModal from '../PasswordModal';
 
 interface ModifyProps {
   profile: UserProfileResponseDto;
 }
 
 const Modify: React.FC<ModifyProps> = ({ profile }) => {
+  const [open, setOpen] = useState<boolean>(false);
+
   const modifyFormik = useFormik<ModifyUserProfileRequestDto>({
     initialValues: {
       nickname: profile.nickname,
@@ -58,7 +61,7 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
     이름: (<Input id="name" name={'name'} type={'text'} onChange={modifyFormik.handleChange} value={modifyFormik.values.name} placeholder={modifyFormik.initialValues.name}/>),
     닉네임: (<Input id="nickname" name={'nickname'} type={'text'} onChange={modifyFormik.handleChange} value={modifyFormik.values.nickname} placeholder={modifyFormik.initialValues.nickname}/>),
     이메일: (<Typography size={'xs'} color={'gray700'}>{profile.email}</Typography>),
-    비밀번호: (<Button color={'primary'} fontColor={'white'} name={'변경하기'} size={'sm'} type={'button'} onClick={() => alert('password button clicked')}/>),
+    비밀번호: (<Button color={'primary'} fontColor={'white'} name={'변경하기'} size={'sm'} type={'button'} onClick={() => setOpen(true)}/>),
     '프로필 사진': (
       <>
         <Image src={modifyFormik.values.imageUrl} alt={'profile img not found'} size={'md'} />
@@ -105,6 +108,7 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
           onClick={handleWithDrawal}
         />
       </Layout.footer>
+      <PasswordModal open={open} setOpen={setOpen} />
     </Layout.container>
   );
 };

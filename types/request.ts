@@ -41,3 +41,8 @@ export type ModifyUserProfileRequestDto = {
   imageUrl: string;
   phone: string;
 };
+
+export type ModifyUserPasswordRequestDto = {
+  currentPassword: string;
+  newPassword: string;
+};
