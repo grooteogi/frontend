@@ -1,0 +1,42 @@
+[
+  {
+    "scheduleId": "1",
+    "date": "2022-06-13",
+    "startTime": "10:00:00",
+    "endTime": "12:00:00",
+    "region": "마포구",
+    "place": "9번 출구 보드게임카페"
+  },
+  {
+    "scheduleId": "2",
+    "date": "2022-06-13",
+    "startTime": "12:00:00",
+    "endTime": "14:00:00",
+    "region": "마포구",
+    "place": "원할머니보쌈"
+  },
+  {
+    "scheduleId": "3",
+    "date": "2022-06-13",
+    "startTime": "12:00:00",
+    "endTime": "14:00:00",
+    "region": "서대문구",
+    "place": "엄마손닭갈비"
+  },
+  {
+    "scheduleId": "4",
+    "date": "2022-06-15",
+    "startTime": "20:00:00",
+    "endTime": "22:00:00",
+    "region": "마포구",
+    "place": "신촌역 7번 출구"
+  },
+  {
+    "scheduleId": "5",
+    "date": "2022-06-13",
+    "startTime": "20:30:00",
+    "endTime": "22:30:00",
+    "region": "마포구",
+    "place": "신촌역 7번 출구"
+  }
+]

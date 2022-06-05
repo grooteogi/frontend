@@ -34,7 +34,7 @@ const PhoneVerifyForm = () => {
       <Title size={'h2'} color={'black'}>
         연락받을 전화번호
       </Title>
-      <Typography size={'xs'} color={'gray200'}>
+      <Typography size={'xs'} color={'darkgray'}>
         전화번호 제공은 필수사항입니다.
       </Typography>
 
@@ -121,7 +121,7 @@ const ReservationForm = () => {
           />
           <Styled.checkboxContainer>
             <Field type={'checkbox'} name={'agree'} id={'agree'} style={{}} />
-            <Typography size={'xs'} color={'gray200'}>
+            <Typography size={'xs'} color={'darkgray'}>
               제 3자(그루터기 나무)에게 내 전화번호를 제공하는 것을 동의합니다.
             </Typography>
           </Styled.checkboxContainer>
