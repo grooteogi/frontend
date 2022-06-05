@@ -69,6 +69,15 @@ const client = {
       .then(res => handleResponse(res, this.put, url))
       .catch(handleError);
   },
+  patch: async function (url: string, data: any): Promise<ResponseData> {
+    return await GAxios({
+      method: 'patch',
+      data: data,
+      url: url,
+    })
+      .then(res => handleResponse(res, this.patch, url))
+      .catch(handleError);
+  },
   delete: async function (url: string, data: any): Promise<ResponseData> {
     return await GAxios({
       method: 'delete',

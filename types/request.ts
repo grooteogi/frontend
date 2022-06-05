@@ -12,11 +12,10 @@ export type AuthSigninRequestDto = {
   password: string;
 };
 
-// params
 export type PostSearchRequestDto = {
-  keyword: string; //빈칸이어도 됨 전체
-  page: number; //페이지 번호, default 1
-  sort: string; //sorting; 최신순(default), 인기순, 조회순 //enum: LATEST(default), POPULAR, VIEWS
+  keyword: string; //default ""
+  page: number; //default 1
+  sort: string; //enum: LATEST(default), POPULAR, VIEWS
   region: string; //강서구(default), 강남구, 서대문구
 };
 
@@ -33,4 +32,12 @@ export type ReservationCreateRequestDto = {
   scheduleId: number;
   phoneNumber?: string;
   message: string;
+};
+
+export type ModifyUserProfileRequestDto = {
+  nickname: string;
+  name: string;
+  address: string;
+  imageUrl: string;
+  phone: string;
 };
