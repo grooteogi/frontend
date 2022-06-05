@@ -42,10 +42,7 @@ const SearchList = () => {
             {page.posts.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
-                post={{
-                  ...post,
-                  hashtags: ['개발자취업', '포트폴리오', '샘플태그'],
-                }}
+                post={post}
                 onClick={() => router.push({ pathname: '/post/[postId]', query: { postId: post.postId } })}
               />
             ))}
