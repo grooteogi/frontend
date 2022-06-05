@@ -7,7 +7,7 @@ const Styled = {
     flex-flow: row wrap;
     justify-content: space-between;
     gap: 20px;
-    padding: 30px 30px;
+    padding: 30px 0px;
     ${theme.responsive.mobile} {
       padding: 15px 15px;
     }
