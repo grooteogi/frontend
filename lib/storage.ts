@@ -9,7 +9,7 @@ type TokenInfo = {
 export const storage = {
   getToken: function () {
     if (typeof window !== 'undefined') {
-      if (this.validateToken()) return localStorage.getItem('token');
+      if (this.validateToken()) return JSON.parse(window.localStorage.getItem('token') || '{}');
     } else return '';
   },
   validateToken: function () {
@@ -19,8 +19,12 @@ export const storage = {
       const { exp } = jwt_decode<TokenInfo>(token);
       if (Date.now() >= exp * 1000) {
         this.clearToken();
+        console.log('token valid time expired');
         return false;
-      } else return true;
+      } else {
+        console.log('token valid');
+        return true;
+      }
     } else return false;
   },
   getUserId: function () {
@@ -34,7 +38,7 @@ export const storage = {
   setToken: function (token: string) {
     if (typeof window !== 'undefined') {
       const accessToken = window.localStorage.setItem('token', JSON.stringify(token));
-      console.log('accessToken', accessToken);
+      console.log('accessToken', window.localStorage.getItem('token'));
       return accessToken;
     } else return '';
   },

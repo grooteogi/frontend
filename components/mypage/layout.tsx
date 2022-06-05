@@ -18,7 +18,7 @@ const isSideOpenHamburger = ({ isOpen }: SidebarProps) => {
         position: fixed;
         right: 10px;
         z-index: 3;
-      }    
+      }
     `;
   }
 };
@@ -87,6 +87,9 @@ const Layout = {
       padding: 0 3vw;
       width: 100%;
     }
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
   `,
   PageTitle: styled.div`
     padding: 30px 0;

@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import { PostProvider } from '@components/post/context';
 import { Formik } from 'formik';
 import { CreditType } from 'types/enum';
 import { useRouter } from 'next/router';
@@ -37,36 +36,34 @@ const PostEditPage: NextPage = () => {
   };
 
   return (
-    <PostProvider>
-      <Formik
-        initialValues={{
-          title: postData?.title ?? '',
-          content: postData?.content ?? '',
-          imageUrl: postData?.imageUrl ?? '',
-          hashtags: postData?.hashtags ?? [],
-          creditType: postData?.creditType ?? CreditType['DIRECT' as const],
-          schedules: schedulesData ?? [],
-        }}
-        enableReinitialize={true}
-        onSubmit={async (data: PostCreateRequestDto) => {
-          const { schedules, creditType } = data;
-          schedules.forEach(({ startTime, endTime }: { startTime: string; endTime: string }, index: number) => {
-            schedules[index].startTime = moment(startTime, 'HH:mm:ss').format('HH:mm:ss');
-            schedules[index].endTime = moment(endTime, 'HH:mm:ss').format('HH:mm:ss');
-          });
-          data.creditType =
-            Object.keys(CreditType).find(key => CreditType[key as keyof typeof CreditType] === creditType) ??
-            CreditType['DIRECT' as const];
-          setSaved(true);
-          handleSubmit(data);
-        }}
-      >
-        <Layout.container>
-          <MeetingInfoEdit />
-          <ScheduleEdit />
-        </Layout.container>
-      </Formik>
-    </PostProvider>
+    <Formik
+      initialValues={{
+        title: postData?.title ?? '',
+        content: postData?.content ?? '',
+        imageUrl: postData?.imageUrl ?? '',
+        hashtags: postData?.hashtags ?? [],
+        creditType: postData?.creditType ?? CreditType['DIRECT' as const],
+        schedules: schedulesData ?? [],
+      }}
+      enableReinitialize={true}
+      onSubmit={async (data: PostCreateRequestDto) => {
+        const { schedules, creditType } = data;
+        schedules.forEach(({ startTime, endTime }: { startTime: string; endTime: string }, index: number) => {
+          schedules[index].startTime = moment(startTime, 'HH:mm:ss').format('HH:mm:ss');
+          schedules[index].endTime = moment(endTime, 'HH:mm:ss').format('HH:mm:ss');
+        });
+        data.creditType =
+          Object.keys(CreditType).find(key => CreditType[key as keyof typeof CreditType] === creditType) ??
+          CreditType['DIRECT' as const];
+        setSaved(true);
+        handleSubmit(data);
+      }}
+    >
+      <Layout.container>
+        <MeetingInfoEdit />
+        <ScheduleEdit />
+      </Layout.container>
+    </Formik>
   );
 };
 
