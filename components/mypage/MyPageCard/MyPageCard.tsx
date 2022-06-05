@@ -9,6 +9,7 @@ import Button from '@components/common/Button';
 import Link from 'next/link';
 import { nanoid } from 'nanoid';
 import Alert from '@components/mypage/Alert';
+import Router from 'next/router';
 
 const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?: 'apply' | 'receive' }> = ({
   reservation,
@@ -18,11 +19,18 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
   const todayDate = new Date();
   const remainDate = Math.floor((reservationDate.getTime() - todayDate.getTime()) / (1000 * 3600 * 24));
   const [isModalOpen, setModalOpen] = useState(false);
+
   const handleOnCloseModal = (e?: React.MouseEvent | React.KeyboardEvent) => {
     e?.preventDefault();
     setModalOpen(false);
   };
-
+  const moveToCreateReview = (e: React.MouseEvent) => {
+    e.preventDefault();
+    Router.push('/mypage/reviews/create');
+  };
+  const cancelReservation = () => {
+    console.log('취소하기 로직 고');
+  };
   return (
     <Styled.container>
       <Styled.image>
@@ -80,11 +88,9 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
               />
             </>
           ) : new Date(reservation.date + ' ' + reservation.startTime).getTime() > todayDate.getTime() ? (
-            <Button name={'취소하기'} color={'gray300'} fontColor={'white'} size={'sm'} />
+            <Button name={'취소하기'} color={'gray300'} fontColor={'white'} size={'sm'} onClick={cancelReservation} />
           ) : reservation.score === 0 ? (
-            <Link href={'/mypage/reviews/create'} passHref>
-              <Button name={'리뷰쓰기'} color={'primary'} fontColor={'white'} size={'sm'} />
-            </Link>
+            <Button name={'리뷰쓰기'} color={'primary'} fontColor={'white'} size={'sm'} onClick={moveToCreateReview} />
           ) : (
             <>
               <Button
