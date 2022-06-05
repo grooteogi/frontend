@@ -9,7 +9,7 @@ interface ResponseData {
 }
 
 export const GAxios = axios.create({
-  baseURL: '/groot/api',
+  baseURL: '/api',
   headers: {
     Authorization: storage.validateToken() ? `Bearer ${storage.getToken()}` : '',
     'Content-Type': 'application/json',
