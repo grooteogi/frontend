@@ -1,0 +1,18 @@
+{
+  "postId": "0",
+  "title": "포스트 제목이랍니다.",
+  "content": "포스트에 들어가는 내용입니다.",
+  "imageUrl": "/imgs/default_profile.png",
+  "createAt": "2022-05-26",
+  "hashtags": ["개발자", "코딩"],
+  "creditType": "DIRECT",
+  "likes": {
+    "count": 1,
+    "liked": true
+  },
+  "mentor": {
+    "userId": 1,
+    "nickname": "지나가는 개발자",
+    "imageUrl": "유저 이미지 주소"
+  }
+}

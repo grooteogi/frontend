@@ -2,21 +2,32 @@ import Image from '@components/common/Image';
 import Title from '@components/common/Title';
 import Typography from '@components/common/Typography';
 import Styled from './MentorProfile.styled';
+import Hashtag from '@components/common/Hashtag';
+import { nanoid } from 'nanoid';
+import { PostEntity } from 'types/entity';
+import { CreditType } from 'types/enum';
 
-const MentorProfile = () => {
-  const title = '저랑같이 공부해요!';
-
+const MentorProfile = ({ post }: { post: PostEntity }) => {
   return (
     <Styled.container>
-      <Image size={'md'} alt={'mentor_img'} src={'/imgs/profile.png'} />
-      <Styled.infoContainer>
-        <Title size={'h3'} color={'black'}>
-          {title}
-        </Title>
+      <Styled.image>
+        <Image src={post.imageUrl} alt={'약속 사진'} size={'md'} />
+      </Styled.image>
+      <Styled.info>
+        <Styled.title>
+          <Title size={'h3'} color={'black'} align={'left'}>
+            {post.title}
+          </Title>
+        </Styled.title>
         <Typography size={'xs'} color={'gray700'}>
-          더치페이
+          {CreditType[post.creditType as keyof typeof CreditType]}
         </Typography>
-      </Styled.infoContainer>
+        <Styled.hash>
+          {post.hashtags.map(hash => (
+            <Hashtag key={nanoid()} hashtag={hash} />
+          ))}
+        </Styled.hash>
+      </Styled.info>
     </Styled.container>
   );
 };
