@@ -41,6 +41,7 @@ export type PostListResponseDto = {
   imageUrl: string;
   title: string;
   hashtags: string[];
+  content?: string;
 };
 
 export type PostDetailResponseDto = PostEntity & { isAuthor: boolean };

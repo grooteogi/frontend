@@ -4,7 +4,7 @@ import { FilterType } from 'types/enum';
 import { ReservationListResponseDto } from 'types/response';
 
 const useReservationList = (isHost: boolean, filter: keyof typeof FilterType) => {
-  const { isLoading, data, error } = useQuery<ReservationListResponseDto>(
+  const { isLoading, data, error } = useQuery<ReservationListResponseDto[]>(
     ['reservationList', isHost, filter],
     async () => (await reservation.getReservationList(isHost, filter)).data,
   );
