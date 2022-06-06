@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Styled } from './SearchBar.styled';
 import Typography from '@components/common/Typography';
+import { useRouter } from 'next/router';
+import { useSearchContext } from '../context';
 
 //prettier-ignore
 const fetchedData = [{ keyword: '대학생활' },{ keyword: '자기개발' },{ keyword: '토플' },{ keyword: '동아리' },{ keyword: '연합동아리' },{ keyword: '길잡이' },{ keyword: '개발공부' },
@@ -18,6 +20,8 @@ export interface InputProps {
 const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
   const [filteredData, setFilteredData] = useState<fetchedDataType[]>([]);
   const [keyword, setKeyword] = useState<string>('');
+
+  const router = useRouter();
 
   const [focus, setFocus] = useState<boolean>(false);
 
@@ -47,7 +51,8 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
           width={'16px'}
           height={'16px'}
           onClick={() => {
-            onSearchClick(keyword);
+            setKeyword(keyword);
+            router.push({ pathname: '/search/result', query: { searchKeyword: keyword } });
           }}
         />
       </Styled.section>
@@ -57,7 +62,7 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
             <Styled.li key={item.keyword}>
               <Styled.listText
                 onMouseDown={() => {
-                  onSearchClick(item.keyword);
+                  router.push({ pathname: '/search/result', query: { searchKeyword: item.keyword } });
                 }}
               >
                 <Typography size={'sm'} color={'black'}>

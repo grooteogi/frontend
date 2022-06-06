@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof PostCard> = () => (
         title: '샘플 포스트 제목 생략생략생략생략생략생략',
         content:
           '샘플 포스트 제목 아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말아무말',
-        imageUrl: '/imgs/SamplePost.jpeg',
+        imageUrl: '/imgs/default_post.png',
         hashtags: ['스토리북세', '팅하기귀찮', '여긴네글'],
       }}
       onClick={() => undefined}

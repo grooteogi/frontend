@@ -24,10 +24,12 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
   const handleOnCloseModal = (e?: React.MouseEvent | React.KeyboardEvent) => {
     e?.preventDefault();
     setModalOpen(false);
+    e?.stopPropagation();
   };
   const moveToCreateReview = (e: React.MouseEvent) => {
     e.preventDefault();
     Router.push('/mypage/reviews/create');
+    e.stopPropagation();
   };
   const cancelReservation = async (reservationId: string) => {
     const response = await reservation.deleteReservation(reservationId);
@@ -92,6 +94,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                 onClick={e => {
                   e.preventDefault();
                   setModalOpen(true);
+                  e.stopPropagation();
                 }}
               />
               <Alert
@@ -115,6 +118,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                 onClick={e => {
                   e.preventDefault();
                   setModalOpen(true);
+                  e.stopPropagation();
                 }}
               />
               <Alert

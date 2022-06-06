@@ -57,7 +57,14 @@ const Styled = {
     display: flex;
     justify-content: space-between;
   `,
-  emailbuttonContainer: styled.div`
+  confirmContainer: styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+    align-items: start;
+  `,
+  emailbuttonContainer: styled.span`
     display: flex;
     justify-content: flex-end;
     column-gap: 0.5rem;
