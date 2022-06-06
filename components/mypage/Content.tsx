@@ -6,7 +6,7 @@ import Hamburger from 'hamburger-react';
 
 interface ContentProps {
   title: string;
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[] | false;
 }
 
 const Content: React.FC<ContentProps> = ({ title, children }) => {

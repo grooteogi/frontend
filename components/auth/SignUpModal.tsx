@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { validEmail, validPassword } from '@lib/validator';
 import { Field, Form, Formik, FormikErrors, useFormikContext } from 'formik';
 import auth from '@lib/api/auth';
-import Box from '@components/common/Box';
 import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import Input from '@components/common/Input';
@@ -28,6 +27,7 @@ const SignupForm = () => {
   const { email, password, passwordConfirm, code, allAgree } = values;
   const [emailClicked, setEmailClicked] = useState(false);
   const [emailChecked, setEmailChecked] = useState(false);
+  const [emailConfirmed, setEmailConfirmed] = useState(false);
   const [isReset, setIsReset] = useState(false);
   const router = useRouter();
 
@@ -63,6 +63,7 @@ const SignupForm = () => {
     if (response.status === 200) {
       setEmailChecked(true);
       alert('이메일 인증이 완료되었습니다!');
+      setEmailConfirmed(true);
       console.log('email verified confirmed');
     } else {
       alert('이메일 인증번호가 일치하지 않습니다.');
@@ -95,7 +96,7 @@ const SignupForm = () => {
         {emailClicked && !emailChecked && (
           <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
         )}
-        {emailClicked && !emailChecked && (
+        {emailClicked && !emailChecked && !emailConfirmed && (
           <Timer resetStatus={isReset} isStart={true} limitMin={3} fontColor={'black'} />
         )}
 
@@ -113,7 +114,7 @@ const SignupForm = () => {
             />
             <Button
               type={'button'}
-              name={'이메일 보내기'}
+              name={'인증 완료'}
               size={'md'}
               fontColor={'white'}
               borderColor={'none'}
@@ -208,7 +209,7 @@ const SignupForm = () => {
 
 const SignupModal = () => {
   return (
-    <Box width={450}>
+    <Styled.box>
       <Styled.container>
         <Title size="h1" color={'black'} align="left">
           🌳 간편 가입하기
@@ -252,7 +253,7 @@ const SignupModal = () => {
           <SignupForm />
         </Formik>
       </Styled.container>
-    </Box>
+    </Styled.box>
   );
 };
 

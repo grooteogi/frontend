@@ -7,8 +7,10 @@ import { FilterType } from 'types/enum';
 import useReservationList from '@components/mypage/useReservationList';
 import { getFilterTypeKeyByValue } from './apply';
 import SortingTab from '@components/common/SortingTab';
+import { useRouter } from 'next/router';
 
 const ReservationPage = () => {
+  const router = useRouter();
   const isHost = false;
   const [filter, setFilter] = useState(FilterType.ALL);
   console.log('all', FilterType.ALL);
@@ -22,7 +24,7 @@ const ReservationPage = () => {
       <SortingTab itemList={Object.values(FilterType)} value={filter} onClick={setFilter} />
       <Layout.listWrapper>
         {reservationList?.map(reservation => (
-          <Layout.myPageItem key={nanoid()}>
+          <Layout.myPageItem key={nanoid()} onClick={() => router.push(`/post/${reservation.postId}`)}>
             <MyPageCard reservation={reservation} cardType={'receive'} />
           </Layout.myPageItem>
         ))}

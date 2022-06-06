@@ -68,7 +68,6 @@ const Layout = {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-bottom: 40px;
   `,
   SectionLeft: styled.section<SidebarProps>`
     width: 25%;
@@ -79,17 +78,21 @@ const Layout = {
   `,
   SectionRight: styled.section`
     width: 75%;
-    ${theme.responsive.tablet} {
-      width: 100%;
-      padding: 0 2vw;
-    }
-    ${theme.responsive.mobile} {
-      padding: 0 3vw;
-      width: 100%;
-    }
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    height: auto;
+    min-height: calc(100vh - 80px - 7.225rem);
+    ${theme.responsive.tablet} {
+      width: 100%;
+      padding: 0 2vw;
+      min-height: calc(100vh - 100px - 7.225rem);
+    }
+    ${theme.responsive.mobile} {
+      width: 100%;
+      padding: 0 3vw;
+      min-height: calc(87vh - 7.225rem);
+    }
   `,
   PageTitle: styled.div`
     padding: 30px 0;
@@ -116,6 +119,10 @@ const Layout = {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+    & :hover {
+      cursor: pointer;
+    }
+    z-index: 2;
   `,
   inputListBox: styled.div`
     display: flex;
