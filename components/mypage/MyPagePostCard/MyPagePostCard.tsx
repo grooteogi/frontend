@@ -11,7 +11,7 @@ const MyPagePostCard: React.FC<{ post: PostListResponseDto }> = ({ post }) => {
     <Styled.container>
       <Styled.image>
         <Image
-          src={post.imageUrl === '' || !post.imageUrl ? '/imgs/default_profile.png' : post.imageUrl}
+          src={post.imageUrl === '' || !post.imageUrl ? '/imgs/default_post.png' : post.imageUrl}
           alt={'약속 사진'}
           size={'md'}
         />
