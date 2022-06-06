@@ -8,8 +8,9 @@ const SearchMenu = () => {
   const searchState = useSearchContext();
   const searchDispatch = useSearchDispatch();
 
-  const setKeyword = React.useCallback((keyword: string) => {
-    searchDispatch({ type: 'SET_KEYWORD', keyword });
+  const setHashtag = React.useCallback((hashtag: string) => {
+    searchDispatch({ type: 'SET_HASHTAG', hashtag });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { hashtags: data, status } = useHashtag();
@@ -28,7 +29,7 @@ const SearchMenu = () => {
   // ];
   return (
     <Styled.container>
-      {data !== undefined && <HorizontalScroll value={searchState.keyword} onClick={setKeyword} data={data} />}
+      {data !== undefined && <HorizontalScroll value={searchState.keyword} onClick={setHashtag} data={data} />}
     </Styled.container>
   );
 };
