@@ -27,11 +27,11 @@ export const post = {
     return await client.post(url, formData);
   },
   getSchedules: async (postId: string) => {
-    const url = `post/${postId}/schedules`;
+    const url = `post/schedules/${postId}`;
     return await client.get(url);
   },
   getReviews: async (postId: string) => {
-    const url = `post/${postId}/reviews`;
+    const url = `post/reviews/${postId}`;
     return await client.get(url);
   },
   updateLike: async (postId: string) => {
