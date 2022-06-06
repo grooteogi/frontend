@@ -44,10 +44,10 @@ export const post = {
   },
   search: async (params: { searchState: SearchStateType; pageParam: number }) => {
     const { searchState, pageParam } = params;
-    const { keyword, sort, region } = searchState;
+    const { hashtag, keyword, sort, region } = searchState;
     const sortValue = SortType[sort as keyof typeof SortType];
     console.log('keyword', keyword, ' region', region);
-    const url = `/post/search?keyword=${encodeURIComponent(
+    const url = `/post/search?hashtag=${hashtag}&keyword=${encodeURIComponent(
       keyword,
     )}&page=${pageParam}&filter=${sortValue}&region=${encodeURIComponent(region)}`;
     console.log(url);

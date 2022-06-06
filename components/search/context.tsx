@@ -2,18 +2,21 @@ import { useRouter } from 'next/router';
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
 
 export type SearchStateType = {
+  hashtag: string;
   keyword: string;
   sort: string;
   region: string;
 };
 
 const initialState: SearchStateType = {
+  hashtag: '',
   keyword: '',
   sort: '최신순',
   region: '강서구',
 };
 
 type SearchAction =
+  | { type: 'SET_HASHTAG'; hashtag: string }
   | { type: 'SET_KEYWORD'; keyword: string }
   | { type: 'SET_SORT'; sort: string }
   | { type: 'SET_REGION'; region: string };
@@ -25,6 +28,8 @@ const SearchDispatchContext = createContext<SearchDispatch>(() => null);
 
 const searchReducer = (state: SearchStateType, action: SearchAction): SearchStateType => {
   switch (action.type) {
+    case 'SET_HASHTAG':
+      return { ...state, hashtag: action.hashtag };
     case 'SET_KEYWORD':
       return { ...state, keyword: action.keyword };
     case 'SET_SORT':
@@ -40,6 +45,7 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const searchKeyword = router.query.searchKeyword as string;
   const [searchState, dispatchSearch] = useReducer(searchReducer, {
+    hashtag: '',
     keyword: searchKeyword ? searchKeyword : '',
     sort: '최신순',
     region: '강서구',
