@@ -24,6 +24,10 @@ const reservation = {
     const url = filter === 'ALL' ? `/reservation?isHost=${isHost}` : `/reservation?isHost=${isHost}&filter=${filter}`;
     return await client.get(url);
   },
+  deleteReservation: async (reservationId: string) => {
+    const url = `/reservation/${reservationId}`;
+    return client.delete(url, {});
+  },
 };
 
 export default reservation;
