@@ -69,7 +69,7 @@ const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData, refetch }) =>
           <Wrapper flexDirection={'row'} gap={{ gap: 10 }} alignItems={'center'}>
             <Styled.userPic
               src={
-                postData.mentor.imageUrl === '' || postData.mentor.imageUrl
+                postData.mentor.imageUrl === '' || !postData.mentor.imageUrl
                   ? '/imgs/default_profile.png'
                   : postData.mentor.imageUrl
               }
