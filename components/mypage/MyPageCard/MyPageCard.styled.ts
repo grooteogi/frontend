@@ -30,7 +30,8 @@ export const Styled = {
   `,
   hash: styled.div`
     display: flex;
-    column-gap: 6px;
+    gap: 6px;
+    flex-wrap: wrap;
   `,
   detail: styled.div``,
   spaceBetween: styled.div`
