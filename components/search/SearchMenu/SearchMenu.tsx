@@ -12,23 +12,23 @@ const SearchMenu = () => {
     searchDispatch({ type: 'SET_KEYWORD', keyword });
   }, []);
 
-  // const { hashtags: data } = useHashtag();
-  // console.log(data);
-  const data = [
-    '학교생활',
-    '대외활동',
-    '소프트웨어',
-    '개발자취업',
-    '코딩테스트',
-    '편입',
-    '유학',
-    '공무원준비',
-    '토익',
-    'PEET',
-  ];
+  const { hashtags: data, status } = useHashtag();
+  console.log(data);
+  // const data = [
+  //   '학교생활',
+  //   '대외활동',
+  //   '소프트웨어',
+  //   '개발자취업',
+  //   '코딩테스트',
+  //   '편입',
+  //   '유학',
+  //   '공무원준비',
+  //   '토익',
+  //   'PEET',
+  // ];
   return (
     <Styled.container>
-      <HorizontalScroll value={searchState.keyword} onClick={setKeyword} data={data} />
+      {data !== undefined && <HorizontalScroll value={searchState.keyword} onClick={setKeyword} data={data} />}
     </Styled.container>
   );
 };

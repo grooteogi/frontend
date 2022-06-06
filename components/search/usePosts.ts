@@ -1,5 +1,6 @@
 import post from '@lib/api/post';
 import { useInfiniteQuery, useQuery } from 'react-query';
+import { HashtagResponseDto } from 'types/response';
 import { SearchStateType } from './context';
 
 export const usePosts = (searchState: SearchStateType) => {
@@ -17,7 +18,10 @@ export const usePosts = (searchState: SearchStateType) => {
 };
 
 export const useHashtag = () => {
-  const data = useQuery<string>(['hashtags'], async () => (await post.getSearchHashtags()).data);
+  const { data, status } = useQuery<HashtagResponseDto[]>(
+    ['hashtags'],
+    async () => (await post.getSearchHashtags()).data,
+  );
   console.log('hashtags', data);
-  return { hashtags: data };
+  return { hashtags: data, status };
 };

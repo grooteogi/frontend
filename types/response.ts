@@ -9,6 +9,10 @@ export type ReservationCreateResponseDto = {
   reservationId: number;
 };
 
+export type HashtagResponseDto = {
+  name: string;
+};
+
 export type AuthSigninResponseDto = {
   nickname: string;
   imageUrl: string;
