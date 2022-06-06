@@ -1,15 +1,13 @@
 import React from 'react';
-import { usePageDispatch, useSearchDispatch } from '../context';
+import { useSearchDispatch } from '../context';
 import SearchBar from '@components/search/SearchBar';
 import Styled from './SearchInput.styled';
 
 const SearchInput = () => {
   const searchDispatch = useSearchDispatch();
-  const pageDispatch = usePageDispatch();
 
   const setKeyword = React.useCallback((keyword: string) => {
     searchDispatch({ type: 'SET_KEYWORD', keyword: keyword });
-    pageDispatch({ type: 'SET_PAGE', value: false });
   }, []);
 
   return (

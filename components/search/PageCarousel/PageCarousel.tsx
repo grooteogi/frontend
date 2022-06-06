@@ -1,10 +1,7 @@
 import React from 'react';
 import Carousel from '@components/common/Carousel';
-import { usePageContext } from '../context';
 
 const PageCarousel = () => {
-  const pageContext = usePageContext();
-
   const imgLists = [
     {
       src: '/imgs/Carousel1.png',
@@ -20,6 +17,6 @@ const PageCarousel = () => {
     },
   ];
 
-  return pageContext ? <Carousel imgLists={imgLists} /> : null;
+  return <Carousel imgLists={imgLists} />;
 };
 export default PageCarousel;
