@@ -12,7 +12,7 @@ interface ContentProps {
 const Content: React.FC<ContentProps> = ({ title, children }) => {
   const [isOpen, setOpen] = useState(false);
   const setSideClose = (e?: React.MouseEvent) => {
-    e?.preventDefault();
+    e?.stopPropagation();
     if (isOpen) {
       setOpen(false);
     }
