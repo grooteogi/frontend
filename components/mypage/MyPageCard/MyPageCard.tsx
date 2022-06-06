@@ -23,10 +23,12 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
   const handleOnCloseModal = (e?: React.MouseEvent | React.KeyboardEvent) => {
     e?.preventDefault();
     setModalOpen(false);
+    e?.stopPropagation();
   };
   const moveToCreateReview = (e: React.MouseEvent) => {
     e.preventDefault();
     Router.push('/mypage/reviews/create');
+    e.stopPropagation();
   };
   const cancelReservation = () => {
     console.log('취소하기 로직 고');
@@ -35,7 +37,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
     <Styled.container>
       <Styled.image>
         <Image
-          src={reservation.imageUrl === '' || reservation.imageUrl ? '/imgs/default_profile.png' : reservation.imageUrl}
+          src={reservation.imageUrl === '' || !reservation.imageUrl ? '/imgs/default_post.png' : reservation.imageUrl}
           alt={'약속 사진'}
           size={'md'}
         />
@@ -82,11 +84,13 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                 onClick={e => {
                   e.preventDefault();
                   setModalOpen(true);
+                  e.stopPropagation();
                 }}
               />
               <Alert
                 title={reservation.applyNickname}
                 content={reservation.text}
+                phoneNum={reservation.applyPhone}
                 isOpen={isModalOpen}
                 onRequestClose={handleOnCloseModal}
               />
@@ -105,6 +109,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                 onClick={e => {
                   e.preventDefault();
                   setModalOpen(true);
+                  e.stopPropagation();
                 }}
               />
               <Alert
