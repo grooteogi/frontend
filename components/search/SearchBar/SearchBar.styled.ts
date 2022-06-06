@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
+import Image from 'next/image';
 
 export interface SListProps {
   children: JSX.Element;
@@ -40,6 +41,14 @@ export const Styled = {
     height: 25px;
     padding: 4px;
     font-size: ${theme.fontSize.xs};
+  `,
+  image: styled(Image)`
+    &:hover {
+      cursor: pointer;
+    }
+  `,
+  listText: styled.div`
+    flex-grow: 1;
   `,
   ul: styled.ul`
     position: absolute;
