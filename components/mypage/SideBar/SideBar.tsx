@@ -17,7 +17,7 @@ const SideBar = () => {
       <Styled.nav>
         <Styled.ul>
           <Styled.li>
-            <Styled.h3>{isLoading ? null : profile?.name}님!</Styled.h3>
+            <Styled.h3>{isLoading ? null : profile?.nickname}님!</Styled.h3>
             <Styled.h3>{`안녕하세요 :)`}</Styled.h3>
           </Styled.li>
           {Object.entries(sideBarList).map(([key, value]) => (

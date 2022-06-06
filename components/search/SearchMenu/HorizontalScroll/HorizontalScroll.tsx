@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Styled } from './HorizontalScroll.style';
 import Image from 'next/image';
 import SearchButton from '../../SearchButton';
+import { HashtagResponseDto } from 'types/response';
 
 interface HorizontalScrollProps {
-  data: string[];
+  data: HashtagResponseDto[];
   value: string;
   onClick: (tagValue: string) => void;
 }
@@ -38,7 +39,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ data, value, onClic
     <Styled.container>
       <Styled.horizontalScroll ref={hScroll} onScroll={onHScroll}>
         {data.map(hash => {
-          return <SearchButton hashtag={hash} onClick={onClick} clicked={value === hash} key={hash} />;
+          return <SearchButton hashtag={hash.name} onClick={onClick} clicked={value === hash.name} key={hash.name} />;
         })}
       </Styled.horizontalScroll>
       {slideLeft > 0 ? <LeftArrow onClick={moveLeft} hideButton={hideButtonLeft} /> : <></>}
