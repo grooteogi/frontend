@@ -18,14 +18,20 @@ const formData = {
   '비밀번호 확인': 'passwordConfirm',
 };
 
-const PasswordForm = () => {
+interface PasswordFormProps {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const PasswordForm: React.FC<PasswordFormProps> = ({ setOpen }) => {
   const { values, errors, handleSubmit } = useFormikContext<PasswordFormilValues>();
   const { currentPassword, newPassword } = values;
   const handlePasswordClick = async () => {
     handleSubmit();
     const response = await user.modifyPassword({ currentPassword, newPassword });
-    if (response.status === 200) alert('패스워드 변경 성공');
-    else alert(response.message);
+    if (response.status === 200) {
+      alert('패스워드 변경 성공');
+      setOpen(false);
+    } else alert(response.message);
   };
   return (
     <Form>

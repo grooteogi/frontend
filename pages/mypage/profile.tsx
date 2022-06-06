@@ -1,5 +1,5 @@
 import Modify from '@components/mypage/Modify';
-import useProfile from '@components/mypage/useProfile';
+import { useProfile } from '@components/mypage/useProfile';
 import Content from '@components/mypage/Content';
 
 const Profile = () => {

@@ -45,7 +45,12 @@ export const post = {
     const { searchState, pageParam } = params;
     const { keyword, sort, region } = searchState;
     const sortValue = SortType[sort as keyof typeof SortType];
-    const url = `/post/search?keyword=${keyword}&page=${pageParam}&filter=${sortValue}&region=${region}`;
+    // const encodedValue = encodeURI(encodeURIComponent(region));
+    // const decodedValue = decodeURI(decodeURIComponent(encodedValue));
+    // console.log('region val', decodedValue);
+    const url = `/post/search?keyword=${encodeURIComponent(
+      keyword,
+    )}&page=${pageParam}&filter=${sortValue}&region=${encodeURIComponent(region)}`;
     console.log(url);
     return await client.get(url);
   },
