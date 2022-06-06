@@ -6,16 +6,17 @@ import Image from '../../common/Image';
 import Hashtag from '../../common/Hashtag';
 import { ReservationListResponseDto } from 'types/response';
 import Button from '@components/common/Button';
-import Link from 'next/link';
 import { nanoid } from 'nanoid';
 import Alert from '@components/mypage/Alert';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
+import reservation from '@lib/api/reservation';
 
 const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?: 'apply' | 'receive' }> = ({
-  reservation,
+  reservation: reservationData,
   cardType,
 }) => {
-  const reservationDate = new Date(reservation.date);
+  const router = useRouter();
+  const reservationDate = new Date(reservationData.date);
   const todayDate = new Date();
   const remainDate = Math.floor((reservationDate.getTime() - todayDate.getTime()) / (1000 * 3600 * 24));
   const [isModalOpen, setModalOpen] = useState(false);
@@ -30,14 +31,23 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
     Router.push('/mypage/reviews/create');
     e.stopPropagation();
   };
-  const cancelReservation = () => {
+  const cancelReservation = async (reservationId: string) => {
+    const response = await reservation.deleteReservation(reservationId);
+    if (response.status === 200) {
+      alert('약속이 취소되었습니다.');
+      router.reload();
+    }
     console.log('취소하기 로직 고');
   };
   return (
     <Styled.container>
       <Styled.image>
         <Image
-          src={reservation.imageUrl === '' || !reservation.imageUrl ? '/imgs/default_post.png' : reservation.imageUrl}
+          src={
+            reservationData.imageUrl === '' || reservationData.imageUrl
+              ? '/imgs/default_profile.png'
+              : reservationData.imageUrl
+          }
           alt={'약속 사진'}
           size={'md'}
         />
@@ -45,22 +55,22 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
       <Styled.info>
         <Styled.title>
           <Title size={'h3'} color={'black'} align={'left'}>
-            {reservation.title}
+            {reservationData.title}
           </Title>
         </Styled.title>
         <Styled.hash>
-          {reservation.hashtags.map(hash => (
+          {reservationData.hashtags.map(hash => (
             <Hashtag key={nanoid()} hashtag={hash} />
           ))}
         </Styled.hash>
         <Styled.detail>
           <Typography size={'xxs'} color={'gray700'}>
-            {reservation.date} {reservation.startTime} ~ {reservation.endTime}
+            {reservationData.date} {reservationData.startTime} ~ {reservationData.endTime}
           </Typography>
         </Styled.detail>
         <Styled.detail>
           <Typography size={'xxs'} color={'gray700'}>
-            {reservation.place}
+            {reservationData.place}
           </Typography>
         </Styled.detail>
         <Styled.spaceBetween>
@@ -88,16 +98,15 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                 }}
               />
               <Alert
-                title={reservation.applyNickname}
-                content={reservation.text}
-                phoneNum={reservation.applyPhone}
+                title={reservationData.applyNickname}
+                content={reservationData.text}
                 isOpen={isModalOpen}
                 onRequestClose={handleOnCloseModal}
               />
             </>
-          ) : new Date(reservation.date + ' ' + reservation.startTime).getTime() > todayDate.getTime() ? (
+          ) : new Date(reservationData.date + ' ' + reservationData.startTime).getTime() > todayDate.getTime() ? (
             <Button name={'취소하기'} color={'gray300'} fontColor={'white'} size={'sm'} onClick={cancelReservation} />
-          ) : reservation.score === 0 ? (
+          ) : reservationData.score === 0 ? (
             <Button name={'리뷰쓰기'} color={'primary'} fontColor={'white'} size={'sm'} onClick={moveToCreateReview} />
           ) : (
             <>
@@ -114,8 +123,8 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
               />
               <Alert
                 title={'내가 작성한 리뷰'}
-                score={reservation.score}
-                content={reservation.review}
+                score={reservationData.score}
+                content={reservationData.review}
                 isOpen={isModalOpen}
                 onRequestClose={handleOnCloseModal}
               />
