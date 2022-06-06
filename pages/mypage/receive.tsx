@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 const ReservationPage = () => {
   const router = useRouter();
-  const isHost = false;
+  const isHost = true;
   const [filter, setFilter] = useState(FilterType.ALL);
   console.log('all', FilterType.ALL);
   const { isLoading, reservationList, error } = useReservationList(isHost, getFilterTypeKeyByValue(filter));
