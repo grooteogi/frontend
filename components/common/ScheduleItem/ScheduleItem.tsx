@@ -9,7 +9,7 @@ const ScheduleItem: React.FC<ScheduleEntity> = ({ date, startTime, endTime, plac
   return (
     <Styled.container>
       <Styled.detailContainer>
-        <Typography size={'sm'} color={'black'}>
+        <Typography size={'xs'} color={'black'}>
           {moment(date, 'YYYY-MM-DD').locale('ko').format('MM월 DD일 (ddd)').toString()}{' '}
           {moment(date + ' ' + startTime, 'YYYY-MM-DD hh:mm:ss')
             .locale('ko')
@@ -26,7 +26,7 @@ const ScheduleItem: React.FC<ScheduleEntity> = ({ date, startTime, endTime, plac
         </Typography>
       </Styled.detailContainer>
       <Styled.regionContainer>
-        <Typography size={'sm'} color={'black'}>
+        <Typography size={'xs'} color={'black'}>
           {region}
         </Typography>
       </Styled.regionContainer>

@@ -96,45 +96,49 @@ const SignupForm = () => {
         {emailClicked && !emailChecked && (
           <Field type={'text'} name={'code'} placeholder={'인증번호를 입력하세요'} component={Input} />
         )}
-        {emailClicked && !emailChecked && !emailConfirmed && (
-          <Timer resetStatus={isReset} isStart={true} limitMin={3} fontColor={'black'} />
-        )}
 
         {emailClicked && !emailChecked && (
-          <Styled.emailbuttonContainer>
-            <Button
-              type={'button'}
-              name={'재전송'}
-              size={'md'}
-              fontColor={'white'}
-              borderColor={'none'}
-              color={email && !errors.email ? 'black' : 'gray200'}
-              onClick={resendEmailClick}
-              style={{ alignSelf: 'flex-start' }}
-            />
-            <Button
-              type={'button'}
-              name={'인증 완료하기'}
-              size={'md'}
-              fontColor={'white'}
-              borderColor={'none'}
-              color={'black'}
-              onClick={handleCheckEmail}
-              style={{ alignSelf: 'flex-end' }}
-            />
-          </Styled.emailbuttonContainer>
+          <Styled.confirmContainer>
+            {emailClicked && !emailChecked && !emailConfirmed && (
+              <span>
+                <Timer resetStatus={isReset} isStart={true} limitMin={3} fontColor={'black'} />
+              </span>
+            )}
+            <Styled.emailbuttonContainer>
+              <Button
+                type={'button'}
+                name={'재전송'}
+                size={'sm'}
+                fontColor={'white'}
+                borderColor={'none'}
+                color={email && !errors.email ? 'black' : 'gray200'}
+                onClick={resendEmailClick}
+                style={{ width: 'fit-content', padding: '1rem' }}
+              />
+              <Button
+                type={'button'}
+                name={'인증 완료하기'}
+                size={'sm'}
+                fontColor={'white'}
+                borderColor={'none'}
+                color={'black'}
+                onClick={handleCheckEmail}
+                style={{ width: 'fit-content', padding: '1rem' }}
+              />
+            </Styled.emailbuttonContainer>
+          </Styled.confirmContainer>
         )}
         {!emailClicked && (
           <Button
             type={'button'}
             name={'이메일 인증'}
-            size={'md'}
+            size={'sm'}
             fontColor={'white'}
             borderColor={'none'}
             color={email && !errors.email ? 'black' : 'gray200'}
             disabled={!(email && !errors.email)}
             onClick={handleSendEmail}
-            style={{ alignSelf: 'flex-end' }}
+            style={{ alignSelf: 'flex-end', width: 'fit-content', padding: '1rem' }}
           />
         )}
 
