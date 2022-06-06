@@ -1,15 +1,17 @@
 import user from '@lib/api/user';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { UserProfileResponseDto } from 'types/response';
 
-const useProfile = () => {
+export const useProfile = () => {
   const { isLoading, data, error } = useQuery<UserProfileResponseDto>(
     ['profile'],
     async () => (await user.getProfile()).data,
-    { staleTime: Infinity },
+    { refetchOnWindowFocus: false, cacheTime: 0 },
   );
   console.log('profile', data);
   return { isLoading, profile: data, error };
 };
 
-export default useProfile;
+export const useProfileMutation = () => {
+  return useMutation(user.modifyProfile);
+};

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { Styled } from './SearchBar.styled';
 import Typography from '@components/common/Typography';
 
@@ -42,7 +41,7 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
           onChange={handleFilter}
           placeholder={placeholder}
         />
-        <Image
+        <Styled.image
           src={'/logos/search.png'}
           alt={'search icon not found'}
           width={'16px'}
@@ -56,15 +55,21 @@ const SearchBar: React.FC<InputProps> = ({ onSearchClick, placeholder }) => {
         <Styled.ul>
           {filteredData.map(item => (
             <Styled.li key={item.keyword}>
-              <Typography size={'sm'} color={'black'}>
-                {item.keyword}
-              </Typography>
-              <Image
+              <Styled.listText
+                onMouseDown={() => {
+                  onSearchClick(item.keyword);
+                }}
+              >
+                <Typography size={'sm'} color={'black'}>
+                  {item.keyword}
+                </Typography>
+              </Styled.listText>
+              <Styled.image
                 src="/logos/arrow-up.png"
                 alt="arrow icon not found"
                 width={'12x'}
                 height={'12px'}
-                onClick={() => {
+                onMouseDown={() => {
                   setKeyword(item.keyword);
                   setFilteredData([]);
                 }}

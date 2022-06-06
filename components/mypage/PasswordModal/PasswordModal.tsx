@@ -55,17 +55,17 @@ const PasswordModal: React.FC<PasswordModalProps> = ({ open, setOpen }) => {
               passwordConfirm: '',
             };
 
-            if (values.newPassword && !validPassword(values.newPassword))
+            if (!values.newPassword || !validPassword(values.newPassword))
               errors.newPassword = '유효하지 않은 비밀번호입니다.';
-            if (values.passwordConfirm && values.newPassword !== values.passwordConfirm)
+            if (!values.passwordConfirm || values.newPassword !== values.passwordConfirm)
               errors.passwordConfirm = '비밀번호가 일치하지 않습니다.';
             return errors;
           }}
           onSubmit={values => {
-            console.log('formData', values);
+            console.log('handle formData', values);
           }}
         >
-          <PasswordForm />
+          <PasswordForm setOpen={setOpen} />
         </Formik>
       </Styled.container>
     </Modal>
