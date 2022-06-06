@@ -114,7 +114,7 @@ const SignupForm = () => {
             />
             <Button
               type={'button'}
-              name={'인증 완료'}
+              name={'인증 완료하기'}
               size={'md'}
               fontColor={'white'}
               borderColor={'none'}
