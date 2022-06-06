@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import { useProfile } from '../useProfile';
 import Styled from './SideBar.styled';
 
 const SideBar = () => {
-  const userId = '그루트 1';
+  const { profile, isLoading } = useProfile();
+
   const sideBarList = {
     '신청한 약속': '/mypage/apply',
     '신청받은 약속': '/mypage/receive',
@@ -15,7 +17,7 @@ const SideBar = () => {
       <Styled.nav>
         <Styled.ul>
           <Styled.li>
-            <Styled.h3>{`${userId}님!`}</Styled.h3>
+            <Styled.h3>{isLoading ? null : profile?.name}님!</Styled.h3>
             <Styled.h3>{`안녕하세요 :)`}</Styled.h3>
           </Styled.li>
           {Object.entries(sideBarList).map(([key, value]) => (
