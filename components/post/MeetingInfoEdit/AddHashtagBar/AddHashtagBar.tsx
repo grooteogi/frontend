@@ -29,8 +29,10 @@ const AddHashtagBar: React.FC = () => {
         inputRef.current.value = '';
       }
     }
-    // e.preventDefault();
-    e.stopPropagation();
+    if (e.key === 'Enter') {
+      e.stopPropagation();
+      e.preventDefault();
+    }
   };
 
   return (

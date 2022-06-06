@@ -25,7 +25,7 @@ const Detail: NextPage = () => {
       <ShowSchedule schedules={schedulesData} />
       <ReviewList reviews={reviewsData} />
       <StickyBar
-        buttonName={'약속 신청하기'}
+        buttonName={'약속 수정하기'}
         onClick={() => router.push({ pathname: '/reservation/[postId]', query: { postId } })}
       />
     </Layout.container>

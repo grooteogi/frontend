@@ -11,10 +11,7 @@ const Styled = {
     flex-direction: column;
     justify-content: center;
     margin-top: 40px;
-    z-index: 3;
-    ${theme.responsive.mobile} {
-      height: 7.225rem;
-    }
+    height: 7.225rem;
   `,
   paragraph: styled.div`
     color: ${theme.color.white};

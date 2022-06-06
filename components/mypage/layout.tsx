@@ -81,16 +81,17 @@ const Layout = {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    height: auto;
+    min-height: calc(100vh - 80px - 7.225rem);
     ${theme.responsive.tablet} {
       width: 100%;
       padding: 0 2vw;
-      height: calc(80vh - 7.225rem);
+      min-height: calc(100vh - 100px - 7.225rem);
     }
     ${theme.responsive.mobile} {
       width: 100%;
       padding: 0 3vw;
-      height: calc(87vh - 7.225rem);
-      max-height: fit-content;
+      min-height: calc(87vh - 7.225rem);
     }
   `,
   PageTitle: styled.div`
