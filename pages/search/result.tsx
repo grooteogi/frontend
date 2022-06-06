@@ -36,6 +36,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       (
         await post.search({
           searchState: {
+            hashtag: '',
             keyword: searchKeyword,
             sort: '',
             region: '',
