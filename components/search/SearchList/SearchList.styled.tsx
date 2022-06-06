@@ -4,7 +4,7 @@ import theme from '@styles/theme';
 const Styled = {
   container: styled.div`
     display: grid;
-    place-items: center center;
+    place-items: stretch center;
     justify-content: space-evenly;
     ${theme.responsive.pc} {
       grid-template-columns: repeat(4, 1fr);

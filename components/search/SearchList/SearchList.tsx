@@ -2,26 +2,17 @@ import React from 'react';
 import Styled from './SearchList.styled';
 import { useSearchContext } from '../context';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import post from '@lib/api/post';
 import PostSkeleton from '@components/common/PostCard/PostSkeleton';
 import PostCard from '@components/common/PostCard';
 import { PostEntity } from 'types/entity';
-import { useInfiniteQuery } from 'react-query';
 import { useRouter } from 'next/router';
+import { usePosts } from '../usePosts';
 
 const SearchList = () => {
   const router = useRouter();
   const searchState = useSearchContext();
-  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
-    ['posts', searchState],
-    async ({ pageParam = 1 }) => (await post.search({ searchState, pageParam })).data,
-    {
-      getNextPageParam: (lastPage, allPages) => {
-        if (lastPage === undefined) return undefined;
-        else return allPages.length < lastPage.pageCount && allPages.length + 1;
-      },
-    },
-  );
+
+  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = usePosts(searchState);
 
   const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) =>
     hasNextPage && isIntersecting && !isFetchingNextPage ? fetchNextPage() : null;

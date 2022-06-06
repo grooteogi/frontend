@@ -1,4 +1,3 @@
-import theme from '@styles/theme';
 import styled from '@emotion/styled';
 
 export interface StyledImageProps {
