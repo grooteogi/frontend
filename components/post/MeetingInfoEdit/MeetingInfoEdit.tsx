@@ -17,8 +17,7 @@ export type MeetingInfoEditProps = {
 
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
   const router = useRouter();
-  const isEdit = router.query.postId ? true : false;
-  //   console.log('path', router.query);
+  const isEdit = router.query.postId;
 
   return (
     <Form id="createPage">
