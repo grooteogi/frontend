@@ -5,7 +5,6 @@ import 'antd/dist/antd.css';
 export type ImgItem = {
   src: string;
   alt?: string;
-  link?: string;
 };
 
 export interface CarouselProps {
@@ -17,11 +16,9 @@ const Carousel: React.FC<CarouselProps> = ({ ondbClick, imgLists }) => {
   let idx = 0;
   return (
     <Styled.carousel autoplay dotPosition={'bottom'}>
-      {imgLists.map(({ src, alt = '', link }: ImgItem) => (
+      {imgLists.map(({ src, alt = '' }: ImgItem) => (
         <div key={idx++}>
-          <a href={link && link}>
-            <Styled.item src={src} onDoubleClick={ondbClick} alt={alt && alt} />
-          </a>
+          <Styled.item src={src} onDoubleClick={ondbClick} alt={alt && alt} />
         </div>
       ))}
     </Styled.carousel>
