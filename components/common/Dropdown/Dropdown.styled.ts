@@ -29,7 +29,7 @@ const Styled = {
     justify-content: right;
     padding-right: 2.5rem;
     font-size: 1rem;
-    background: url('./icons/expand_more.svg') calc(100% - 0.5rem) center no-repeat;
+    background: url('/icons/expand_more.svg') calc(100% - 0.5rem) center no-repeat;
     background-size: 1rem;
     cursor: pointer;
   `,

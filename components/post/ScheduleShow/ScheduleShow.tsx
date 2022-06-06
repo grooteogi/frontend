@@ -29,7 +29,6 @@ const ScheduleItems: React.FC<ScheduleProps> = ({ schedules }) => {
             region={region}
             place={place}
           />
-          <Styled.hr />
         </Styled.itemBox>
       ))}
     </Styled.scroll>

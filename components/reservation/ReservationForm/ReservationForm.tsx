@@ -28,14 +28,21 @@ const PhoneVerifyForm = () => {
       alert('메세지가 전송되었습니다!');
       setFieldValue('isSend', true);
       console.log('Success sms');
-    } else console.log('Fail sms');
+    } else {
+      alert('메시지 전송을 실패하였습니다.');
+      console.log('Fail sms');
+    }
   };
   const handleConfirmMessage = async () => {
     const response = await reservation.confirmMessage({ phoneNumber, code });
     if (response.status === 200) {
       setFieldValue('isVerify', true);
       console.log('Success sms');
-    } else console.log('Fail sms');
+      alert('전화번호 인증이 완료되었습니다.');
+    } else {
+      console.log('Fail sms');
+      alert('전화번호 인증번호가 옳지 않습니다.');
+    }
   };
   return (
     <>
@@ -77,7 +84,7 @@ const PhoneVerifyForm = () => {
         <Styled.innerContainer>
           <Field
             type={'text'}
-            placeholder={'SMS로 수신된 인증번호 5자리 입력해주세요.'}
+            placeholder={'SMS로 수신된 인증번호 4자리 입력해주세요.'}
             name={'code'}
             id={'code'}
             component={Input}
@@ -92,7 +99,7 @@ const PhoneVerifyForm = () => {
             onClick={handleConfirmMessage}
           />
         </Styled.innerContainer>
-        <Timer isStart={values.isSend} limitMin={2} fontColor={'primary'} />
+        <Timer isStart={values.isSend} limitMin={3} fontColor={'primary'} />
       </Styled.inputContainer>
     </>
   );

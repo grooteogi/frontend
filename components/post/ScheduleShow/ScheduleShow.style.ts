@@ -2,6 +2,7 @@ import Typography from '@components/common/Typography';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { darken } from 'polished';
+import theme from '@styles/theme';
 
 interface SScorllProps {
   standardHeight: number;
@@ -58,11 +59,19 @@ export const Styled = {
       width: 0;
       height: 0;
     }
+    & >*{
+      border-bottom: 1px solid ${theme.color.gray400};
+    }
+    & :last-of-type {
+      border-bottom: 0px;
+    }
+    }
   `,
   itemBox: styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 10px 0;
   `,
   bottom: styled.div`
     display: flex;

@@ -102,7 +102,7 @@ const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData, refetch }) =>
           <Hashtag key={nanoid()} hashtag={hashtag} />
         ))}
       </Wrapper>
-      <Typography size={'md'} color={'darkgray'}>
+      <Typography size={'sm'} color={'darkgray'}>
         {postData.content}
       </Typography>
       {postData.isAuthor && <AuthButtonPanel postId={postData.postId} />}
