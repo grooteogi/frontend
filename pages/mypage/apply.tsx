@@ -16,7 +16,7 @@ export function getFilterTypeKeyByValue(value: string) {
 
 const ReservationPage = () => {
   const router = useRouter();
-  const isHost = true;
+  const isHost = false;
   const [filter, setFilter] = useState(FilterType.ALL);
   console.log('all', FilterType.ALL);
   const { isLoading, reservationList, error } = useReservationList(isHost, getFilterTypeKeyByValue(filter));
