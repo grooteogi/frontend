@@ -29,8 +29,8 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
     e.preventDefault();
     Router.push('/mypage/reviews/create');
   };
-  const cancelReservation = async (reservationId: string) => {
-    const response = await reservation.deleteReservation(reservationId);
+  const cancelReservation = async () => {
+    const response = await reservation.deleteReservation(reservationData.reservationId);
     if (response.status === 200) {
       alert('약속이 취소되었습니다.');
       router.reload();
@@ -42,7 +42,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
       <Styled.image>
         <Image
           src={
-            reservationData.imageUrl === '' || reservationData.imageUrl
+            reservationData.imageUrl === '' || !reservationData.imageUrl
               ? '/imgs/default_profile.png'
               : reservationData.imageUrl
           }

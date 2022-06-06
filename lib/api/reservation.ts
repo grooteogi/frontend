@@ -24,7 +24,7 @@ const reservation = {
     const url = filter === 'ALL' ? `/reservation?isHost=${isHost}` : `/reservation?isHost=${isHost}&filter=${filter}`;
     return await client.get(url);
   },
-  deleteReservation: async (reservationId: string) => {
+  deleteReservation: async (reservationId: number | string) => {
     const url = `/reservation/${reservationId}`;
     return client.delete(url, {});
   },
