@@ -5,12 +5,15 @@ const Styled = {
   footer: styled.footer`
     width: 100%;
     height: auto;
-    position: relative;
     bottom: 0;
     background: ${theme.color.deepdarkgray};
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 40px;
+    ${theme.responsive.mobile} {
+      height: 7.225rem;
+    }
   `,
   paragraph: styled.div`
     color: ${theme.color.white};

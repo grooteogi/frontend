@@ -1,5 +1,4 @@
 import Link from '@components/common/Link';
-import Box from '@components/common/Box';
 import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import Input from '@components/common/Input';
@@ -26,7 +25,7 @@ const SignInModal = () => {
   });
 
   return (
-    <Box width={450} height={550}>
+    <Styled.box>
       <Styled.container>
         <Title size="h1" color={'black'} align="left">
           🌳 그루터기
@@ -77,7 +76,7 @@ const SignInModal = () => {
           </Styled.labelContainer>
         </Styled.formContainer>
       </Styled.container>
-    </Box>
+    </Styled.box>
   );
 };
 

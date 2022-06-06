@@ -12,7 +12,7 @@ const SignInModal = () => {
   const GOOGLE_AUTH = process.env.NEXT_PUBLIC_GOOGLE_AUTH;
 
   return (
-    <Box width={450}>
+    <Styled.box>
       <Styled.container>
         <Title size="h1" color={'black'} align="left">
           🌳 그루터기
@@ -57,7 +57,7 @@ const SignInModal = () => {
           />
         </Styled.buttonContainer>
       </Styled.container>
-    </Box>
+    </Styled.box>
   );
 };
 export default SignInModal;
