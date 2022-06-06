@@ -22,9 +22,18 @@ const Layout = {
     flex-direction: row;
     gap: 10%;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    height: auto;
     ${theme.responsive.tablet} {
       flex-direction: column;
+      width: 100%;
+      padding: 0 2vw;
+      min-height: calc(100vh - 100px - 7.225rem);
+    }
+    ${theme.responsive.mobile} {
+      flex-direction: column;
+      width: 100%;
+      padding: 0 3vw;
+      min-height: calc(87vh - 7.225rem);
     }
   `,
   SectionLeft: styled.section`

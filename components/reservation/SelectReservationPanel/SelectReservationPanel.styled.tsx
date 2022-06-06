@@ -42,12 +42,18 @@ const Styled = {
     ${theme.responsive.mobile} {
       max-height: 220px;
     }
+    & > * {
+      border-bottom: 1px solid ${theme.color.gray400};
+    }
+    & :last-of-type {
+      border-bottom: 0px;
+    }
   `,
   itemBox: styled.div`
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 10px 0;
     align-items: flex-start;
     border-bottom: 1px solid ${theme.color.gray200};
     &:last-of-type {
