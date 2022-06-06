@@ -8,7 +8,7 @@ import { ReservationListResponseDto } from 'types/response';
 import Button from '@components/common/Button';
 import { nanoid } from 'nanoid';
 import Alert from '@components/mypage/Alert';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import reservation from '@lib/api/reservation';
 
 const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?: 'apply' | 'receive' }> = ({
@@ -28,11 +28,11 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
   };
   const moveToCreateReview = (e: React.MouseEvent) => {
     e.preventDefault();
-    Router.push('/mypage/reviews/create');
+    router.push('/mypage/reviews/create');
     e.stopPropagation();
   };
   const cancelReservation = async () => {
-    const response = await reservation.deleteReservation(reservationData.reservationId);
+    const response = await reservation.deleteReservation(reservationData.reservationId.toString());
     if (response.status === 200) {
       alert('약속이 취소되었습니다.');
       router.reload();

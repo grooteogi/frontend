@@ -22,7 +22,7 @@ export type ReviewsResponseDto = {
 };
 
 export type ReservationListResponseDto = {
-  postId: number;
+  postId: number | string;
   imageUrl: string;
   title: string;
   hashtags: string[];
