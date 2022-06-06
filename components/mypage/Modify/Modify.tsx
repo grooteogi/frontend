@@ -14,6 +14,7 @@ import user from '@lib/api/user';
 import auth from '@lib/api/auth';
 import { ModifyUserProfileRequestDto } from 'types/request';
 import PasswordModal from '../PasswordModal';
+import { storage } from '@lib/storage';
 
 interface ModifyProps {
   profile: UserProfileResponseDto;
@@ -32,14 +33,16 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
     },
     onSubmit: async values => {
       const response = await user.modifyProfile(values);
-      if (response.status === 200) alert(response.message);
-      else alert('회원정보 수정에 실패하였습니다.');
+      if (response.status === 200) alert('회원정보 수정 완료되었습니다.');
+      else alert(response.message);
     },
   });
   const handleWithDrawal = async () => {
     const status = await auth.withDrawal();
-    if (status === 200) location.href = '/';
-    else alert('회원탈퇴에 실패하였습니다.');
+    if (status === 200) {
+      storage.clearToken();
+      location.href = '/';
+    } else alert('회원탈퇴에 실패하였습니다.');
   };
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -64,7 +67,7 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
     비밀번호: (<Button color={'primary'} fontColor={'white'} name={'변경하기'} size={'sm'} type={'button'} onClick={() => setOpen(true)}/>),
     '프로필 사진': (
       <>
-        <Image src={modifyFormik.values.imageUrl} alt={'profile img not found'} size={'md'} />
+        <Image src={modifyFormik.values.imageUrl ? modifyFormik.values.imageUrl : 'default_profile.png'} alt={'profile img not found'} size={'md'} />
         <Wrapper flexDirection={'row'} padding={{ paddingTop: '15px' }} gap={{ columnGap: 2 }}>
           <input id="imageUrl" name="imageUrl" type={'file'} ref={hiddenFileInput} onChange={handleFileChange} hidden />
           <Button color={'primary'} fontColor={'white'} name={'프로필 변경'} size={'sm'} type={'button'} onClick={handleClick}/>
@@ -91,7 +94,7 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
       </Layout.complete>
       <Divider style={{ gridColumn: '1 / span 3' }} />
       <Layout.footer>
-        <Wrapper flexDirection={'column'}>
+        <Wrapper flexDirection={'column'} gap={{ rowGap: 8 }}>
           <Typography size={'md'} color={'darkgray'}>
             회원 탈퇴
           </Typography>
