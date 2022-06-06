@@ -3,8 +3,10 @@ import { nanoid } from 'nanoid';
 import MyPagePostCard from '@components/mypage/MyPagePostCard';
 import Content from '@components/mypage/Content';
 import usePostList from '@components/mypage/usePostList';
+import { useRouter } from 'next/router';
 
 const ReservationPage = () => {
+  const router = useRouter();
   const type = 'write';
   const { isLoading, postList, error } = usePostList(type);
 
@@ -14,7 +16,7 @@ const ReservationPage = () => {
     <Content title={'작성한 포스트'}>
       <Layout.listWrapper>
         {postList?.map(post => (
-          <Layout.myPageItem key={nanoid()}>
+          <Layout.myPageItem key={nanoid()} onClick={() => router.push(`/post/${post.postId}`)}>
             <MyPagePostCard key={nanoid()} post={post} />
           </Layout.myPageItem>
         ))}

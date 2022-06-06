@@ -6,6 +6,7 @@ import useReservationList from '@components/mypage/useReservationList';
 import SortingTab from '@components/common/SortingTab';
 import { FilterType } from 'types/enum';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export function getFilterTypeKeyByValue(value: string) {
   const index = Object.values(FilterType).indexOf(value as unknown as FilterType);
@@ -14,6 +15,7 @@ export function getFilterTypeKeyByValue(value: string) {
 }
 
 const ReservationPage = () => {
+  const router = useRouter();
   const isHost = true;
   const [filter, setFilter] = useState(FilterType.ALL);
   console.log('all', FilterType.ALL);
@@ -27,7 +29,7 @@ const ReservationPage = () => {
       <SortingTab itemList={Object.values(FilterType)} value={filter} onClick={setFilter} />
       <Layout.listWrapper>
         {reservationList?.map(reservation => (
-          <Layout.myPageItem key={nanoid()}>
+          <Layout.myPageItem key={nanoid()} onClick={() => router.push(`/post/${reservation.postId}`)}>
             <MyPageCard reservation={reservation} cardType={'apply'} />
           </Layout.myPageItem>
         ))}
