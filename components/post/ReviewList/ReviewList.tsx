@@ -5,6 +5,7 @@ import Styled from './ReviewList.style';
 import { ReviewEntity } from 'types/entity';
 import { Rate } from 'antd';
 import 'antd/dist/antd.css';
+import moment from 'moment';
 
 interface ReviewListProps {
   reviews: ReviewEntity[] | undefined;
@@ -28,7 +29,7 @@ const ReviewItems: React.FC<{ reviews: ReviewEntity[] }> = ({ reviews }) => {
               </Styled.reviewInfoHeaderLeft>
               <Styled.reviewInfoHeaderRight>
                 <Typography size={'xs'} color={'black'}>
-                  {createAt}
+                  {moment(createAt).format('YYYY-MM-DD HH:mm')}
                 </Typography>
               </Styled.reviewInfoHeaderRight>
             </Styled.reviewInfoHeader>

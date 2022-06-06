@@ -28,6 +28,16 @@ export type PostCreateRequestDto = {
   schedules: Omit<ScheduleEntity, 'scheduleId'>[];
 };
 
+export type PostEditRequestDto = {
+  postId: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  hashtags: string[]; // 최대 5개
+  creditType: keyof typeof CreditType | string;
+  schedules: Omit<ScheduleEntity, 'scheduleId'>[];
+};
+
 export type ReservationCreateRequestDto = {
   scheduleId: number;
   phoneNumber?: string;

@@ -40,18 +40,31 @@ const UploadImage = () => {
     }
   }, []);
 
-  const onChangeFiles = useCallback(async (e: ChangeEvent<HTMLInputElement> | any) => {
-    if (e.type === 'drop') {
-      const file = e.dataTransfer.files[0];
-      const data = new FormData();
-      data.append('multipartFile', file);
+  const onChangeFiles = useCallback(
+    async (e: ChangeEvent<HTMLInputElement> | any) => {
+      console.log('event', e);
+      if (e.type === 'drop') {
+        const file = e.dataTransfer.files[0];
+        const data = new FormData();
+        data.append('multipartFile', file);
 
-      const res = await image.upload(data);
-      console.log('res', res);
-      if (res.status === 200 || res.status === 202) setFieldValue('imageUrl', res.data);
-      else alert('업로드 실패');
-    }
-  }, []);
+        const res = await image.upload(data);
+        console.log('res', res);
+        if (res.status === 200 || res.status === 202) setFieldValue('imageUrl', res.data);
+        else alert('업로드 실패');
+      } else if (e.type === 'change') {
+        const file = e.target.files[0];
+        const data = new FormData();
+        data.append('multipartFile', file);
+
+        const res = await image.upload(data);
+        console.log('res', res);
+        if (res.status === 200 || res.status === 202) setFieldValue('imageUrl', res.data);
+        else alert('업로드 실패');
+      }
+    },
+    [setFieldValue],
+  );
 
   const handleDrop = useCallback(
     (e: DragEvent): void => {
@@ -101,7 +114,7 @@ const UploadImage = () => {
 
   return (
     <Styled.container ref={dragRef}>
-      <input id={'imageUrl'} name={'imageUrl'} type={'file'} hidden />
+      <input id={'imageUrl'} name={'imageUrl'} type={'file'} onChange={onChangeFiles} hidden />
       <Styled.labelContainer htmlFor={'imageUrl'}>
         {imageUrl ? (
           <Styled.img src={imageUrl} />

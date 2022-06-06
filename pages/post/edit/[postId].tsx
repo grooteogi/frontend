@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { CreditType } from 'types/enum';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { PostCreateRequestDto } from 'types/request';
+import { PostEditRequestDto } from 'types/request';
 
 import Layout from '@components/post/layout';
 import ScheduleEdit from '@components/post/ScheduleEdit/ScheduleEdit';
@@ -16,6 +16,7 @@ import moment from 'moment';
 
 import useSchedules from '@components/post/useSchedules';
 import { dehydrate, QueryClient } from 'react-query';
+import { validEmptyData } from '@lib/validator';
 
 const PostEditPage: NextPage = () => {
   const router = useRouter();
@@ -27,26 +28,32 @@ const PostEditPage: NextPage = () => {
 
   useRouteWarning(saved, '포스트가 저장되지 않았습니다. 정말 나가시겠습니까?');
 
-  const handleSubmit = async (data: PostCreateRequestDto) => {
-    const response = await post.createPost(data);
+  const handleSubmit = async (data: PostEditRequestDto) => {
+    if (validEmptyData(data)) {
+      return alert('빈 항목이 있습니다.');
+    }
+    const response = await post.modifyPost(data);
     if (response.status === 200) {
-      alert('약속 생성 완료!');
+      alert('약속 수정 완료!');
       router.push('/');
-    } else alert('포스트생성 실패!');
+    } else alert('포스트수정 실패!');
   };
 
   return (
     <Formik
       initialValues={{
+        postId: postData?.postId ?? '',
         title: postData?.title ?? '',
         content: postData?.content ?? '',
         imageUrl: postData?.imageUrl ?? '',
         hashtags: postData?.hashtags ?? [],
-        creditType: postData?.creditType ?? CreditType['DIRECT' as const],
+        creditType: postData?.creditType
+          ? CreditType[postData.creditType as unknown as keyof typeof CreditType]
+          : CreditType['DIRECT' as const],
         schedules: schedulesData ?? [],
       }}
       enableReinitialize={true}
-      onSubmit={async (data: PostCreateRequestDto) => {
+      onSubmit={async (data: PostEditRequestDto) => {
         const { schedules, creditType } = data;
         schedules.forEach(({ startTime, endTime }: { startTime: string; endTime: string }, index: number) => {
           schedules[index].startTime = moment(startTime, 'HH:mm:ss').format('HH:mm:ss');
@@ -54,7 +61,7 @@ const PostEditPage: NextPage = () => {
         });
         data.creditType =
           Object.keys(CreditType).find(key => CreditType[key as keyof typeof CreditType] === creditType) ??
-          CreditType['DIRECT' as const];
+          CreditType['DIRECT' as keyof typeof CreditType];
         setSaved(true);
         handleSubmit(data);
       }}

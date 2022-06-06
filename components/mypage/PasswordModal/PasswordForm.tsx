@@ -61,7 +61,7 @@ const PasswordForm: React.FC<PasswordFormProps> = ({ setOpen }) => {
           name="변경하기"
           color={'primary'}
           fontColor={'white'}
-          size={'sm'}
+          size={'md'}
           style={{ flexGrow: 1 }}
           type={'submit'}
           onClick={handlePasswordClick}

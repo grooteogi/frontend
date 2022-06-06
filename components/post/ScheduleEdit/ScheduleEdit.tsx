@@ -12,6 +12,7 @@ import Button from '@components/common/Button';
 import ScheduleItem from '@components/common/ScheduleItem';
 import { PostCreateRequestDto } from 'types/request';
 import moment from 'moment';
+import { validSchedule } from '@lib/validator';
 
 export interface CreateScheduleProps {
   schedules?: Omit<ScheduleEntity, 'scheduleId'>[];
@@ -41,9 +42,12 @@ const ScheduleItems: React.FC<CreateScheduleProps> = ({ schedules }) => {
   );
 };
 
-const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: Omit<ScheduleEntity, 'scheduleId'>) => void }> = ({
-  onCreateSchedule,
-}) => {
+interface ScheduleCreateFormProps {
+  onCreateSchedule: (newSchedule: Omit<ScheduleEntity, 'scheduleId'>) => void;
+  schedules: Omit<ScheduleEntity, 'scheduleId'>[];
+}
+
+const ScheduleCreateForm: React.FC<ScheduleCreateFormProps> = ({ onCreateSchedule, schedules }) => {
   const [regionInput, setRegionInput] = useState(enumToArray(RegionList)[0]);
   const scheduleFormik = useFormik({
     initialValues: {
@@ -52,12 +56,17 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: Omit<Schedu
       startTime: '',
       endTime: '',
     },
-    onSubmit: values => {
+    onSubmit: (values, actions) => {
       const newSchedule = {
         region: regionInput,
         ...values,
       };
-      onCreateSchedule(newSchedule);
+      if (validSchedule(schedules, newSchedule)) {
+        onCreateSchedule(newSchedule);
+        actions.resetForm();
+      } else {
+        alert('약속시간이 중복됩니다.');
+      }
     },
   });
 
@@ -66,13 +75,13 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: Omit<Schedu
       <Styled.innerContainer>
         <Styled.row>
           <Typography size={'sm'} color={'black'}>
-            약속지역
+            지역
           </Typography>
           <Dropdown value={regionInput} list={enumToArray(RegionList)} zIndex={3} onClick={setRegionInput} />
         </Styled.row>
         <Styled.row>
           <Typography size={'sm'} color={'black'}>
-            약속장소
+            장소
           </Typography>
           <Styled.input
             id={'place'}
@@ -84,7 +93,7 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: Omit<Schedu
         </Styled.row>
         <Styled.row>
           <Typography size={'sm'} color={'black'}>
-            약속날짜
+            날짜
           </Typography>
           <Styled.input
             id={'date'}
@@ -96,7 +105,7 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: Omit<Schedu
         </Styled.row>
         <Styled.row>
           <Typography size={'sm'} color={'black'}>
-            약속시작
+            시작시간
           </Typography>
           <Styled.input
             id={'startTime'}
@@ -108,7 +117,7 @@ const ScheduleCreateForm: React.FC<{ onCreateSchedule: (newSchedule: Omit<Schedu
         </Styled.row>
         <Styled.row>
           <Typography size={'sm'} color={'black'}>
-            약속종료
+            종료시간
           </Typography>
           <Styled.input
             id={'endTime'}
@@ -133,7 +142,6 @@ const ScheduleEdit: React.FC = () => {
   const handleSetCreditType = (newCreditType: string) => {
     setFieldValue('creditType', newCreditType);
   };
-
   const handleCreateSchedule = (newSchedule: Omit<ScheduleEntity, 'scheduleId'>) => {
     setFieldValue('schedules', [...values.schedules, newSchedule]);
   };
@@ -153,7 +161,7 @@ const ScheduleEdit: React.FC = () => {
       <Title size={'h3'} color={'deepdarkgray'}>
         약속추가
       </Title>
-      <ScheduleCreateForm onCreateSchedule={handleCreateSchedule} />
+      <ScheduleCreateForm schedules={schedules} onCreateSchedule={handleCreateSchedule} />
     </Styled.container>
   );
 };

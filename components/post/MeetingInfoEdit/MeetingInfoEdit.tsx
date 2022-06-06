@@ -9,12 +9,16 @@ import Textarea from '@components/common/Textarea';
 
 import { PostEntity } from 'types/entity';
 import { Field, Form } from 'formik';
+import { useRouter } from 'next/router';
 
 export type MeetingInfoEditProps = {
   postData?: PostEntity;
 };
 
 const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
+  const router = useRouter();
+  const isEdit = router.query.postId;
+
   return (
     <Form id="createPage">
       <Styled.postInfoBox>
@@ -46,7 +50,7 @@ const MeetingInfoEdit: React.FC<MeetingInfoEditProps> = () => {
         </Title>
         <AddHashtagBar />
       </Styled.addHashtagBox>
-      <StickyBar buttonName={'약속 생성하기'} />
+      <StickyBar buttonName={isEdit ? '약속 수정하기' : '약속 생성하기'} />
     </Form>
   );
 };

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { PostDetailResponseDto } from 'types/response';
 
 const usePost = (postId: string) => {
-  const { isLoading, data, error } = useQuery<PostDetailResponseDto>(
+  const { isLoading, data, error, refetch } = useQuery<PostDetailResponseDto>(
     ['post', postId],
     async () => (await post.getPost(postId)).data,
     {
@@ -29,7 +29,7 @@ const usePost = (postId: string) => {
     },
   );
   console.log('post', data);
-  return { isLoading, postData: data, error };
+  return { isLoading, postData: data, error, refetch };
 };
 
 export default usePost;
