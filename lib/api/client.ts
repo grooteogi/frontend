@@ -61,7 +61,7 @@ const client = {
       .then(res => handleResponse(res, this.post, url))
       .catch(handleError);
   },
-  put: async function (url: string, data: ResponseData): Promise<ResponseData> {
+  put: async function (url: string, data: any): Promise<ResponseData> {
     return await GAxios({
       method: 'put',
       data: data,

@@ -1,3 +1,4 @@
+import { PostEditRequestDto } from './../../types/request';
 import { PostCreateRequestDto } from 'types/request';
 import { SearchStateType } from '@components/search/context';
 import { SortType } from 'types/enum';
@@ -13,7 +14,7 @@ export const post = {
     console.log(post);
     return await client.post(url, post);
   },
-  modifyPost: async (post: any) => {
+  modifyPost: async (post: PostEditRequestDto) => {
     const url = `/post/${post.postId}`;
     return await client.put(url, post);
   },

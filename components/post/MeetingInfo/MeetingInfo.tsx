@@ -19,10 +19,11 @@ const AuthButtonPanel = ({ postId }: { postId: string }) => {
     router.push(`/post/edit/${postId}`);
   };
   const handleDeletePost = async () => {
+    router.prefetch('/');
     const response = await post.deletePost(postId);
     if (response.status === 200) {
+      router.push('/');
       alert('삭제에 성공했습니다.');
-      router.push('/search');
     }
   };
 
@@ -36,12 +37,12 @@ const AuthButtonPanel = ({ postId }: { postId: string }) => {
 
 interface MeetingInfoProps {
   post: PostDetailResponseDto | undefined;
+  refetch: any;
 }
 
-const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData }) => {
+const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData, refetch }) => {
   const postImg = useRef<HTMLImageElement>(null);
   const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
-  const [liked, setLiked] = useState<boolean>(postData ? postData.likes.liked : false);
   const { mutate } = useLikeMutate();
 
   useEffect(() => {
@@ -84,12 +85,12 @@ const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData }) => {
         <Styled.likedPanel>
           <Styled.likedBtn
             onClick={() => {
-              // TODO: mutate 부분 수정하기
               mutate(postData.postId);
-              setLiked(!liked);
+              alert('좋아요를 눌렀습니다!');
+              refetch();
             }}
           >
-            {liked ? <FullHeartIcon /> : <EmptyHeartIcon />}
+            {postData.likes.liked ? <FullHeartIcon /> : <EmptyHeartIcon />}
           </Styled.likedBtn>
           <Typography size={'xs'} color={'black'}>
             {postData.likes.count}
