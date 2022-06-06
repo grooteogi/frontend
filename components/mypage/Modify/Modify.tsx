@@ -10,11 +10,11 @@ import 'antd/dist/antd.css';
 import { UserProfileResponseDto } from 'types/response';
 import React, { useState, useRef } from 'react';
 import image from '@lib/api/image';
-import user from '@lib/api/user';
 import auth from '@lib/api/auth';
 import { ModifyUserProfileRequestDto } from 'types/request';
 import PasswordModal from '../PasswordModal';
 import { storage } from '@lib/storage';
+import { useProfileMutation } from '../useProfile';
 
 interface ModifyProps {
   profile: UserProfileResponseDto;
@@ -22,19 +22,24 @@ interface ModifyProps {
 
 const Modify: React.FC<ModifyProps> = ({ profile }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const { mutate: modify } = useProfileMutation();
 
   const modifyFormik = useFormik<ModifyUserProfileRequestDto>({
+    enableReinitialize: true,
     initialValues: {
       nickname: profile.nickname,
-      imageUrl: profile.imageUrl,
+      imageUrl: profile.imageUrl === '' ? '/imgs/default_profile.png' : profile.imageUrl,
       name: profile.name,
       address: profile.address,
       phone: profile.phone,
     },
     onSubmit: async values => {
-      const response = await user.modifyProfile(values);
-      if (response.status === 200) alert('회원정보 수정 완료되었습니다.');
-      else alert(response.message);
+      modify(values, {
+        onSuccess: async (response: any) => {
+          if (response.status === 200) alert('회원정보 수정 완료되었습니다.');
+          else alert(response.message);
+        },
+      });
     },
   });
   const handleWithDrawal = async () => {
@@ -67,7 +72,7 @@ const Modify: React.FC<ModifyProps> = ({ profile }) => {
     비밀번호: (<Button color={'primary'} fontColor={'white'} name={'변경하기'} size={'sm'} type={'button'} onClick={() => setOpen(true)}/>),
     '프로필 사진': (
       <>
-        <Image src={modifyFormik.values.imageUrl ? modifyFormik.values.imageUrl : 'default_profile.png'} alt={'profile img not found'} size={'md'} />
+        <Image src={modifyFormik.values.imageUrl} alt={'profile img not found'} size={'md'} />
         <Wrapper flexDirection={'row'} padding={{ paddingTop: '15px' }} gap={{ columnGap: 2 }}>
           <input id="imageUrl" name="imageUrl" type={'file'} ref={hiddenFileInput} onChange={handleFileChange} hidden />
           <Button color={'primary'} fontColor={'white'} name={'프로필 변경'} size={'sm'} type={'button'} onClick={handleClick}/>
