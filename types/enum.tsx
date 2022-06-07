@@ -9,7 +9,7 @@ export enum FilterType {
   ALL = '전체목록',
   PROCEED = '진행중',
   COMPLETE = '완료됨',
-  CANCELED = '취소됨',
+  // CANCELED = '취소됨',
 }
 
 export enum SortType {
