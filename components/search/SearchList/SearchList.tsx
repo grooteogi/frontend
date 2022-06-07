@@ -40,7 +40,7 @@ const SearchList = () => {
           </React.Fragment>
         );
       })}
-      {hasNextPage ? <div ref={setTarget}>load more…</div> : null}
+      {hasNextPage ? <div ref={setTarget}></div> : null}
       {isFetching && !isFetchingNextPage ? <div>Fetching…</div> : null}
     </Styled.container>
   );
