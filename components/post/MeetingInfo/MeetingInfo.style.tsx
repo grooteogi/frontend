@@ -11,6 +11,7 @@ export const Styled = {
     padding: 0 0 50px;
   `,
   postPic: styled.img`
+    width: 100%;
     background-color: white;
     border: 1px solid ${theme.color.gray200};
     border-radius: ${theme.borderRadius.md};

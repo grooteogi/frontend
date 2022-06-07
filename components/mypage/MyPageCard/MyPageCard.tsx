@@ -85,7 +85,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
           )}
           {cardType === undefined ? null : cardType === 'receive' ? (
             <>
-              <Button
+              {/* <Button
                 name={'메시지 확인'}
                 color={'primary'}
                 fontColor={'white'}
@@ -96,7 +96,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                   setModalOpen(true);
                   e.stopPropagation();
                 }}
-              />
+              /> */}
               <Alert
                 title={reservationData.applyNickname}
                 content={reservationData.text}
@@ -110,7 +110,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
             <Button name={'리뷰쓰기'} color={'primary'} fontColor={'white'} size={'sm'} onClick={moveToCreateReview} />
           ) : (
             <>
-              <Button
+              {/* <Button
                 name={'리뷰보기'}
                 color={'gray300'}
                 fontColor={'white'}
@@ -120,7 +120,7 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                   setModalOpen(true);
                   e.stopPropagation();
                 }}
-              />
+              /> */}
             </>
           )}
         </Styled.spaceBetween>
