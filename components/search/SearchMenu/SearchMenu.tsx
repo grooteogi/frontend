@@ -29,7 +29,7 @@ const SearchMenu = () => {
   // ];
   return (
     <Styled.container>
-      {data !== undefined && <HorizontalScroll value={searchState.keyword} onClick={setHashtag} data={data} />}
+      {data !== undefined && <HorizontalScroll value={searchState.hashtag} onClick={setHashtag} data={data} />}
     </Styled.container>
   );
 };
