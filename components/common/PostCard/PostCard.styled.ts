@@ -3,7 +3,16 @@ import theme from '@styles/theme';
 
 export const Styled = {
   container: styled.div`
-    width: 90%;
+    width: 95%;
+    ${theme.responsive.pc} {
+      max-width: 230px;
+    }
+    ${theme.responsive.tablet} {
+      max-width: 230px;
+    }
+    ${theme.responsive.mobile} {
+      max-width: 180px;
+    }
     height: 100%;
     display: flex;
     flex-direction: column;
