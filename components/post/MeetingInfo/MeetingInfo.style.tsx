@@ -62,6 +62,7 @@ export const Styled = {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
     ${getSize};
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
