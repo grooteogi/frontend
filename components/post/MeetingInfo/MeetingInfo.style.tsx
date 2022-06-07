@@ -2,19 +2,6 @@ import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
-interface SizeProps {
-  isWidthBigger: boolean;
-}
-
-const getSize = ({ isWidthBigger }: SizeProps) => {
-  if (isWidthBigger) {
-    return `max-width: 100%;
-    height: auto;`;
-  }
-  return `max-height: 100%;
-    width: auto;`;
-};
-
 export const Styled = {
   container: styled.div`
     width: 100%;
@@ -23,16 +10,12 @@ export const Styled = {
     gap: 1rem;
     padding: 0 0 50px;
   `,
-  thumbnailWrappper: styled.div`
-    width: 100%;
+  postPic: styled.img`
     background-color: white;
     border: 1px solid ${theme.color.gray200};
     border-radius: ${theme.borderRadius.md};
-  `,
-  thumbnail: styled.div`
-    position: relative;
-    padding-top: 100%;
-    overflow: hidden;
+    object-fit: cover;
+    aspect-ratio: 1/1;
   `,
   likedBtn: styled.button`
     width: 30px;
@@ -47,25 +30,6 @@ export const Styled = {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
-  `,
-  postPicWrapper: styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -webkit-transform: translate(50%, 50%);
-    -ms-transform: translate(50%, 50%);
-    transform: translate(50%, 50%);
-  `,
-  postPic: styled.img`
-    position: absolute;
-    top: 0;
-    left: 0;
-    ${getSize};
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
   `,
   userPic: styled.img`
     width: 22px;

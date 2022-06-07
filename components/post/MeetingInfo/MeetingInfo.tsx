@@ -41,24 +41,14 @@ interface MeetingInfoProps {
 }
 
 const MeetingInfo: React.FC<MeetingInfoProps> = ({ post: postData, refetch }) => {
-  const postImg = useRef<HTMLImageElement>(null);
-  const [isWidthBigger, setIsWidthBigger] = useState<boolean>(true);
   const { mutate } = useLikeMutate();
-
-  useEffect(() => {
-    if (postImg.current) setIsWidthBigger(postImg.current.width > postImg.current.height);
-  }, []);
 
   if (postData === undefined) return <div>postInfo</div>;
   return (
     <Styled.container>
-      <Styled.thumbnailWrappper>
-        <Styled.thumbnail>
-          <Styled.postPicWrapper>
-            <Styled.postPic ref={postImg} src={postData.imageUrl} isWidthBigger={isWidthBigger} />
-          </Styled.postPicWrapper>
-        </Styled.thumbnail>
-      </Styled.thumbnailWrappper>
+      <Styled.postPic
+        src={postData.imageUrl === '' || !postData.imageUrl ? '/imgs/default_post.png' : postData.imageUrl}
+      />
       <Wrapper flexDirection={'row'}>
         <Typography size={'lg'} color={'black'} weight={'bold'}>
           {postData.title}

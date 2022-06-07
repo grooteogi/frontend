@@ -23,6 +23,7 @@ const Layout = {
     gap: 10%;
     flex-wrap: wrap;
     height: auto;
+    min-height: calc(100vh - 80px - 7.225rem);
     ${theme.responsive.tablet} {
       flex-direction: column;
       width: 100%;

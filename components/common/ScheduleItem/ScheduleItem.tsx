@@ -13,12 +13,12 @@ const ScheduleItem: React.FC<ScheduleEntity> = ({ date, startTime, endTime, plac
           {moment(date, 'YYYY-MM-DD').locale('ko').format('MM월 DD일 (ddd)').toString()}{' '}
           {moment(date + ' ' + startTime, 'YYYY-MM-DD hh:mm:ss')
             .locale('ko')
-            .format('hh:mm')
+            .format('HH:mm')
             .toString()}
           ~
           {moment(date + ' ' + endTime, 'YYYY-MM-DD hh:mm:ss')
             .locale('ko')
-            .format('hh:mm')
+            .format('HH:mm')
             .toString()}
         </Typography>
         <Typography size={'xs'} color={'black'}>
