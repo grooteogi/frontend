@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import { useSearchContext } from '../context';
 
 //prettier-ignore
-const fetchedData = [{ keyword: '대학생활' },{ keyword: '자기개발' },{ keyword: '토플' },{ keyword: '동아리' },{ keyword: '연합동아리' },{ keyword: '길잡이' },{ keyword: '개발공부' },
-{ keyword: '선배' },{ keyword: '후배' },{ keyword: '프로젝트' },{ keyword: '졸업논문' },{ keyword: '대학원진학' },{ keyword: '석사' },{ keyword: '인턴십' },{ keyword: '프론트엔드' },{ keyword: '백엔드' },];
+const fetchedData = [ { keyword: '개발공부' }, { keyword: '길잡이' }, { keyword: '네카라쿠배' }, { keyword: '네카라쿠배당토' }, { keyword: '대학생활' }, { keyword: '대학원진학' }, { keyword: '인공지능' }, { keyword: '코딩' }, { keyword: '코딩테스트' }, { keyword: '면접' }, { keyword: '직무면접' }, { keyword: '취업준비' }, { keyword: '포트폴리오' }, { keyword: '자기소개서' }, { keyword: '자기개발' },
+  { keyword: '토익' }, { keyword: '토익' }, { keyword: '토플' }, { keyword: '동아리' }, { keyword: '연합동아리' }, { keyword: '선배' }, { keyword: '후배' }, { keyword: '프로젝트' }, { keyword: '졸업논문' }, { keyword: '석사' }, { keyword: '인턴십' }, { keyword: '인턴프로그램' }, { keyword: '프론트엔드' }, { keyword: '백엔드' },
+];
 
 type fetchedDataType = {
   keyword: string;

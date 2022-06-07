@@ -121,17 +121,17 @@ const MyPageCard: React.FC<{ reservation: ReservationListResponseDto; cardType?:
                   e.stopPropagation();
                 }}
               />
-              <Alert
-                title={'내가 작성한 리뷰'}
-                score={reservationData.score}
-                content={reservationData.review}
-                isOpen={isModalOpen}
-                onRequestClose={handleOnCloseModal}
-              />
             </>
           )}
         </Styled.spaceBetween>
       </Styled.info>
+      <Alert
+        title={'내가 작성한 리뷰'}
+        score={reservationData.score}
+        content={reservationData.review}
+        isOpen={isModalOpen}
+        onRequestClose={handleOnCloseModal}
+      />
     </Styled.container>
   );
 };
