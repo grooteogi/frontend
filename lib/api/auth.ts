@@ -12,7 +12,6 @@ const auth = {
     return await GAxios({ method: 'post', url, data: userInfo, withCredentials: true })
       .then(res => {
         const token = res.headers['x-auth-token'];
-        console.log('token', token);
         storage.setToken(token);
         return res.status;
       })
@@ -21,6 +20,19 @@ const auth = {
         else {
           return err.status;
         }
+      });
+  },
+  withDrawal: async () => {
+    const url = '/auth/withdrawal';
+    return await GAxios({ method: 'delete', url, withCredentials: true })
+      .then(res => {
+        const { status, message } = res.data;
+        console.log(`${status}: ${message}`);
+        return status;
+      })
+      .catch(err => {
+        if (!err.status) console.log('Unknown Network Error in axios');
+        else return err.status;
       });
   },
   sendEmail: async (email: string) => {

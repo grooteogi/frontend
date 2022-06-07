@@ -4,7 +4,7 @@ import { Styled } from './SortingTab.styled';
 export interface SortingTabProps {
   itemList: string[];
   value: string;
-  onClick: (sort: string) => void;
+  onClick: (sort: string | any) => void;
 }
 
 const SortingTab: React.FC<SortingTabProps> = ({ itemList, value, onClick }) => {

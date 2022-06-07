@@ -1,10 +1,14 @@
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 const Styled = {
   container: styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    ${theme.responsive.tablet} {
+      padding: 0 1rem;
+    }
   `,
   checkboxContainer: styled.div`
     display: flex;

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 const Styled = {
   container: styled.div`
@@ -6,7 +7,10 @@ const Styled = {
     flex-flow: row wrap;
     justify-content: space-between;
     gap: 20px;
-    padding: 30px 30px;
+    padding: 30px 10px;
+    ${theme.responsive.mobile} {
+      padding: 15px 8px;
+    }
   `,
 };
 

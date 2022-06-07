@@ -19,7 +19,8 @@ Default.args = {
   title: '내가 작성한 리뷰',
   content: '내가 썼던 리뷰내용은 이렇게 보여요',
   score: 4,
-  onclose: () => {
-    console.log('내가 작성한 리뷰');
+  isOpen: false,
+  onRequestClose: () => {
+    console.log('종료 시 출력할 useState 함수를 넣어주세요');
   },
 };

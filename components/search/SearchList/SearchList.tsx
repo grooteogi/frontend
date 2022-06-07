@@ -2,25 +2,17 @@ import React from 'react';
 import Styled from './SearchList.styled';
 import { useSearchContext } from '../context';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import post from '@lib/api/post';
 import PostSkeleton from '@components/common/PostCard/PostSkeleton';
-import { CreditType } from 'types/enum';
 import PostCard from '@components/common/PostCard';
 import { PostEntity } from 'types/entity';
-import { useInfiniteQuery } from 'react-query';
+import { useRouter } from 'next/router';
+import { usePosts } from '../usePosts';
 
 const SearchList = () => {
+  const router = useRouter();
   const searchState = useSearchContext();
-  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
-    ['posts', searchState],
-    async ({ pageParam = 1 }) => (await post.search({ searchState, pageParam })).data,
-    {
-      getNextPageParam: (lastPage, allPages) => {
-        if (lastPage === undefined) return undefined;
-        else return allPages.length < lastPage?.data?.pageCount && allPages.length + 1;
-      },
-    },
-  );
+
+  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = usePosts(searchState);
 
   const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) =>
     hasNextPage && isIntersecting && !isFetchingNextPage ? fetchNextPage() : null;
@@ -35,31 +27,21 @@ const SearchList = () => {
     <p>Error: {error}</p>
   ) : (
     <Styled.container>
-      {data?.pages.map((page: any, index: number) => {
+      {data?.pages.map((page: { posts: PostEntity[] }, index: number) => {
         return (
           <React.Fragment key={index}>
-            {page?.data?.posts?.map((post: PostEntity) => (
+            {page.posts.map((post: PostEntity) => (
               <PostCard
                 key={post.postId}
-                postEntity={{
-                  ...post,
-                  hashtags: ['개발자취업', '포트폴리오', '샘플태그'],
-                  createAt: '',
-                  creditType: CreditType.DIRECT,
-                  likes: {
-                    liked: true,
-                    count: 10,
-                  },
-                  mentor: { userId: 1, nickname: 'mentor nickname', imageUrl: '' },
-                }}
-                setClickedPostId={() => undefined}
+                post={post}
+                onClick={() => router.push({ pathname: '/post/[postId]', query: { postId: post.postId } })}
               />
             ))}
           </React.Fragment>
         );
       })}
-      {hasNextPage ? <div ref={setTarget}>load more...</div> : null}
-      {isFetching && !isFetchingNextPage ? <div>Fetching...</div> : null}
+      {hasNextPage ? <div ref={setTarget}></div> : null}
+      {isFetching && !isFetchingNextPage ? <div>Fetching…</div> : null}
     </Styled.container>
   );
 };

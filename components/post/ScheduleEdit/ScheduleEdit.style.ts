@@ -3,7 +3,6 @@ import Typography from '@components/common/Typography';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { darken } from 'polished';
-import { Field } from 'formik';
 import theme from '@styles/theme';
 
 interface SScorllProps {
@@ -18,14 +17,6 @@ const getStandardHeight = ({ standardHeight }: SScorllProps) => {
 
 export const Styled = {
   container: styled.div`
-    @media (min-width: 1060px) {
-      width: 325px;
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-    }
-    @media (max-width: 1059px) {
-      width: 100%;
-      padding: 2rem;
-    }
     border: 1px solid ${theme.color.gray200};
     border-radius: 12px;
     background: white;
@@ -34,6 +25,18 @@ export const Styled = {
     justify-content: space-around;
     align-self: start;
     row-gap: 1rem;
+    ${theme.responsive.pc} {
+      width: 325px;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+    }
+    ${theme.responsive.tablet} {
+      width: 100%;
+      padding: 2rem;
+    }
+    ${theme.responsive.mobile} {
+      width: 100%;
+      padding: 1rem;
+    }
   `,
   title: styled(Typography)`
     font-size: 1.2rem;
@@ -72,11 +75,18 @@ export const Styled = {
       width: 0;
       height: 0;
     }
+    & > * {
+      border-bottom: 1px solid ${theme.color.gray400};
+    }
+    & :last-of-type {
+      border-bottom: 0px;
+    }
   `,
   itemBox: styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 10px 0;
   `,
   row: styled.div`
     display: flex;

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build --no-lint",
     "start": "next start",
-    "lint": "eslint --cache \"**/*.{js,ts,jsx,tsx}\"",
+    "lint": "eslint --cache --cache-location .eslintcache \"**/*.{js,ts,jsx,tsx}\"",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "storybook": "start-storybook -p 6006 -s ./public",
@@ -28,12 +28,15 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@types/react-modal": "^3.13.1",
     "@types/react-slick": "^0.23.8",
     "antd": "^4.20.6",
     "axios": "^0.26.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.4",
+    "hamburger-react": "^2.5.0",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.3",
     "nanoid": "^3.3.4",
     "next": "12.1.0",
@@ -41,8 +44,10 @@
     "polished": "^4.1.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-modal": "^3.15.1",
     "react-query": "^3.34.19",
     "react-slick": "^0.28.1",
+    "react-spinners-kit": "^1.9.1",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
@@ -77,5 +82,5 @@
     "typescript": "4.6.2",
     "webpack": "5.68.0"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.1"
 }

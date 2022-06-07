@@ -1,14 +1,43 @@
-import { NextRouter, withRouter } from 'next/router';
+import styled from '@emotion/styled';
+import { storage } from '@lib/storage';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { ImpulseSpinner } from 'react-spinners-kit';
 
-interface WithRouterProps {
-  router: NextRouter;
-}
+const OAuthRedirect = () => {
+  const router = useRouter();
+  const token = router.query.token;
 
-const OAuthRedirect = ({ router }: WithRouterProps) => {
+  console.log('token', token);
   console.log(router.asPath);
   console.log('query', router.query);
 
-  return <div>OAuthRedirect</div>;
+  useEffect(() => {
+    router.push(`/?token=${token}`, undefined, { shallow: true });
+  });
+
+  useEffect(() => {
+    if (token) {
+      storage.setToken(token as string);
+      location.href = '/';
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.token]);
+
+  return (
+    <Container>
+      <ImpulseSpinner />
+    </Container>
+  );
 };
 
-export default withRouter(OAuthRedirect);
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export default OAuthRedirect;

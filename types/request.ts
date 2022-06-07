@@ -1,3 +1,4 @@
+import { ScheduleEntity } from 'types/entity';
 import { CreditType } from './enum';
 
 export type UserRegister = {
@@ -11,11 +12,10 @@ export type AuthSigninRequestDto = {
   password: string;
 };
 
-// params
 export type PostSearchRequestDto = {
-  keyword: string; //빈칸이어도 됨 전체
-  page: number; //페이지 번호, default 1
-  sort: string; //sorting; 최신순(default), 인기순, 조회순 //enum: LATEST(default), POPULAR, VIEWS
+  keyword: string; //default ""
+  page: number; //default 1
+  sort: string; //enum: LATEST(default), POPULAR, VIEWS
   region: string; //강서구(default), 강남구, 서대문구
 };
 
@@ -24,18 +24,35 @@ export type PostCreateRequestDto = {
   content: string;
   imageUrl: string;
   hashtags: string[]; // 최대 5개
-  creditType: CreditType;
-  schedules: {
-    date: string;
-    startTime: string;
-    endTime: string;
-    region: string;
-    place: string;
-  }[];
+  creditType: keyof typeof CreditType | string;
+  schedules: Omit<ScheduleEntity, 'scheduleId'>[];
+};
+
+export type PostEditRequestDto = {
+  postId: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  hashtags: string[]; // 최대 5개
+  creditType: keyof typeof CreditType | string;
+  schedules: Omit<ScheduleEntity, 'scheduleId'>[];
 };
 
 export type ReservationCreateRequestDto = {
   scheduleId: number;
   phoneNumber?: string;
   message: string;
+};
+
+export type ModifyUserProfileRequestDto = {
+  nickname: string;
+  name: string;
+  address: string;
+  imageUrl: string;
+  phone: string;
+};
+
+export type ModifyUserPasswordRequestDto = {
+  currentPassword: string;
+  newPassword: string;
 };

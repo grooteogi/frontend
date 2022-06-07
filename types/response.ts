@@ -1,22 +1,18 @@
 import { PostEntity, ReviewEntity } from './entity';
+
 export type PostSearchResponseDto = {
-  posts: [
-    {
-      postId: number;
-      title: string;
-      content: string;
-      imageUrl: string;
-      hashtags: string[]; // 최대 5개
-    },
-  ];
+  posts: Pick<PostEntity, 'postId' | 'title' | 'content' | 'imageUrl' | 'hashtags'>[];
   pageCount: number;
 };
+
 export type ReservationCreateResponseDto = {
   reservationId: number;
 };
-export type PostDetailResponseDto = {
-  post: PostEntity[];
+
+export type HashtagResponseDto = {
+  name: string;
 };
+
 export type AuthSigninResponseDto = {
   nickname: string;
   imageUrl: string;
@@ -26,7 +22,7 @@ export type ReviewsResponseDto = {
 };
 
 export type ReservationListResponseDto = {
-  postId: number;
+  postId: number | string;
   imageUrl: string;
   title: string;
   hashtags: string[];
@@ -49,4 +45,16 @@ export type PostListResponseDto = {
   imageUrl: string;
   title: string;
   hashtags: string[];
+  content?: string;
+};
+
+export type PostDetailResponseDto = PostEntity & { isAuthor: boolean };
+
+export type UserProfileResponseDto = {
+  nickname: string;
+  email: string;
+  name: string;
+  phone: string;
+  address: string;
+  imageUrl: string;
 };

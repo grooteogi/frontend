@@ -10,32 +10,34 @@ interface ResponseData {
 
 export const GAxios = axios.create({
   baseURL: '/api',
-  headers: { Authorization: `Bearer ${storage.getToken()}`, 'Content-Type': 'application/json' },
+  headers: {
+    Authorization: storage.validateToken() ? `Bearer ${storage.getToken()}` : '',
+    'Content-Type': 'application/json',
+  },
   withCredentials: true,
 });
 
-const handleResponse: any = (response: ResponseData, callback: any, url: string) => {
-  const { status, message } = response;
+const handleResponse: any = async (response: ResponseData, callback: any, url: string) => {
+  const { status, message } = response.data;
 
   console.log(`${status}: ${message}`);
 
-  switch (status) {
-    case 200:
-      return response;
-    case 202:
-      if (response.headers) storage.setToken(response.headers['x-auth-token']);
-      return callback(url);
+  if (status === 200) {
+    return response.data;
+  } else if (status === 202) {
+    if (response.headers && response.headers['x-auth-token']) storage.setToken(response.headers['x-auth-token']);
+    return (await callback(url)).data;
   }
 };
 
 const handleError = (error: any) => {
-  const response = error.response.data;
-  const { status, message } = response;
-  if (!error.status) {
+  const response = error.response?.data;
+
+  if (error.response?.data) {
+    const { status, message } = response;
     console.error(`${status}: ${message}`);
     return response;
   } else {
-    console.error(error);
     return response;
   }
 };
@@ -50,6 +52,7 @@ const client = {
       .catch(handleError);
   },
   post: async function (url: string, data: any): Promise<ResponseData> {
+    console.log('post');
     return await GAxios({
       method: 'post',
       data: data,
@@ -58,7 +61,7 @@ const client = {
       .then(res => handleResponse(res, this.post, url))
       .catch(handleError);
   },
-  put: async function (url: string, data: ResponseData): Promise<ResponseData> {
+  put: async function (url: string, data: any): Promise<ResponseData> {
     return await GAxios({
       method: 'put',
       data: data,
@@ -67,7 +70,16 @@ const client = {
       .then(res => handleResponse(res, this.put, url))
       .catch(handleError);
   },
-  delete: async function (url: string, data: ResponseData): Promise<ResponseData> {
+  patch: async function (url: string, data: any): Promise<ResponseData> {
+    return await GAxios({
+      method: 'patch',
+      data: data,
+      url: url,
+    })
+      .then(res => handleResponse(res, this.patch, url))
+      .catch(handleError);
+  },
+  delete: async function (url: string, data: any): Promise<ResponseData> {
     return await GAxios({
       method: 'delete',
       data: data,

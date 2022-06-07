@@ -1,10 +1,15 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-import { darken } from 'polished';
 
 const Styled = {
   aside: styled.aside`
     width: 200px;
+    ${theme.responsive.tablet} {
+      width: 100%;
+    }
+    ${theme.responsive.mobile} {
+      width: 100%;
+    }
   `,
   nav: styled.nav`
     width: 100%;
@@ -23,7 +28,7 @@ const Styled = {
     padding: 1.5rem 0;
     border-bottom: 1px solid ${theme.color.gray400};
     cursor: pointer;
-    &:first-child {
+    &:first-of-type {
       font-weight: ${theme.weight.bold};
       border-bottom: 2.5px solid ${theme.color.gray400};
       line-height: 1.2;

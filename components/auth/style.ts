@@ -1,8 +1,26 @@
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 const Styled = {
+  box: styled.div`
+    border: 1px solid ${theme.color.gray200};
+    border-radius: 12px;
+    background: ${theme.color.white};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: auto;
+    width: 450px;
+    ${theme.responsive.mobile} {
+      width: 100%;
+      border: 0px;
+    }
+  `,
   container: styled.div`
     padding: 3rem 3rem;
+    ${theme.responsive.mobile} {
+      padding: 3rem 1.5rem;
+    }
   `,
   descriptionContainer: styled.div`
     display: flex;
@@ -39,7 +57,14 @@ const Styled = {
     display: flex;
     justify-content: space-between;
   `,
-  emailbuttonContainer: styled.div`
+  confirmContainer: styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+    align-items: start;
+  `,
+  emailbuttonContainer: styled.span`
     display: flex;
     justify-content: flex-end;
     column-gap: 0.5rem;

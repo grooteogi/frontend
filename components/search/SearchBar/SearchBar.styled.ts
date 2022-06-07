@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
+import Image from 'next/image';
 
 export interface SListProps {
   children: JSX.Element;
@@ -7,8 +8,6 @@ export interface SListProps {
 
 export const Styled = {
   container: styled.div`
-    width: 100%;
-    max-width: 600px;
     height: auto;
     background: ${theme.color.white};
     border-radius: ${theme.borderRadius.md};
@@ -43,11 +42,19 @@ export const Styled = {
     padding: 4px;
     font-size: ${theme.fontSize.xs};
   `,
+  image: styled(Image)`
+    &:hover {
+      cursor: pointer;
+    }
+  `,
+  listText: styled.div`
+    flex-grow: 1;
+  `,
   ul: styled.ul`
     position: absolute;
     z-index: 2;
-    width: 100%;
-    max-width: 600px;
+    width: inherit;
+    max-width: inherit;
     padding-bottom: 4px;
     background-color: inherit;
     border-radius: inherit;
@@ -59,7 +66,6 @@ export const Styled = {
     align-items: center;
     justify-content: space-between;
     padding: 10px 8px;
-    width: 100%;
     font-size: ${theme.fontSize.xxs};
     font-weight: ${theme.weight.bold};
     &:hover {

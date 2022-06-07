@@ -170,6 +170,9 @@ export const globalStyle = (
       a:link {
         color: inherit;
       }
+      svg:hover {
+        cursor: pointer;
+      }
     `}
   />
 );

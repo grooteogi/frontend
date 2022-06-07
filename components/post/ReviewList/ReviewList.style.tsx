@@ -1,5 +1,6 @@
 import Typography from '@components/common/Typography';
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 export const Styled = {
   container: styled.div`
@@ -51,7 +52,7 @@ export const Styled = {
     font-weight: 600;
   `,
   hr: styled.hr`
-    color: gray;
+    border-top: 1px solid ${theme.color.gray600};
     width: 100%;
     margin-top: 15px;
     margin-bottom: 15px;

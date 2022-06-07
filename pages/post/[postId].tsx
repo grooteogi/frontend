@@ -1,35 +1,47 @@
-import { useRouter, withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import type { NextPage } from 'next';
 import ReviewList from '@components/post/ReviewList/ReviewList';
 import ShowSchedule from '@components/post/ScheduleShow/ScheduleShow';
 import MeetingInfo from '@components/post/MeetingInfo/MeetingInfo';
 import StickyBar from '@components/post/StickyBar/StickyBar';
 import post from '@lib/api/post';
-import Link from 'next/link';
 import Layout from '@components/post/layout';
-import postInfo from '@components/post/detail.meetingInfo.mock';
-import schedule from '@components/post/detail.schedule.mock';
-import review from '@components/post/detail.review.mock';
 
-const Detail: NextPage<any> = ({ postData }) => {
-  console.log('postData', postData);
+import { dehydrate, QueryClient } from 'react-query';
+import useSchedules from '@components/post/useSchedules';
+import usePost from '@components/post/usePost';
+import useReviews from '@components/post/useReviews';
 
+const Detail: NextPage = () => {
+  const router = useRouter();
+  const postId = router.query.postId as string;
+  const { postData, refetch } = usePost(postId);
+  const { schedulesData } = useSchedules(postId);
+  const { reviewsData } = useReviews(postId);
   return (
     <Layout.container>
-      <MeetingInfo {...postInfo} />
-      <ShowSchedule schedules={schedule} />
-      <ReviewList reviews={review} />
-      <Link href="/post/create">Move to Create</Link>
-      <StickyBar buttonName={'약속 신청하기'}></StickyBar>
+      <MeetingInfo post={postData} refetch={refetch} />
+      <ShowSchedule schedules={schedulesData} />
+      <ReviewList reviews={reviewsData} />
+      {!postData?.isAuthor && (
+        <StickyBar
+          buttonName={'약속 신청하기'}
+          onClick={() => router.push({ pathname: '/reservation/[postId]', query: { postId } })}
+        />
+      )}
     </Layout.container>
   );
 };
 
-export async function getServerSideProps(ctx: { params: { postId: number } }) {
+export async function getServerSideProps(ctx: { params: { postId: string } }) {
   const postId = ctx.params.postId;
-  const postData = await post.getPost(postId);
+  const queryClient = new QueryClient();
 
-  return { props: { postData } };
+  await queryClient.prefetchQuery(['post', postId], async () => (await post.getPost(postId)).data);
+  await queryClient.prefetchQuery(['schedules', postId], async () => (await post.getSchedules(postId)).data);
+  await queryClient.prefetchQuery(['reviews', postId], async () => (await post.getReviews(postId)).data);
+
+  return { props: { dehydratedState: dehydrate(queryClient) } };
 }
 
-export default withRouter(Detail);
+export default Detail;

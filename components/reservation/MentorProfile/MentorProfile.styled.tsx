@@ -1,19 +1,44 @@
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 const Styled = {
-  container: styled.div`
+  container: styled.section`
     display: flex;
-    column-gap: 24px;
+    flex-direction: row;
+    width: 100%;
+    height: 132px;
+    gap: 15px;
+    align-items: center;
+    ${theme.responsive.mobile} {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 25px;
+      height: auto;
+    }
   `,
-  infoContainer: styled.div`
+  image: styled.div`
+    width: 132px;
+    height: 132px;
+  `,
+  info: styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 16px;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
   `,
-  hashRef: styled.div`
+  title: styled.div`
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 3px;
+  `,
+  hash: styled.div`
     display: flex;
+    gap: 6px;
     flex-wrap: wrap;
-    column-gap: 6px;
   `,
 };
 

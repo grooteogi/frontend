@@ -1,15 +1,15 @@
 export enum CreditType {
-  DIRECT, //만나서 결제
-  DUTCHPAY, //더치페이
-  YOURPAY, //사주세요
-  MYPAY, //사줄게요
+  DIRECT = '만나서 결제',
+  DUTCHPAY = '더치페이',
+  YOURPAY = '사주세요',
+  MYPAY = '사줄게요',
 }
 
-export enum CreditTypeKR {
-  '만나서 결제',
-  '더치페이',
-  '사주세요',
-  '사줄게요',
+export enum FilterType {
+  ALL = '전체목록',
+  PROCEED = '진행중',
+  COMPLETE = '완료됨',
+  CANCELED = '취소됨',
 }
 
 export enum SortType {

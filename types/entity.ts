@@ -41,13 +41,13 @@ export type ReviewEntity = {
 };
 
 export type PostEntity = {
-  postId: number;
+  postId: string;
   title: string;
   content: string;
   imageUrl: string;
   createAt: string;
   hashtags: string[];
-  creditType: CreditType;
+  creditType: keyof typeof CreditType | string;
   likes: {
     count: number;
     liked: boolean;
